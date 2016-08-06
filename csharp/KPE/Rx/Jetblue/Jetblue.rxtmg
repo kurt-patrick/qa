@@ -1,0 +1,16 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<modulegroupdoc
+rxversion="6.0">
+  <testsuiteentryhierarchy>
+    <flatlistofchildren>
+      <modulegroups
+      name="Jetblue"
+      id="ce5fe9f4-5b51-4c3e-8708-de87908b0e52"/>
+    </flatlistofchildren>
+    <childhierarchy>
+      <modulegroups
+      name="Jetblue"
+      id="ce5fe9f4-5b51-4c3e-8708-de87908b0e52"/>
+    </childhierarchy>
+  </testsuiteentryhierarchy>
+</modulegroupdoc>

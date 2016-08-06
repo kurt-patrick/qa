@@ -1,0 +1,12 @@
+﻿<Properties>
+  <ActiveConfiguration value="Debug" />
+  <ActivePlatform value="x86" />
+  <SerializedValue name="ModuleBrowserState">
+    <ArrayOfString xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema">
+      <string>{6495E648-7B67-402A-93D1-0653E3C103CA}</string>
+      <string>60513a05-eab7-41e7-8c10-e51c735edc2e</string>
+    </ArrayOfString>
+  </SerializedValue>
+  <ProjectBrowserState value="[Solution KPE.Ranorex[Common[]Jetblue[Common[KPE.Rx.Jetblue[Repo[]]]TestSuites[HomePage[]]]]]&#xD;&#xA;Solution KPE.Ranorex\Jetblue\Common\KPE.Rx.Jetblue&#xD;&#xA;Solution KPE.Ranorex" />
+  <StartupProject value="{6495E648-7B67-402A-93D1-0653E3C103CA}" />
+</Properties>

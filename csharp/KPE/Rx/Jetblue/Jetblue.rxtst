@@ -1,0 +1,52 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<testsuitedoc
+rxversion="6.0">
+	<testsuiteentryhierarchy>
+		<flatlistofchildren>
+			<testsuite
+			name="Jetblue"
+			id="be95897a-ac1f-4c47-bed1-2dc4d2766e4a"
+			reportfilename="%S_%Y%M%D_%T.rxlog"
+			reporttemplatefolder=""
+			placescreenshotsinfolder="True"
+			reportwriteinterval="30000ms"
+			reportcompress="False"
+			enabletracingscreenshots="True"
+			ReportTime="RelativeToTestSuiteStartTime"
+			TracingScreenshotMode="Foreground"
+			TracingScreenshotQuality="40"/>
+			<testcase
+			name="TestCase"
+			id="c79994a1-9b16-4745-83b0-0bc3543fa7b1"/>
+			<testcase
+			name="Jetblue"
+			id="dd7951cf-a20f-40e4-af0e-0e710d313357"
+			reportlevel="Info;20"/>
+		</flatlistofchildren>
+		<childhierarchy>
+			<testsuite
+			name="Jetblue"
+			id="be95897a-ac1f-4c47-bed1-2dc4d2766e4a">
+				<testcase
+				name="Jetblue"
+				id="dd7951cf-a20f-40e4-af0e-0e710d313357">
+					<testcase
+					name="TestCase"
+					id="c79994a1-9b16-4745-83b0-0bc3543fa7b1"/>
+				</testcase>
+			</testsuite>
+		</childhierarchy>
+	</testsuiteentryhierarchy>
+	<datasources/>
+	<testconfigurations
+	default="TestRun">
+		<testconfiguration
+		name="TestRun">
+			<testcase
+			id="c79994a1-9b16-4745-83b0-0bc3543fa7b1"/>
+			<testcase
+			id="dd7951cf-a20f-40e4-af0e-0e710d313357"/>
+		</testconfiguration>
+	</testconfigurations>
+	<references/>
+</testsuitedoc>

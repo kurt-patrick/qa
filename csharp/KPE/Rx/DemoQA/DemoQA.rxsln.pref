@@ -1,0 +1,15 @@
+﻿<Properties>
+  <ActiveConfiguration value="Debug" />
+  <ActivePlatform value="x86" />
+  <SerializedValue name="ModuleBrowserState">
+    <ArrayOfString xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema">
+      <string>{43D76FEC-7E1E-4EB6-B71D-06B72C8462E9}</string>
+      <string>60513a05-eab7-41e7-8c10-e51c735edc2e</string>
+      <string>ca6818e7-f95a-44e4-bd94-34f36d501a31</string>
+      <string>{C48D1962-E275-488F-AFDC-1E98351806FB}</string>
+      <string>5a926548-c3d0-4dd8-887a-1cba177412e2</string>
+    </ArrayOfString>
+  </SerializedValue>
+  <ProjectBrowserState value="[Solution DemoQA[Common[KPE.Rx.Common[TestModule[]]]KPE.Rx.DemoQA[Datasets[]]]]&#xD;&#xA;Solution DemoQA\KPE.Rx.DemoQA\DemoQA.rxtst&#xD;&#xA;Solution DemoQA\Common\KPE.Rx.Common\Helper" />
+  <StartupProject value="{C48D1962-E275-488F-AFDC-1E98351806FB}" />
+</Properties>

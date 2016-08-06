@@ -1,0 +1,116 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003" DefaultTargets="Build">
+  <PropertyGroup>
+    <ProjectGuid>{75E6ADF4-8644-49E0-9BB9-C389C22364A8}</ProjectGuid>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">x86</Platform>
+    <OutputType>Library</OutputType>
+    <RootNamespace>KPE.Rx.Jetblue</RootNamespace>
+    <AssemblyName>KPE.Rx.Jetblue</AssemblyName>
+    <RanorexVersion>6.0</RanorexVersion>
+    <TargetFrameworkVersion>v4.5</TargetFrameworkVersion>
+    <projectdefaultrepository>f83c92c3-d13d-45e4-85a0-4b9d224d77c7</projectdefaultrepository>
+    <TargetFrameworkProfile />
+    <NoWin32Manifest>False</NoWin32Manifest>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)' == 'Debug' ">
+    <OutputPath>bin\Debug\</OutputPath>
+    <DebugSymbols>True</DebugSymbols>
+    <DebugType>Full</DebugType>
+    <Optimize>False</Optimize>
+    <CheckForOverflowUnderflow>True</CheckForOverflowUnderflow>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)' == 'Release' ">
+    <OutputPath>bin\Release\</OutputPath>
+    <DebugSymbols>False</DebugSymbols>
+    <DebugType>None</DebugType>
+    <Optimize>True</Optimize>
+    <CheckForOverflowUnderflow>False</CheckForOverflowUnderflow>
+    <DefineConstants>TRACE</DefineConstants>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Platform)' == 'x86' ">
+    <PlatformTarget>AnyCPU</PlatformTarget>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="Ranorex.Core" />
+    <Reference Include="Ranorex.Plugin.ChromeWeb" />
+    <Reference Include="Ranorex.Plugin.Flex" />
+    <Reference Include="Ranorex.Plugin.Java" />
+    <Reference Include="Ranorex.Plugin.Mobile" />
+    <Reference Include="Ranorex.Plugin.MozillaWeb" />
+    <Reference Include="Ranorex.Plugin.Msaa" />
+    <Reference Include="Ranorex.Plugin.Office" />
+    <Reference Include="Ranorex.Plugin.Qt" />
+    <Reference Include="Ranorex.Plugin.RawText" />
+    <Reference Include="Ranorex.Plugin.Sap" />
+    <Reference Include="Ranorex.Plugin.Uia" />
+    <Reference Include="Ranorex.Plugin.Web" />
+    <Reference Include="Ranorex.Plugin.Win32" />
+    <Reference Include="Ranorex.Plugin.WinForms" />
+    <Reference Include="Ranorex.Plugin.Wpf" />
+    <Reference Include="System" />
+    <Reference Include="System.Core">
+      <RequiredTargetFramework>3.5</RequiredTargetFramework>
+    </Reference>
+    <Reference Include="System.Data" />
+    <Reference Include="System.Data.DataSetExtensions">
+      <RequiredTargetFramework>3.5</RequiredTargetFramework>
+    </Reference>
+    <Reference Include="System.Drawing" />
+    <Reference Include="System.Windows.Forms" />
+    <Reference Include="System.Xml" />
+    <Reference Include="System.Xml.Linq">
+      <RequiredTargetFramework>3.5</RequiredTargetFramework>
+    </Reference>
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="AssemblyInfo.cs">
+      <id>0bbaa46b-1d09-453d-a53d-1fac64fdba65</id>
+    </Compile>
+    <Compile Include="PagesObjects\BookingPage.cs">
+      <id>1535c580-9d76-4f1d-a67c-831f63e24938</id>
+    </Compile>
+    <Compile Include="PagesObjects\CitySelectionPage.cs">
+      <id>e7398364-8b3a-4cee-940f-4e5aeaa82ab3</id>
+    </Compile>
+    <Compile Include="PagesObjects\JetbluePageBase.cs">
+      <id>1c3f989c-7df7-4675-9bc4-74ba46e8897b</id>
+    </Compile>
+    <Compile Include="Repo\JetblueRepository.cs">
+      <DependentUpon>JetblueRepository.rxrep</DependentUpon>
+      <RepositoryCode>true</RepositoryCode>
+      <id>99341e41-0fdb-4b7e-9518-cb8621d9b7f1</id>
+      <BoundTo>f83c92c3-d13d-45e4-85a0-4b9d224d77c7</BoundTo>
+    </Compile>
+  </ItemGroup>
+  <ItemGroup>
+    <Folder Include="Repo">
+      <id>7c8173cb-c96c-49ae-a630-6c2d3cd64755</id>
+    </Folder>
+    <Folder Include="PagesObjects">
+      <id>fb571f17-26cb-4088-b870-7551d8e6cf82</id>
+    </Folder>
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\..\Common\KPE.Rx.Common.csproj">
+      <Project>{43D76FEC-7E1E-4EB6-B71D-06B72C8462E9}</Project>
+      <Name>KPE.Rx.Common</Name>
+    </ProjectReference>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Repo\JetblueRepository.rximg">
+      <DependentUpon>JetblueRepository.rxrep</DependentUpon>
+      <imageblob>true</imageblob>
+      <id>03276f3b-919a-453a-baae-d9a9ae2dc950</id>
+      <BoundTo>f83c92c3-d13d-45e4-85a0-4b9d224d77c7</BoundTo>
+    </None>
+    <None Include="Repo\JetblueRepository.rxrep">
+      <id>f83c92c3-d13d-45e4-85a0-4b9d224d77c7</id>
+      <repoid>82224e09-0f8c-4d3b-a492-3d08f44132d4</repoid>
+      <reporootid>669c297e-5854-4d61-aa65-dbae306a93b9</reporootid>
+    </None>
+  </ItemGroup>
+  <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
+  <Import Project="$(MSBuildExtensionsPath)\Ranorex$(RanorexVersion)\Ranorex.MSBuild.Targets" Condition="Exists('$(MSBuildExtensionsPath)\Ranorex$(RanorexVersion)\Ranorex.MSBuild.Targets')" />
+</Project>

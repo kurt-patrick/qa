@@ -1,0 +1,19 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<repository
+name="JetblueRepository"
+id="dd79042c-4d67-4666-9ba7-843efab25c99"
+rxversion="6.0">
+  <codegen
+  classname="JetblueRepository"
+  namespace="Jetblue"/>
+  <rootfolder
+  name="Root"
+  id="7d366307-8f2d-4f22-8ae9-d92e358d9cba"
+  searchtimeout="30000ms"
+  capname="unknown"
+  isrooted="True"
+  usecache="True">
+    <basepath/>
+  </rootfolder>
+  <variables/>
+</repository>

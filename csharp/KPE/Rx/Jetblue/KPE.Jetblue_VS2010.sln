@@ -1,0 +1,53 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 11.00
+# Visual Studio 2010
+# Ranorex Studio 6.0
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Common", "Common", "{1FB2E6EC-19FF-42FF-A490-EF91F2FFC4CE}"
+	ProjectSection(SolutionItems) = postProject
+	EndProjectSection
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "KPE.Rx.Common", "..\Common\KPE.Rx.Common.csproj", "{43D76FEC-7E1E-4EB6-B71D-06B72C8462E9}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Jetblue", "Jetblue", "{F11EC51E-7D67-4273-BD5E-2956FE3AF9B6}"
+	ProjectSection(SolutionItems) = postProject
+	EndProjectSection
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "TestSuites", "TestSuites", "{1BECAB6A-8BD3-4DA7-B13E-C9C3EC7CEC43}"
+	ProjectSection(SolutionItems) = postProject
+	EndProjectSection
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "HomePage", "TestSuites\HomePage\HomePage.csproj", "{6495E648-7B67-402A-93D1-0653E3C103CA}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Common", "Common", "{147DA4A8-4DC6-48AF-A829-8C8BF02793D6}"
+	ProjectSection(SolutionItems) = postProject
+	EndProjectSection
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "KPE.Rx.Jetblue", "Common\KPE.Rx.Jetblue.csproj", "{75E6ADF4-8644-49E0-9BB9-C389C22364A8}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|x86 = Debug|x86
+		Release|x86 = Release|x86
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{75E6ADF4-8644-49E0-9BB9-C389C22364A8}.Debug|x86.Build.0 = Debug|x86
+		{75E6ADF4-8644-49E0-9BB9-C389C22364A8}.Debug|x86.ActiveCfg = Debug|x86
+		{75E6ADF4-8644-49E0-9BB9-C389C22364A8}.Release|x86.Build.0 = Release|x86
+		{75E6ADF4-8644-49E0-9BB9-C389C22364A8}.Release|x86.ActiveCfg = Release|x86
+		{43D76FEC-7E1E-4EB6-B71D-06B72C8462E9}.Debug|x86.Build.0 = Debug|x86
+		{43D76FEC-7E1E-4EB6-B71D-06B72C8462E9}.Debug|x86.ActiveCfg = Debug|x86
+		{43D76FEC-7E1E-4EB6-B71D-06B72C8462E9}.Release|x86.Build.0 = Release|x86
+		{43D76FEC-7E1E-4EB6-B71D-06B72C8462E9}.Release|x86.ActiveCfg = Release|x86
+		{6495E648-7B67-402A-93D1-0653E3C103CA}.Debug|x86.Build.0 = Debug|x86
+		{6495E648-7B67-402A-93D1-0653E3C103CA}.Debug|x86.ActiveCfg = Debug|x86
+		{6495E648-7B67-402A-93D1-0653E3C103CA}.Release|x86.Build.0 = Release|x86
+		{6495E648-7B67-402A-93D1-0653E3C103CA}.Release|x86.ActiveCfg = Release|x86
+	EndGlobalSection
+	GlobalSection(NestedProjects) = preSolution
+		{43D76FEC-7E1E-4EB6-B71D-06B72C8462E9} = {1FB2E6EC-19FF-42FF-A490-EF91F2FFC4CE}
+		{1BECAB6A-8BD3-4DA7-B13E-C9C3EC7CEC43} = {F11EC51E-7D67-4273-BD5E-2956FE3AF9B6}
+		{147DA4A8-4DC6-48AF-A829-8C8BF02793D6} = {F11EC51E-7D67-4273-BD5E-2956FE3AF9B6}
+		{6495E648-7B67-402A-93D1-0653E3C103CA} = {1BECAB6A-8BD3-4DA7-B13E-C9C3EC7CEC43}
+		{75E6ADF4-8644-49E0-9BB9-C389C22364A8} = {147DA4A8-4DC6-48AF-A829-8C8BF02793D6}
+	EndGlobalSection
+EndGlobal

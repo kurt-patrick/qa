@@ -1,0 +1,13 @@
+Notes,FirstName,LastName,Hobby,PhoneNumber,Email,Username,Password,PasswordConfirm,ExpErrFName,ExpErrLName,ExpErrHobby,ExpErrPhone,ExpErrUsername,ExpErrEmail,ExpErrPwd,ExpErrPwdC,Custom
+1 no data,,,,,,,,,TRUE,TRUE,TRUE,TRUE,TRUE,TRUE,TRUE,TRUE,
+2 fname - char,a,,Dance,123456789,a,a,1234567,,FALSE,TRUE,FALSE,TRUE,FALSE,TRUE,TRUE,TRUE,
+3 fname - digit,1,,Reading,1234567890,a@,1,,,FALSE,TRUE,FALSE,FALSE,FALSE,TRUE,TRUE,TRUE,
+4 Last name - char,,a,Cricket,1234567890123460,a@z,,,,FALSE,FALSE,FALSE,FALSE,TRUE,TRUE,TRUE,TRUE,
+5 Last name - digit,,1,,12345678901234600,a@z.,,,,FALSE,FALSE,TRUE,TRUE,TRUE,TRUE,TRUE,TRUE,
+6 hobby only,,,,61abcdefgh,z.com,,,,TRUE,TRUE,TRUE,TRUE,TRUE,TRUE,TRUE,TRUE,
+7 email fail,,,,,@z.com,,,,TRUE,TRUE,TRUE,TRUE,TRUE,TRUE,TRUE,TRUE,
+8 email fail,,,,,@,,,,TRUE,TRUE,TRUE,TRUE,TRUE,TRUE,TRUE,TRUE,
+9 pwd mismatch,billy,bob,Cricket,6194001234,steve@steve.com,steve,12345678,12345679,FALSE,FALSE,FALSE,FALSE,FALSE,FALSE,FALSE,TRUE,
+10 valid rego,billy,bob,Cricket,6194001234,{guid}@steve.com,{guid},12345678,12345678,FALSE,FALSE,FALSE,FALSE,FALSE,FALSE,FALSE,FALSE,success
+11 use prev record,,,,,,,,,,,,,,,,,username-exists
+12 valid rego,billy,bob,Cricket,6194001234,steve@steve.com,{guid},12345678,12345678,FALSE,FALSE,FALSE,FALSE,FALSE,FALSE,FALSE,FALSE,email-exists

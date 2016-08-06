@@ -1,0 +1,144 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003" DefaultTargets="Build">
+  <PropertyGroup>
+    <ProjectGuid>{C48D1962-E275-488F-AFDC-1E98351806FB}</ProjectGuid>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">x86</Platform>
+    <OutputType>Exe</OutputType>
+    <RootNamespace>KPE.Rx.DemoQA</RootNamespace>
+    <AssemblyName>KPE.Rx.DemoQA</AssemblyName>
+    <RanorexVersion>6.0</RanorexVersion>
+    <TargetFrameworkVersion>v4.5</TargetFrameworkVersion>
+    <projectdefaultrepository>6d3ab318-731b-40f2-8d91-d8b179ce28dd</projectdefaultrepository>
+    <TargetFrameworkProfile />
+    <NoWin32Manifest>False</NoWin32Manifest>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Platform)' == 'x86' ">
+    <PlatformTarget>x86</PlatformTarget>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)' == 'Debug' ">
+    <OutputPath>bin\Debug\</OutputPath>
+    <DebugSymbols>True</DebugSymbols>
+    <DebugType>Full</DebugType>
+    <Optimize>False</Optimize>
+    <CheckForOverflowUnderflow>True</CheckForOverflowUnderflow>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)' == 'Release' ">
+    <OutputPath>bin\Release\</OutputPath>
+    <DebugSymbols>False</DebugSymbols>
+    <DebugType>None</DebugType>
+    <Optimize>True</Optimize>
+    <CheckForOverflowUnderflow>False</CheckForOverflowUnderflow>
+    <DefineConstants>TRACE</DefineConstants>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="Ranorex.Core" />
+    <Reference Include="Ranorex.Plugin.ChromeWeb" />
+    <Reference Include="Ranorex.Plugin.Flex" />
+    <Reference Include="Ranorex.Plugin.Java" />
+    <Reference Include="Ranorex.Plugin.Mobile" />
+    <Reference Include="Ranorex.Plugin.MozillaWeb" />
+    <Reference Include="Ranorex.Plugin.Msaa" />
+    <Reference Include="Ranorex.Plugin.Office" />
+    <Reference Include="Ranorex.Plugin.Qt" />
+    <Reference Include="Ranorex.Plugin.RawText" />
+    <Reference Include="Ranorex.Plugin.Sap" />
+    <Reference Include="Ranorex.Plugin.Uia" />
+    <Reference Include="Ranorex.Plugin.Web" />
+    <Reference Include="Ranorex.Plugin.Win32" />
+    <Reference Include="Ranorex.Plugin.WinForms" />
+    <Reference Include="Ranorex.Plugin.Wpf" />
+    <Reference Include="System" />
+    <Reference Include="System.Core">
+      <RequiredTargetFramework>3.5</RequiredTargetFramework>
+    </Reference>
+    <Reference Include="System.Data" />
+    <Reference Include="System.Data.DataSetExtensions">
+      <RequiredTargetFramework>3.5</RequiredTargetFramework>
+    </Reference>
+    <Reference Include="System.Drawing" />
+    <Reference Include="System.Windows.Forms" />
+    <Reference Include="System.Xml" />
+    <Reference Include="System.Xml.Linq">
+      <RequiredTargetFramework>3.5</RequiredTargetFramework>
+    </Reference>
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="AssemblyInfo.cs">
+      <id>e0a50484-e4fa-4f3a-b7e2-e0c95329d34a</id>
+    </Compile>
+    <Compile Include="CodeModules\FillOutPage.cs">
+      <id>a151071d-3bd7-439e-bdd9-bcdbf8b8e243</id>
+    </Compile>
+    <Compile Include="CodeModules\ValidatePage.cs">
+      <id>c043d36a-f8b8-4d27-85f0-afd442c3935c</id>
+    </Compile>
+    <Compile Include="PageObjects\RegistrationPage.cs">
+      <id>52532c7e-495e-4096-803e-a2f50470fe91</id>
+    </Compile>
+    <Compile Include="Program.cs">
+      <id>8d5e8fd0-ab3e-4245-9591-08643fd8fa46</id>
+    </Compile>
+    <Compile Include="Repo\DemoQARepository.cs">
+      <DependentUpon>DemoQARepository.rxrep</DependentUpon>
+      <RepositoryCode>true</RepositoryCode>
+      <id>5cf817c2-7345-47af-9066-3460d77e7554</id>
+      <BoundTo>6d3ab318-731b-40f2-8d91-d8b179ce28dd</BoundTo>
+    </Compile>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="app.config">
+      <id>8023af6d-38d7-4ead-a373-2343ff838001</id>
+    </None>
+    <None Include="Datasets\Registration.csv">
+      <id>84ed38a0-ba5d-481c-bbe8-4bf2f444f84a</id>
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <Content Include="Registration.csv">
+      <BoundTo>5fc3919c-653f-4537-8003-17378ef0d312</BoundTo>
+      <DependentUpon>DemoQA.rxtst</DependentUpon>
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+      <id>8cbafae7-7339-4428-a398-4232b3299e1d</id>
+    </Content>
+    <None Include="Repo\DemoQARepository.rximg">
+      <DependentUpon>DemoQARepository.rxrep</DependentUpon>
+      <imageblob>true</imageblob>
+      <id>29c77b70-abce-485b-9d30-4b6f873befcd</id>
+      <BoundTo>6d3ab318-731b-40f2-8d91-d8b179ce28dd</BoundTo>
+    </None>
+    <None Include="Repo\DemoQARepository.rxrep">
+      <id>6d3ab318-731b-40f2-8d91-d8b179ce28dd</id>
+      <repoid>a5a77e8d-8346-45be-aeec-1af8cc30ba92</repoid>
+      <reporootid>70ce3e01-0f75-48f7-af35-3707e9258b63</reporootid>
+    </None>
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="DemoQA.rxtst">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+      <id>5fc3919c-653f-4537-8003-17378ef0d312</id>
+    </Content>
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\Common\KPE.Rx.Common.csproj">
+      <Project>{43D76FEC-7E1E-4EB6-B71D-06B72C8462E9}</Project>
+      <Name>KPE.Rx.Common</Name>
+    </ProjectReference>
+  </ItemGroup>
+  <ItemGroup>
+    <Folder Include="CodeModules">
+      <id>5a926548-c3d0-4dd8-887a-1cba177412e2</id>
+    </Folder>
+    <Folder Include="Datasets">
+      <id>5987208c-7234-48b2-83a6-2cb834cb0fc9</id>
+    </Folder>
+    <Folder Include="PageObjects">
+      <id>5207c172-26a8-4b7b-8f94-fd2171d689c8</id>
+    </Folder>
+    <Folder Include="Repo">
+      <id>419d5b6e-864d-4fbd-a156-baf415e209b9</id>
+    </Folder>
+  </ItemGroup>
+  <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
+  <Import Project="$(MSBuildExtensionsPath)\Ranorex$(RanorexVersion)\Ranorex.MSBuild.Targets" Condition="Exists('$(MSBuildExtensionsPath)\Ranorex$(RanorexVersion)\Ranorex.MSBuild.Targets')" />
+</Project>

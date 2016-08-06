@@ -1,0 +1,31 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 11.00
+# Visual Studio 2010
+# Ranorex Studio 6.0
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Common", "Common", "{F2AA86A1-33A3-4077-9385-7516FEDD2482}"
+	ProjectSection(SolutionItems) = postProject
+	EndProjectSection
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "KPE.Rx.Common", "..\Common\KPE.Rx.Common.csproj", "{43D76FEC-7E1E-4EB6-B71D-06B72C8462E9}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "KPE.Rx.DemoQA", "KPE.Rx.DemoQA.csproj", "{C48D1962-E275-488F-AFDC-1E98351806FB}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|x86 = Debug|x86
+		Release|x86 = Release|x86
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{C48D1962-E275-488F-AFDC-1E98351806FB}.Debug|x86.Build.0 = Debug|x86
+		{C48D1962-E275-488F-AFDC-1E98351806FB}.Debug|x86.ActiveCfg = Debug|x86
+		{C48D1962-E275-488F-AFDC-1E98351806FB}.Release|x86.Build.0 = Release|x86
+		{C48D1962-E275-488F-AFDC-1E98351806FB}.Release|x86.ActiveCfg = Release|x86
+		{43D76FEC-7E1E-4EB6-B71D-06B72C8462E9}.Debug|x86.Build.0 = Debug|x86
+		{43D76FEC-7E1E-4EB6-B71D-06B72C8462E9}.Debug|x86.ActiveCfg = Debug|x86
+		{43D76FEC-7E1E-4EB6-B71D-06B72C8462E9}.Release|x86.Build.0 = Release|x86
+		{43D76FEC-7E1E-4EB6-B71D-06B72C8462E9}.Release|x86.ActiveCfg = Release|x86
+	EndGlobalSection
+	GlobalSection(NestedProjects) = preSolution
+		{43D76FEC-7E1E-4EB6-B71D-06B72C8462E9} = {F2AA86A1-33A3-4077-9385-7516FEDD2482}
+	EndGlobalSection
+EndGlobal
