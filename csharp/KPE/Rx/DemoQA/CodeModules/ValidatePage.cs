@@ -67,9 +67,6 @@ namespace KPE.Rx.DemoQA.PageObjects
 		[TestVariable("F1AAB07A-8F1B-44A8-ADF6-8D89C4E1B919")]
 		public bool ExpErrPwd { set; get; }
 		
-		[TestVariable("C42908D7-17D4-4368-B82A-E6B300357277")]
-		public string PwdErrMsg { set; get; }
-
 		[TestVariable("258B51A9-579C-4C8C-A6B3-1645C801F20A")]
 		public bool ExpErrPwdC { set; get; }
 		
@@ -182,7 +179,7 @@ namespace KPE.Rx.DemoQA.PageObjects
             		specificErrMsg = EmailErrMsg; 
             		break;
             	case RegistrationPage.eErrorArea.Pwd:
-            		specificErrMsg = PwdErrMsg; 
+            		//specificErrMsg = PwdErrMsg; 
             		break;
             	case RegistrationPage.eErrorArea.PwdConfirm:
             		

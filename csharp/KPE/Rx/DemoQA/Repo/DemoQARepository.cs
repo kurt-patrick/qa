@@ -49,7 +49,7 @@ namespace KPE.Rx.DemoQA.Repo
 
 #region Variables
 
-        string _GenericIndex = "";
+        string _GenericIndex = "11";
 
         /// <summary>
         /// Gets or sets the value of variable GenericIndex.

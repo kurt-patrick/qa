@@ -95,11 +95,6 @@ rxversion="6.0">
 					variableid="acefd4e8-395a-4b93-a439-dbd63aa32644"
 					dataname="EmailErrMsg"
 					datasourceid="df06c00f-fcd9-4fdd-a99f-a3560b3c94d4"/>
-					<var
-					variablename="PwdErrMsg"
-					variableid="c42908d7-17d4-4368-b82a-e6b300357277"
-					dataname="PwdErrMsg"
-					datasourceid="df06c00f-fcd9-4fdd-a99f-a3560b3c94d4"/>
 				</databinding>
 			</testmodule>
 			<testsuite
