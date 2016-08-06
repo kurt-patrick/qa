@@ -2,7 +2,10 @@
   <Array name="bookmarks">
     <Element value="Breakpoint|C:\sourcecode\qa\csharp\KPE\Rx\Common\PageObject\PageBase.cs|86|4|True|Break||" />
   </Array>
-  <Array name="files" />
+  <Array name="files">
+    <Element value="PageObject\PageBase.cs" />
+    <Element value="TestModule\NavigateToUrl.cs" />
+  </Array>
   <Properties name="projectSavedData">
     <Properties name="customTool">
       <runOnBuild value="False" />

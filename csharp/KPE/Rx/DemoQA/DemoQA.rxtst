@@ -33,7 +33,75 @@ rxversion="6.0">
 			name="ValidatePage"
 			id="32d24dcf-b51c-44f8-b90d-213f82dccda3"
 			ref="8170604d-f406-4b1c-a64b-1f706b5f5fed"
-			type="UserCode"/>
+			type="UserCode">
+				<databinding>
+					<var
+					variablename="ExpErrFName"
+					variableid="8e1556bd-813e-43db-a26a-6b26292808a2"
+					dataname="ExpErrFName"
+					datasourceid="df06c00f-fcd9-4fdd-a99f-a3560b3c94d4"/>
+					<var
+					variablename="ExpErrLName"
+					variableid="7b59a41c-53ae-457d-bebf-f4f28a942ff7"
+					dataname="ExpErrLName"
+					datasourceid="df06c00f-fcd9-4fdd-a99f-a3560b3c94d4"/>
+					<var
+					variablename="ExpErrHobby"
+					variableid="12bb262c-c875-4daf-9a64-d433f94c15e8"
+					dataname="ExpErrHobby"
+					datasourceid="df06c00f-fcd9-4fdd-a99f-a3560b3c94d4"/>
+					<var
+					variablename="ExpErrPhone"
+					variableid="9b9c4ce8-78bf-493d-a743-9832630d5345"
+					dataname="ExpErrPhone"
+					datasourceid="df06c00f-fcd9-4fdd-a99f-a3560b3c94d4"/>
+					<var
+					variablename="ExpErrUsername"
+					variableid="3b2e0eed-6a8c-48a4-a170-6b728021c416"
+					dataname="ExpErrUsername"
+					datasourceid="df06c00f-fcd9-4fdd-a99f-a3560b3c94d4"/>
+					<var
+					variablename="ExpErrEmail"
+					variableid="99d1c374-5e30-418a-bf2f-d03b46771380"
+					dataname="ExpErrEmail"
+					datasourceid="df06c00f-fcd9-4fdd-a99f-a3560b3c94d4"/>
+					<var
+					variablename="ClickSubmit"
+					variableid="80fe26bd-1fe1-49f7-b165-baf4cda3067d"
+					dataname="ClickSubmit"
+					datasourceid="df06c00f-fcd9-4fdd-a99f-a3560b3c94d4"/>
+					<var
+					variablename="ExpErrMsg"
+					variableid="6eb7b05c-3e29-45f5-bc27-c1b5507fd1ec"
+					dataname="ExpErrMsg"
+					datasourceid="df06c00f-fcd9-4fdd-a99f-a3560b3c94d4"/>
+					<var
+					variablename="ExpErrPwdC"
+					variableid="258b51a9-579c-4c8c-a6b3-1645c801f20a"
+					dataname="ExpErrPwdC"
+					datasourceid="df06c00f-fcd9-4fdd-a99f-a3560b3c94d4"/>
+					<var
+					variablename="ExpErrPwd"
+					variableid="f1aab07a-8f1b-44a8-adf6-8d89c4e1b919"
+					dataname="ExpErrPwd"
+					datasourceid="df06c00f-fcd9-4fdd-a99f-a3560b3c94d4"/>
+					<var
+					variablename="PhoneErrMsg"
+					variableid="c52af7f0-9ac5-488e-9f6a-ad1cdc9f40ec"
+					dataname="PhoneErrMsg"
+					datasourceid="df06c00f-fcd9-4fdd-a99f-a3560b3c94d4"/>
+					<var
+					variablename="EmailErrMsg"
+					variableid="acefd4e8-395a-4b93-a439-dbd63aa32644"
+					dataname="EmailErrMsg"
+					datasourceid="df06c00f-fcd9-4fdd-a99f-a3560b3c94d4"/>
+					<var
+					variablename="PwdErrMsg"
+					variableid="c42908d7-17d4-4368-b82a-e6b300357277"
+					dataname="PwdErrMsg"
+					datasourceid="df06c00f-fcd9-4fdd-a99f-a3560b3c94d4"/>
+				</databinding>
+			</testmodule>
 			<testsuite
 			name="DemoQA"
 			id="82980311-5b59-4416-882b-4c6a19fd16b3"
@@ -150,11 +218,19 @@ rxversion="6.0">
 					variableid="1c0eb0bd-5008-4d2f-b804-3a53dc00641c"
 					dataname="PasswordConfirm"
 					datasourceid="df06c00f-fcd9-4fdd-a99f-a3560b3c94d4"/>
+					<var
+					variablename="ExpErrPasswordConfirm"
+					variableid="3e49b1b5-eaa0-4f2a-bc1b-60311687ce1d"
+					dataname="ExpErrPwdC"
+					datasourceid="df06c00f-fcd9-4fdd-a99f-a3560b3c94d4"/>
 				</databinding>
 			</testmodule>
 			<testcase
 			name="RegistrationPage"
 			id="e36a0c73-07a4-417f-b8cc-b587ee5ec404"
+			minrange="1"
+			maxrange="1"
+			datarangeactive="True"
 			datasource="NewConnector1"/>
 		</flatlistofchildren>
 		<childhierarchy>
@@ -294,7 +370,19 @@ rxversion="6.0">
 					ExpErrPwdC
 				</column>
 				<column>
-					Custom
+					ClickSubmit
+				</column>
+				<column>
+					ExpErrMsg
+				</column>
+				<column>
+					PhoneErrMsg
+				</column>
+				<column>
+					EmailErrMsg
+				</column>
+				<column>
+					PwdErrMsg
 				</column>
 			</lastknowncolumns>
 			<maskedcolumns/>

@@ -14,6 +14,7 @@ using System.Drawing;
 using System.Threading;
 using KPE.Rx.Common;
 using KPE.Rx.Common.Helper;
+using KPE.Rx.Common.Validation;
 using WinForms = System.Windows.Forms;
 using Ranorex;
 using Ranorex.Core;
@@ -44,17 +45,17 @@ namespace KPE.Rx.DemoQA.PageObjects
 		[TestVariable("FB87B283-F389-4AB4-9F7E-50275623D047")]
 		public string Lastname { set; get; }
 		
-		[TestVariable("A002BE67-1D3F-4D98-AD62-FD857F0CD87C")]
-		public string MaritalStatus { set; get; }
+//		[TestVariable("A002BE67-1D3F-4D98-AD62-FD857F0CD87C")]
+//		public string MaritalStatus { set; get; }
 		
 		[TestVariable("FEB89C23-0ADB-4170-894D-D3BA80D66890")]
 		public string Hobby { set; get; }
 		
-		[TestVariable("610BBF06-C34F-43A5-979C-6C88679885D6")]
-		public string Country { set; get; }
+//		[TestVariable("610BBF06-C34F-43A5-979C-6C88679885D6")]
+//		public string Country { set; get; }
 		
-		[TestVariable("41C54E99-843A-4AD5-9E09-4FAB027C0F2A")]
-		public string Dob { set; get; }
+//		[TestVariable("41C54E99-843A-4AD5-9E09-4FAB027C0F2A")]
+//		public string Dob { set; get; }
 		
 		[TestVariable("B5B3AC62-7A73-41FD-82C4-9DE88AC47967")]
 		public string PhoneNumber { set; get; }
@@ -64,6 +65,9 @@ namespace KPE.Rx.DemoQA.PageObjects
 
 		[TestVariable("1C0EB0BD-5008-4D2F-B804-3A53DC00641C")]
 		public string PasswordConfirm { set; get; }
+		
+		[TestVariable("3E49B1B5-EAA0-4F2A-BC1B-60311687CE1D")]
+		public bool ExpErrPasswordConfirm { set; get; }
 		#endregion
 		
 		/// <summary>
@@ -82,11 +86,11 @@ namespace KPE.Rx.DemoQA.PageObjects
 		/// that will in turn invoke this method.</remarks>
 		void ITestModule.Run()
 		{
-			Mouse.DefaultMoveTime = 300;
-			Keyboard.DefaultKeyPressTime = 100;
+			Mouse.DefaultMoveTime = 1;
+			Keyboard.DefaultKeyPressTime = 1;
 			Delay.SpeedFactor = 1.0;
 			
-			Validate.AreEqual(_registrationPage.IsLoaded(), true, "Registration page failed to load");
+			Assert.That.IsTrue(_registrationPage.IsLoaded(), "Registration page failed to load");
 
 //			// Use the previuos record
 //			if(Custom_UsernameExists.Equals(dsRow.Custom))
@@ -94,6 +98,8 @@ namespace KPE.Rx.DemoQA.PageObjects
 //				dsRow = _lastDsRow;
 //				dsRow.Custom = Custom_UsernameExists;
 //			}
+			
+			
 
 			// set values
 			SetPageValues();
@@ -106,8 +112,8 @@ namespace KPE.Rx.DemoQA.PageObjects
 		private void SubmitForm()
 		{
 			// A pause is needed here while the screen is filled out
-			bool expErrPwdC = !string.Equals(Password, PasswordConfirm);
-			Func<bool> condition = () => _registrationPage.IsErrorShown(RegistrationPage.eErrorArea.PwdConfirm) == expErrPwdC;
+			//bool expErrPwdC = !string.Equals(Password, PasswordConfirm);
+			Func<bool> condition = () => _registrationPage.IsErrorShown(RegistrationPage.eErrorArea.PwdConfirm) == ExpErrPasswordConfirm;
 
 			WaitHelper.TryWaitForCondition(condition, TimeOuts.Five);
 
@@ -115,7 +121,7 @@ namespace KPE.Rx.DemoQA.PageObjects
 			_registrationPage.ClickSubmit();
 
 			// Wait for the page to be loaded
-			Validate.AreEqual(_registrationPage.IsLoaded(), true, "Registration page failed to load");
+			Assert.That.IsTrue(_registrationPage.IsLoaded(), "Registration page failed to load");
 
 		}
 
@@ -123,9 +129,9 @@ namespace KPE.Rx.DemoQA.PageObjects
 		{
 			_registrationPage.Firstname = Firstname;
 			_registrationPage.Lastname = Lastname;
-			_registrationPage.SetMaritalStatus(MaritalStatus);
+			//_registrationPage.SetMaritalStatus(MaritalStatus);
 			_registrationPage.ToggleHobby(Hobby, true);
-			_registrationPage.SelectCountry(Country);
+			//_registrationPage.SelectCountry(Country);
 			//_registrationPage.SetDob(dsRow.Dob);
 			_registrationPage.PhoneNumber = PhoneNumber;
 			_registrationPage.Username = Username;

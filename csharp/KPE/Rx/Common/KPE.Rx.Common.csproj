@@ -111,6 +111,15 @@
     <Compile Include="TimeSpans.cs">
       <id>0d2973bf-4ef9-42bd-ae5f-ea05f3a3c27c</id>
     </Compile>
+    <Compile Include="Validation\Assert.cs">
+      <id>20999d67-4242-4fc0-9d71-cffb45c02cea</id>
+    </Compile>
+    <Compile Include="Validation\ValidationBase.cs">
+      <id>83f869a2-7d96-4df4-a8b3-bf8244a85b62</id>
+    </Compile>
+    <Compile Include="Validation\Verify.cs">
+      <id>3703f845-e1d3-4b5d-afa3-b1b8338c49cc</id>
+    </Compile>
   </ItemGroup>
   <ItemGroup>
     <Folder Include="Helper">
@@ -118,6 +127,9 @@
     </Folder>
     <Folder Include="Exceptions">
       <id>510b56c7-f220-4b0f-b58f-5be5724f4a12</id>
+    </Folder>
+    <Folder Include="Validation">
+      <id>3d67ce78-b8f5-40f8-a9fa-f87a53484b9d</id>
     </Folder>
     <Folder Include="TestModule">
       <id>ca6818e7-f95a-44e4-bd94-34f36d501a31</id>

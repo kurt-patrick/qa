@@ -73,7 +73,15 @@ namespace KPE.Rx.Common.PageObject
 		
 		protected bool DoElementsExist(List<RepoItemInfo> repoItems, int timeOut = TimeOuts.TimeOutDefault)
 		{
-			return repoItems.All(repoItem => DoesElementExist(repoItem, timeOut));
+			Func<RepoItemInfo, bool> condition = (RepoItemInfo repoItem) => {
+				if(DoesElementExist(repoItem, timeOut)) {
+					return true;
+				} else {
+					Report.Info("RepoItemInfo (does not exist): " + repoItem.Path.ToString());
+					return false;
+				}
+			};
+			return repoItems.All(repoItem => condition(repoItem));
 		}
 
 		protected bool IsElementVisible(RepoItemInfo repoItem, out WebElement element, int timeOut = TimeOuts.TimeOutDefault)

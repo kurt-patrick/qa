@@ -245,6 +245,7 @@ namespace KPE.Rx.DemoQA.PageObjects
 		internal string GetErrorMessage(eErrorArea area)
 		{
 			var element = GetErrorElement(area, true);
+			element.MoveTo();
 //			if (area == eErrorArea.Firstname && _driver as InternetExplorerDriver != null)
 //			{
 //				// This code is here purely to ensure the element is visible - making IE happy
