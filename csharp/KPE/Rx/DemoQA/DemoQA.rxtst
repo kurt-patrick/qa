@@ -66,19 +66,14 @@ rxversion="6.0">
 					dataname="ExpErrEmail"
 					datasourceid="df06c00f-fcd9-4fdd-a99f-a3560b3c94d4"/>
 					<var
-					variablename="ClickSubmit"
-					variableid="80fe26bd-1fe1-49f7-b165-baf4cda3067d"
-					dataname="ClickSubmit"
-					datasourceid="df06c00f-fcd9-4fdd-a99f-a3560b3c94d4"/>
-					<var
-					variablename="ExpErrMsg"
-					variableid="6eb7b05c-3e29-45f5-bc27-c1b5507fd1ec"
-					dataname="ExpErrMsg"
-					datasourceid="df06c00f-fcd9-4fdd-a99f-a3560b3c94d4"/>
-					<var
 					variablename="ExpErrPwdC"
 					variableid="258b51a9-579c-4c8c-a6b3-1645c801f20a"
 					dataname="ExpErrPwdC"
+					datasourceid="df06c00f-fcd9-4fdd-a99f-a3560b3c94d4"/>
+					<var
+					variablename="GenericErrMsg"
+					variableid="6eb7b05c-3e29-45f5-bc27-c1b5507fd1ec"
+					dataname="GenericErrMsg"
 					datasourceid="df06c00f-fcd9-4fdd-a99f-a3560b3c94d4"/>
 					<var
 					variablename="ExpErrPwd"
@@ -94,6 +89,26 @@ rxversion="6.0">
 					variablename="EmailErrMsg"
 					variableid="acefd4e8-395a-4b93-a439-dbd63aa32644"
 					dataname="EmailErrMsg"
+					datasourceid="df06c00f-fcd9-4fdd-a99f-a3560b3c94d4"/>
+					<var
+					variablename="PwdErrMsg"
+					variableid="c10a6e67-2c38-4cc9-b23f-88b323db49b6"
+					dataname="PwdErrMsg"
+					datasourceid="df06c00f-fcd9-4fdd-a99f-a3560b3c94d4"/>
+					<var
+					variablename="PwdErrMsg2"
+					variableid="6b0262be-ca61-43d3-a1a9-aefe37bd2eff"
+					dataname="PwdErrMsg"
+					datasourceid="df06c00f-fcd9-4fdd-a99f-a3560b3c94d4"/>
+					<var
+					variablename="PwdCErrMsg"
+					variableid="66afe41c-d94b-40a9-810e-45cab8521c52"
+					dataname="PwdCErrMsg"
+					datasourceid="df06c00f-fcd9-4fdd-a99f-a3560b3c94d4"/>
+					<var
+					variablename="ExpHeaderMessage"
+					variableid="80fe26bd-1fe1-49f7-b165-baf4cda3067d"
+					dataname="HeaderMessage"
 					datasourceid="df06c00f-fcd9-4fdd-a99f-a3560b3c94d4"/>
 				</databinding>
 			</testmodule>
@@ -174,6 +189,11 @@ rxversion="6.0">
 			type="UserCode">
 				<databinding>
 					<var
+					variablename="Email"
+					variableid="37f0f958-a37d-45e9-ab0e-d2ecaef30c7c"
+					dataname="Email"
+					datasourceid="df06c00f-fcd9-4fdd-a99f-a3560b3c94d4"/>
+					<var
 					variablename="Firstname"
 					variableid="e0f4b0e8-ddaa-4450-9a77-cda6defb4d35"
 					dataname="FirstName"
@@ -182,6 +202,16 @@ rxversion="6.0">
 					variablename="Lastname"
 					variableid="fb87b283-f389-4ab4-9f7e-50275623d047"
 					dataname="LastName"
+					datasourceid="df06c00f-fcd9-4fdd-a99f-a3560b3c94d4"/>
+					<var
+					variablename="Username"
+					variableid="d8963e3f-4be5-4cf3-8211-60e65802bfc0"
+					dataname="Username"
+					datasourceid="df06c00f-fcd9-4fdd-a99f-a3560b3c94d4"/>
+					<var
+					variablename="ExpErrPasswordConfirm"
+					variableid="3e49b1b5-eaa0-4f2a-bc1b-60311687ce1d"
+					dataname="ExpErrPwdC"
 					datasourceid="df06c00f-fcd9-4fdd-a99f-a3560b3c94d4"/>
 					<var
 					variablename="Hobby"
@@ -194,16 +224,6 @@ rxversion="6.0">
 					dataname="PhoneNumber"
 					datasourceid="df06c00f-fcd9-4fdd-a99f-a3560b3c94d4"/>
 					<var
-					variablename="Email"
-					variableid="37f0f958-a37d-45e9-ab0e-d2ecaef30c7c"
-					dataname="Email"
-					datasourceid="df06c00f-fcd9-4fdd-a99f-a3560b3c94d4"/>
-					<var
-					variablename="Username"
-					variableid="d8963e3f-4be5-4cf3-8211-60e65802bfc0"
-					dataname="Username"
-					datasourceid="df06c00f-fcd9-4fdd-a99f-a3560b3c94d4"/>
-					<var
 					variablename="Password"
 					variableid="194b9877-8c38-4d49-b466-a050dd29dbcd"
 					dataname="Password"
@@ -213,19 +233,13 @@ rxversion="6.0">
 					variableid="1c0eb0bd-5008-4d2f-b804-3a53dc00641c"
 					dataname="PasswordConfirm"
 					datasourceid="df06c00f-fcd9-4fdd-a99f-a3560b3c94d4"/>
-					<var
-					variablename="ExpErrPasswordConfirm"
-					variableid="3e49b1b5-eaa0-4f2a-bc1b-60311687ce1d"
-					dataname="ExpErrPwdC"
-					datasourceid="df06c00f-fcd9-4fdd-a99f-a3560b3c94d4"/>
 				</databinding>
 			</testmodule>
 			<testcase
 			name="RegistrationPage"
 			id="e36a0c73-07a4-417f-b8cc-b587ee5ec404"
-			minrange="1"
-			maxrange="1"
-			datarangeactive="True"
+			minrange="8"
+			maxrange="11"
 			datasource="NewConnector1"/>
 		</flatlistofchildren>
 		<childhierarchy>
@@ -365,10 +379,7 @@ rxversion="6.0">
 					ExpErrPwdC
 				</column>
 				<column>
-					ClickSubmit
-				</column>
-				<column>
-					ExpErrMsg
+					GenericErrMsg
 				</column>
 				<column>
 					PhoneErrMsg
@@ -378,6 +389,12 @@ rxversion="6.0">
 				</column>
 				<column>
 					PwdErrMsg
+				</column>
+				<column>
+					PwdCErrMsg
+				</column>
+				<column>
+					HeaderMessage
 				</column>
 			</lastknowncolumns>
 			<maskedcolumns/>

@@ -12,6 +12,7 @@
     <projectdefaultrepository>6d3ab318-731b-40f2-8d91-d8b179ce28dd</projectdefaultrepository>
     <TargetFrameworkProfile />
     <NoWin32Manifest>False</NoWin32Manifest>
+    <StartAction>Project</StartAction>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Platform)' == 'x86' ">
     <PlatformTarget>x86</PlatformTarget>

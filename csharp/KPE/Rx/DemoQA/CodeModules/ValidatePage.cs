@@ -46,17 +46,8 @@ namespace KPE.Rx.DemoQA.PageObjects
 		[TestVariable("7B59A41C-53AE-457D-BEBF-F4F28A942FF7")]
 		public bool ExpErrLName { set; get; }
 		
-//		[TestVariable("A002BE67-1D3F-4D98-AD62-FD857F0CD87C")]
-//		public string MaritalStatus { set; get; }
-		
 		[TestVariable("12BB262C-C875-4DAF-9A64-D433F94C15E8")]
 		public bool ExpErrHobby { set; get; }
-		
-//		[TestVariable("610BBF06-C34F-43A5-979C-6C88679885D6")]
-//		public string Country { set; get; }
-		
-//		[TestVariable("41C54E99-843A-4AD5-9E09-4FAB027C0F2A")]
-//		public string Dob { set; get; }
 		
 		[TestVariable("9B9C4CE8-78BF-493D-A743-9832630D5345")]
 		public bool ExpErrPhone { set; get; }
@@ -67,14 +58,23 @@ namespace KPE.Rx.DemoQA.PageObjects
 		[TestVariable("F1AAB07A-8F1B-44A8-ADF6-8D89C4E1B919")]
 		public bool ExpErrPwd { set; get; }
 		
+		[TestVariable("c10a6e67-2c38-4cc9-b23f-88b323db49b6")]
+		public string PwdErrMsg { set; get; }
+		
+		[TestVariable("6B0262BE-CA61-43D3-A1A9-AEFE37BD2EFF")]
+		public string PwdErrMsg2 { set; get; }
+		
 		[TestVariable("258B51A9-579C-4C8C-A6B3-1645C801F20A")]
 		public bool ExpErrPwdC { set; get; }
+
+		[TestVariable("66AFE41C-D94B-40A9-810E-45CAB8521C52")]
+		public string PwdCErrMsg { set; get; }
 		
 		[TestVariable("6EB7B05C-3E29-45F5-BC27-C1B5507FD1EC")]
-		public string ExpErrMsg { set; get; }
+		public string GenericErrMsg { set; get; }
 		
 		[TestVariable("80FE26BD-1FE1-49F7-B165-BAF4CDA3067D")]
-		public bool ClickSubmit { set; get; }
+		public string ExpHeaderMessage { set; get; }
 		#endregion
 		
 		/// <summary>
@@ -101,25 +101,18 @@ namespace KPE.Rx.DemoQA.PageObjects
 			ValidateElementErrorStates();
 
 			// Validate against possible states - success, username exists, etc ...
-			CustomLogic();
+			ValidateHeaderMessage();
 		}
 		
-        private void CustomLogic()
+        private void ValidateHeaderMessage()
         {
-//            var dict = new Dictionary<string, string>(StringComparer.CurrentCultureIgnoreCase)
-//            {
-//                { Custom_UsernameExists, "Username already exists" }, { Custom_Success, "Thank you for your registration" },
-//                { Custom_EmailExists, "E-mail address already exists" }
-//            };
-
-            if (ClickSubmit)
+        	if (!string.IsNullOrWhiteSpace(ExpHeaderMessage))
             {
                 _registrationPage.ClickSubmit();
                 var actual =_registrationPage.GetHeaderMessage();
 
-                //string expected = dict[dsRow.Custom];
-                string errMsg = string.Format("Header message ({0}) does not contain ({1})", actual, ExpErrMsg);
-                Verify.That.IsTrue(actual.IndexOf(ExpErrMsg, StringComparison.CurrentCultureIgnoreCase) >= 0, errMsg);
+                string errMsg = string.Format("Header message ({0}) does not contain ({1})", actual, ExpHeaderMessage);
+                Verify.That.IsTrue(actual.IndexOf(ExpHeaderMessage, StringComparison.CurrentCultureIgnoreCase) >= 0, errMsg);
 
             }
         }
@@ -129,7 +122,6 @@ namespace KPE.Rx.DemoQA.PageObjects
             bool expNameError = ExpErrFName || ExpErrLName;
             ValidateArea(RegistrationPage.eErrorArea.Firstname, expNameError);
             ValidateArea(RegistrationPage.eErrorArea.Lastname, expNameError);
-            ValidateArea(RegistrationPage.eErrorArea.Hobby, ExpErrHobby);
             ValidateArea(RegistrationPage.eErrorArea.Phone, ExpErrPhone);
             ValidateArea(RegistrationPage.eErrorArea.Username, ExpErrUsername);
             ValidateArea(RegistrationPage.eErrorArea.Email, ExpErrEmail);
@@ -147,45 +139,39 @@ namespace KPE.Rx.DemoQA.PageObjects
             // Check the error message
             if (expected && actual)
             {
-                string actualMsg = _registrationPage.GetErrorMessage(area);
                 string expectedMsg = GetExpectedErrorMessage(area);
+                string actualMsg = _registrationPage.GetErrorMessage(area);
 
-                errMsg = string.Format("({2}) error message. Expected ({0}) Actual ({1})", ExpErrMsg, actualMsg, area);
-                Verify.That.AreEqual(expectedMsg, actualMsg, errMsg);
+                errMsg = string.Format("({0}) error message. Expected ({1}) Actual ({2})", area, expectedMsg, actualMsg);
+                Verify.That.AreEqual(actualMsg, expectedMsg, errMsg);
             }
         }
 
         private string GetExpectedErrorMessage(RegistrationPage.eErrorArea area)
         {
-            string genericErrMsg = ExpErrMsg;
+            string genericErrMsg = GenericErrMsg;
             string specificErrMsg = string.Empty;
             switch (area) {
-            	case RegistrationPage.eErrorArea.Firstname:
-            		
-            		break;
-            	case RegistrationPage.eErrorArea.Lastname:
-            		
-            		break;
-            	case RegistrationPage.eErrorArea.Hobby:
-            		
-            		break;
             	case RegistrationPage.eErrorArea.Phone:
             		specificErrMsg = PhoneErrMsg; 
-            		break;
-            	case RegistrationPage.eErrorArea.Username:
-            		
             		break;
             	case RegistrationPage.eErrorArea.Email:
             		specificErrMsg = EmailErrMsg; 
             		break;
             	case RegistrationPage.eErrorArea.Pwd:
-            		//specificErrMsg = PwdErrMsg; 
+            		specificErrMsg = PwdErrMsg; 
+            		specificErrMsg = PwdErrMsg2; 
             		break;
             	case RegistrationPage.eErrorArea.PwdConfirm:
-            		
+            		specificErrMsg = PwdCErrMsg; 
+            		break;
+        		case RegistrationPage.eErrorArea.Firstname:
+            	case RegistrationPage.eErrorArea.Lastname:
+            	case RegistrationPage.eErrorArea.Hobby:
+            	case RegistrationPage.eErrorArea.Username:
             		break;
             	default:
-            		throw new Exception("Invalid value for eErrorArea");
+            		throw new Exception("Invalid value for eErrorArea: " +area.ToString());
             }
             
             return string.IsNullOrWhiteSpace(specificErrMsg) ? genericErrMsg.Trim() : specificErrMsg.Trim();

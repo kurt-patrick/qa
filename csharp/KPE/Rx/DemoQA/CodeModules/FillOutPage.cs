@@ -29,15 +29,27 @@ namespace KPE.Rx.DemoQA.PageObjects
 	public class FillOutPage : ITestModule
 	{
 		#region fields
+		private string _guid = System.Guid.NewGuid().ToString();
+		private static string _lastGuid = null;
 		RegistrationPage _registrationPage = new RegistrationPage();
 		#endregion
 		
 		#region properties
+		private string _username = "";
 		[TestVariable("D8963E3F-4BE5-4CF3-8211-60E65802BFC0")]
-		public string Username { set; get; }
+		public string Username 
+		{
+			set { _username = ReplaceGuid(value); }
+			get { return _username; } 
+		}
 		
+		private string _email = "";
 		[TestVariable("37F0F958-A37D-45E9-AB0E-D2ECAEF30C7C")]
-		public string Email { set; get; }
+		public string Email 
+		{ 
+			set { _email = ReplaceGuid(value); }
+			get { return _email; }
+		}
 		
 		[TestVariable("E0F4B0E8-DDAA-4450-9A77-CDA6DEFB4D35")]
 		public string Firstname { set; get; }
@@ -75,7 +87,7 @@ namespace KPE.Rx.DemoQA.PageObjects
 		/// </summary>
 		public FillOutPage()
 		{
-			// Do not delete - a parameterless constructor is required!
+			_guid = System.Guid.NewGuid().ToString();
 		}
 
 		/// <summary>
@@ -92,21 +104,23 @@ namespace KPE.Rx.DemoQA.PageObjects
 			
 			Assert.That.IsTrue(_registrationPage.IsLoaded(), "Registration page failed to load");
 
-//			// Use the previuos record
-//			if(Custom_UsernameExists.Equals(dsRow.Custom))
-//			{
-//				dsRow = _lastDsRow;
-//				dsRow.Custom = Custom_UsernameExists;
-//			}
-			
-			
-
 			// set values
 			SetPageValues();
 
 			// click Submit
 			SubmitForm();
+			
+			_lastGuid = _guid;
 
+		}
+		
+		private string ReplaceGuid(string value)
+		{
+			var retVal = value.Replace("{guid}", _guid);
+			if(!string.IsNullOrWhiteSpace(_lastGuid)) {
+				retVal = value.Replace("{last-guid}", _lastGuid);
+			}
+			return retVal;
 		}
 
 		private void SubmitForm()
@@ -129,10 +143,7 @@ namespace KPE.Rx.DemoQA.PageObjects
 		{
 			_registrationPage.Firstname = Firstname;
 			_registrationPage.Lastname = Lastname;
-			//_registrationPage.SetMaritalStatus(MaritalStatus);
 			_registrationPage.ToggleHobby(Hobby, true);
-			//_registrationPage.SelectCountry(Country);
-			//_registrationPage.SetDob(dsRow.Dob);
 			_registrationPage.PhoneNumber = PhoneNumber;
 			_registrationPage.Username = Username;
 			_registrationPage.Email = Email;

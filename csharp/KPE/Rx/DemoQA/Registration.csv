@@ -1,13 +1,13 @@
-Notes,FirstName,LastName,Hobby,PhoneNumber,Email,Username,Password,PasswordConfirm,ExpErrFName,ExpErrLName,ExpErrHobby,ExpErrPhone,ExpErrUsername,ExpErrEmail,ExpErrPwd,ExpErrPwdC,ClickSubmit,ExpErrMsg,PhoneErrMsg,EmailErrMsg,PwdErrMsg
-1 no data,,,,,,,,,TRUE,TRUE,TRUE,TRUE,TRUE,TRUE,TRUE,TRUE,FALSE,* This field is required,,,
-2 fname - char,a,,Dance,123456789,a,a,1234567,,FALSE,TRUE,FALSE,TRUE,FALSE,TRUE,TRUE,TRUE,FALSE,* This field is required,* Minimum 10 Digits starting with Country Code,* Invalid email address,* Minimum 8 characters required
-3 fname - digit,1,,Reading,1234567890,a@,1,,,FALSE,TRUE,FALSE,FALSE,FALSE,TRUE,TRUE,TRUE,FALSE,* This field is required,,,
-4 Last name - char,,a,Cricket,1234567890123460,a@z,,,,FALSE,FALSE,FALSE,FALSE,TRUE,TRUE,TRUE,TRUE,FALSE,* This field is required,,,
-5 Last name - digit,,1,,12345678901234600,a@z.,,,,FALSE,FALSE,TRUE,TRUE,TRUE,TRUE,TRUE,TRUE,FALSE,* This field is required,,,
-6 hobby only,,,,61abcdefgh,z.com,,,,TRUE,TRUE,TRUE,TRUE,TRUE,TRUE,TRUE,TRUE,FALSE,* This field is required,,,
-7 email fail,,,,,@z.com,,,,TRUE,TRUE,TRUE,TRUE,TRUE,TRUE,TRUE,TRUE,FALSE,* This field is required,,,
-8 email fail,,,,,@,,,,TRUE,TRUE,TRUE,TRUE,TRUE,TRUE,TRUE,TRUE,FALSE,* This field is required,,,
-9 pwd mismatch,billy,bob,Cricket,6194001234,steve@steve.com,steve,12345678,12345679,FALSE,FALSE,FALSE,FALSE,FALSE,FALSE,FALSE,TRUE,FALSE,* This field is required,,,
-10 valid rego,billy,bob,Cricket,6194001234,{guid}@steve.com,{guid},12345678,12345678,FALSE,FALSE,FALSE,FALSE,FALSE,FALSE,FALSE,FALSE,FALSE,* This field is required,,,
-11 use prev record,,,,,,,,,,,,,,,,,,* This field is required,,,
-12 valid rego,billy,bob,Cricket,6194001234,steve@steve.com,{guid},12345678,12345678,FALSE,FALSE,FALSE,FALSE,FALSE,FALSE,FALSE,FALSE,FALSE,* This field is required,,,
+﻿Notes,FirstName,LastName,Hobby,PhoneNumber,Email,Username,Password,PasswordConfirm,ExpErrFName,ExpErrLName,ExpErrHobby,ExpErrPhone,ExpErrUsername,ExpErrEmail,ExpErrPwd,ExpErrPwdC,GenericErrMsg,PhoneErrMsg,EmailErrMsg,PwdErrMsg,PwdCErrMsg,HeaderMessage
+1 no data,,,,,,,,,TRUE,TRUE,TRUE,TRUE,TRUE,TRUE,TRUE,TRUE,* This field is required,,,,,
+2 fname - char,a,,Dance,123456789,a,a,1234567,,FALSE,TRUE,FALSE,TRUE,FALSE,TRUE,TRUE,TRUE,* This field is required,* Minimum 10 Digits starting with Country Code,* Invalid email address,* Minimum  8  characters required,,
+3 fname - digit,1,,Reading,1234567890,a@,1,,,FALSE,TRUE,FALSE,FALSE,FALSE,TRUE,TRUE,TRUE,* This field is required,,* Invalid email address,,,
+4 Last name - char,,a,Cricket,1234567890123460,a@z,,,,FALSE,FALSE,FALSE,FALSE,TRUE,TRUE,TRUE,TRUE,* This field is required,,* Invalid email address,,,
+5 Last name - digit,,1,,12345678901234600,a@z.,,,,FALSE,FALSE,TRUE,TRUE,TRUE,TRUE,TRUE,TRUE,* This field is required,* Minimum 10 Digits starting with Country Code,* Invalid email address,,,
+6 hobby only,,,,61abcdefgh,z.com,,,,TRUE,TRUE,TRUE,TRUE,TRUE,TRUE,TRUE,TRUE,* This field is required,* Minimum 10 Digits starting with Country Code,* Invalid email address,,,
+7 email fail,,,,,@z.com,,,,TRUE,TRUE,TRUE,TRUE,TRUE,TRUE,TRUE,TRUE,* This field is required,,* Invalid email address,,,
+8 email fail,,,,,@,,,,TRUE,TRUE,TRUE,TRUE,TRUE,TRUE,TRUE,TRUE,* This field is required,,* Invalid email address,,,
+9 pwd mismatch,billy,bob,Cricket,6194001234,steve@steve.com,steve,12345678,12345679,FALSE,FALSE,FALSE,FALSE,FALSE,FALSE,FALSE,TRUE,* This field is required,,,,* Fields do not match,
+10 success,billy,bob,Cricket,6194001234,{guid}@steve.com,{guid},12345678,12345678,FALSE,FALSE,FALSE,FALSE,FALSE,FALSE,FALSE,FALSE,* This field is required,,,,,Thank you for your registration
+11 username exists,billy,bob,Cricket,6194001234,{last-guid}@steve.com,{last-guid},12345678,12345678,FALSE,FALSE,FALSE,FALSE,FALSE,FALSE,FALSE,FALSE,* This field is required,,,,,Username already exists
+12 emal exists,billy,bob,Cricket,6194001234,steve@steve.com,{guid},12345678,12345678,FALSE,FALSE,FALSE,FALSE,FALSE,FALSE,FALSE,FALSE,* This field is required,,,,,E-mail address already exists
