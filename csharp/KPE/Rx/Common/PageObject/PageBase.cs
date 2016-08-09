@@ -42,8 +42,13 @@ namespace KPE.Rx.Common.PageObject
         protected void PerformClick(WebElement element)
         {
             element.Click();
-            //element.Checked;
         }
+        
+		protected string MoveToElementAndGetText(WebElement element, bool trim = true)
+		{
+			element.MoveTo();
+			return GetText(element, trim);
+		}
 		
 		protected string GetText(WebElement element, bool trim = true)
 		{
@@ -124,6 +129,13 @@ namespace KPE.Rx.Common.PageObject
 		protected void WaitForExists(RepoItemInfo itemInfo, int timeOut = TimeOuts.TimeOutDefault)
 		{
 			itemInfo.WaitForExists(timeOut);
+		}
+
+		protected void WaitForExists<T>(RepoItemInfo itemInfo, out T element, int timeOut = TimeOuts.TimeOutDefault) where T : WebElement
+		{
+			element = null;
+			bool flgExists = itemInfo.Exists(TimeSpan.FromSeconds(timeOut), out element);
+			ThrowHelper.ThrowElementNotFoundExceptionIfFalse(itemInfo, flgExists);
 		}
 		
 		protected void WaitForNotExists(RepoItemInfo itemInfo, int timeOut = TimeOuts.TimeOutDefault)

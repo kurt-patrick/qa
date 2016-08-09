@@ -7,7 +7,7 @@
 6 hobby only,,,,61abcdefgh,z.com,,,,TRUE,TRUE,TRUE,TRUE,TRUE,TRUE,TRUE,TRUE,* This field is required,* Minimum 10 Digits starting with Country Code,* Invalid email address,,,
 7 email fail,,,,,@z.com,,,,TRUE,TRUE,TRUE,TRUE,TRUE,TRUE,TRUE,TRUE,* This field is required,,* Invalid email address,,,
 8 email fail,,,,,@,,,,TRUE,TRUE,TRUE,TRUE,TRUE,TRUE,TRUE,TRUE,* This field is required,,* Invalid email address,,,
-9 pwd mismatch,billy,bob,Cricket,6194001234,steve@steve.com,steve,12345678,12345679,FALSE,FALSE,FALSE,FALSE,FALSE,FALSE,FALSE,TRUE,* This field is required,,,,* Fields do not match,
+9 pwd mismatch,billy,bob,Cricket,6194001234,{guid}@steve.com,{guid},12345678,12345679,FALSE,FALSE,FALSE,FALSE,FALSE,FALSE,FALSE,TRUE,* This field is required,,,,* Fields do not match,
 10 success,billy,bob,Cricket,6194001234,{guid}@steve.com,{guid},12345678,12345678,FALSE,FALSE,FALSE,FALSE,FALSE,FALSE,FALSE,FALSE,* This field is required,,,,,Thank you for your registration
 11 username exists,billy,bob,Cricket,6194001234,{last-guid}@steve.com,{last-guid},12345678,12345678,FALSE,FALSE,FALSE,FALSE,FALSE,FALSE,FALSE,FALSE,* This field is required,,,,,Username already exists
 12 emal exists,billy,bob,Cricket,6194001234,steve@steve.com,{guid},12345678,12345678,FALSE,FALSE,FALSE,FALSE,FALSE,FALSE,FALSE,FALSE,* This field is required,,,,,E-mail address already exists

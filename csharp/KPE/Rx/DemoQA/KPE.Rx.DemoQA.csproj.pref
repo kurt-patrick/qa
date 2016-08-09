@@ -1,10 +1,12 @@
 ﻿<Properties>
+  <Array name="active">
+    <Element value="DemoQA.rxtst" />
+  </Array>
   <Array name="bookmarks">
     <Element value="Breakpoint|C:\sourcecode\qa\csharp\KPE\Rx\DemoQA\PageObjects\RegistrationPage.cs|166|5|True|Break||" />
   </Array>
   <Array name="files">
     <Element value="DemoQA.rxtst" />
-    <Element value="CodeModules\ValidatePage.cs" />
   </Array>
   <Properties name="projectSavedData">
     <Properties name="customTool">

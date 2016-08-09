@@ -93,6 +93,9 @@
     <Compile Include="Helper\SelectHelper.cs">
       <id>7eecf6f8-34bd-4ee0-b240-5b9c0fa7b5e5</id>
     </Compile>
+    <Compile Include="Helper\ThrowHelper.cs">
+      <id>63b6d8dc-2d73-419c-b53c-fd9efbfa53bb</id>
+    </Compile>
     <Compile Include="Helper\WaitHelper.cs">
       <id>5987af1d-c897-4a97-bbbe-1b32f763f4b5</id>
     </Compile>

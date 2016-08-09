@@ -87,7 +87,7 @@ namespace KPE.Rx.DemoQA.PageObjects
 		/// </summary>
 		public FillOutPage()
 		{
-			_guid = System.Guid.NewGuid().ToString();
+			string a = "1";
 		}
 
 		/// <summary>
@@ -110,7 +110,8 @@ namespace KPE.Rx.DemoQA.PageObjects
 			// click Submit
 			SubmitForm();
 			
-			_lastGuid = _guid;
+			_lastGuid = _guid.ToString();
+			_guid = System.Guid.NewGuid().ToString();
 
 		}
 		
@@ -118,7 +119,7 @@ namespace KPE.Rx.DemoQA.PageObjects
 		{
 			var retVal = value.Replace("{guid}", _guid);
 			if(!string.IsNullOrWhiteSpace(_lastGuid)) {
-				retVal = value.Replace("{last-guid}", _lastGuid);
+				retVal = retVal.Replace("{last-guid}", _lastGuid);
 			}
 			return retVal;
 		}

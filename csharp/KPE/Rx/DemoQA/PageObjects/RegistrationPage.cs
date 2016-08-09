@@ -274,12 +274,16 @@ namespace KPE.Rx.DemoQA.PageObjects
 		}
 
 		/// <summary>
-		/// This message is displayed below the header and above the form once submit is clicked on a valid form fully completed
+		/// This message is displayed below the header and above the form 
+		/// once submit is clicked on a completely filled out form
 		/// </summary>
-		/// <returns></returns>
+		/// <exception cref="">ElementNotFoundException</exception>
+		/// <returns>The header message displayed e.g. success or email exists</returns>
 		internal string GetHeaderMessage()
 		{
-			return GetTextIfElementIsVisible(_baseFolder.HeaderMessageInfo, TimeOuts.Five);
+			WebElement element = null;
+			WaitForExists(_baseFolder.HeaderMessageInfo, out element);
+			return MoveToElementAndGetText(element);
 		}
 		#endregion
 	}

@@ -160,7 +160,7 @@ rxversion="6.0">
 				</databinding>
 			</testmodule>
 			<testcase
-			name="LoadSUT"
+			name="LoadBrowser"
 			id="c27a96d3-9803-47c4-ac99-6e2a81101093"
 			datasource="NewConnector">
 				<parameters>
@@ -250,7 +250,7 @@ rxversion="6.0">
 				name="DemoQA1"
 				id="c30fc3d2-4cd8-441c-bbfa-cb3865971179">
 					<testcase
-					name="LoadSUT"
+					name="LoadBrowser"
 					id="c27a96d3-9803-47c4-ac99-6e2a81101093">
 						<setup
 						name="setup"
