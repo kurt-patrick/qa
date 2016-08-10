@@ -129,7 +129,7 @@ namespace KPE.Rx.DemoQA.Repo
             /// Creates a new DemoQA  folder.
             /// </summary>
             public DemoQAAppFolder(RepoGenBaseFolder parentFolder) :
-                    base("DemoQA", "/dom", parentFolder, 10000, null, true, "c11f0de0-0e89-449e-889e-37fac05869ad", "")
+                    base("DemoQA", "/dom", parentFolder, 10000, null, false, "c11f0de0-0e89-449e-889e-37fac05869ad", "")
             {
                 _maritalstatus = new DemoQARepositoryFolders.MaritalStatusFolder(this);
                 _hobby = new DemoQARepositoryFolders.HobbyFolder(this);

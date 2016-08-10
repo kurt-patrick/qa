@@ -18,7 +18,7 @@ rxversion="6.0">
 		searchtimeout="10000ms"
 		capname="webdocument"
 		isrooted="True"
-		usecache="True">
+		usecache="False">
 			<item
 			name="Firstname"
 			id="31e8dbc5-e622-4190-8034-68da67b3bc85"
