@@ -111,7 +111,7 @@ namespace KPE.Rx.DemoQA.PageObjects
                 _registrationPage.ClickSubmit();
                 var actual =_registrationPage.GetHeaderMessage();
 
-                string errMsg = string.Format("Header message ({0}) does not contain ({1})", actual, ExpHeaderMessage);
+                string errMsg = string.Format("Header message ({0}) contains ({1})", actual, ExpHeaderMessage);
                 Verify.That.IsTrue(actual.IndexOf(ExpHeaderMessage, StringComparison.CurrentCultureIgnoreCase) >= 0, errMsg);
 
             }

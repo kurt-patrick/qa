@@ -87,7 +87,6 @@ namespace KPE.Rx.DemoQA.PageObjects
 		/// </summary>
 		public FillOutPage()
 		{
-			string a = "1";
 		}
 
 		/// <summary>
@@ -102,7 +101,7 @@ namespace KPE.Rx.DemoQA.PageObjects
 			Keyboard.DefaultKeyPressTime = 1;
 			Delay.SpeedFactor = 1.0;
 			
-			Assert.That.IsTrue(_registrationPage.IsLoaded(), "Registration page failed to load");
+			Assert.That.IsTrue(_registrationPage.IsLoaded(), "Registration page loaded");
 
 			// set values
 			SetPageValues();

@@ -162,8 +162,8 @@ rxversion="6.0">
 			<testcase
 			name="LoadBrowser"
 			id="c27a96d3-9803-47c4-ac99-6e2a81101093"
-			minrange="2"
-			maxrange="2"
+			minrange="0"
+			maxrange="1"
 			datarangeactive="True"
 			datasource="NewConnector">
 				<parameters>
