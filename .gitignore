@@ -48,8 +48,9 @@ Temporary Items
 *.pdb
 *.rxlog*
 *.data_tmp
-*.pref
+*.csproj.pref
 bin/
 obj/
 Reports/
 *.pref
+*.rxuser

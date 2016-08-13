@@ -126,7 +126,6 @@ namespace KPE.Rx.DemoQA.PageObjects
 		private void SubmitForm()
 		{
 			// A pause is needed here while the screen is filled out
-			//bool expErrPwdC = !string.Equals(Password, PasswordConfirm);
 			Func<bool> condition = () => _registrationPage.IsErrorShown(RegistrationPage.eErrorArea.PwdConfirm) == ExpErrPasswordConfirm;
 
 			WaitHelper.TryWaitForCondition(condition, TimeOuts.Five);

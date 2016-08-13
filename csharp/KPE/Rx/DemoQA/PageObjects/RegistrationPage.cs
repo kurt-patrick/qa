@@ -227,11 +227,13 @@ namespace KPE.Rx.DemoQA.PageObjects
 
 		public override bool IsLoaded()
 		{
-			return DoElementsExist(new List<RepoItemInfo> { _baseFolder.PageHeadingInfo, _baseFolder.MainContainerInfo, _baseFolder.SubmitInfo });
+			//_baseFolder.PageHeadingInfo
+			return DoElementsExist(new List<RepoItemInfo> { _baseFolder.MainContainerInfo, _baseFolder.SubmitInfo });
 		}
 
 		internal void ClickSubmit()
 		{
+			Report.Info("Clicking Submit");
 			PerformClick(_baseFolder.Submit);
 		}
 
@@ -277,7 +279,7 @@ namespace KPE.Rx.DemoQA.PageObjects
 		internal string GetHeaderMessage()
 		{
 			WebElement element = null;
-			WaitForExists(_baseFolder.HeaderMessageInfo, out element);
+			WaitForExists(_baseFolder.HeaderMessageInfo, out element, TimeOuts.Twenty);
 			return MoveToElementAndGetText(element);
 		}
 		#endregion

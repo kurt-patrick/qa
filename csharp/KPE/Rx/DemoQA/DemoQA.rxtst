@@ -112,6 +112,22 @@ rxversion="6.0">
 					datasourceid="df06c00f-fcd9-4fdd-a99f-a3560b3c94d4"/>
 				</databinding>
 			</testmodule>
+			<testmodule
+			name="NavigateToUrl"
+			id="44cc6a14-2078-4697-bd65-dee9b7a0739c"
+			ref="bc6ea647-e741-41ad-8b11-599f8cc38081"
+			type="UserCode">
+				<description>
+					<![CDATA[Refresh the page]]>
+				</description>
+				<databinding>
+					<var
+					variablename="Url"
+					variableid="c6a99981-9823-403f-9b37-22af97d926d2"
+					dataname="URL"
+					datasourceid="c30fc3d2-4cd8-441c-bbfa-cb3865971179"/>
+				</databinding>
+			</testmodule>
 			<testsuite
 			name="DemoQA"
 			id="82980311-5b59-4416-882b-4c6a19fd16b3"
@@ -125,22 +141,6 @@ rxversion="6.0">
 			TracingScreenshotMode="Foreground"
 			TracingScreenshotQuality="40"
 			progressdialog="False"/>
-			<testmodule
-			name="NavigateToUrl"
-			id="a8a47190-d85e-48c8-869a-3b15f30e19e4"
-			ref="bc6ea647-e741-41ad-8b11-599f8cc38081"
-			type="UserCode">
-				<description>
-					<![CDATA[refresh the page each iteration]]>
-				</description>
-				<databinding>
-					<var
-					variablename="Url"
-					variableid="c6a99981-9823-403f-9b37-22af97d926d2"
-					dataname="URL"
-					datasourceid="c30fc3d2-4cd8-441c-bbfa-cb3865971179"/>
-				</databinding>
-			</testmodule>
 			<testmodule
 			name="CloseBrowser"
 			id="bdd12730-a26d-499f-ae87-3bb290617994"
@@ -162,9 +162,8 @@ rxversion="6.0">
 			<testcase
 			name="LoadBrowser"
 			id="c27a96d3-9803-47c4-ac99-6e2a81101093"
-			minrange="0"
-			maxrange="1"
-			datarangeactive="True"
+			minrange="2"
+			maxrange="2"
 			datasource="NewConnector">
 				<parameters>
 					<param
@@ -241,7 +240,7 @@ rxversion="6.0">
 			<testcase
 			name="RegistrationPage"
 			id="e36a0c73-07a4-417f-b8cc-b587ee5ec404"
-			minrange="8"
+			minrange="9"
 			maxrange="11"
 			datasource="NewConnector1"/>
 		</flatlistofchildren>
@@ -273,7 +272,7 @@ rxversion="6.0">
 							id="32d24dcf-b51c-44f8-b90d-213f82dccda3"/>
 							<testmodule
 							name="NavigateToUrl"
-							id="a8a47190-d85e-48c8-869a-3b15f30e19e4"/>
+							id="44cc6a14-2078-4697-bd65-dee9b7a0739c"/>
 						</testcase>
 						<teardown
 						name="teardown"

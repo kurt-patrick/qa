@@ -25,7 +25,7 @@ rxversion="6.0">
 			searchtimeout="10000ms"
 			capname="inputtag"
 			refimgid="7fa5ee53-6143-47c8-9b80-ff76f3f0d70a">
-				/dom[@browser~'Demoqa']//inputtag[#'name_3_firstname']
+				/dom[@visible='True' and @caption~'Demoqa']//inputtag[#'name_3_firstname']
 			</item>
 			<item
 			name="Lastname"
@@ -33,7 +33,7 @@ rxversion="6.0">
 			searchtimeout="10000ms"
 			capname="inputtag"
 			refimgid="af2831d5-02a2-4c05-a27f-12d7cd2bba92">
-				/dom[@browser~'Demoqa']//inputtag[#'name_3_lastname']
+				/dom[@visible='True' and @caption~'Demoqa']//inputtag[#'name_3_lastname']
 			</item>
 			<item
 			name="PhoneNumber"
@@ -41,7 +41,7 @@ rxversion="6.0">
 			searchtimeout="10000ms"
 			capname="inputtag"
 			refimgid="439b2528-24a8-45e5-b2f3-156c634a3caf">
-				/dom[@browser~'Demoqa']//inputtag[#'phone_9']
+				/dom[@visible='True' and @caption~'Demoqa']//inputtag[#'phone_9']
 			</item>
 			<item
 			name="Username"
@@ -49,7 +49,7 @@ rxversion="6.0">
 			searchtimeout="10000ms"
 			capname="inputtag"
 			refimgid="30a4d710-1bfe-4291-9fef-7f88d12b1638">
-				/dom[@browser~'Demoqa']//inputtag[#'username']
+				/dom[@visible='True' and @caption~'Demoqa']//inputtag[#'username']
 			</item>
 			<item
 			name="Email"
@@ -57,7 +57,7 @@ rxversion="6.0">
 			searchtimeout="10000ms"
 			capname="inputtag"
 			refimgid="e26e0bb4-e295-46aa-a6a0-8317eed7f2d4">
-				/dom[@browser~'Demoqa']//inputtag[#'email_1']
+				/dom[@visible='True' and @caption~'Demoqa']//inputtag[#'email_1']
 			</item>
 			<item
 			name="Password"
@@ -65,7 +65,7 @@ rxversion="6.0">
 			searchtimeout="10000ms"
 			capname="inputtag"
 			refimgid="9fe34dad-fcc6-4408-b1d5-aa13e3e5c3bc">
-				/dom[@browser~'Demoqa']//inputtag[#'password_2']
+				/dom[@visible='True' and @caption~'Demoqa']//inputtag[#'password_2']
 			</item>
 			<item
 			name="PasswordConfirm"
@@ -73,7 +73,7 @@ rxversion="6.0">
 			searchtimeout="10000ms"
 			capname="inputtag"
 			refimgid="d00732d6-8764-4fc1-97ec-f021bc5444a9">
-				/dom[@browser~'Demoqa']//inputtag[#'confirm_password_password_2']
+				/dom[@visible='True' and @caption~'Demoqa']//inputtag[#'confirm_password_password_2']
 			</item>
 			<folder
 			name="MaritalStatus"
@@ -86,14 +86,14 @@ rxversion="6.0">
 				id="a20b725c-ff14-4610-8288-cc10bec0c0e4"
 				searchtimeout="10000ms"
 				capname="inputtag">
-					/dom[@browser~'Demoqa']//inputtag[@value=$GenericKey]
+					/dom[@visible='True' and @caption~'Demoqa']//inputtag[@value=$GenericKey]
 				</item>
 				<item
 				name="AllMaritalStatuses"
 				id="3ccfdfa2-eef1-4169-8356-1d7b21ea3a5f"
 				searchtimeout="10000ms"
 				capname="inputtag">
-					/dom[@browser~'Demoqa']//ul[@id='pie_register']/li[2]//input
+					/dom[@visible='True' and @caption~'Demoqa']//ul[@id='pie_register']/li[2]//input
 				</item>
 			</folder>
 			<folder
@@ -107,14 +107,14 @@ rxversion="6.0">
 				id="f0be0d12-5ea4-4bc3-b4d0-55fb8ef86925"
 				searchtimeout="10000ms"
 				capname="inputtag">
-					/dom[@browser~'Demoqa']//ul[@id='pie_register']/li[3]//input
+					/dom[@visible='True' and @caption~'Demoqa']//ul[@id='pie_register']/li[3]//input
 				</item>
 				<item
 				name="SingleHobby"
 				id="e411620f-2765-4f14-9665-609837dec402"
 				searchtimeout="10000ms"
 				capname="inputtag">
-					/dom[@browser~'Demoqa']//ul[@id='pie_register']/li[3]//input[@value~$GenericKey]
+					/dom[@visible='True' and @caption~'Demoqa']//ul[@id='pie_register']/li[3]//input[@value~$GenericKey]
 				</item>
 			</folder>
 			<folder
@@ -128,14 +128,21 @@ rxversion="6.0">
 				id="dc7e8075-f0bb-4485-af08-7a7e34088563"
 				searchtimeout="10000ms"
 				capname="divtag">
-					/dom[@browser~'Demoqa']//form/ul/li[$GenericIndex]/div
+					/dom[@visible='True' and @caption~'Demoqa']//form/ul/li[$GenericIndex]/div
 				</item>
 				<item
 				name="ErrorMessage"
 				id="7d633c61-3928-49a1-bc7e-deda6fbad949"
 				searchtimeout="10000ms"
 				capname="spantag">
-					/dom[@browser~'Demoqa']//form/ul/li[$GenericIndex]/div//span[@class~'legend error']
+					/dom[@visible='True' and @caption~'Demoqa']//form/ul/li[$GenericIndex]/div//span[@class~'legend error']
+				</item>
+				<item
+				name="GenericErrorDiv"
+				id="7efc0346-8afc-4c16-a1c3-d7128d4ce2e6"
+				searchtimeout="10000ms"
+				capname="divtag">
+					/dom[@visible='True' and @caption~'Demoqa']//form/ul/li/div
 				</item>
 			</folder>
 			<item
@@ -143,7 +150,7 @@ rxversion="6.0">
 			id="47179240-ed62-46db-9d1f-fdeb5694051a"
 			searchtimeout="10000ms"
 			capname="ptag">
-				/dom[@browser~'Demoqa']//article/div/p
+				/dom[@visible='True' and @caption~'Demoqa']//article/div/p
 			</item>
 			<item
 			name="PageHeading"
@@ -151,7 +158,7 @@ rxversion="6.0">
 			searchtimeout="10000ms"
 			capname="h1tag"
 			refimgid="57455da4-52a2-40f4-bf01-35b762eaa6b9">
-				/dom[@browser~'Demoqa']//h1
+				/dom[@visible='True' and @caption~'Demoqa']//h1
 			</item>
 			<item
 			name="MainContainer"
@@ -159,7 +166,7 @@ rxversion="6.0">
 			searchtimeout="10000ms"
 			capname="divtag"
 			refimgid="0d1100df-b19b-474c-be74-335f7346d41a">
-				/dom[@browser~'Demoqa']//div[@class~'entry-content']
+				/dom[@visible='True' and @caption~'Demoqa']//div[@class~'entry-content']
 			</item>
 			<item
 			name="Submit"
@@ -167,7 +174,7 @@ rxversion="6.0">
 			searchtimeout="10000ms"
 			capname="inputtag"
 			refimgid="23b01c7b-f512-4c3f-94e4-d9f499984a66">
-				/dom[@browser~'Demoqa']//input[@name='pie_submit']
+				/dom[@visible='True' and @caption~'Demoqa']//input[@name='pie_submit']
 			</item>
 			<item
 			name="Country"
@@ -175,10 +182,10 @@ rxversion="6.0">
 			searchtimeout="10000ms"
 			capname="selecttag"
 			refimgid="0463b3ab-0330-41fa-9554-8ddbe09852ae">
-				/dom[@browser~'Demoqa']//selecttag[#'dropdown_7']
+				/dom[@visible='True' and @caption~'Demoqa']//selecttag[#'dropdown_7']
 			</item>
 			<basepath>
-				/dom[@browser~'Demoqa']
+				/dom[@visible='True' and @caption~'Demoqa']
 			</basepath>
 		</appfolder>
 		<basepath/>

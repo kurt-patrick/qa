@@ -7,6 +7,8 @@
   </Array>
   <Array name="files">
     <Element value="DemoQA.rxtst" />
+    <Element value="CodeModules\FillOutPage.cs" />
+    <Element value="CodeModules\ValidatePage.cs" />
   </Array>
   <Properties name="projectSavedData">
     <Properties name="customTool">

@@ -72,6 +72,8 @@ namespace KPE.Rx.Common.TestModule
             Keyboard.DefaultKeyPressTime = 100;
             Delay.SpeedFactor = 1.0;
             
+            // http://www.ranorex.com/forum/private-browsing-t5891.html
+            
 			string browserArgs = "";
 			if("Chrome".Equals(browserArgs,StringComparison.CurrentCultureIgnoreCase))
 			{

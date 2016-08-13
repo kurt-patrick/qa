@@ -111,6 +111,9 @@
     <Compile Include="TestModule\OpenBrowser.cs">
       <id>7e221e1f-6afb-4d6f-895c-bafff465bbcd</id>
     </Compile>
+    <Compile Include="TestModule\RefreshPageCtrlF5.cs">
+      <id>dcff918d-7eb6-40d5-ad5d-f36b70aef6b9</id>
+    </Compile>
     <Compile Include="TimeSpans.cs">
       <id>0d2973bf-4ef9-42bd-ae5f-ea05f3a3c27c</id>
     </Compile>

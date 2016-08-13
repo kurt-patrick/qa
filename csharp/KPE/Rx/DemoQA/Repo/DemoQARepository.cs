@@ -129,7 +129,7 @@ namespace KPE.Rx.DemoQA.Repo
             /// Creates a new DemoQA  folder.
             /// </summary>
             public DemoQAAppFolder(RepoGenBaseFolder parentFolder) :
-                    base("DemoQA", "/dom[@browser~'Demoqa']", parentFolder, 10000, null, false, "c11f0de0-0e89-449e-889e-37fac05869ad", "")
+                    base("DemoQA", "/dom[@visible='True' and @caption~'Demoqa']", parentFolder, 10000, null, false, "c11f0de0-0e89-449e-889e-37fac05869ad", "")
             {
                 _maritalstatus = new DemoQARepositoryFolders.MaritalStatusFolder(this);
                 _hobby = new DemoQARepositoryFolders.HobbyFolder(this);
@@ -656,6 +656,7 @@ namespace KPE.Rx.DemoQA.Repo
         {
             RepoItemInfo _errordivInfo;
             RepoItemInfo _errormessageInfo;
+            RepoItemInfo _genericerrordivInfo;
 
             /// <summary>
             /// Creates a new Error  folder.
@@ -665,6 +666,7 @@ namespace KPE.Rx.DemoQA.Repo
             {
                 _errordivInfo = new RepoItemInfo(this, "ErrorDiv", ".//form/ul/li[$GenericIndex]/div", 10000, null, "dc7e8075-f0bb-4485-af08-7a7e34088563");
                 _errormessageInfo = new RepoItemInfo(this, "ErrorMessage", ".//form/ul/li[$GenericIndex]/div//span[@class~'legend error']", 10000, null, "7d633c61-3928-49a1-bc7e-deda6fbad949");
+                _genericerrordivInfo = new RepoItemInfo(this, "GenericErrorDiv", ".//form/ul/li/div", 10000, null, "7efc0346-8afc-4c16-a1c3-d7128d4ce2e6");
             }
 
             /// <summary>
@@ -724,6 +726,30 @@ namespace KPE.Rx.DemoQA.Repo
                 get
                 {
                     return _errormessageInfo;
+                }
+            }
+
+            /// <summary>
+            /// The GenericErrorDiv item.
+            /// </summary>
+            [RepositoryItem("7efc0346-8afc-4c16-a1c3-d7128d4ce2e6")]
+            public virtual Ranorex.DivTag GenericErrorDiv
+            {
+                get
+                {
+                    return _genericerrordivInfo.CreateAdapter<Ranorex.DivTag>(true);
+                }
+            }
+
+            /// <summary>
+            /// The GenericErrorDiv item info.
+            /// </summary>
+            [RepositoryItemInfo("7efc0346-8afc-4c16-a1c3-d7128d4ce2e6")]
+            public virtual RepoItemInfo GenericErrorDivInfo
+            {
+                get
+                {
+                    return _genericerrordivInfo;
                 }
             }
         }

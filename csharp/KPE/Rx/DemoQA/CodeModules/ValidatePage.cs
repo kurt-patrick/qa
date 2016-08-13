@@ -132,8 +132,8 @@ namespace KPE.Rx.DemoQA.PageObjects
         private void ValidateArea(RegistrationPage.eErrorArea area, bool expected)
         {
             // Check for the error border
-            var errMsg = string.Format("{0} is in {1} state", area, ((expected) ? "an error" : "a valid"));
             bool actual = _registrationPage.IsErrorShown(area);
+            var errMsg = string.Format("({0}) error state. Expected ({1}) Actual ({2})", area, expected, actual);
             Verify.That.AreEqual(expected, actual, errMsg);
 
             // Check the error message
