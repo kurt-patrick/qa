@@ -1,0 +1,26 @@
+Notes,FirstName,LastName,Hobby,PhoneNumber,Email,Username,Password,PasswordConfirm,ExpErrFName,ExpErrLName,ExpErrHobby,ExpErrPhone,ExpErrUsername,ExpErrEmail,ExpErrPwd,ExpErrPwdC
+no data,,,,,,,,,TRUE,TRUE,TRUE,TRUE,TRUE,TRUE,TRUE,TRUE
+fname - char,a,,,,,,,,FALSE,TRUE,TRUE,TRUE,TRUE,TRUE,TRUE,TRUE
+fname - digit,1,,,,,,,,FALSE,TRUE,TRUE,TRUE,TRUE,TRUE,TRUE,TRUE
+Last name - char,,a,,,,,,,FALSE,FALSE,TRUE,TRUE,TRUE,TRUE,TRUE,TRUE
+Last name - digit,,1,,,,,,,FALSE,FALSE,TRUE,TRUE,TRUE,TRUE,TRUE,TRUE
+hobby only,,,Dance,,,,,,TRUE,TRUE,FALSE,TRUE,TRUE,TRUE,TRUE,TRUE
+hobby only,,,Reading,,,,,,TRUE,TRUE,FALSE,TRUE,TRUE,TRUE,TRUE,TRUE
+hobby only,,,Cricket,,,,,,TRUE,TRUE,FALSE,TRUE,TRUE,TRUE,TRUE,TRUE
+phone bva fail low (9 digit),,,,123456789,,,,,TRUE,TRUE,TRUE,TRUE,TRUE,TRUE,TRUE,TRUE
+phone bva low (10 digit),,,,1234567890,,,,,TRUE,TRUE,TRUE,FALSE,TRUE,TRUE,TRUE,TRUE
+phone bva high (16 digit),,,,1234567890123456,,,,,TRUE,TRUE,TRUE,FALSE,TRUE,TRUE,TRUE,TRUE
+phone bva fail high (17 digit),,,,12345678901234567,,,,,TRUE,TRUE,TRUE,TRUE,TRUE,TRUE,TRUE,TRUE
+phone fail - contains chars,,,,61abcdefgh,,,,,TRUE,TRUE,TRUE,TRUE,TRUE,TRUE,TRUE,TRUE
+username char,,,,,,a,,,TRUE,TRUE,TRUE,TRUE,FALSE,TRUE,TRUE,TRUE
+username digit,,,,,,1,,,TRUE,TRUE,TRUE,TRUE,FALSE,TRUE,TRUE,TRUE
+email fail,,,,,a,,,,TRUE,TRUE,TRUE,TRUE,TRUE,TRUE,TRUE,TRUE
+email fail,,,,,a@,,,,TRUE,TRUE,TRUE,TRUE,TRUE,TRUE,TRUE,TRUE
+email fail,,,,,a@z,,,,TRUE,TRUE,TRUE,TRUE,TRUE,TRUE,TRUE,TRUE
+email fail,,,,,a@z.,,,,TRUE,TRUE,TRUE,TRUE,TRUE,TRUE,TRUE,TRUE
+email fail,,,,,z.com,,,,TRUE,TRUE,TRUE,TRUE,TRUE,TRUE,TRUE,TRUE
+email fail,,,,,@z.com,,,,TRUE,TRUE,TRUE,TRUE,TRUE,TRUE,TRUE,TRUE
+email fail,,,,,@,,,,TRUE,TRUE,TRUE,TRUE,TRUE,TRUE,TRUE,TRUE
+pwd bva fail (7 chars),,,,,,,1234567,,TRUE,TRUE,TRUE,TRUE,TRUE,TRUE,TRUE,TRUE
+pwd mismatch,billy,bob,Cricket,6194001234,steve@steve.com,steve,12345678,12345679,FALSE,FALSE,FALSE,FALSE,FALSE,FALSE,FALSE,TRUE
+valid rego,billy,bob,Cricket,6194001234,steve@steve.com,steve,12345678,12345678,FALSE,FALSE,FALSE,FALSE,FALSE,FALSE,FALSE,FALSE

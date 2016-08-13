@@ -1,0 +1,51 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio 2013
+VisualStudioVersion = 12.0.21005.1
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "KPE.Se.AutoPrac", "AutoPrac\KPE.Se.AutoPrac.csproj", "{E7E6B6EA-3A45-442F-8131-53314F0CDB85}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = ".nuget", ".nuget", "{148207DE-A236-4F0D-81FA-9160C31C121D}"
+	ProjectSection(SolutionItems) = preProject
+		.nuget\packages.config = .nuget\packages.config
+	EndProjectSection
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "KPE.QA.Utils", "KPE.QA.Utils\KPE.QA.Utils.csproj", "{3D4477AE-0359-47E7-9663-A07DCF3650FD}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "KPE.Se.Common", "Common\KPE.Se.Common.csproj", "{1B7CE674-D17C-42EE-95C3-39BB27408078}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "KPE.Se.DemoQA", "DemoQA\KPE.Se.DemoQA.csproj", "{7001E215-3319-4C0C-AB58-5FC34EB07950}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "KPE.Se.HerokuApp", "HerokuApp\KPE.Se.HerokuApp.csproj", "{29D11B78-5D62-42D1-9907-DB112319869A}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{E7E6B6EA-3A45-442F-8131-53314F0CDB85}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{E7E6B6EA-3A45-442F-8131-53314F0CDB85}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{E7E6B6EA-3A45-442F-8131-53314F0CDB85}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{E7E6B6EA-3A45-442F-8131-53314F0CDB85}.Release|Any CPU.Build.0 = Release|Any CPU
+		{3D4477AE-0359-47E7-9663-A07DCF3650FD}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{3D4477AE-0359-47E7-9663-A07DCF3650FD}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{3D4477AE-0359-47E7-9663-A07DCF3650FD}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{3D4477AE-0359-47E7-9663-A07DCF3650FD}.Release|Any CPU.Build.0 = Release|Any CPU
+		{1B7CE674-D17C-42EE-95C3-39BB27408078}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{1B7CE674-D17C-42EE-95C3-39BB27408078}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{1B7CE674-D17C-42EE-95C3-39BB27408078}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{1B7CE674-D17C-42EE-95C3-39BB27408078}.Release|Any CPU.Build.0 = Release|Any CPU
+		{7001E215-3319-4C0C-AB58-5FC34EB07950}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{7001E215-3319-4C0C-AB58-5FC34EB07950}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{7001E215-3319-4C0C-AB58-5FC34EB07950}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{7001E215-3319-4C0C-AB58-5FC34EB07950}.Release|Any CPU.Build.0 = Release|Any CPU
+		{29D11B78-5D62-42D1-9907-DB112319869A}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{29D11B78-5D62-42D1-9907-DB112319869A}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{29D11B78-5D62-42D1-9907-DB112319869A}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{29D11B78-5D62-42D1-9907-DB112319869A}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+EndGlobal

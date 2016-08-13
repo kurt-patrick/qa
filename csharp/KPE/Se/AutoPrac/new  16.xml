@@ -1,0 +1,10 @@
+<assemblyBinding xmlns="urn:schemas-microsoft-com:asm.v1">
+<dependentAssembly><assemblyId
+entity name="System.Web.Razor" culture="neutral" publicKeyToken="31bf3856ad364e
+35" /><bindingRedirect oldVersion="0.0.0.0-3.0.0.0" newVersion="3.0.0.0" /></de
+pendentAssembly></assemblyBinding><assemblyBinding xmlns="urn:schemas-microsoft
+-com:asm.v1"><dependentAssembly><assemblyIdentity name="System.Web.WebPages.Raz
+or" culture="neutral" publicKeyToken="31bf3856ad364e35" /><bindingRedirect oldV
+ersion="0.0.0.0-3.0.0.0" newVersion="3.0.0.0" /></dependentAssembly>
+
+</assemblyBinding>
