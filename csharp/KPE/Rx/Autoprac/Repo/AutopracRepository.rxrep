@@ -1,0 +1,29 @@
+﻿<repository
+name="AutopracRepository"
+id="78f2503a-17f0-4325-89ac-3480bbc011c0"
+rxversion="6.0">
+	<codegen
+	classname="AutopracRepository"
+	namespace="KPE.Rx.Autoprac.Repo"/>
+	<rootfolder
+	name="Root"
+	id="3c2a055a-7ff1-4b7e-bbe3-45ec17ee02fe"
+	searchtimeout="0ms"
+	capname="unknown"
+	isrooted="True"
+	usecache="True">
+		<appfolder
+		name="AutopracUX"
+		id="1c30666c-6877-49de-96bf-80fb025f3336"
+		searchtimeout="10000ms"
+		capname="webdocument"
+		isrooted="True"
+		usecache="False">
+			<basepath>
+				/dom[@domain~'automationpractice.com']
+			</basepath>
+		</appfolder>
+		<basepath/>
+	</rootfolder>
+	<variables/>
+</repository>
