@@ -11,8 +11,8 @@ namespace KPE.Se.AutoPrac.PageObjects
         // Details located @ http://www.seleniumframework.com/demo-sites/
         public const string DemoLoginEmail = "abc@xyz.com";
         public const string DemoLoginPassword = "Test@123";
-        public const string MyLoginEmail = "kurt.patrick.dj@gmail.com";
-        public const string MyLoginPassword = "password";
+        public const string MyLoginEmail = "";
+        public const string MyLoginPassword = "";
 
         By _emailBy = By.Id("email");
         By _passwordBy = By.Id("passwd");
