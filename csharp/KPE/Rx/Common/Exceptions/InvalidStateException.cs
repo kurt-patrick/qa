@@ -26,7 +26,7 @@ namespace KPE.Rx.Common.Exceptions
 			}
 		}
 		
-		private static void Throw(string message)
+		public static void Throw(string message)
 		{
 			throw new InvalidStateException(message);
 		}

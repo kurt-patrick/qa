@@ -21,6 +21,11 @@ namespace KPE.Rx.Common.Helper
 			return element.GetAttributeValue<string>(attribute) ?? string.Empty;
 		}
 		
+		public static string GetAttributeClass(WebElement element)
+		{
+			return GetAttribute(element, "class");
+		}
+		
 		public static bool DoesAttributeContain(WebElement element, string attribute, string contains)
 		{
 			return GetAttribute(element, attribute).Contains(contains);

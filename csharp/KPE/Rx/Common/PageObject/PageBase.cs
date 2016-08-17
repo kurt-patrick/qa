@@ -7,6 +7,7 @@
  * To change this template use Tools | Options | Coding | Edit Standard Headers.
  */
 using System;
+using System.CodeDom;
 using System.Collections.Generic;
 using System.Linq;
 using KPE.Rx.Common.Exceptions;
@@ -35,15 +36,15 @@ namespace KPE.Rx.Common.PageObject
 			element.PressKeys(text, Duration.FromMilliseconds(1));
 		}
 		
-        /// <summary>
-        /// Clicks on the element immediately
-        /// </summary>
-        /// <param name="element"></param>
-        protected void PerformClick(WebElement element)
-        {
-            element.Click();
-        }
-        
+		/// <summary>
+		/// Clicks on the element immediately
+		/// </summary>
+		/// <param name="element"></param>
+		protected void PerformClick(WebElement element)
+		{
+			element.Click();
+		}
+		
 		protected string MoveToElementAndGetText(WebElement element, bool trim = true)
 		{
 			element.MoveTo();
@@ -56,21 +57,21 @@ namespace KPE.Rx.Common.PageObject
 			return (trim) ? retVal.Trim() : retVal;
 		}
 		
-        /// <summary>
-        /// Returns the text of the element
-        /// </summary>
-        /// <param name="by"></param>
-        /// <returns>trimmed value of the element</returns>
-        protected string GetTextIfElementIsVisible(RepoItemInfo repoItem, int timeOut = TimeOuts.TimeOutDefault, bool trim = true)
-        {
-            WebElement element = null;
-            if (IsElementVisible(repoItem, out element, timeOut))
-            {
-                return GetText(element, trim);
-            }
-            return string.Empty;
-        }
-        
+		/// <summary>
+		/// Returns the text of the element
+		/// </summary>
+		/// <param name="by"></param>
+		/// <returns>trimmed value of the element</returns>
+		protected string GetTextIfElementIsVisible(RepoItemInfo repoItem, int timeOut = TimeOuts.TimeOutDefault, bool trim = true)
+		{
+			WebElement element = null;
+			if (IsElementVisible(repoItem, out element, timeOut))
+			{
+				return GetText(element, trim);
+			}
+			return string.Empty;
+		}
+		
 		protected bool AreElementsVisible(List<RepoItemInfo> repoItems, int timeOut = TimeOuts.TimeOutDefault)
 		{
 			return repoItems.All(repoItem => IsElementVisible(repoItem, timeOut));
@@ -148,24 +149,53 @@ namespace KPE.Rx.Common.PageObject
 			return ExceptionCatcher.TryCallMethod(() => itemInfo.WaitForNotExists(timeOut));
 		}
 		
-        protected bool IsCheckBoxSelected(InputTag element)
-        {
-        	return string.Equals(element.Checked, "true", StringComparison.CurrentCultureIgnoreCase);
-        }
-        
-        protected bool ToggleCheckBox(InputTag element, bool selected)
-        {
-        	if (IsCheckBoxSelected(element)) {
-                return true;
-            }
+		protected bool IsCheckBoxSelected(InputTag element)
+		{
+			return string.Equals(element.Checked, "true", StringComparison.CurrentCultureIgnoreCase);
+		}
+		
+		protected bool ToggleCheckBox(InputTag element, bool selected)
+		{
+			if (IsCheckBoxSelected(element)) {
+				return true;
+			}
 
-            Func<bool> condition = () => {
-                PerformClick(element);
-                return IsCheckBoxSelected(element);
-            };
+			Func<bool> condition = () => {
+				PerformClick(element);
+				return IsCheckBoxSelected(element);
+			};
 
-            return WaitHelper.TryWaitForCondition(condition);
-        }
+			return WaitHelper.TryWaitForCondition(condition);
+		}
+
+		protected bool TryClickAndValidate(RepoItemInfo itemInfo, Func<bool> condition, int timeOut = TimeOuts.TimeOutDefault)
+		{
+			var settings = TryClickAndValidateSettings.DefaultSettings;
+			settings.ConditionTimeOut = timeOut;			
+			return TryClickAndValidate(itemInfo, condition, settings);
+		}
+
+		protected bool TryClickAndValidate(RepoItemInfo itemInfo, Func<bool> condition, TryClickAndValidateSettings settings)
+		{
+			if(settings.ElementMustExist)
+			{
+				WebElement element = null;
+				if(!IsElementVisible(itemInfo, out element, settings.ElementTimeOut))
+				{
+					ReportHelper.ReportErrorWithScreenshot("Element does not exist or is not visible. " + itemInfo.ToString());
+					return false;
+				}
+				PerformClick(element);
+			}
+			return WaitHelper.TryWaitForCondition(condition, settings.ConditionTimeOut);
+		}
+		
+		protected bool TryClickAndValidate(WebElement element, Func<bool> condition, int timeOut = TimeOuts.TimeOutDefault)
+		{
+			Helper.ThrowHelper.ThrowIfNull(element);
+			element.Click();
+			return WaitHelper.TryWaitForCondition(condition, timeOut);
+		}
 		
 	}
 }

@@ -17,6 +17,41 @@ namespace KPE.Rx.Common.Helper
 	/// </summary>
 	public static class ThrowHelper
 	{
+		public static void ThrowIfNull(params object[] values)
+		{
+			if(values != null && values.Length > 0)
+			{
+				foreach (var obj in values)
+				{
+					if(obj == null) 
+					{
+						throw new ArgumentNullException();
+					}
+				}
+			}
+		}
+		
+		public static void ThrowIfNull(object value, string paramName)
+		{
+			if(value == null) {
+				throw new ArgumentNullException(paramName);
+			}
+		}
+		
+		public static void ThrowArgumentOutOfRangeExceptionIfTrue(bool value, string paramName, string message)
+		{
+			if(value) {
+				throw new ArgumentOutOfRangeException(paramName, message);
+			}
+		}
+
+		public static void ThrowArgumentOutOfRangeExceptionIfFalse(bool value, string paramName, string message)
+		{
+			if(!value) {
+				throw new ArgumentOutOfRangeException(paramName, message);
+			}
+		}
+		
 		public static void ThrowElementNotFoundException(RepoItemInfo itemInfo)
 		{
 			throw new ElementNotFoundException(itemInfo.Path);

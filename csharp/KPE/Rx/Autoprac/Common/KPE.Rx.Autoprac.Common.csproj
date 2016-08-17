@@ -78,11 +78,36 @@
     <Compile Include="AssemblyInfo.cs">
       <id>292f8ff9-0aa2-4524-b308-fbe348e9dfa1</id>
     </Compile>
+    <Compile Include="PageObjects\HomePage.cs">
+      <id>c453e1fb-e690-4c0f-9362-9ab1253482f4</id>
+    </Compile>
+    <Compile Include="PageObjects\AutopracPageBase.cs">
+      <id>2a0fac17-25da-46f9-851e-4c17543b2734</id>
+    </Compile>
+    <Compile Include="PageObjects\HomePageCart.cs">
+      <id>da9e818d-1aba-4774-ab95-9bcab631c384</id>
+    </Compile>
+    <Compile Include="PageObjects\HomePageProduct.cs">
+      <id>40affba7-8fac-406f-9c01-afb2347f7124</id>
+    </Compile>
+    <Compile Include="PageObjects\LoginPage.cs">
+      <id>d3848946-2de8-4959-a2d6-f4150e66a94c</id>
+    </Compile>
   </ItemGroup>
   <ItemGroup>
     <Folder Include="PageObjects">
       <id>551fe4f1-b8e5-4e21-ab20-4532cc7aee42</id>
     </Folder>
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\..\Common\KPE.Rx.Common.csproj">
+      <Project>{43D76FEC-7E1E-4EB6-B71D-06B72C8462E9}</Project>
+      <Name>KPE.Rx.Common</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\Repo\KPE.Rx.Autoprac.Repo.csproj">
+      <Project>{F181225D-CD40-44DA-9E29-2ADA2B515EEE}</Project>
+      <Name>KPE.Rx.Autoprac.Repo</Name>
+    </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <Import Project="$(MSBuildExtensionsPath)\Ranorex$(RanorexVersion)\Ranorex.MSBuild.Targets" Condition="Exists('$(MSBuildExtensionsPath)\Ranorex$(RanorexVersion)\Ranorex.MSBuild.Targets')" />

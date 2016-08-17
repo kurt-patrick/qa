@@ -87,8 +87,14 @@
     <Compile Include="Helper\ElementHelper.cs">
       <id>5a1929d7-d3a3-4453-a4fe-737e0fdc82a0</id>
     </Compile>
+    <Compile Include="Helper\EnumHelper.cs">
+      <id>198cf569-29dc-4f3c-bb6c-7f71b934d8e7</id>
+    </Compile>
     <Compile Include="Helper\KeyboardHelper.cs">
       <id>42f6962e-1c28-4735-95b7-79df52a62cbf</id>
+    </Compile>
+    <Compile Include="Helper\ReportHelper.cs">
+      <id>0c2f7283-a4c5-4c97-8aaa-10e8659bdeb7</id>
     </Compile>
     <Compile Include="Helper\SelectHelper.cs">
       <id>7eecf6f8-34bd-4ee0-b240-5b9c0fa7b5e5</id>
@@ -116,6 +122,9 @@
     </Compile>
     <Compile Include="TimeSpans.cs">
       <id>0d2973bf-4ef9-42bd-ae5f-ea05f3a3c27c</id>
+    </Compile>
+    <Compile Include="TryClickAndValidateSettings.cs">
+      <id>ff51ce78-8c0f-4840-9b65-5503e758c901</id>
     </Compile>
     <Compile Include="Validation\Assert.cs">
       <id>20999d67-4242-4fc0-9d71-cffb45c02cea</id>
