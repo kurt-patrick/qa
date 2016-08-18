@@ -25,7 +25,7 @@ namespace Common.TestModule
     /// Description of CloseBrowser.
     /// </summary>
     [TestModule("6C5DBD10-E920-4BEE-A392-939C30BC4AED", ModuleType.UserCode, 1)]
-    public class CloseBrowser : ITestModule
+    public class KillAUT : ITestModule
     {
     	int _processId = 0;
     	[TestVariable("1D58D1F7-8054-4E5D-B804-38078229C7FA")]
@@ -46,7 +46,7 @@ namespace Common.TestModule
         /// <summary>
         /// Constructs a new instance.
         /// </summary>
-        public CloseBrowser()
+        public KillAUT()
         {
             // Do not delete - a parameterless constructor is required!
         }

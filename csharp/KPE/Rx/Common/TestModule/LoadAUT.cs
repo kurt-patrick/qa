@@ -26,7 +26,7 @@ namespace KPE.Rx.Common.TestModule
     /// Description of LoadBrowser.
     /// </summary>
     [TestModule("A9E58D86-228A-4DFA-922F-46F04DF2FE7F", ModuleType.UserCode, 1)]
-    public class OpenBrowser : ITestModule
+    public class LoadAUT : ITestModule
     {
     	string _browserName = "chrome";
     	[TestVariable("fe5fb7e5-e3a6-4681-9d48-d4c3688203eb")]
@@ -55,7 +55,7 @@ namespace KPE.Rx.Common.TestModule
         /// <summary>
         /// Constructs a new instance.
         /// </summary>
-        public OpenBrowser()
+        public LoadAUT()
         {
             // Do not delete - a parameterless constructor is required!
         }

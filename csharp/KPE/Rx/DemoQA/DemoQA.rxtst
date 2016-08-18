@@ -7,7 +7,7 @@ rxversion="6.0">
 			name="setup"
 			id="157fb840-2a2c-41da-bc6c-afbfa2475c02"/>
 			<testmodule
-			name="OpenBrowser"
+			name="LoadAUT"
 			id="2d87b429-fdfd-465f-aee1-6dfbba7e43c4"
 			ref="a9e58d86-228a-4dfa-922f-46f04df2fe7f"
 			type="UserCode">
@@ -142,7 +142,7 @@ rxversion="6.0">
 			TracingScreenshotQuality="40"
 			progressdialog="False"/>
 			<testmodule
-			name="CloseBrowser"
+			name="KillAUT"
 			id="bdd12730-a26d-499f-ae87-3bb290617994"
 			ref="6c5dbd10-e920-4bee-a392-939c30bc4aed"
 			type="UserCode">
@@ -258,7 +258,7 @@ rxversion="6.0">
 						name="setup"
 						id="157fb840-2a2c-41da-bc6c-afbfa2475c02">
 							<testmodule
-							name="OpenBrowser"
+							name="LoadAUT"
 							id="2d87b429-fdfd-465f-aee1-6dfbba7e43c4"/>
 						</setup>
 						<testcase
@@ -278,7 +278,7 @@ rxversion="6.0">
 						name="teardown"
 						id="c5bc03f0-d70a-41a6-9606-56f6b0a1081e">
 							<testmodule
-							name="CloseBrowser"
+							name="KillAUT"
 							id="bdd12730-a26d-499f-ae87-3bb290617994"/>
 						</teardown>
 					</testcase>

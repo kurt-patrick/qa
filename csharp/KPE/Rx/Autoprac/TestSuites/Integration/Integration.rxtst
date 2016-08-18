@@ -10,7 +10,7 @@ rxversion="6.0">
 			name="teardown"
 			id="219cde30-5824-4890-a84d-cef2efa0fcbc"/>
 			<testmodule
-			name="CloseBrowser"
+			name="KillAUT"
 			id="3405467e-c6f1-4bab-bd91-913813257a98"
 			ref="6c5dbd10-e920-4bee-a392-939c30bc4aed"
 			type="UserCode">
@@ -44,7 +44,7 @@ rxversion="6.0">
 				</parameters>
 			</testcase>
 			<testmodule
-			name="OpenBrowser"
+			name="LoadAUT"
 			id="747788fc-3ae2-41ca-b99a-c5c52f0f32e1"
 			ref="a9e58d86-228a-4dfa-922f-46f04df2fe7f"
 			type="UserCode">
@@ -98,7 +98,7 @@ rxversion="6.0">
 						name="setup"
 						id="421001a7-204b-44ba-9a49-d0239c77d8ce">
 							<testmodule
-							name="OpenBrowser"
+							name="LoadAUT"
 							id="747788fc-3ae2-41ca-b99a-c5c52f0f32e1"/>
 						</setup>
 						<testcase
@@ -108,7 +108,7 @@ rxversion="6.0">
 						name="teardown"
 						id="219cde30-5824-4890-a84d-cef2efa0fcbc">
 							<testmodule
-							name="CloseBrowser"
+							name="KillAUT"
 							id="3405467e-c6f1-4bab-bd91-913813257a98"/>
 						</teardown>
 					</testcase>

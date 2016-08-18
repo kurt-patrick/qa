@@ -108,13 +108,13 @@
     <Compile Include="PageObject\PageBase.cs">
       <id>b8b6baf2-9420-4c23-a4ac-aa9114d537bf</id>
     </Compile>
-    <Compile Include="TestModule\CloseBrowser.cs">
+    <Compile Include="TestModule\KillAUT.cs">
       <id>9a40be95-14f2-46c8-85c8-41e2f4cd3dbf</id>
     </Compile>
     <Compile Include="TestModule\NavigateToUrl.cs">
       <id>10a2b9bb-fe9c-417a-b12c-04168b882621</id>
     </Compile>
-    <Compile Include="TestModule\OpenBrowser.cs">
+    <Compile Include="TestModule\LoadAUT.cs">
       <id>7e221e1f-6afb-4d6f-895c-bafff465bbcd</id>
     </Compile>
     <Compile Include="TestModule\RefreshPageCtrlF5.cs">
