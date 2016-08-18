@@ -64,6 +64,9 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="AddProductToCart.cs">
+      <id>6c330da0-ea1e-4b15-a706-342e0b16a180</id>
+    </Compile>
     <Compile Include="AssemblyInfo.cs">
       <id>6f18cfcc-fd3d-4666-a3c5-35d728278026</id>
     </Compile>

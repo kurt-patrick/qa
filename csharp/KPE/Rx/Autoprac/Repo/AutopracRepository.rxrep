@@ -68,22 +68,6 @@ rxversion="6.0">
 					capname="unknown"
 					isrooted="False">
 						<item
-						name="PopularTab"
-						id="3b04d384-60b0-417e-a2f5-f3c14dc9ff37"
-						searchtimeout="10000ms"
-						capname="atag"
-						refimgid="060e7e20-7f88-4267-a47c-e377e0a42ea2">
-							/dom[@domain~'automationpractice.com']//div[@class='columns-container']//a[@class='homefeatured']
-						</item>
-						<item
-						name="BestSellersTab"
-						id="a4870080-b9b8-41ec-bd96-ce938ae89a6a"
-						searchtimeout="10000ms"
-						capname="atag"
-						refimgid="12466c77-690d-4933-9d32-b7f37847ab34">
-							/dom[@domain~'automationpractice.com']//div[@class='columns-container']//a[@class='blockbestsellers']
-						</item>
-						<item
 						name="ActiveTab"
 						id="782d2818-4d11-49db-ad5b-9c629ddca066"
 						searchtimeout="10000ms"
@@ -91,40 +75,30 @@ rxversion="6.0">
 							/dom[@domain~'automationpractice.com']//div[@class='columns-container']//ul[@id='home-page-tabs']/li[@class='active']/a
 						</item>
 						<item
-						name="PopularProducts"
-						id="a84fee58-0a57-4bb1-b39e-78d71afadf1a"
+						name="Tab"
+						id="e7c99c53-3652-44d5-b2f5-ecbcd7b594ef"
 						searchtimeout="10000ms"
-						capname="litag">
-							/dom[@domain~'automationpractice.com']//div[@class='columns-container']//div[@class='tab-content']/ul[@id='homefeatured']/li
+						capname="atag"
+						refimgid="998833a9-ea6c-49d4-ab49-0d24ed46dae3">
+							/dom[@domain~'automationpractice.com']//div[@class='columns-container']//a[@class=$GenericClass]
 						</item>
 						<item
-						name="BestSellerProducts"
-						id="30339dc7-746e-475e-970f-b2de893f7481"
+						name="ActiveProducts"
+						id="ed324fe0-b0f2-4fb6-a54d-4597833d3536"
 						searchtimeout="10000ms"
 						capname="litag">
-							/dom[@domain~'automationpractice.com']//div[@class='columns-container']//div[@class='tab-content']/ul[@id='blockbestsellers']/li
+							/dom[@domain~'automationpractice.com']//div[@class='columns-container']//div[@class='tab-content']/ul[@id=$GenericId]/li
 						</item>
 						<folder
-						name="Generic"
-						id="a62c80d2-43e8-4a39-b5f8-77637e2d0f3e"
-						searchtimeout="0ms"
-						capname="unknown"
-						isrooted="False">
-							<item
-							name="Tab"
-							id="e7c99c53-3652-44d5-b2f5-ecbcd7b594ef"
-							searchtimeout="10000ms"
-							capname="atag"
-							refimgid="998833a9-ea6c-49d4-ab49-0d24ed46dae3">
-								/dom[@domain~'automationpractice.com']//div[@class='columns-container']//a[@class=$GenericKey]
-							</item>
-							<item
-							name="ActiveProducts"
-							id="ed324fe0-b0f2-4fb6-a54d-4597833d3536"
-							searchtimeout="10000ms"
-							capname="litag">
-								/dom[@domain~'automationpractice.com']//div[@class='columns-container']//div[@class='tab-content']/ul[@id=$GenericKey]/li
-							</item>
+						name="ActiveProduct"
+						id="9c514df8-a67d-47f7-8f3e-9c18d7206435"
+						searchtimeout="10000ms"
+						capname="litag"
+						isrooted="True"
+						usecache="False">
+							<basepath>
+								/dom[@domain~'automationpractice.com']//div[@class='columns-container']//div[@class='tab-content']/ul[@id=$GenericId]/li[$GenericIndex]
+							</basepath>
 						</folder>
 					</folder>
 				</folder>
@@ -154,6 +128,18 @@ rxversion="6.0">
 		<var
 		name="GenericKey"
 		id="c0947f58-7eea-4be5-a83c-779b454133c1">
+		</var>
+		<var
+		name="GenericIndex"
+		id="eac92287-644e-4298-9ed9-35153774e984">
+		</var>
+		<var
+		name="GenericClass"
+		id="05365af5-844d-4412-8e47-47ac91924401">
+		</var>
+		<var
+		name="GenericId"
+		id="cfa233de-da11-4ed5-b74d-d05b665285eb">
 		</var>
 	</variables>
 </repository>

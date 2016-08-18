@@ -61,6 +61,42 @@ namespace KPE.Rx.Autoprac.Repo
             set { _GenericKey = value; }
         }
 
+        string _GenericIndex = "";
+
+        /// <summary>
+        /// Gets or sets the value of variable GenericIndex.
+        /// </summary>
+        [TestVariable("eac92287-644e-4298-9ed9-35153774e984")]
+        public string GenericIndex
+        {
+            get { return _GenericIndex; }
+            set { _GenericIndex = value; }
+        }
+
+        string _GenericClass = "";
+
+        /// <summary>
+        /// Gets or sets the value of variable GenericClass.
+        /// </summary>
+        [TestVariable("05365af5-844d-4412-8e47-47ac91924401")]
+        public string GenericClass
+        {
+            get { return _GenericClass; }
+            set { _GenericClass = value; }
+        }
+
+        string _GenericId = "";
+
+        /// <summary>
+        /// Gets or sets the value of variable GenericId.
+        /// </summary>
+        [TestVariable("cfa233de-da11-4ed5-b74d-d05b665285eb")]
+        public string GenericId
+        {
+            get { return _GenericId; }
+            set { _GenericId = value; }
+        }
+
 #endregion
 
         /// <summary>
@@ -352,12 +388,10 @@ namespace KPE.Rx.Autoprac.Repo
         [RepositoryFolder("a9d56cd9-c7eb-4a19-a8ab-a197a3a4358e")]
         public partial class PopularAndBestSellersFolder : RepoGenBaseFolder
         {
-            AutopracRepositoryFolders.GenericFolder _generic;
-            RepoItemInfo _populartabInfo;
-            RepoItemInfo _bestsellerstabInfo;
+            AutopracRepositoryFolders.ActiveProductFolder _activeproduct;
             RepoItemInfo _activetabInfo;
-            RepoItemInfo _popularproductsInfo;
-            RepoItemInfo _bestsellerproductsInfo;
+            RepoItemInfo _tabInfo;
+            RepoItemInfo _activeproductsInfo;
 
             /// <summary>
             /// Creates a new PopularAndBestSellers  folder.
@@ -365,12 +399,10 @@ namespace KPE.Rx.Autoprac.Repo
             public PopularAndBestSellersFolder(RepoGenBaseFolder parentFolder) :
                     base("PopularAndBestSellers", "", parentFolder, 0, null, false, "a9d56cd9-c7eb-4a19-a8ab-a197a3a4358e", "")
             {
-                _generic = new AutopracRepositoryFolders.GenericFolder(this);
-                _populartabInfo = new RepoItemInfo(this, "PopularTab", ".//a[@class='homefeatured']", 10000, null, "3b04d384-60b0-417e-a2f5-f3c14dc9ff37");
-                _bestsellerstabInfo = new RepoItemInfo(this, "BestSellersTab", ".//a[@class='blockbestsellers']", 10000, null, "a4870080-b9b8-41ec-bd96-ce938ae89a6a");
+                _activeproduct = new AutopracRepositoryFolders.ActiveProductFolder(this);
                 _activetabInfo = new RepoItemInfo(this, "ActiveTab", ".//ul[@id='home-page-tabs']/li[@class='active']/a", 10000, null, "782d2818-4d11-49db-ad5b-9c629ddca066");
-                _popularproductsInfo = new RepoItemInfo(this, "PopularProducts", ".//div[@class='tab-content']/ul[@id='homefeatured']/li", 10000, null, "a84fee58-0a57-4bb1-b39e-78d71afadf1a");
-                _bestsellerproductsInfo = new RepoItemInfo(this, "BestSellerProducts", ".//div[@class='tab-content']/ul[@id='blockbestsellers']/li", 10000, null, "30339dc7-746e-475e-970f-b2de893f7481");
+                _tabInfo = new RepoItemInfo(this, "Tab", ".//a[@class=$GenericClass]", 10000, null, "e7c99c53-3652-44d5-b2f5-ecbcd7b594ef");
+                _activeproductsInfo = new RepoItemInfo(this, "ActiveProducts", ".//div[@class='tab-content']/ul[@id=$GenericId]/li", 10000, null, "ed324fe0-b0f2-4fb6-a54d-4597833d3536");
             }
 
             /// <summary>
@@ -382,54 +414,6 @@ namespace KPE.Rx.Autoprac.Repo
                 get
                 {
                     return _selfInfo;
-                }
-            }
-
-            /// <summary>
-            /// The PopularTab item.
-            /// </summary>
-            [RepositoryItem("3b04d384-60b0-417e-a2f5-f3c14dc9ff37")]
-            public virtual Ranorex.ATag PopularTab
-            {
-                get
-                {
-                    return _populartabInfo.CreateAdapter<Ranorex.ATag>(true);
-                }
-            }
-
-            /// <summary>
-            /// The PopularTab item info.
-            /// </summary>
-            [RepositoryItemInfo("3b04d384-60b0-417e-a2f5-f3c14dc9ff37")]
-            public virtual RepoItemInfo PopularTabInfo
-            {
-                get
-                {
-                    return _populartabInfo;
-                }
-            }
-
-            /// <summary>
-            /// The BestSellersTab item.
-            /// </summary>
-            [RepositoryItem("a4870080-b9b8-41ec-bd96-ce938ae89a6a")]
-            public virtual Ranorex.ATag BestSellersTab
-            {
-                get
-                {
-                    return _bestsellerstabInfo.CreateAdapter<Ranorex.ATag>(true);
-                }
-            }
-
-            /// <summary>
-            /// The BestSellersTab item info.
-            /// </summary>
-            [RepositoryItemInfo("a4870080-b9b8-41ec-bd96-ce938ae89a6a")]
-            public virtual RepoItemInfo BestSellersTabInfo
-            {
-                get
-                {
-                    return _bestsellerstabInfo;
                 }
             }
 
@@ -454,95 +438,6 @@ namespace KPE.Rx.Autoprac.Repo
                 get
                 {
                     return _activetabInfo;
-                }
-            }
-
-            /// <summary>
-            /// The PopularProducts item.
-            /// </summary>
-            [RepositoryItem("a84fee58-0a57-4bb1-b39e-78d71afadf1a")]
-            public virtual Ranorex.LiTag PopularProducts
-            {
-                get
-                {
-                    return _popularproductsInfo.CreateAdapter<Ranorex.LiTag>(true);
-                }
-            }
-
-            /// <summary>
-            /// The PopularProducts item info.
-            /// </summary>
-            [RepositoryItemInfo("a84fee58-0a57-4bb1-b39e-78d71afadf1a")]
-            public virtual RepoItemInfo PopularProductsInfo
-            {
-                get
-                {
-                    return _popularproductsInfo;
-                }
-            }
-
-            /// <summary>
-            /// The BestSellerProducts item.
-            /// </summary>
-            [RepositoryItem("30339dc7-746e-475e-970f-b2de893f7481")]
-            public virtual Ranorex.LiTag BestSellerProducts
-            {
-                get
-                {
-                    return _bestsellerproductsInfo.CreateAdapter<Ranorex.LiTag>(true);
-                }
-            }
-
-            /// <summary>
-            /// The BestSellerProducts item info.
-            /// </summary>
-            [RepositoryItemInfo("30339dc7-746e-475e-970f-b2de893f7481")]
-            public virtual RepoItemInfo BestSellerProductsInfo
-            {
-                get
-                {
-                    return _bestsellerproductsInfo;
-                }
-            }
-
-            /// <summary>
-            /// The Generic folder.
-            /// </summary>
-            [RepositoryFolder("a62c80d2-43e8-4a39-b5f8-77637e2d0f3e")]
-            public virtual AutopracRepositoryFolders.GenericFolder Generic
-            {
-                get { return _generic; }
-            }
-        }
-
-        /// <summary>
-        /// The GenericFolder folder.
-        /// </summary>
-        [RepositoryFolder("a62c80d2-43e8-4a39-b5f8-77637e2d0f3e")]
-        public partial class GenericFolder : RepoGenBaseFolder
-        {
-            RepoItemInfo _tabInfo;
-            RepoItemInfo _activeproductsInfo;
-
-            /// <summary>
-            /// Creates a new Generic  folder.
-            /// </summary>
-            public GenericFolder(RepoGenBaseFolder parentFolder) :
-                    base("Generic", "", parentFolder, 0, null, false, "a62c80d2-43e8-4a39-b5f8-77637e2d0f3e", "")
-            {
-                _tabInfo = new RepoItemInfo(this, "Tab", ".//a[@class=$GenericKey]", 10000, null, "e7c99c53-3652-44d5-b2f5-ecbcd7b594ef");
-                _activeproductsInfo = new RepoItemInfo(this, "ActiveProducts", ".//div[@class='tab-content']/ul[@id=$GenericKey]/li", 10000, null, "ed324fe0-b0f2-4fb6-a54d-4597833d3536");
-            }
-
-            /// <summary>
-            /// The Self item info.
-            /// </summary>
-            [RepositoryItemInfo("a62c80d2-43e8-4a39-b5f8-77637e2d0f3e")]
-            public virtual RepoItemInfo SelfInfo
-            {
-                get
-                {
-                    return _selfInfo;
                 }
             }
 
@@ -591,6 +486,55 @@ namespace KPE.Rx.Autoprac.Repo
                 get
                 {
                     return _activeproductsInfo;
+                }
+            }
+
+            /// <summary>
+            /// The ActiveProduct folder.
+            /// </summary>
+            [RepositoryFolder("9c514df8-a67d-47f7-8f3e-9c18d7206435")]
+            public virtual AutopracRepositoryFolders.ActiveProductFolder ActiveProduct
+            {
+                get { return _activeproduct; }
+            }
+        }
+
+        /// <summary>
+        /// The ActiveProductFolder folder.
+        /// </summary>
+        [RepositoryFolder("9c514df8-a67d-47f7-8f3e-9c18d7206435")]
+        public partial class ActiveProductFolder : RepoGenBaseFolder
+        {
+
+            /// <summary>
+            /// Creates a new ActiveProduct  folder.
+            /// </summary>
+            public ActiveProductFolder(RepoGenBaseFolder parentFolder) :
+                    base("ActiveProduct", ".//div[@class='tab-content']/ul[@id=$GenericId]/li[$GenericIndex]", parentFolder, 10000, null, false, "9c514df8-a67d-47f7-8f3e-9c18d7206435", "")
+            {
+            }
+
+            /// <summary>
+            /// The Self item.
+            /// </summary>
+            [RepositoryItem("9c514df8-a67d-47f7-8f3e-9c18d7206435")]
+            public virtual Ranorex.LiTag Self
+            {
+                get
+                {
+                    return _selfInfo.CreateAdapter<Ranorex.LiTag>(true);
+                }
+            }
+
+            /// <summary>
+            /// The Self item info.
+            /// </summary>
+            [RepositoryItemInfo("9c514df8-a67d-47f7-8f3e-9c18d7206435")]
+            public virtual RepoItemInfo SelfInfo
+            {
+                get
+                {
+                    return _selfInfo;
                 }
             }
         }

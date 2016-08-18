@@ -5,7 +5,13 @@ rxversion="6.0">
 		<flatlistofchildren>
 			<testcase
 			name="TestCase"
-			id="0863f877-7790-47c4-8762-05724ce1b78b"/>
+			id="0863f877-7790-47c4-8762-05724ce1b78b">
+				<parameters>
+					<param
+					name="AddBestSeller"
+					value="false"/>
+				</parameters>
+			</testcase>
 			<teardown
 			name="teardown"
 			id="219cde30-5824-4890-a84d-cef2efa0fcbc"/>
@@ -83,6 +89,19 @@ rxversion="6.0">
 			name="LoadAUT"
 			id="9cc5b465-7c96-44f6-8f1f-058d1f599d7e"
 			datasource="NewConnector"/>
+			<testmodule
+			name="AddProductToCart"
+			id="bc636ef8-54ee-481d-8d5f-82bfeabe60ea"
+			ref="4b648c47-53f9-4c91-8e8c-ee88b7a5b88f"
+			type="UserCode">
+				<databinding>
+					<var
+					variablename="AddBestSeller"
+					variableid="f0f77f10-6e0a-43ac-b364-fc48701c9d48"
+					dataname="AddBestSeller"
+					datasourceid="0863f877-7790-47c4-8762-05724ce1b78b"/>
+				</databinding>
+			</testmodule>
 		</flatlistofchildren>
 		<childhierarchy>
 			<testsuite
@@ -103,7 +122,11 @@ rxversion="6.0">
 						</setup>
 						<testcase
 						name="TestCase"
-						id="0863f877-7790-47c4-8762-05724ce1b78b"/>
+						id="0863f877-7790-47c4-8762-05724ce1b78b">
+							<testmodule
+							name="AddProductToCart"
+							id="bc636ef8-54ee-481d-8d5f-82bfeabe60ea"/>
+						</testcase>
 						<teardown
 						name="teardown"
 						id="219cde30-5824-4890-a84d-cef2efa0fcbc">

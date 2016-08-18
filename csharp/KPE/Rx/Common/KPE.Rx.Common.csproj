@@ -81,6 +81,9 @@
     <Compile Include="Exceptions\ExceptionCatcher.cs">
       <id>577471bc-cd50-4221-a293-39b5957410bb</id>
     </Compile>
+    <Compile Include="Exceptions\InvalidArgumentException.cs">
+      <id>3eaa31dc-4a32-450e-b436-d8f2fd5d5f4f</id>
+    </Compile>
     <Compile Include="Exceptions\InvalidStateException.cs">
       <id>40d323d8-6c6a-4e82-acb4-8a379aab1bba</id>
     </Compile>

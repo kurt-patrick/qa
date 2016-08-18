@@ -24,7 +24,7 @@ namespace KPE.Rx.Autoprac.Common.PageObjects
 	public class HomePage : AutopracPageBase
 	{
 		#region enums
-		public enum eProductCategory
+		public enum HomePageProductCategory
 		{
 			[Description("homefeatured")]
 			Popular = 0,
@@ -56,70 +56,63 @@ namespace KPE.Rx.Autoprac.Common.PageObjects
 			return DoesElementExist(_ux.Header.LogoutInfo);
 		}
 
-		public bool ClickTab(eProductCategory value)
+		public bool ClickTab(HomePageProductCategory category)
 		{
-			if(value == GetSelectedTab())
-			{
+			if(category == GetSelectedTab()) {
 				return true;
 			}
 
-			// Click the required Tab and validate
-			RepoItemInfo itemInfo = _ux.Body.HomePage.PopularAndBestSellers.PopularProductsInfo;
-			if(value == eProductCategory.BestSellers) {
-				itemInfo = _ux.Body.HomePage.PopularAndBestSellers.BestSellersTabInfo;
-			}
-			return TryClickAndValidate(itemInfo, () => value == GetSelectedTab());
+			_repo.GenericKey = EnumHelper.GetDescription(category);
+			RepoItemInfo itemInfo = _ux.Body.HomePage.PopularAndBestSellers.ActiveProductsInfo;
+			return TryClickAndValidate(itemInfo, () => category == GetSelectedTab());
 		}
 
 		public List<HomePageProduct> GetPopularProducts(bool clickTab)
 		{
-			return GetProducts(eProductCategory.Popular, clickTab);
+			return GetProducts(HomePageProductCategory.Popular, clickTab);
 		}
 
 		public List<HomePageProduct> GetBestSellerProducts(bool clickTab)
 		{
-			return GetProducts(eProductCategory.BestSellers, clickTab);
+			return GetProducts(HomePageProductCategory.BestSellers, clickTab);
 		}
 
-		private string GetTabClassName(eProductCategory value)
+		private string GetTabClassName(HomePageProductCategory value)
 		{
 			return EnumHelper.GetDescription(value);
 		}
 
-		public eProductCategory GetSelectedTab()
+		public HomePageProductCategory GetSelectedTab()
 		{
-			var retVal = eProductCategory.Popular;
+			var retVal = HomePageProductCategory.Popular;
 			var element = _ux.Body.HomePage.PopularAndBestSellers.ActiveTab;
-			string bestSellersClass = EnumHelper.GetDescription(eProductCategory.BestSellers);
+			string bestSellersClass = EnumHelper.GetDescription(HomePageProductCategory.BestSellers);
 			if (ElementHelper.GetAttributeClass(element).Equals(bestSellersClass))
 			{
-				retVal = eProductCategory.BestSellers;
+				retVal = HomePageProductCategory.BestSellers;
 			}
 			return retVal;
 		}
 
-		private List<HomePageProduct> GetProducts(eProductCategory value, bool clickTab)
+		public List<HomePageProduct> GetProducts(HomePageProductCategory category, bool clickTab)
 		{
 			if (clickTab)
 			{
-				ClickTab(eProductCategory.Popular);
+				ClickTab(HomePageProductCategory.Popular);
 			}
 
-			if (GetSelectedTab() != value)
+			if (GetSelectedTab() != category)
 			{
 				InvalidStateException.Throw(
-					string.Format("The tab {0} must be clicked before calling GetProducts()", value.ToString()));
+					string.Format("The tab {0} must be clicked before calling GetProducts()", category.ToString()));
 			}
 
-			var bodyEle = _ux.Body.Self;
-			RepoItemInfo itemInfo = _ux.Body.HomePage.PopularAndBestSellers.PopularProductsInfo;
-			if(value == eProductCategory.BestSellers) {
-				itemInfo = _ux.Body.HomePage.PopularAndBestSellers.BestSellerProductsInfo;
-			}
+			_repo.GenericKey = EnumHelper.GetDescription(category);
+			var itemInfo = _ux.Body.HomePage.PopularAndBestSellers.ActiveProductsInfo;
 			
 			return
-				bodyEle.Find(itemInfo.Path)
-				.Select((ele, index) => new HomePageProduct(string.Format("{0}[{1}]", itemInfo.Path, index + 1)))
+				_ux.Body.Self.Find(itemInfo.Path)
+				.Select((ele, index) => new HomePageProduct(category, index + 1))
 				.ToList();
 
 		}
