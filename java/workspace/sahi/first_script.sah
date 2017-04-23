@@ -1,0 +1,9 @@
+_setValue(_textbox("user"), "test");
+_setValue(_password("password"), "sec");
+_setValue(_password("password"), "secret");
+_click(_submit("Login"));
+_setValue(_textbox("q"), "1");
+_setValue(_textbox("q[1]"), "2");
+_setValue(_textbox("q[2]"), "3");
+_click(_button("Add"));
+_click(_button("Logout"));

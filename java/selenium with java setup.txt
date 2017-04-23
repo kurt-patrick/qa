@@ -1,0 +1,59 @@
+Downloads
+================================================================
+Java: 		Is most likely already installed on the machine (1.8 and above is ideal)
+			https://java.com/en/download/
+
+Eclipse: 	Download the latest version (Neon or Mars)
+			https://www.eclipse.org/
+
+Selenium: 	Download Client and Server
+			http://www.seleniumhq.org/download/
+Docs: 		http://seleniumhq.github.io/selenium/docs/api/java/index.html
+
+Youtube 	https://www.youtube.com/watch?v=zylSll8hsPs
+toolsql		http://toolsqa.com/selenium-webdriver/selenium-tutorial/
+testng: 	http://testng.org/doc/selenium.html
+			http://testng.org/doc/download.html
+
+
+Installation Order
+================================================================
+Install Java
+Install Eclipse
+
+
+System configuration
+================================================================
+*** (optional step) Only possible without admin permissions
+Add java to the system path
+Right Click on [This PC] or [My Computer] and select Manage
+
+
+Create a new project
+================================================================
+Start Eclipse
+Set the workspace directory
+Click Create a new Java Project (Select Jre 1.8) etc... and Click Finish
+Create a new Folder called Lib
+Drag the server jar standalone file into the lib folder
+--- Select copy files and OK
+Open the client zip file and locate the jar file "client-combined...."
+--- Drag the client jar standalone file into the lib folder
+--- Select copy files and OK
+Select both jar files in the lib folder and right click
+--- Right click and select Build Path / Add to Build Path
+
+
+Install Test-NG
+================================================================
+See the page: http://testng.org/doc/download.html
+
+Click Help / Install New Software ...
+In Work With: Enter the url: http://beust.com/eclipse
+Click Add
+Check the TestNg row
+Click Next, Next (A popup will appear installing software and will require eclipse to be restarted once finished)
+
+
+// set site: http://testng.org/doc/selenium.html
+

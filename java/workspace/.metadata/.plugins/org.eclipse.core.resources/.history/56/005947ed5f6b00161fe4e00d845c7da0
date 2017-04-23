@@ -1,0 +1,96 @@
+package planit.wordpress.tests;
+
+import org.junit.BeforeClass;
+import org.openqa.selenium.WebDriver;
+import org.openqa.selenium.chrome.ChromeDriver;
+import org.openqa.selenium.firefox.FirefoxDriver;
+import org.openqa.selenium.remote.DesiredCapabilities;
+import org.openqa.selenium.remote.RemoteWebDriver;
+import org.testng.Assert;
+import org.testng.annotations.AfterTest;
+import org.testng.annotations.BeforeTest;
+import org.testng.annotations.Test;
+
+import planit.wordpress.pages.AddNewPostPage;
+import planit.wordpress.pages.AdminPage;
+import planit.wordpress.pages.EditPostPage;
+import planit.wordpress.pages.LoginPage;
+
+public class WordPressTests {
+	
+	private static final String PageTitle = "new page title";
+	private static final String PageBody = "new page body";
+	
+	private WebDriver _driver = null;
+	private LoginPage _loginPage = null;
+	
+	@BeforeTest
+	public void setup() {
+		// NOTE: if the path to the drivers below is added to the system path, this line shouldn't be required
+		System.setProperty("webdriver.chrome.driver", "C:\\SeleniumWebDrivers\\chromedriver.exe");
+		_driver = new ChromeDriver();
+		_loginPage = new LoginPage(_driver);
+	}
+	
+	@Test
+	public void loadLoginPage()
+	{
+		_loginPage.NavigateTo();
+		Assert.assertTrue(_loginPage.isLoaded(), "Page failed to load");
+	}
+	
+	@Test(dependsOnMethods = { "loadLoginPage" })
+	public void performLogin()
+	{
+		AdminPage adminPage = _loginPage.login("admin", "demo123");
+		Assert.assertTrue(adminPage.isLoaded(), "Login has failed");
+	}
+	
+	@Test(dependsOnMethods = { "performLogin" })
+	public void navigateToAddNewPostPage()
+	{
+		AdminPage adminPage = new AdminPage(_driver);
+		AddNewPostPage addPage = adminPage.Dashboard().mouseOverPostsClickAddNew();
+		Assert.assertTrue(addPage.isLoaded(), "Page failed to load");
+	}
+	
+	@Test(dependsOnMethods = { "navigateToAddNewPostPage" })
+	public void publishNewPost()
+	{
+		AddNewPostPage page = new AddNewPostPage(_driver);
+		page.setTitle(PageTitle);
+		page.setBody(PageBody);
+		page.clickPublish();
+	}
+	
+	@Test(dependsOnMethods = { "publishNewPost" })
+	public void validateEditPostPage()
+	{
+		EditPostPage page = new EditPostPage(_driver);
+		Assert.assertTrue(page.isLoaded(), "Page failed to load");
+		Assert.assertEquals(page.getTitle(), PageTitle, "Page title is incorrect");
+		Assert.assertEquals(page.getBody(), PageBody, "Page body is incorrect");
+	}
+	
+	@Test(dependsOnMethods = { "validateEditPostPage" })
+	public void viewPostFromEditPage()
+	{
+		EditPostPage page = new EditPostPage(_driver);
+		page.ClickViewPost();
+	}
+	
+	@Test(dependsOnMethods = { "validateEditPostPage" })
+	public void viewPostFromEditPage()
+	{
+		EditPostPage page = new EditPostPage(_driver);
+		page.ClickViewPost();
+	}
+	
+	@AfterTest
+	public void tearDown() {
+		if(_driver != null) {
+			_driver.quit();
+		}
+	}
+
+}
