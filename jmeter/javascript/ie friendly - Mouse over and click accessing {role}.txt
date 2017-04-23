@@ -1,0 +1,107 @@
+var pkg = JavaImporter(org.openqa.selenium, org.openqa.selenium.support.ui, org.openqa.selenium.interactions.Actions)
+var wait = new pkg.WebDriverWait(WDS.browser, 120)
+
+/*
+ * Waits for an element to be present on the DOM of a page and visible
+ */
+function waitForVisible(by) {
+    return wait.until(pkg.ExpectedConditions.visibilityOfElementLocated(by));
+}
+
+/*
+ * An expectation for checking whether the given frame is available to switch to
+ * If the frame is available it switches the given driver to the specified frame
+ */
+function waitForframeToBeAvailableAndSwitchToIt(by) {
+    return wait.until(pkg.ExpectedConditions.frameToBeAvailableAndSwitchToIt(by));
+}
+
+
+function mouseOverElement(driver, by) {
+	var action = new pkg.Actions(driver);
+    try {
+        var element = waitForVisible(by);
+    	action.moveToElement(element).perform();
+    	return action;
+    } catch (err) {
+        throw 'Failed to find ATag containing text, Local Coordinator, for user: ${userName}';
+    }
+}
+
+function mouseOverElement(element) {
+	var action = new pkg.Actions(WDS.browser);
+    try {
+    	action.moveToElement(element).perform();
+    	return action;
+    } catch (err) {
+        throw 'Failed to find ATag containing text, Local Coordinator, for user: ${userName}';
+    }
+}
+
+/*
+ * An expectation for checking that there is at least one element present on a web page
+ */
+function waitForPresenceOfAllElementsLocatedBy(by) {
+    return wait.until(pkg.ExpectedConditions.presenceOfAllElementsLocatedBy(by))
+}
+
+/*
+ * An expectation for checking an element is visible and enabled such that you can click it
+ */
+function waitForClickable(by) {
+    return wait.until(pkg.ExpectedConditions.elementToBeClickable(by))
+}
+
+/*
+ * Wait for the element to exist and be clickable
+ * Perform the click on the element
+ */
+function performClick(by) {
+    var element = waitForClickable(by);
+    element.click();
+}
+
+
+function getATagContaining(by, text) {
+    var elements = waitForPresenceOfAllElementsLocatedBy(by);
+    for(var i=0; i<elements.length; i++) {
+        if(elements[i].getText().contains(text)) {
+            WDS.log.info('found match on: ' + text);
+            return elements[i];
+        }
+    }
+    
+    throw 'No elements found. ' + by.toString();
+}
+
+
+WDS.log.info('WDS.browser.switchTo().defaultContent();');
+WDS.browser.switchTo().defaultContent();
+
+WDS.log.info('mouseOver (Role)');
+
+// Mouse over {Role} e.g. Armadale 12 Local Coordinator
+var element = getATagContaining(pkg.By.cssSelector('#nav > li a'), 'Local Coordinator');
+mouseOverElement(element);
+
+WDS.sampleResult.sampleStart()
+
+WDS.log.info('click accessing ...');
+
+// [Accessing Armadale 12 Local Coordinator] should become visible on mouse over - Click this link
+element = getATagContaining(pkg.By.cssSelector('#subMenusContainer a'), 'Local Coordinator');
+element.click();
+
+//performClick(pkg.By.xpath('//*[@id=\'subMenusContainer\']//a[contains(text(), \'Local Coordinator\')][1]'));
+
+WDS.log.info('waitForframeToBeAvailableAndSwitchToIt');
+waitForframeToBeAvailableAndSwitchToIt(pkg.By.id('pmain_iframe'));
+WDS.log.info('switched to iframe');
+
+
+WDS.log.info('pre wait for list view results');
+
+// Wait for the div containing the list of results to exist
+waitForVisible(pkg.By.id('gvAccessingIndividuals_ob_gvAccessingIndividualsMainContainer'));
+
+WDS.sampleResult.sampleEnd()

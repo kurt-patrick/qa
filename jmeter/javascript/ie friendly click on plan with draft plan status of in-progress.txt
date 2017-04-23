@@ -1,0 +1,107 @@
+var pkg = JavaImporter(org.openqa.selenium, org.openqa.selenium.support.ui, org.openqa.selenium.interactions.Actions)
+var wait = new pkg.WebDriverWait(WDS.browser, 120)
+
+/*
+ * An expectation for checking an element is visible and enabled such that you can click it
+ */
+function waitForClickable(by) {
+    return wait.until(pkg.ExpectedConditions.elementToBeClickable(by))
+}
+
+/*
+ * Waits for an element to be present on the DOM of a page and visible
+ * Enters the text provided into the input
+ */
+function sendKeys(by, keys) {
+    var element = waitForVisible(by);
+    element.sendKeys(keys);
+}
+
+/*
+ * Waits for an element to be present on the DOM of a page and visible
+ */
+function waitForVisible(by) {
+    return wait.until(pkg.ExpectedConditions.visibilityOfElementLocated(by))
+}
+
+/*
+ * Waits for an element to be present on the DOM of a page and visible
+ */
+function waitForInvisibilityOfElementLocated(by) {
+    return wait.until(pkg.ExpectedConditions.invisibilityOfElementLocated(by))
+}
+
+/*
+ * An expectation for checking that there is at least one element present on a web page
+ */
+function waitForPresenceOfAllElementsLocatedBy(by) {
+    return wait.until(pkg.ExpectedConditions.presenceOfAllElementsLocatedBy(by))
+}
+
+/*
+ * An expectation for checking whether the given frame is available to switch to
+ * If the frame is available it switches the given driver to the specified frame
+ */
+function waitForframeToBeAvailableAndSwitchToIt(by) {
+    return wait.until(pkg.ExpectedConditions.frameToBeAvailableAndSwitchToIt(by))
+}
+
+
+/*
+ * Wait for the element to exist and be clickable
+ * Perform the click on the element
+ */
+function performClick(by) {
+    var element = waitForClickable(by);
+    element.click();
+}
+
+function getXPathIndexWhereDraftStatusEq(status) {
+    
+    // Get all the draft status values
+    var locator = pkg.By.xpath('//div[@id=\'gvAccessingIndividuals_ob_gvAccessingIndividualsBodyContainer\']/table//tr//td[12]/div');
+    var elements = waitForPresenceOfAllElementsLocatedBy(locator);
+    
+    var indexToUse = -1;
+    var divText = 'NOTSET';
+    
+    for(i=0; i<elements.length; i++) {
+        divText = elements[i].getText();
+        if(divText == status) {
+            indexToUse = i + 1;
+            break;
+        }
+    }
+    
+    if(indexToUse == -1) {
+        throw 'Could not find a record with status of ' + status;
+    }
+    
+    return indexToUse;
+    
+}
+
+// Click the button [View] or [WA NDIS]
+function clickViewOnListResult(index) {
+    var locator = pkg.By.xpath('//div[@id=\'gvAccessingIndividuals_ob_gvAccessingIndividualsBodyContainer\']/table//tr[' + index.toString() + ']//td[1]//input')
+    performClick(locator);
+}
+
+var rqStatus = 'In-Progress';
+var indexToUse = getXPathIndexWhereDraftStatusEq(rqStatus);
+
+WDS.log.info('indexToUse: ' + indexToUse.toString());
+
+WDS.sampleResult.sampleStart()
+
+// Click the button [View] or [WA NDIS]
+clickViewOnListResult(indexToUse);
+
+WDS.log.info('WDS.browser.switchTo().defaultContent();');
+WDS.browser.switchTo().defaultContent();
+
+WDS.log.info('waitForframeToBeAvailableAndSwitchToIt(pkg.By.id(pmain_iframe));');
+waitForframeToBeAvailableAndSwitchToIt(pkg.By.id('pmain_iframe'));
+
+
+WDS.sampleResult.sampleEnd()

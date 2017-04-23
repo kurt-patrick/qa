@@ -1,0 +1,43 @@
+function switchToEditorAndPressKeys(frameId) {
+    
+    WDS.log.info('switchToEditorAndPressKeys(' + frameId);
+    waitForframeToBeAvailableAndSwitchToItById('PlanEditor_iframe', true);
+    WDS.log.info('switch to ' + frameId);
+    waitForframeToBeAvailableAndSwitchToIt(pkg.By.id(frameId));
+    
+    var text = '${__Random(1,9999)} blah testing blah';
+    var element = waitForVisible(pkg.By.id('editorBody'));
+    
+    if(element.getText().length + text.length < 128) {
+        
+        // click the editor to put it into edit mode
+        element.click();
+        element.sendKeys(text);
+        
+        // try again - the click can fail sometimes
+        if(element.getText().length == 0) {
+            element.click();
+            element.sendKeys(text);
+        }
+    }
+    
+    WDS.log.info('element.getText(): ' + element.getText());
+    WDS.log.info('done: switchToEditorAndPressKeys');
+    
+}
+
+
+/*
+ * An expectation for checking whether the given frame is available to switch to
+ * If the frame is available it switches the given driver to the specified frame
+ */
+function waitForframeToBeAvailableAndSwitchToItById(id, switchToDefaultFirst) {
+    if(switchToDefaultFirst == true) {
+        WDS.log.info('WDS.browser.switchTo().defaultContent();');
+        WDS.browser.switchTo().defaultContent();
+    }
+    return wait.until(pkg.ExpectedConditions.frameToBeAvailableAndSwitchToIt(pkg.By.id(id)));
+}
+
+todo
+- harden mouse over and accessing code
