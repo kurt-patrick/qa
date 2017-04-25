@@ -5,7 +5,7 @@ var mouseOverPage = new MouseOverPage();
 var startPage = new SahiDemoPage();
 
 // On the SAHI test page click Mouse over
-startPage.clickMouseOver();
+startPage.navigateTo().clickMouseOver();
 
 // Validate the required controls exist
 mouseOverPage.assertButton_WriteOnHover();

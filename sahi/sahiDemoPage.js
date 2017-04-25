@@ -7,6 +7,11 @@
 function SahiDemoPage() {
 	
 	var m_this = this;
+
+	this.navigateTo = function () {
+		_navigateTo("http://sahitest.com/demo/");
+		return m_this;
+	}
 	
 	this.clickMouseOver = function () {
 		assertLink("Mouse over", "Mouse over");
@@ -14,7 +19,7 @@ function SahiDemoPage() {
 	}
 
 	function clickLink($id) {
-		_click(_link("$id));
+		_click(_link($id));
 	}
 	
 	function assertLink($id, $text) {
