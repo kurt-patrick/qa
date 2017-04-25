@@ -1,0 +1,18 @@
+running sahi suites using the test runner
+
+D:\github\qa\sahi\sahi.demo.suite
+
+testrunner location:
+testrunner is located in %sahi_home%\userdata\bin
+
+
+cmd:
+testrunner <sah file|suite file> <startUrl> <browserType>
+
+cmd examples:
+testrunner sahi.demo.suite http://sahitest.com/demo/ ie
+testrunner sahi.demo.suite http://sahitest.com/demo/ firefox
+testrunner sahi.demo.suite http://sahitest.com/demo/ chrome
+
+testrunner D:\github\qa\sahi\sahi.demo.suite\sahi.demo.suite http://sahitest.com/demo/ ie
+
