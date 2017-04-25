@@ -1,0 +1,20 @@
+_include('mouseOverPage.js');
+_include('sahiDemoPage.js');
+
+var mouseOverPage = new MouseOverPage();
+var startPage = new SahiDemoPage();
+
+// On the SAHI test page click Mouse over
+startPage.clickMouseOver();
+
+// Validate the required controls exist
+mouseOverPage.assertButton_WriteOnHover();
+mouseOverPage.assertButton_BlankOnHover();
+mouseOverPage.assertTextBox_TB01("");
+
+// Mouse over test for (Write on hover)
+mouseOverPage.mouseOverWriteOnHover().assertTextBox_TB01("Mouse moved");
+
+// Mouse over test for (Write on hover)
+mouseOverPage.mouseOverBlankOnHover().assertTextBox_TB01("");
+
