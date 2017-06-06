@@ -1,8 +1,42 @@
 +---------------------------------+
+Distributed Playback
+Why Sahi Pro is much more than Record & Playback !!!
++---------------------------------+
+http://sahipro.com/2016/06/
+http://sahipro.com/new2/wp-content/uploads/2016/06/Distributed-Playback.png
+
+Use ( . ) to get attributes (in the controller / accessor textbox)
+Adding a dot (.) after the accessor in the accessor field, shows all the properties of the accessor. Further typing narrows down the list of properties.
+
+
++---------------------------------+
+Sahi Pro – Cheat Sheet for Download 
++---------------------------------+
+http://sahipro.com/2016/06/
+http://sahipro.com/new2/wp-content/uploads/2016/06/cheat_sheet.png
+
+
++---------------------------------+
+Sahi Pro Chrome 58+ SSL certificate fix
++---------------------------------+
+http://sahipro.com/sahi-pro-chrome-58-ssl-certificate-fix/
+http://sahipro.com/static/fixes/sahi_ssl_chrome_58_domain_number.zip
+
+
++---------------------------------+
+Fetching multiple elements
++---------------------------------+
+
+http://sahipro.com/fetching-multiple-elements-_collect-apis-rescue/
+
+_collect($apiType, $identifier[, $relations ...])
+
+
++---------------------------------+
 Locators
 +---------------------------------+
 
-ref: http://sahipro.com/2016/09/
+http://sahipro.com/2016/09/
 
 DOM Relation APIs: 
 _near, _in, _startLookInside, _stopLookInside
@@ -12,4 +46,5 @@ _rightOf, _leftOf, _leftOrRightOf, _under, _above, _aboveOrUnder
 
 Parent APIs:
 _parentNode, _parentCell, _parentRow, _parentTable
+
 
