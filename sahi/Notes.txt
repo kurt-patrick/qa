@@ -1,0 +1,15 @@
++---------------------------------+
+Locators
++---------------------------------+
+
+ref: http://sahipro.com/2016/09/
+
+DOM Relation APIs: 
+_near, _in, _startLookInside, _stopLookInside
+
+Positional Relation APIs:
+_rightOf, _leftOf, _leftOrRightOf, _under, _above, _aboveOrUnder
+
+Parent APIs:
+_parentNode, _parentCell, _parentRow, _parentTable
+
