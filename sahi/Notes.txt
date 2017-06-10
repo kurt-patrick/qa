@@ -1,4 +1,32 @@
 +---------------------------------+
+Getting cell data from a table
++---------------------------------+
+https://sahipro.com/alldocs/v5.1.1/faq/get-cell-data.html
+To access the cell at row x and column y, you may use _cell(_table("<table_identifier>"), x-1, y-1).
+We need to use x-1 and y-1 because the indexes are 0 based.
+Let us say you want to get the text from the 4th row and 3rd column of a table.
+To access its value, use _getText(_cell(_table("<table_identifier>"), 3, 2)).
+
++---------------------------------+
+Accessing Web Services through REST APIs
++---------------------------------+
+http://sahipro.com/docs/faq/webservices.html
+
+
++---------------------------------+
+Unit tests
++---------------------------------+
+http://sahipro.com/docs/faq/unit-tests.html
+https://sahipro.com/alldocs/v5.1.1/faq/misc-questions.html#_runUnitTests
+
+It picks all the functions in the script which start with test and executes them one after the other (in unit testing style).
+
+Use _runUnitTests() to run all tests.
+Pass an array of testcases in _runUnitTests() to run the specific set of testcases.
+Example:_runUnitTests(["testUserNameMax50Characters", "testPasswordAlphaNumeric"]) will run testUserNameMax50Characters and testPasswordAlphaNumeric.
+
+
++---------------------------------+
 Distributed Playback
 Why Sahi Pro is much more than Record & Playback !!!
 +---------------------------------+
@@ -48,3 +76,37 @@ Parent APIs:
 _parentNode, _parentCell, _parentRow, _parentTable
 
 
++---------------------------------+
+Debugging slowness - Using Diagnose
++---------------------------------+
+https://sahipro.com/alldocs/v5.1.1/faq/diagnose.html
+
+
++---------------------------------+
+File downloads
++---------------------------------+
+https://sahipro.com/alldocs/v5.1.1/faq/downloads.html
+
+
++---------------------------------+
+How to delete cookies
++---------------------------------+
+https://sahipro.com/alldocs/v5.1.1/faq/delete-cookies.html
+
+_navigateTo("http://www.yahoo.com/_s_/dyn/Cookies_showAll"); // Shows all cookies for www.yahoo.com domain.
+_check(_checkbox("_sahi_chooseAll")); // Click the checkbox to choose all cookies.
+_click(_button("Delete")); // Delete the cookies.
+_navigateTo("http://www.yahoo.com/_s_/dyn/Cookies_showAll"); // Shows all cookies again so that you can verify that all cookies have been deleted.
+
++---------------------------------+
+Debugging
++---------------------------------+
+https://sahipro.com/alldocs/v5.1.1/faq/misc-questions.html#Is%20it%20possible%20to%20add%20watch%20variables%20and%20debug%20a%20Sahi%20script?
+The best way to debug would be to add _debug and _log statements and run the script.
+
+
++---------------------------------+
+How to handle onbeforeunload popup
++---------------------------------+
+This page is asking you to confirm that you want to leave - data you have entered may not be saved
+https://sahipro.com/alldocs/v5.1.1/faq/misc-questions.html#How%20to%20handle%20onbeforeunload%20popup
