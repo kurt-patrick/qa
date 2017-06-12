@@ -1,4 +1,12 @@
 +---------------------------------+
+Sending emails
++---------------------------------+
+https://sahipro.com/docs/using-sahi/sending-emails.html
+https://sahipro.com/alldocs/v5.1.0.0/using-sahi/sending-emails.html
+https://sahipro.com/docs/troubleshooting/send-email-issues.html
+
+
++---------------------------------+
 Getting cell data from a table
 +---------------------------------+
 https://sahipro.com/alldocs/v5.1.1/faq/get-cell-data.html
