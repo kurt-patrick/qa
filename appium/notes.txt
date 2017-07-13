@@ -1,0 +1,27 @@
+Pre-requisite steps
+- Android studio installed
+- Appium installed
+- Visual Studio installed and configured
+- PATH variable updated and adb command can be run
+- C:\Users\LocalUser\AppData\Local\Android\sdk\platform-tools\adb.exe
+- C:\Users\LocalUser\AppData\Local\Android\sdk\tools\uiautomatorviewer.bat
+
+# Determining the deviceName for a real or emulated device
+Open cmd.exe then run commands [ "adb start-server", "adb devices" ]
+
+# stopping / killing adb
+Open cmd.exe then run command "adb kill-server"
+
+# starting an app on a real device via adb
+adb shell am start -n au.com.bankwest.mobile/au.com.bankwest.mobile.activity.LoginActivity
+adb shell am start -n io.selendroid.testapp/.HomeScreenActivity
+
+# locating elements on an adroid app
+start the app you want to work with either in the emulator or on a device
+run C:\Users\LocalUser\AppData\Local\Android\sdk\tools\uiautomatorviewer.bat
+Click one of the Device Screenshot buttons (there are 2)
+Mouse over the elements to see the list of locators
+
+
+
+

@@ -1,0 +1,35 @@
+<settings>
+
+	<urls>
+		<url key="prod" default="true"><![CDATA[https://www.kleenheat.com.au]]></url>
+		<url key="dev"><![CDATA[dev.kleenheat.com.au]]></url>
+		<url key="test"><![CDATA[test.kleenheat.com.au]]></url>
+		<url key="blue"><![CDATA[blue.kleenheat.com.au]]></url>
+		<url key="green"><![CDATA[green.kleenheat.com.au]]></url>
+		<url key="browserstack"><![CDATA[http://hub-cloud.browserstack.com/wd/hub]]></url>
+		<url key="saucelabs"><![CDATA[http://ondemand.saucelabs.com:80/wd/hub]]></url>
+		<url key="grid-local"><![CDATA[http://10.6.20.54:4444/wd/hub]]></url>
+    
+    <!-- If appium is running on the one machine, or, only iOS or Android is being used then then only this setting is required -->
+    <url key="appium"><![CDATA[http://127.0.0.1:4723/wd/hub]]></url>
+    
+    <appium>
+      <!-- If appium is being run on multiple machine or multiple node servers are in play, these urls will be used -->
+      <url key="AndroidDriver"><![CDATA[http://10.6.20.54:4723/wd/hub]]></url>
+      <url key="IOSDriver"><![CDATA[http://10.6.20.86:4723/wd/hub]]></url>
+    </appium>
+    
+	</urls>
+
+	<driverCapabilities>
+		<capabilities key="saucelabs">
+			<capability name="username" isEnvVar="true">SauceLabsUsername</capability>
+			<capability name="accesskey" isEnvVar="true">SauceLabsAccessKey</capability>
+		</capabilities>
+		<capabilities key="browserstack">
+			<capability name="browserstack.user" isEnvVar="true">BrowserStackUsername</capability>
+			<capability name="browserstack.key" isEnvVar="true">BrowserStackAccessKey</capability>
+		</capabilities>
+	</driverCapabilities>
+
+</settings>

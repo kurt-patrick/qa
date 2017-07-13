@@ -1,0 +1,43 @@
+browserName=chrome
+//browser=ie
+//browser=firefox
+//browser=phantomjs
+
+
+//Selium Grid (Running on local network)
+//remote=lan-grid, browserName=chrome
+
+
+//
+//  BrowserStack emulators for IPad, IPhone, Android
+//
+//device=iPad 2 (5.0),remote=browserstack,browserName=iPhone,platform=mac,deviceOrientation=portrait
+//device=iPhone 5,remote=browserstack,browserName=iPhone,platform=mac,deviceOrientation=portrait
+//device=Samsung Galaxy S5,remote=browserstack,browserName=android,platform=Android,deviceOrientation=portrait
+
+//
+//  Android (Emulator)
+//
+//appiumVersion=1.4.16.1,deviceName=emulator-5554,platformName=Android,deviceOrientation=portrait
+
+//
+//  iPhone (Emulator)
+//
+//appium=IOSDriver,deviceName=13795154-9251-4A85-9486-64AF512B,platformName=iOS,appiumUrl=http://10.6.20.86:4723/wd/hub
+//appium=IOSDriver,deviceName=iPhone 4s,device=iPhone 4s,browserName=Safari,platform=mac,appiumUrl=http://10.6.20.86:4723/wd/hub
+
+
+//
+//  Real device
+//
+
+// Galaxy S6
+//retVal.Add("appiumVersion=1.4.16.1,device=Android,browserName=Chrome,deviceName=1115fb9383c81205");
+//retVal.Add("appiumVersion=1.4.16.1,device=Android,browserName=Chrome,deviceName=1115fb9383c81205,platformName=Android,platformVersion=6.0.1,deviceOrientation=portrait");
+// Galaxy S4 - Phone has been rooted with odin
+//retVal.Add("appiumVersion=1.4.16.1,device=Android,browserName=Chrome,deviceName=a710eaec,platformName=Android,platformVersion=5.0.1,deviceOrientation=portrait");
+//retVal.Add("appiumVersion=1.4.16.1,device=Android,browserName=Chrome,deviceName=a710eaec");
+//retVal.Add(@"appium=AndroidDriver,device=Android,browserName=Chrome,deviceName=a710eaec,appiumUrl=http://10.6.20.96:4723/wd/hub");
+
+// Real Device (s4) with real Android App
+//retVal.Add("appiumVersion=1.4.16.1,device=Android,deviceName=a710eaec,appPackage=com.sec.android.widgetapp.diotek.smemo,appActivity=com.sec.android.widgetapp.q1_penmemo.MemoListActivity");
