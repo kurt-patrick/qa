@@ -31,11 +31,13 @@ namespace KPE.Mobile.App.Automation.PageObjects.Selendroid
         [FindsByAndroidUIAutomator(XPath = "//*[@text='I accept adds']")]
         private IWebElement _acceptsAddsByXPath02 = null;
 
+        // *****************************************************************************************************************************************************
+        // todo: create examples using UiSelector
+        // https://developer.android.com/reference/android/support/test/uiautomator/UiSelector.html
         [FindsByAndroidUIAutomator(AndroidUIAutomator = "new UiSelector().resourceId(\"io.selendroid.testapp:id/input_adds_check_box\")", Priority = 1)]
         [FindsByAndroidUIAutomator(ID = "input_adds_check_box", Priority = 2)]
         private IWebElement _acceptsAddsByAndroidUIAutomator = null;
 
-        // *****************************************************************************************************************************************************
 
         public override bool IsLoaded()
         {
