@@ -16,7 +16,11 @@ namespace KPE.Mobile.App.Automation.Common
     public class TestCaseSettings
     {
         public const string Capabilities_Remote = "remote";
-        public const string Capabilities_Appium = "appium";
+        public const string Capabilities_Device = "device";
+        public const string Capabilities_DeviceName = "deviceName";
+        //public const string Capabilities_AppiumDriver = "appiumDriver";
+        //public const string Capabilities_AppiumVersion = "appiumVersion";
+        //public const string Capabilities_AppiumServer = "appiumServer";
 
         private static readonly log4net.ILog _log = log4net.LogManager.GetLogger(System.Reflection.MethodBase.GetCurrentMethod().DeclaringType);
 
@@ -32,37 +36,6 @@ namespace KPE.Mobile.App.Automation.Common
             AppiumDriver,
             RemoteWebDriver
         }
-
-        public enum eBrowser
-        {
-            Chrome,
-            FireFox,
-            InternetExplorer,
-            Safari,
-            PhantomJS
-        }
-
-        public enum ePlatform
-        {
-            Windows,
-            Android,
-            IPhone,
-            IPad
-        }
-
-        private static Dictionary<string, eBrowser> _browserMap = new Dictionary<string, eBrowser>(StringComparer.CurrentCultureIgnoreCase)
-        {
-            { "ie", eBrowser.InternetExplorer },
-            { "internetexplorer", eBrowser.InternetExplorer },
-            { "internet explorer", eBrowser.InternetExplorer },
-            { "ff", eBrowser.FireFox },
-            { "firefox", eBrowser.FireFox },
-            { "chrome", eBrowser.Chrome },
-            { "safari", eBrowser.Safari },
-            { "phantom", eBrowser.PhantomJS },
-            { "phantomjs", eBrowser.PhantomJS },
-            { "phantom js", eBrowser.PhantomJS },
-        };
 
         /// <summary>
         /// These are the parameters provided on the command line as part of the nunit3-console call e.g. (--p or --params)
@@ -215,20 +188,20 @@ namespace KPE.Mobile.App.Automation.Common
             }
         }
 
-        public string GetAppiumUrl(string key)
+        public string GetAppiumUrl(string deviceName)
         {
-            StringQA.ThrowIfNullOrWhiteSpace(key);
+            StringQA.ThrowIfNullOrWhiteSpace(deviceName);
 
             // Query the settings file for the specific appium/AndroidDriver or appium/IOSDriver URL
             var xmlDoc = LoadSettingsXmlDocument();
-            var node = xmlDoc.SelectSingleNode(string.Format("//urls/appium/url[@key='{0}']", key));
+            var node = xmlDoc.SelectSingleNode(string.Format("//urls/appium/url[@key='{0}']", deviceName));
             if(node != null)
             {
                 return node.InnerText;
             }
 
             // Fallback to the default
-            return GetUrlFromKey(key);
+            return GetUrlFromKey("appium");
         }
 
         public string GetUrlFromKey(string key)
@@ -326,33 +299,21 @@ namespace KPE.Mobile.App.Automation.Common
 
         public eDriverType GetDriverType()
         {
+            return eDriverType.AppiumDriver;
+            /*
             if (_testFixtureDataMap.ContainsKey(Capabilities_Remote))
             {
                 return eDriverType.RemoteWebDriver;
             }
 
-            if (_testFixtureDataMap.ContainsKey(Capabilities_Appium))
+            if (_testFixtureDataMap.ContainsKey(Capabilities_AppiumVersion))
             {
                 return eDriverType.AppiumDriver;
             }
 
             return eDriverType.WebDriver;
+            */
         }
-
-        public eBrowser GetBrowser()
-        {
-            string name = string.Empty;
-            name = GetValueOrDefault(eKeyType.TestFixtureData, "browsername", "");
-            name = GetValueOrDefault(eKeyType.TestFixtureData, "browser", name);
-
-            if(_browserMap.ContainsKey(name))
-            {
-                return _browserMap[name];
-            }
-
-            throw new NotImplementedException("Code needs to be updated to handle browser: " + name);
-        }
-
 
         public DesiredCapabilities GetDesiredCapabilities()
         {
@@ -375,11 +336,6 @@ namespace KPE.Mobile.App.Automation.Common
         public bool IsRemoteDriver()
         {
             return !string.IsNullOrWhiteSpace(GetCapability(Capabilities_Remote));
-        }
-
-        public bool IsAppiumDriver()
-        {
-            return ContainsKey(Capabilities_Appium);
         }
 
         public string GetCapability(string key)
@@ -422,13 +378,8 @@ namespace KPE.Mobile.App.Automation.Common
             try
             {
                 // RemoteWebDriver (SauceLabs, BrowserStack, Selenium Grid Local)
-                if(IsRemoteDriver()) return CreateRemoteWebDriver();
-
                 // Appium (AndroidDriver, IOSDriver)
-                if (IsAppiumDriver()) return CreateAppiumWebDriver();
-
-                // WebDriver (ChromeDriver, FireFoxDriver, InternetExplorerDriver)
-                return DriverHelper.CreateWebDriver(GetBrowser());
+                return _driver = IsRemoteDriver() ? CreateRemoteWebDriver() : CreateAppiumWebDriver();
 
             }
             catch (Exception ex)
@@ -465,10 +416,13 @@ namespace KPE.Mobile.App.Automation.Common
         {
             // Get the driver type (android, iOS) from the test fixture source
             // Get the Appium Node Server URL from the Settings file
-            string driverType = GetValueOrDefault(TestCaseSettings.eKeyType.TestFixtureData, TestCaseSettings.Capabilities_Appium, "");
-            string appiumUrl = GetAppiumUrl(driverType);
+            string device = GetValueOrDefault(TestCaseSettings.eKeyType.TestFixtureData, TestCaseSettings.Capabilities_Device, "");
+            string deviceName = GetValueOrDefault(TestCaseSettings.eKeyType.TestFixtureData, TestCaseSettings.Capabilities_DeviceName, "");
+            string appiumServerUrl = GetAppiumUrl(deviceName);
+
             var capabilities = GetDesiredCapabilities();
-            return DriverHelper.CreateAppiumWebDriver(driverType, appiumUrl, capabilities);
+            return DriverHelper.CreateAppiumWebDriver(device, appiumServerUrl, capabilities);
+
         }
 
     }

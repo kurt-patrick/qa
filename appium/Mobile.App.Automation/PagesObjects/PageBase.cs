@@ -13,6 +13,7 @@ using System.Text;
 using System.Drawing;
 using KPE.Mobile.App.Automation.Tests;
 using KPE.Mobile.App.Automation.Common;
+using OpenQA.Selenium.Appium.PageObjects;
 
 namespace KPE.Mobile.App.Automation.PageObjects
 {
@@ -33,10 +34,17 @@ namespace KPE.Mobile.App.Automation.PageObjects
 
         public abstract bool IsLoaded();
 
-        //protected void InitElementsWithRetrying(object page)
-        //{
-        //    //PageFactory.InitElements(page, new RetryingElementLocator(_driver, TimeOutDefault));
-        //}
+        /*
+        protected void InitElementsWithRetrying(object page)
+        {
+            PageFactory.InitElements(page, new RetryingElementLocator(_driver, Constants.DefaultTimeOutTimeSpan));
+        }
+        */
+
+        protected void InitElementsWithRetrying(object page)
+        {
+            PageFactory.InitElements(_driver, page, new AppiumPageObjectMemberDecorator(Constants.DefaultTimeOutDuration));
+        }
 
         /// <summary>
         /// Returns the text of the element
@@ -45,7 +53,7 @@ namespace KPE.Mobile.App.Automation.PageObjects
         /// <returns>trimmed value of the element</returns>
         protected string GetText(By by)
         {
-            return GetText(by, true);
+            return GetText(by, false);
         }
 
         /// <summary>
@@ -58,6 +66,17 @@ namespace KPE.Mobile.App.Automation.PageObjects
         {
             var element = FindVisibleElement(by);
             return GetText(element, trim);
+        }
+
+        /// <summary>
+        /// Returns the text of the element
+        /// </summary>
+        /// <param name="element"></param>
+        /// <param name="trim"></param>
+        /// <returns>value of the element with option to be trimmed</returns>
+        protected string GetText(IWebElement element)
+        {
+            return GetText(element, false);
         }
 
         /// <summary>
@@ -140,7 +159,7 @@ namespace KPE.Mobile.App.Automation.PageObjects
         /// <param name="text"></param>
         protected void SendKeys(IWebElement element, string text)
         {
-            SendKeys(element, text, false);
+            SendKeys(element, text, true);
         }
 
         /// <summary>
@@ -375,6 +394,7 @@ namespace KPE.Mobile.App.Automation.PageObjects
         /// <returns>true if all elements are visible</returns>
         protected bool IsVisible(params By[] list)
         {
+            ObjectQA.ThrowIfIEnumerableIsEmpty(list);
             Func<By, bool> condition = (By by) =>
             {
                 if (IsVisible(by))
@@ -397,7 +417,7 @@ namespace KPE.Mobile.App.Automation.PageObjects
         protected bool IsVisible(params IWebElement[] list)
         {
             ObjectQA.ThrowIfIEnumerableIsEmpty(list);
-            return list.All(ele => ele != null && ele.Displayed);
+            return list.All(ele => IsVisible(ele));
         }
 
         /// <summary>
@@ -436,20 +456,16 @@ namespace KPE.Mobile.App.Automation.PageObjects
 
         protected Actions MoveToElement(IWebElement element)
         {
-            if(_testCaseSettings.GetBrowser() != TestCaseSettings.eBrowser.FireFox)
+            Actions action = new Actions(_driver);
+            try
             {
-                Actions action = new Actions(_driver);
-                try
-                {
-                    action.MoveToElement(element).Perform();
-                    return action;
-                }
-                catch
-                {
-                    throw;
-                }
+                action.MoveToElement(element).Perform();
+                return action;
             }
-            return null;
+            catch
+            {
+                throw;
+            }
         }
 
         protected Actions MoveToElement(By by)

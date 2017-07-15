@@ -7,19 +7,23 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using KPE.Mobile.App.Automation.PageObjects.Selendroid;
 
 namespace KPE.Mobile.App.Automation.Tests.Selendroid
 {
     [TestFixtureSource("DriverCapabilites")]
-    [Ignore("playing around with android apps")]
+    //[Ignore("playing around with android apps")]
     class SelendroidAppTests : TestBase
     {
-        private const string ID_BASE = "io.selendroid.testapp:id/";
+        //private const string ID_BASE = "io.selendroid.testapp:id/";
         private static readonly log4net.ILog _log = log4net.LogManager.GetLogger(System.Reflection.MethodBase.GetCurrentMethod().DeclaringType);
+
+        private HomeScreenActivityPage _homeScreenActivity = null;
 
         public SelendroidAppTests(string capabilities) 
             : base(capabilities) 
         {
+            _homeScreenActivity = new HomeScreenActivityPage(_testCaseSettings);
         }
 
         public override void TestSetup()
@@ -27,6 +31,14 @@ namespace KPE.Mobile.App.Automation.Tests.Selendroid
             // nothing to do here
         }
 
+        [Test]
+        [Category("android")]
+        public void I_Accept_Adds_Test()
+        {
+            _homeScreenActivity.AssertIsLoaded();
+        }
+
+        /*
         [Test]
         [Category("android")]
         public void I_Accept_Adds_Test()
@@ -94,13 +106,15 @@ namespace KPE.Mobile.App.Automation.Tests.Selendroid
         {
             return _driver.FindElement(By.Id(id));
         }
+        */
 
         public static List<string> DriverCapabilites()
         {
             return new List<string>() 
-            { 
-                "appiumVersion=1.4.16.1,device=Android,deviceName=a710eaec,appPackage=io.selendroid.testapp,appActivity=.HomeScreenActivity" 
+            {
+                "device=Android,deviceName=a710eaec,appPackage=io.selendroid.testapp,appActivity=.HomeScreenActivity"
             };
+            //"appiumVersion=1.4.16.1,appiumDriver=AndroidDriver,device=Android,deviceName=a710eaec,appPackage=io.selendroid.testapp,appActivity=.HomeScreenActivity"
         }
 
     }

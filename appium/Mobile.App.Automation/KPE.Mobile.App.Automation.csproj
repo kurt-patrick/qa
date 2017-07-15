@@ -7,7 +7,7 @@
     <ProjectGuid>{A875C5D1-D8FE-40A2-A54D-9CD4FA545E26}</ProjectGuid>
     <OutputType>Library</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
-    <RootNamespace>au.com.kpe.mobile.app.automation</RootNamespace>
+    <RootNamespace>KPE.Mobile.App.Automation</RootNamespace>
     <AssemblyName>KPE.Mobile.App.Automation</AssemblyName>
     <TargetFrameworkVersion>v4.6.1</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
@@ -74,10 +74,11 @@
     <Compile Include="Helpers\StringHelper.cs" />
     <Compile Include="Helpers\WaitHelper.cs" />
     <Compile Include="PagesObjects\PageBase.cs" />
+    <Compile Include="PagesObjects\SelendroidApp\HomeScreenActivityPage.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="QA\ObjectQA.cs" />
     <Compile Include="QA\StringQA.cs" />
-    <Compile Include="Tests\Selendroid\SelendroidAppTests.cs">
+    <Compile Include="Tests\SelendroidApp\SelendroidAppTests.cs">
       <SubType>Code</SubType>
     </Compile>
     <Compile Include="Tests\TestBase.cs" />
@@ -109,9 +110,7 @@
       <SubType>Designer</SubType>
     </Content>
   </ItemGroup>
-  <ItemGroup>
-    <Folder Include="PagesObjects\Selendroid\" />
-  </ItemGroup>
+  <ItemGroup />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
        Other similar extension points exist, see Microsoft.Common.targets.
