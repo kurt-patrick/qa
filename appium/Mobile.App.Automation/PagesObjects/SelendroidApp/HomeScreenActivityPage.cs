@@ -16,6 +16,9 @@ namespace KPE.Mobile.App.Automation.PageObjects.Selendroid
         [FindsByAndroidUIAutomator(ID = "io.selendroid.testapp:id/my_text_field")]
         private IWebElement _myTextField = null;
 
+        // *****************************************************************************************************************************************************
+        // All of these locators are finding the same element however using a different locator method
+        // This has been done purely as an example of different ways of doing things
         [FindsByAndroidUIAutomator(ID = "io.selendroid.testapp:id/input_adds_check_box")]
         private IWebElement _acceptsAdds = null;
 
@@ -31,6 +34,8 @@ namespace KPE.Mobile.App.Automation.PageObjects.Selendroid
         [FindsByAndroidUIAutomator(AndroidUIAutomator = "new UiSelector().resourceId(\"io.selendroid.testapp:id/input_adds_check_box\")", Priority = 1)]
         [FindsByAndroidUIAutomator(ID = "input_adds_check_box", Priority = 2)]
         private IWebElement _acceptsAddsByAndroidUIAutomator = null;
+
+        // *****************************************************************************************************************************************************
 
         public override bool IsLoaded()
         {
