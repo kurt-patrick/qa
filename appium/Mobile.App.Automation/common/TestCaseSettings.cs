@@ -1,5 +1,5 @@
-﻿using au.com.kleenheat.se.helpers;
-using au.com.kleenheat.se.qa;
+﻿using KPE.Mobile.App.Automation.Helpers;
+using KPE.Mobile.App.Automation.QA;
 using NUnit.Framework;
 using OpenQA.Selenium;
 using OpenQA.Selenium.Remote;
@@ -11,7 +11,7 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Xml;
 
-namespace au.com.kleenheat.se.common
+namespace KPE.Mobile.App.Automation.Common
 {
     public class TestCaseSettings
     {

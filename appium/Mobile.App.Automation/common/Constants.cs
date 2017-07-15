@@ -4,7 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace au.com.kleenheat.se.common
+namespace KPE.Mobile.App.Automation.Common
 {
     public static class Constants
     {

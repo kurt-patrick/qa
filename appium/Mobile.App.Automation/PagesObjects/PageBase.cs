@@ -2,8 +2,8 @@
 using OpenQA.Selenium.Interactions;
 using OpenQA.Selenium.Support.PageObjects;
 using OpenQA.Selenium.Support.UI;
-using au.com.kleenheat.se.helpers;
-using au.com.kleenheat.se.qa;
+using KPE.Mobile.App.Automation.Helpers;
+using KPE.Mobile.App.Automation.QA;
 using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
@@ -11,10 +11,10 @@ using System.Globalization;
 using System.Linq;
 using System.Text;
 using System.Drawing;
-using au.com.kleenheat.se.tests;
-using au.com.kleenheat.se.common;
+using KPE.Mobile.App.Automation.Tests;
+using KPE.Mobile.App.Automation.Common;
 
-namespace au.com.kleenheat.se.pages
+namespace KPE.Mobile.App.Automation.PageObjects
 {
     public abstract class PageBase
     {

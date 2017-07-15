@@ -1,7 +1,7 @@
-﻿using au.com.kleenheat.se.common;
-using au.com.kleenheat.se.exceptions;
-using au.com.kleenheat.se.helpers;
-using au.com.kleenheat.se.qa;
+﻿using KPE.Mobile.App.Automation.Common;
+using KPE.Mobile.App.Automation.Exceptions;
+using KPE.Mobile.App.Automation.Helpers;
+using KPE.Mobile.App.Automation.QA;
 using NUnit.Framework;
 using OpenQA.Selenium;
 using OpenQA.Selenium.Chrome;
@@ -19,7 +19,7 @@ using System.Text;
 // called ConsoleApp.exe.config in the application base
 // directory (i.e. the directory containing ConsoleApp.exe)
 
-namespace au.com.kleenheat.se.tests
+namespace KPE.Mobile.App.Automation.Tests
 {
 
     [TestFixtureSource("GetTestFixtureSourceData")]

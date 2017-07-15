@@ -8,9 +8,9 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace au.com.kleenheat.se.tests
+namespace KPE.Mobile.App.Automation.Tests.Selendroid
 {
-    [TestFixtureSource("DriverCaps")]
+    [TestFixtureSource("DriverCapabilites")]
     [Ignore("playing around with android apps")]
     class SelendroidAppTests : TestBase
     {
@@ -95,7 +95,7 @@ namespace au.com.kleenheat.se.tests
             return _driver.FindElement(By.Id(id));
         }
 
-        public static List<string> DriverCaps()
+        public static List<string> DriverCapabilites()
         {
             return new List<string>() 
             { 

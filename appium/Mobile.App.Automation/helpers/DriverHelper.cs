@@ -1,6 +1,6 @@
-﻿using au.com.kleenheat.se.common;
-using au.com.kleenheat.se.qa;
-using au.com.kleenheat.se.tests;
+﻿using KPE.Mobile.App.Automation.Common;
+using KPE.Mobile.App.Automation.QA;
+using KPE.Mobile.App.Automation.Tests;
 using OpenQA.Selenium;
 using OpenQA.Selenium.Appium;
 using OpenQA.Selenium.Appium.Android;
@@ -15,7 +15,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace au.com.kleenheat.se.helpers
+namespace KPE.Mobile.App.Automation.Helpers
 {
     public static class DriverHelper
     {

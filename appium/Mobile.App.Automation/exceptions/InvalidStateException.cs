@@ -1,11 +1,11 @@
-﻿using au.com.kleenheat.se.qa;
+﻿using KPE.Mobile.App.Automation.QA;
 using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace au.com.kleenheat.se.exceptions
+namespace KPE.Mobile.App.Automation.Exceptions
 {
     public class InvalidStateException : Exception
     {

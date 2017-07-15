@@ -6,7 +6,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace au.com.kleenheat.se.helpers
+namespace KPE.Mobile.App.Automation.Helpers
 {
     public class SelectTagHelper
     {

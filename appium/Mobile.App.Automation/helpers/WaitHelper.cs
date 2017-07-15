@@ -1,4 +1,4 @@
-﻿using au.com.kleenheat.se.common;
+﻿using KPE.Mobile.App.Automation.Common;
 using OpenQA.Selenium;
 using OpenQA.Selenium.Support.UI;
 using System;
@@ -7,7 +7,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace au.com.kleenheat.se.helpers
+namespace KPE.Mobile.App.Automation.Helpers
 {
     public static class WaitHelper
     {

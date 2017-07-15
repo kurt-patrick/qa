@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 
-namespace au.com.kleenheat.se.qa
+namespace KPE.Mobile.App.Automation.QA
 {
     public static class ObjectQA
     {
