@@ -50,11 +50,10 @@ namespace KPE.Mobile.App.Automation.Tests
         [OneTimeSetUp]
         public void TestFixtureSetup()
         {
-            //_driver = _testCaseSettings.GetWebDriver();
         }
 
         [SetUp]
-        public abstract void TestSetup();
+        public virtual void TestSetup() { }
 
         [TearDown]
         public void TestTearDown()

@@ -41,7 +41,7 @@ namespace KPE.Mobile.App.Automation.PageObjects
         }
         */
 
-        protected void InitElementsWithRetrying(object page)
+        protected void InitElements(object page)
         {
             PageFactory.InitElements(_driver, page, new AppiumPageObjectMemberDecorator(Constants.DefaultTimeOutDuration));
         }

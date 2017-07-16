@@ -16,42 +16,22 @@ namespace KPE.Mobile.App.Automation.PageObjects.Selendroid
         [FindsByAndroidUIAutomator(ID = "io.selendroid.testapp:id/my_text_field")]
         private IWebElement _myTextField = null;
 
-        // *****************************************************************************************************************************************************
-        // All of these locators are finding the same element however using a different locator method
-        // This has been done purely as an example of different ways of doing things
         [FindsByAndroidUIAutomator(ID = "io.selendroid.testapp:id/input_adds_check_box")]
         private IWebElement _acceptsAdds = null;
 
-        [FindsByAndroidUIAutomator(ClassName = "android.widget.CheckBox")]
-        private IWebElement _acceptsAddsByClass = null;
-
-        [FindsByAndroidUIAutomator(XPath = "//android.widget.CheckBox[@text='I accept adds']")]
-        private IWebElement _acceptsAddsByXPath = null;
-
-        [FindsByAndroidUIAutomator(XPath = "//*[@text='I accept adds']")]
-        private IWebElement _acceptsAddsByXPath02 = null;
-
-        // *****************************************************************************************************************************************************
-        // todo: create examples using UiSelector
-        // https://developer.android.com/reference/android/support/test/uiautomator/UiSelector.html
-        [FindsByAndroidUIAutomator(AndroidUIAutomator = "new UiSelector().resourceId(\"io.selendroid.testapp:id/input_adds_check_box\")", Priority = 1)]
-        [FindsByAndroidUIAutomator(ID = "input_adds_check_box", Priority = 2)]
-        private IWebElement _acceptsAddsByAndroidUIAutomator = null;
-
-
         public override bool IsLoaded()
         {
-            return IsVisible(_myTextField, _acceptsAdds, _acceptsAddsByClass, _acceptsAddsByXPath, _acceptsAddsByXPath02, _acceptsAddsByAndroidUIAutomator);
+            return IsVisible(_myTextField, _acceptsAdds);
+        }
+
+        public HomeScreenActivityPage(TestCaseSettings settings) : base(settings)
+        {
+            this.InitElements(this);
         }
 
         public void AssertIsLoaded()
         {
             Assert.IsTrue(IsLoaded(), "HomeScreenActivityPage is not loaded");
-        }
-
-        public HomeScreenActivityPage(TestCaseSettings settings) : base(settings)
-        {
-            this.InitElementsWithRetrying(this);
         }
 
         public void SetMyTextField(string text)
@@ -62,6 +42,11 @@ namespace KPE.Mobile.App.Automation.PageObjects.Selendroid
         public string GetMyTextField()
         {
             return GetText(_myTextField);
+        }
+
+        public void AssertTextField(string expected)
+        {
+            Assert.AreEqual(expected, GetMyTextField());
         }
 
     }

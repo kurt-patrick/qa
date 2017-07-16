@@ -8,39 +8,28 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using KPE.Mobile.App.Automation.PageObjects.Selendroid;
+using KPE.Mobile.App.Automation.Tests.SelendroidApp;
 
-namespace KPE.Mobile.App.Automation.Tests.Selendroid
+namespace KPE.Mobile.App.Automation.Tests.Selendroid.ActivityTests
 {
-    [TestFixtureSource("DriverCapabilites")]
-    //[Ignore("playing around with android apps")]
-    class SelendroidAppTests : TestBase
+    [TestFixtureSource(DriverCapabilities.HomeScreenActivityOnGalaxyS4)]
+    class HomeScreenActivityTests : TestBaseGeneric<HomeScreenActivityPage>
     {
-        //private const string ID_BASE = "io.selendroid.testapp:id/";
         private static readonly log4net.ILog _log = log4net.LogManager.GetLogger(System.Reflection.MethodBase.GetCurrentMethod().DeclaringType);
 
-        private HomeScreenActivityPage _homeScreenActivity = null;
-
-        public SelendroidAppTests(string capabilities) 
+        public HomeScreenActivityTests(string capabilities) 
             : base(capabilities) 
         {
-            _homeScreenActivity = new HomeScreenActivityPage(_testCaseSettings);
-        }
-
-        public override void TestSetup()
-        {
-            // nothing to do here
         }
 
         [Test]
-        [Category("android")]
-        public void I_Accept_Adds_Test()
+        public void ActivityIsLoadedTest()
         {
-            _homeScreenActivity.AssertIsLoaded();
+            _pageObject.AssertIsLoaded();
         }
 
         /*
         [Test]
-        [Category("android")]
         public void I_Accept_Adds_Test()
         {
             var element = GetElementById("input_adds_check_box");
@@ -108,13 +97,9 @@ namespace KPE.Mobile.App.Automation.Tests.Selendroid
         }
         */
 
-        public static List<string> DriverCapabilites()
+        public static List<string> HomeScreenActivityOnGalaxyS4Capabilities()
         {
-            return new List<string>() 
-            {
-                "device=Android,deviceName=a710eaec,appPackage=io.selendroid.testapp,appActivity=.HomeScreenActivity"
-            };
-            //"appiumVersion=1.4.16.1,appiumDriver=AndroidDriver,device=Android,deviceName=a710eaec,appPackage=io.selendroid.testapp,appActivity=.HomeScreenActivity"
+            return DriverCapabilities.HomeScreenActivityOnGalaxyS4Capabilities();
         }
 
     }
