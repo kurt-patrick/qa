@@ -8,6 +8,8 @@ using OpenQA.Selenium.Support.PageObjects;
 using OpenQA.Selenium;
 using OpenQA.Selenium.Appium.PageObjects.Attributes;
 using NUnit.Framework;
+using OpenQA.Selenium.Appium;
+using OpenQA.Selenium.Appium.Android;
 
 namespace KPE.Mobile.App.Automation.PageObjects.Selendroid
 {
@@ -17,11 +19,11 @@ namespace KPE.Mobile.App.Automation.PageObjects.Selendroid
         private IWebElement _myTextField = null;
 
         [FindsByAndroidUIAutomator(ID = "io.selendroid.testapp:id/input_adds_check_box")]
-        private IWebElement _acceptsAdds = null;
+        private IWebElement _checkBox = null;
 
         public override bool IsLoaded()
         {
-            return IsVisible(_myTextField, _acceptsAdds);
+            return IsVisible(_myTextField, _checkBox);
         }
 
         public HomeScreenActivityPage(TestCaseSettings settings) : base(settings)
@@ -32,6 +34,17 @@ namespace KPE.Mobile.App.Automation.PageObjects.Selendroid
         public void AssertIsLoaded()
         {
             Assert.IsTrue(IsLoaded(), "HomeScreenActivityPage is not loaded");
+        }
+
+        public void AssertCheckBoxState(bool expected)
+        {
+            Assert.AreEqual(expected, IsChecked(_checkBox));
+        }
+
+        public void AssertCheckBoxText(string expected)
+        {
+            QA.ObjectQA.ThrowIfNull(expected);
+            Assert.AreEqual(expected, GetText(_checkBox));
         }
 
         public void SetMyTextField(string text)
@@ -47,6 +60,11 @@ namespace KPE.Mobile.App.Automation.PageObjects.Selendroid
         public void AssertTextField(string expected)
         {
             Assert.AreEqual(expected, GetMyTextField());
+        }
+
+        public bool ToggleCheckBox(bool check)
+        {
+            return ToggleCheckBox(_checkBox, check);
         }
 
     }

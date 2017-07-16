@@ -14,6 +14,8 @@ using System.Drawing;
 using KPE.Mobile.App.Automation.Tests;
 using KPE.Mobile.App.Automation.Common;
 using OpenQA.Selenium.Appium.PageObjects;
+using OpenQA.Selenium.Appium;
+using OpenQA.Selenium.Appium.Android;
 
 namespace KPE.Mobile.App.Automation.PageObjects
 {
@@ -481,58 +483,26 @@ namespace KPE.Mobile.App.Automation.PageObjects
             }
         }
 
-        protected bool ToggleCheckBox(By by, bool selected)
+        public bool IsChecked(IWebElement element)
         {
-            var element = FindElement(by);
-            WaitForMovingElementToBeStationary(element);
-            MoveToElement(element);
-            if (element.Selected == selected)
+            ObjectQA.ThrowIfNull(element);
+            return "true".Equals(element.GetAttribute("checked"));
+        }
+
+        protected bool ToggleCheckBox(IWebElement element, bool check)
+        {
+            if (check == IsChecked(element))
             {
                 return true;
             }
 
             Func<bool> condition = () =>
             {
-                Click(element);
-                return element.Selected;
+                element.Click();
+                return IsChecked(element) == check;
             };
 
             return WaitHelper.TryWaitForCondition(condition);
-        }
-
-        protected bool IsCheckBoxSelected(By by)
-        {
-            var element = FindElement(by);
-            return element.Selected;
-        }
-
-        /// <summary>
-        /// Tries to switch to the frame specified
-        /// </summary>
-        /// <param name="frameName"></param>
-        /// <returns>true if the frame exists</returns>
-        protected bool DoesFrameExist(string frameName, IWebDriver driver = null)
-        {
-            try
-            {
-                SwitchToFrame(frameName, driver);
-                return true;
-            }
-            catch
-            {
-                return false;
-            }
-        }
-
-        /// <summary>
-        /// Tries to switch to the frame specified
-        /// </summary>
-        /// <param name="frameName"></param>
-        /// <param name="driver">optional param, if null default driver will be used</param>
-        /// <returns>true if the frame exists</returns>
-        protected IWebDriver SwitchToFrame(string frameName, IWebDriver driver = null)
-        {
-            return WaitUntil(ExpectedConditions.FrameToBeAvailableAndSwitchToIt(frameName), true, _testCaseSettings.DefaultTimeOut, driver);
         }
 
         protected SelectTagHelper SelectHelper(By by)
@@ -544,30 +514,6 @@ namespace KPE.Mobile.App.Automation.PageObjects
         protected SelectTagHelper SelectHelper(IWebElement element)
         {
             return new SelectTagHelper(element);
-        }
-
-        protected void WaitForMovingElementToBeStationary(IWebElement element)
-        {
-            bool rv = false;
-            int sameCount = 0;
-            Point lastLocation = element.Location;
-            Point currentLocation = Point.Empty;
-            Func<bool> condition = () =>
-            {
-                rv = false;
-                currentLocation = element.Location;
-                if (currentLocation == lastLocation)
-                {
-                    sameCount += 1;
-                    rv = sameCount >= 2;
-                }
-                else
-                {
-                    lastLocation = currentLocation;
-                }
-                return rv;
-            };
-            WaitHelper.TryWaitForCondition(condition);
         }
 
     }

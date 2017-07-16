@@ -23,31 +23,31 @@ namespace KPE.Mobile.App.Automation.Tests.Selendroid.ActivityTests
         }
 
         [Test]
-        public void ActivityIsLoadedTest()
+        public void HomeScreenActivityIsLoadedTest()
         {
             _pageObject.AssertIsLoaded();
         }
 
-        /*
         [Test]
         public void I_Accept_Adds_Test()
         {
-            var element = GetElementById("input_adds_check_box");
+            // assert is checked (default)
+            _pageObject.AssertCheckBoxState(true);
 
-            // check defaults
-            Assert.AreEqual("I accept adds", element.Text);
-            Assert.True(IsChecked(element), "Checkbox is not selected");
+            // assert text (default)
+            _pageObject.AssertCheckBoxText("I accept adds");
 
-            // Click and validate (Unchecked)
-            element.Click();
-            Assert.False(IsChecked(element));
+            // uncheck
+            _pageObject.ToggleCheckBox(false);
+            _pageObject.AssertCheckBoxState(false);
 
-            // Click and validate (Checked)
-            element.Click();
-            Assert.True(IsChecked(element));
+            // check
+            _pageObject.ToggleCheckBox(true);
+            _pageObject.AssertCheckBoxState(true);
 
         }
 
+        /*
         [Test]
         public void Wait_Dialog_Test()
         {
