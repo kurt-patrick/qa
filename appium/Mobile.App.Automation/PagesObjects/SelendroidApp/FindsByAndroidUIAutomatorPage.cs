@@ -31,7 +31,6 @@ namespace KPE.Mobile.App.Automation.PageObjects.Selendroid
 
         public FindsByAndroidUIAutomatorPage(TestCaseSettings settings) : base(settings)
         {
-            this.InitElements(this);
         }
 
         public override bool IsLoaded()

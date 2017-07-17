@@ -47,6 +47,16 @@ namespace KPE.Mobile.App.Automation.Tests.Selendroid.ActivityTests
 
         }
 
+        [Test]
+        public void Wait_Dialog_Test()
+        {
+            _pageObject
+                .ClickShowProgressBar()
+                .SwitchPageObject<DialogPage>()
+                .AssertIsLoaded()
+                .AssertDialogIsClosed();
+        }
+
         /*
         [Test]
         public void Wait_Dialog_Test()

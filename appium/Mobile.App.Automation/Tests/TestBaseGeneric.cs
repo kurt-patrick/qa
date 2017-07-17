@@ -1,4 +1,5 @@
-﻿using System;
+﻿using KPE.Mobile.App.Automation.PagesObjects;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -11,7 +12,7 @@ namespace KPE.Mobile.App.Automation.Tests
         protected T _pageObject = null;
         public TestBaseGeneric(string testFixtureData) : base(testFixtureData)
         {
-            _pageObject = (T)Activator.CreateInstance(typeof(T), new object[] { this._testCaseSettings });
+            _pageObject = PageObjectFactory.Create<T>(_testCaseSettings);
         }
 
     }

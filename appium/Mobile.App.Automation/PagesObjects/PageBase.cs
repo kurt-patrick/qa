@@ -16,6 +16,7 @@ using KPE.Mobile.App.Automation.Common;
 using OpenQA.Selenium.Appium.PageObjects;
 using OpenQA.Selenium.Appium;
 using OpenQA.Selenium.Appium.Android;
+using KPE.Mobile.App.Automation.PagesObjects;
 
 namespace KPE.Mobile.App.Automation.PageObjects
 {
@@ -32,21 +33,11 @@ namespace KPE.Mobile.App.Automation.PageObjects
 
             _driver = settings.GetWebDriver();
             _testCaseSettings = settings;
+
+            PageFactory.InitElements(_driver, this, new AppiumPageObjectMemberDecorator(Constants.DefaultTimeOutDuration));
         }
 
         public abstract bool IsLoaded();
-
-        /*
-        protected void InitElementsWithRetrying(object page)
-        {
-            PageFactory.InitElements(page, new RetryingElementLocator(_driver, Constants.DefaultTimeOutTimeSpan));
-        }
-        */
-
-        protected void InitElements(object page)
-        {
-            PageFactory.InitElements(_driver, page, new AppiumPageObjectMemberDecorator(Constants.DefaultTimeOutDuration));
-        }
 
         /// <summary>
         /// Returns the text of the element
@@ -93,6 +84,10 @@ namespace KPE.Mobile.App.Automation.PageObjects
             return (trim) ? element.Text.Trim() : element.Text;
         }
 
+        public T SwitchPageObject<T>() where T : PageBase
+        {
+            return PageObjectFactory.Create<T>(_testCaseSettings);
+        }
 
         /// <summary>
         /// Returns the currency value of a string with currency char stripped out
@@ -216,6 +211,16 @@ namespace KPE.Mobile.App.Automation.PageObjects
             }
         }
 
+        protected bool WaitForVisible(IWebElement element)
+        {
+            return WaitHelper.TryWaitForCondition(() => element != null && element.Displayed, Common.Constants.DefaultTimeOut);
+        }
+
+        protected void WaitForTextToBePresentInElement(IWebElement element, string text)
+        {
+            ObjectQA.ThrowIfNull(text);
+            WaitUntil(ExpectedConditions.TextToBePresentInElement(element, text));
+        }
 
         private TResult WaitUntil<TResult>(Func<IWebDriver, TResult> condition)
         {
@@ -377,15 +382,9 @@ namespace KPE.Mobile.App.Automation.PageObjects
             return false;
         }
 
-        /// <summary>
-        /// Waits for the element to be hidden or stale
-        /// </summary>
-        /// <param name="by"></param>
-        /// <param name="timeOut"></param>
-        /// <returns></returns>
-        protected bool ElementIsStaleOrHidden(By by)
+        protected bool TryWaitForStaleOrHidden(IWebElement element)
         {
-            return WaitUntil(ExpectedConditions.InvisibilityOfElementLocated(by), false);
+            return WaitHelper.TryWaitForCondition(() => element == null || element.Displayed == false);
         }
 
         /// <summary>

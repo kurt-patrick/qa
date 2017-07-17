@@ -15,11 +15,17 @@ namespace KPE.Mobile.App.Automation.PageObjects.Selendroid
 {
     public class HomeScreenActivityPage : PageBase
     {
+        [CacheLookup()]
         [FindsByAndroidUIAutomator(ID = "io.selendroid.testapp:id/my_text_field")]
         private IWebElement _myTextField = null;
 
+        [CacheLookup()]
         [FindsByAndroidUIAutomator(ID = "io.selendroid.testapp:id/input_adds_check_box")]
         private IWebElement _checkBox = null;
+
+        [CacheLookup()]
+        [FindsByAndroidUIAutomator(ID = "io.selendroid.testapp:id/waitingButtonTest")]
+        private IWebElement _btnShowProgressBar = null;
 
         public override bool IsLoaded()
         {
@@ -28,7 +34,6 @@ namespace KPE.Mobile.App.Automation.PageObjects.Selendroid
 
         public HomeScreenActivityPage(TestCaseSettings settings) : base(settings)
         {
-            this.InitElements(this);
         }
 
         public void AssertIsLoaded()
@@ -65,6 +70,12 @@ namespace KPE.Mobile.App.Automation.PageObjects.Selendroid
         public bool ToggleCheckBox(bool check)
         {
             return ToggleCheckBox(_checkBox, check);
+        }
+
+        public HomeScreenActivityPage ClickShowProgressBar()
+        {
+            Click(_btnShowProgressBar);
+            return this;
         }
 
     }
