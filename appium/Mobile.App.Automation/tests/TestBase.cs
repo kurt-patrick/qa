@@ -59,26 +59,7 @@ namespace KPE.Mobile.App.Automation.Tests
         public void TestTearDown()
         {
             LogToConsole("TestTearDown");
-            NotifySaucelabsOfTestResult();
             TearDown();
-        }
-
-        private void NotifySaucelabsOfTestResult()
-        {
-            string remoteKey = _testCaseSettings.GetCapability(TestCaseSettings.Capabilities_Remote);
-            bool isSauceLabs = string.Equals("saucelabs", remoteKey, StringComparison.CurrentCultureIgnoreCase);
-            if (isSauceLabs)
-            {
-                bool passed = TestContext.CurrentContext.Result.FailCount == 0;
-                try
-                {
-                    // Logs the result to Sauce Labs
-                    ((IJavaScriptExecutor)_driver).ExecuteScript("sauce:job-result=" + (passed ? "passed" : "failed"));
-                }
-                catch
-                {
-                }
-            }
         }
 
         public virtual void TearDown()

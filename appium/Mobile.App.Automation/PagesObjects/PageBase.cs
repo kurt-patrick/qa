@@ -22,7 +22,7 @@ namespace KPE.Mobile.App.Automation.PageObjects
 {
     public abstract class PageBase
     {
-        protected readonly IWebDriver _driver = null;
+        protected readonly AppiumDriver<IWebElement> _driver = null;
         protected TestCaseSettings _testCaseSettings = null;
 
         private static readonly log4net.ILog _log = log4net.LogManager.GetLogger(System.Reflection.MethodBase.GetCurrentMethod().DeclaringType);
@@ -87,6 +87,31 @@ namespace KPE.Mobile.App.Automation.PageObjects
         public T SwitchPageObject<T>() where T : PageBase
         {
             return PageObjectFactory.Create<T>(_testCaseSettings);
+        }
+
+        /// <summary>
+        /// (Android) Hide keyboard techniques
+        /// 1. never show keyboard
+        /// https://discuss.appium.io/t/can-we-hide-android-soft-keyboard/6956/5
+        /// 2. driver.navigate.back() 
+        /// 3. AndroidDriver.HideKeyboard()
+        /// https://github.com/appium/appium/issues/4452
+        /// 4. Six different methods
+        /// http://aksahu.blogspot.com.au/2015/10/hide-soft-keyboard-in-android.html
+        /// </summary>
+        public void HideKeyboard()
+        {
+            var androidDriver = _driver as AndroidDriver<IWebElement>;
+            if(androidDriver != null)
+            {
+                androidDriver.HideKeyboard();
+            }
+        }
+
+        public T HideKeyboard<T>() where T : PageBase
+        {
+            HideKeyboard();
+            return SwitchPageObject<T>();
         }
 
         /// <summary>

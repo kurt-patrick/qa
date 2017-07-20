@@ -1,19 +1,12 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using KPE.Mobile.App.Automation.Common;
+﻿using KPE.Mobile.App.Automation.Common;
 using OpenQA.Selenium.Support.PageObjects;
 using OpenQA.Selenium;
 using OpenQA.Selenium.Appium.PageObjects.Attributes;
 using NUnit.Framework;
-using OpenQA.Selenium.Appium;
-using OpenQA.Selenium.Appium.Android;
 
 namespace KPE.Mobile.App.Automation.PageObjects.Selendroid
 {
-    public class HomeScreenActivityPage : PageBase
+    public class HomeScreenPage : PageBase
     {
         [CacheLookup()]
         [FindsByAndroidUIAutomator(ID = "io.selendroid.testapp:id/my_text_field")]
@@ -32,7 +25,7 @@ namespace KPE.Mobile.App.Automation.PageObjects.Selendroid
             return IsVisible(_myTextField, _checkBox);
         }
 
-        public HomeScreenActivityPage(TestCaseSettings settings) : base(settings)
+        public HomeScreenPage(TestCaseSettings settings) : base(settings)
         {
         }
 
@@ -72,7 +65,7 @@ namespace KPE.Mobile.App.Automation.PageObjects.Selendroid
             return ToggleCheckBox(_checkBox, check);
         }
 
-        public HomeScreenActivityPage ClickShowProgressBar()
+        public HomeScreenPage ClickShowProgressBar()
         {
             Click(_btnShowProgressBar);
             return this;

@@ -13,7 +13,7 @@ using KPE.Mobile.App.Automation.Tests.SelendroidApp;
 namespace KPE.Mobile.App.Automation.Tests.Selendroid.ActivityTests
 {
     [TestFixtureSource(DriverCapabilities.HomeScreenActivityOnGalaxyS4)]
-    class HomeScreenActivityTests : TestBaseGeneric<HomeScreenActivityPage>
+    class HomeScreenActivityTests : TestBaseGeneric<HomeScreenPage>
     {
         private static readonly log4net.ILog _log = log4net.LogManager.GetLogger(System.Reflection.MethodBase.GetCurrentMethod().DeclaringType);
 
@@ -54,7 +54,24 @@ namespace KPE.Mobile.App.Automation.Tests.Selendroid.ActivityTests
                 .ClickShowProgressBar()
                 .SwitchPageObject<DialogPage>()
                 .AssertIsLoaded()
-                .AssertDialogIsClosed();
+                .AssertDialogIsClosed()
+                .HideKeyboard<RegisterUserPage>()
+                .AssertIsLoaded()
+                .ClickRegisterUser();
+
+            // *** Close the keyboard
+            // ***
+            // 1. never show keyboard
+            // https://discuss.appium.io/t/can-we-hide-android-soft-keyboard/6956/5
+            // 2. driver.navigate.back() 
+            // 3. AndroidDriver.HideKeyboard()
+            // https://github.com/appium/appium/issues/4452
+            // 4. Six different methods
+            // http://aksahu.blogspot.com.au/2015/10/hide-soft-keyboard-in-android.html
+
+            // *** Scroll down
+            // ***
+
         }
 
         /*

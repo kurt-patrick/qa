@@ -41,20 +41,20 @@ namespace KPE.Mobile.App.Automation.Helpers
         /// <param name="uri">The uri of the Appium node server</param>
         /// <param name="capabilities"></param>
         /// <returns>AndroidDriver or IOSDriver</returns>
-        public static IWebDriver CreateAppiumWebDriver(string driverType, string uri, DesiredCapabilities capabilities)
+        public static AppiumDriver<IWebElement> CreateAppiumWebDriver(string driverType, string uri, DesiredCapabilities capabilities)
         {
             StringQA.ThrowIfNullOrWhiteSpace(driverType);
             StringQA.ThrowIfNullOrWhiteSpace(uri);
             ObjectQA.ThrowIfNull(capabilities);
 
-            if(new string[] { "AndroidDriver", "Android" }.Contains(driverType, StringComparer.CurrentCultureIgnoreCase))
+            if (new string[] { "AndroidDriver", "Android" }.Contains(driverType, StringComparer.CurrentCultureIgnoreCase))
             {
-                return new AndroidDriver<AppiumWebElement>(new Uri(uri), capabilities, TimeSpan.FromMinutes(10));
+                return new AndroidDriver<IWebElement>(new Uri(uri), capabilities, TimeSpan.FromMinutes(10));
             }
 
             else if (string.Equals("IOSDriver", driverType, StringComparison.CurrentCultureIgnoreCase))
             {
-                return new IOSDriver<AppiumWebElement>(new Uri(uri), capabilities, TimeSpan.FromMinutes(10));
+                return new IOSDriver<IWebElement>(new Uri(uri), capabilities, TimeSpan.FromMinutes(10));
             }
 
             throw new NotImplementedException("No logic has been implemented for appium driver type: " + driverType);

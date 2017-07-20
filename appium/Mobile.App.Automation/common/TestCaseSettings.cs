@@ -2,6 +2,7 @@
 using KPE.Mobile.App.Automation.QA;
 using NUnit.Framework;
 using OpenQA.Selenium;
+using OpenQA.Selenium.Appium;
 using OpenQA.Selenium.Remote;
 using System;
 using System.Collections.Generic;
@@ -15,12 +16,8 @@ namespace KPE.Mobile.App.Automation.Common
 {
     public class TestCaseSettings
     {
-        public const string Capabilities_Remote = "remote";
         public const string Capabilities_Device = "device";
         public const string Capabilities_DeviceName = "deviceName";
-        //public const string Capabilities_AppiumDriver = "appiumDriver";
-        //public const string Capabilities_AppiumVersion = "appiumVersion";
-        //public const string Capabilities_AppiumServer = "appiumServer";
 
         private static readonly log4net.ILog _log = log4net.LogManager.GetLogger(System.Reflection.MethodBase.GetCurrentMethod().DeclaringType);
 
@@ -69,12 +66,6 @@ namespace KPE.Mobile.App.Automation.Common
             LoadUrlsFromSettingFile();
 
             ApplySettingsFromNUnitParams();
-
-            // Needs refactoring
-            LoadAdditionalCapabilitesFromSettingsFile();
-
-            // Precedence is, apply settings from NUnit command line, then, override with test case specific
-
 
         }
 
@@ -277,42 +268,9 @@ namespace KPE.Mobile.App.Automation.Common
 
         }
 
-        private void LoadAdditionalCapabilitesFromSettingsFile()
-        {
-            // Add additional capabilities from the Settings file
-            // - this includes username and access keys for Hosted Grids e.g. SauceLabs and BrowserStack
-            // - any additional capabilites that are to be added
-
-            /*
-             *  SELF NOTE: Probably want to refactor this to work not only for Remote drivers, but for all drivers based on key
-             */
-            var remoteDriverKey = GetCapability(Capabilities_Remote);
-            if (remoteDriverKey.Length > 0)
-            {
-                var settingsFileCapabilities = GetCapabilitiesFromSettingsFile(remoteDriverKey);
-                foreach (string key in settingsFileCapabilities.Keys)
-                {
-                    _testFixtureDataMap[key] = settingsFileCapabilities[key];
-                }
-            }
-        }
-
         public eDriverType GetDriverType()
         {
             return eDriverType.AppiumDriver;
-            /*
-            if (_testFixtureDataMap.ContainsKey(Capabilities_Remote))
-            {
-                return eDriverType.RemoteWebDriver;
-            }
-
-            if (_testFixtureDataMap.ContainsKey(Capabilities_AppiumVersion))
-            {
-                return eDriverType.AppiumDriver;
-            }
-
-            return eDriverType.WebDriver;
-            */
         }
 
         public DesiredCapabilities GetDesiredCapabilities()
@@ -331,11 +289,6 @@ namespace KPE.Mobile.App.Automation.Common
         {
             StringQA.ThrowIfNullOrWhiteSpace(key);
             return _testFixtureDataMap.ContainsKey(key);
-        }
-
-        public bool IsRemoteDriver()
-        {
-            return !string.IsNullOrWhiteSpace(GetCapability(Capabilities_Remote));
         }
 
         public string GetCapability(string key)
@@ -362,24 +315,23 @@ namespace KPE.Mobile.App.Automation.Common
             return defaultValue;
         }
 
-        private IWebDriver _driver = null;
+        private AppiumDriver<IWebElement> _driver = null;
 
         /// <summary>
         /// Creates the web driver based on the the test fixture data provided
         /// </summary>
         /// <returns>Web driver object based on the the test fixture data</returns>
-        public IWebDriver GetWebDriver()
+        public AppiumDriver<IWebElement> GetWebDriver()
         {
             return _driver ?? CreateWebDriver();
         }
 
-        private IWebDriver CreateWebDriver()
+        private AppiumDriver<IWebElement> CreateWebDriver()
         {
             try
             {
-                // RemoteWebDriver (SauceLabs, BrowserStack, Selenium Grid Local)
                 // Appium (AndroidDriver, IOSDriver)
-                return _driver = IsRemoteDriver() ? CreateRemoteWebDriver() : CreateAppiumWebDriver();
+                return _driver = CreateAppiumWebDriver();
 
             }
             catch (Exception ex)
@@ -393,26 +345,12 @@ namespace KPE.Mobile.App.Automation.Common
         }
 
         /// <summary>
-        /// Remote Web Driver
-        /// - SauceLabs
-        /// - BrowserStack
-        /// - Selenium Grid running on the local network
-        /// </summary>
-        /// <returns></returns>
-        private IWebDriver CreateRemoteWebDriver()
-        {
-            var capabilities = GetDesiredCapabilities();
-            string uri = GetUrlFromKey(GetCapability(Capabilities_Remote));
-            return DriverHelper.CreateRemoteWebDriver(uri, capabilities);
-        }
-
-        /// <summary>
         /// Appium Driver
         /// - AndroidDriver
         /// - IOSDriver
         /// </summary>
         /// <returns></returns>
-        private IWebDriver CreateAppiumWebDriver()
+        private AppiumDriver<IWebElement> CreateAppiumWebDriver()
         {
             // Get the driver type (android, iOS) from the test fixture source
             // Get the Appium Node Server URL from the Settings file
