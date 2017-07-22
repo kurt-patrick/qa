@@ -9,20 +9,24 @@ namespace KPE.Mobile.App.Automation.PageObjects.Selendroid
     public class HomeScreenPage : PageBase
     {
         [CacheLookup()]
-        [FindsByAndroidUIAutomator(ID = "io.selendroid.testapp:id/my_text_field")]
-        private IWebElement _myTextField = null;
+        [FindsByAndroidUIAutomator(ID = "io.selendroid.testapp:id/startUserRegistration")]
+        private IWebElement _btnUserRegistration = null;
+
+        [CacheLookup()]
+        [FindsByAndroidUIAutomator(ID = "io.selendroid.testapp:id/waitingButtonTest")]
+        private IWebElement _btnShowProgressBar = null;
 
         [CacheLookup()]
         [FindsByAndroidUIAutomator(ID = "io.selendroid.testapp:id/input_adds_check_box")]
         private IWebElement _checkBox = null;
 
         [CacheLookup()]
-        [FindsByAndroidUIAutomator(ID = "io.selendroid.testapp:id/waitingButtonTest")]
-        private IWebElement _btnShowProgressBar = null;
+        [FindsByAndroidUIAutomator(ID = "io.selendroid.testapp:id/my_text_field")]
+        private IWebElement _myTextField = null;
 
         public override bool IsLoaded()
         {
-            return IsVisible(_myTextField, _checkBox);
+            return IsVisible(_btnUserRegistration, _btnShowProgressBar, _checkBox, _myTextField);
         }
 
         public HomeScreenPage(TestCaseSettings settings) : base(settings)
@@ -68,6 +72,12 @@ namespace KPE.Mobile.App.Automation.PageObjects.Selendroid
         public HomeScreenPage ClickShowProgressBar()
         {
             Click(_btnShowProgressBar);
+            return this;
+        }
+
+        public HomeScreenPage ClickUserRegistration()
+        {
+            Click(_btnUserRegistration);
             return this;
         }
 

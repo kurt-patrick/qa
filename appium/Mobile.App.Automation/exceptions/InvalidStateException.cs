@@ -1,9 +1,4 @@
-﻿using KPE.Mobile.App.Automation.QA;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+﻿using System;
 
 namespace KPE.Mobile.App.Automation.Exceptions
 {

@@ -1,15 +1,9 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using KPE.Mobile.App.Automation.Common;
+﻿using KPE.Mobile.App.Automation.Common;
 using OpenQA.Selenium.Support.PageObjects;
 using OpenQA.Selenium;
 using OpenQA.Selenium.Appium.PageObjects.Attributes;
 using NUnit.Framework;
-using OpenQA.Selenium.Appium;
-using OpenQA.Selenium.Appium.Android;
+using KPE.Mobile.App.Automation.Helpers;
 
 namespace KPE.Mobile.App.Automation.PageObjects.Selendroid
 {
@@ -70,7 +64,7 @@ namespace KPE.Mobile.App.Automation.PageObjects.Selendroid
         public string ProgrammingLanguage
         {
             get => GetText(_progLangEle);
-            set => SendKeys(_progLangEle, value);
+            set => new DropDownHelper(_testCaseSettings).SelectByText(_progLangEle, value);
         }
 
         public bool AcceptAdds
@@ -91,7 +85,7 @@ namespace KPE.Mobile.App.Automation.PageObjects.Selendroid
 
         public override bool IsLoaded()
         {
-            return IsVisible(_acceptAddsEle, _emailEle, _nameEle, _passwordEle, _progLangEle, _registerUserEle, _usernameEle);
+            return IsVisible(_usernameEle, _emailEle, _passwordEle);//, _nameEle, _progLangEle, _acceptAddsEle, _registerUserEle);
         }
 
         public RegisterUserPage AssertIsLoaded()

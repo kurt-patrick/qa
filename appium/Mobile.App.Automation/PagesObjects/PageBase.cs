@@ -5,25 +5,29 @@ using OpenQA.Selenium.Support.UI;
 using KPE.Mobile.App.Automation.Helpers;
 using KPE.Mobile.App.Automation.QA;
 using System;
-using System.Collections.Generic;
-using System.Collections.ObjectModel;
 using System.Globalization;
 using System.Linq;
-using System.Text;
-using System.Drawing;
-using KPE.Mobile.App.Automation.Tests;
 using KPE.Mobile.App.Automation.Common;
 using OpenQA.Selenium.Appium.PageObjects;
 using OpenQA.Selenium.Appium;
 using OpenQA.Selenium.Appium.Android;
 using KPE.Mobile.App.Automation.PagesObjects;
+using OpenQA.Selenium.Appium.iOS;
 
 namespace KPE.Mobile.App.Automation.PageObjects
 {
     public abstract class PageBase
     {
+        protected enum eDriverType
+        {
+            NotSet,
+            AndroidDriver,
+            IOSDriver
+        }
+
         protected readonly AppiumDriver<IWebElement> _driver = null;
-        protected TestCaseSettings _testCaseSettings = null;
+        protected readonly eDriverType _driverType = eDriverType.NotSet;
+        protected readonly TestCaseSettings _testCaseSettings = null;
 
         private static readonly log4net.ILog _log = log4net.LogManager.GetLogger(System.Reflection.MethodBase.GetCurrentMethod().DeclaringType);
 
@@ -32,12 +36,28 @@ namespace KPE.Mobile.App.Automation.PageObjects
             ObjectQA.ThrowIfNull(settings);
 
             _driver = settings.GetWebDriver();
+            _driverType = GetDriverType(_driver);
             _testCaseSettings = settings;
 
             PageFactory.InitElements(_driver, this, new AppiumPageObjectMemberDecorator(Constants.DefaultTimeOutDuration));
         }
 
         public abstract bool IsLoaded();
+
+        private static eDriverType GetDriverType(AppiumDriver<IWebElement> driver)
+        {
+            if(driver is AndroidDriver<IWebElement>)
+            {
+                return eDriverType.AndroidDriver;
+            }
+
+            if (driver is IOSDriver<IWebElement>)
+            {
+                return eDriverType.IOSDriver;
+            }
+
+            throw new NotImplementedException("Logic is not implemented for driver type" + driver.GetType().ToString());
+        }
 
         /// <summary>
         /// Returns the text of the element
@@ -101,10 +121,17 @@ namespace KPE.Mobile.App.Automation.PageObjects
         /// </summary>
         public void HideKeyboard()
         {
-            var androidDriver = _driver as AndroidDriver<IWebElement>;
-            if(androidDriver != null)
+            switch (_driverType)
             {
-                androidDriver.HideKeyboard();
+                case eDriverType.AndroidDriver:
+                    ((AndroidDriver<IWebElement>)_driver).HideKeyboard();
+                    break;
+                case eDriverType.IOSDriver:
+                    throw new NotImplementedException("todo");
+                    //break;
+                default:
+                    throw new NotImplementedException(_driverType.ToString());
+                    //break;
             }
         }
 
@@ -182,6 +209,11 @@ namespace KPE.Mobile.App.Automation.PageObjects
         protected void SendKeys(IWebElement element, string text)
         {
             SendKeys(element, text, true);
+            try 
+            {
+                HideKeyboard();
+            }
+            catch { }
         }
 
         /// <summary>
@@ -527,17 +559,6 @@ namespace KPE.Mobile.App.Automation.PageObjects
             };
 
             return WaitHelper.TryWaitForCondition(condition);
-        }
-
-        protected SelectTagHelper SelectHelper(By by)
-        {
-            var ele = FindElement(by);
-            return SelectHelper(ele);
-        }
-
-        protected SelectTagHelper SelectHelper(IWebElement element)
-        {
-            return new SelectTagHelper(element);
         }
 
     }

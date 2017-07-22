@@ -1,18 +1,11 @@
 ﻿using NUnit.Framework;
-using OpenQA.Selenium;
-using OpenQA.Selenium.Appium.Android;
-using OpenQA.Selenium.Support.UI;
-using System;
 using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using KPE.Mobile.App.Automation.PageObjects.Selendroid;
 using KPE.Mobile.App.Automation.Tests.SelendroidApp;
 
 namespace KPE.Mobile.App.Automation.Tests.Selendroid.ActivityTests
 {
-    [TestFixtureSource(DriverCapabilities.HomeScreenActivityOnGalaxyS4)]
+    [TestFixtureSource("GalaxyS4")]
     class HomeScreenActivityTests : TestBaseGeneric<HomeScreenPage>
     {
         private static readonly log4net.ILog _log = log4net.LogManager.GetLogger(System.Reflection.MethodBase.GetCurrentMethod().DeclaringType);
@@ -56,77 +49,12 @@ namespace KPE.Mobile.App.Automation.Tests.Selendroid.ActivityTests
                 .AssertIsLoaded()
                 .AssertDialogIsClosed()
                 .HideKeyboard<RegisterUserPage>()
-                .AssertIsLoaded()
-                .ClickRegisterUser();
-
-            // *** Close the keyboard
-            // ***
-            // 1. never show keyboard
-            // https://discuss.appium.io/t/can-we-hide-android-soft-keyboard/6956/5
-            // 2. driver.navigate.back() 
-            // 3. AndroidDriver.HideKeyboard()
-            // https://github.com/appium/appium/issues/4452
-            // 4. Six different methods
-            // http://aksahu.blogspot.com.au/2015/10/hide-soft-keyboard-in-android.html
-
-            // *** Scroll down
-            // ***
-
+                .AssertIsLoaded();
         }
 
-        /*
-        [Test]
-        public void Wait_Dialog_Test()
+        public static List<string> GalaxyS4()
         {
-            GetElementById("waitingButtonTest").Click();
-
-            var wait = new WebDriverWait(_testCaseSettings.GetWebDriver(), TimeSpan.FromSeconds(20));
-
-            // wait for modal to appear
-            var modalMessage = wait.Until(ExpectedConditions.ElementIsVisible(By.Id("message")));
-
-            // wait for modal to close
-            wait.Until(ExpectedConditions.StalenessOf(modalMessage));
-
-            // wait for username to be visible
-            var username = wait.Until(ExpectedConditions.ElementIsVisible(By.Id("io.selendroid.testapp:id/inputUsername")));
-            username.SendKeys("testignigingn");
-
-            // wait for register to exist
-            var registerBtn = wait.Until(ExpectedConditions.ElementExists(By.Id("io.selendroid.testapp:id/btnRegisterUser")));
-            registerBtn.Click();
-
-        }
-
-        /// <summary>
-        /// AndroidElements must used the attribute checked to determine a checkbox's state
-        /// </summary>
-        /// <param name="element"></param>
-        /// <returns></returns>
-        private bool IsChecked(IWebElement element)
-        {
-            AndroidElement androidEle = element as AndroidElement;
-            if(androidEle != null) 
-            {
-                return string.Equals("true", element.GetAttribute("checked"));
-            }
-            return element.Selected;
-        }
-
-        private IWebElement GetElementById(string id)
-        {
-            return GetElementByFullId(ID_BASE + id);
-        }
-
-        private IWebElement GetElementByFullId(string id)
-        {
-            return _driver.FindElement(By.Id(id));
-        }
-        */
-
-        public static List<string> HomeScreenActivityOnGalaxyS4Capabilities()
-        {
-            return DriverCapabilities.HomeScreenActivityOnGalaxyS4Capabilities();
+            return GalaxyS4Capabilities.HomeScreenActivity();
         }
 
     }
