@@ -22,6 +22,56 @@ run C:\Users\LocalUser\AppData\Local\Android\sdk\tools\uiautomatorviewer.bat
 Click one of the Device Screenshot buttons (there are 2)
 Mouse over the elements to see the list of locators
 
+# Appium desktop server
+https://github.com/appium/appium/blob/master/docs/en/writing-running-appium/caps.md
+
+{
+  "platformName": "iOS, Android, or FirefoxOS",
+  "automationName": "Appium (default) or Selendroid",
+  "platformVersion": "5.0.1",
+  "deviceName": "On iOS, this should be one of the valid devices returned by instruments with instruments -s devices. On Android this capability is currently ignored",
+  "appPackage": "io.selendroid.testapp",
+  "appActivity": ".HomeScreenActivity",
+  "udid": "This is only required for REAL DEVICES",
+  "app": "The absolute local path or remote http URL to an .ipa or .apk file, or a .zip - 
+	Note that this capability is not required for Android if you specify appPackage and appActivity"  
+}
+
+# Real Android Device Connecting to Installed Application
+{
+  "platformName": "Android",
+  "automationName": "Appium",
+  "platformVersion": "5.0.1",
+  "deviceName": "ignoredOnAndroid",
+  "appPackage": "io.selendroid.testapp",
+  "appActivity": ".HomeScreenActivity",
+  "udid": "the value listed from adb devices"
+}
+
+# Real Android Device APK specified
+{
+  "platformName": "Android",
+  "automationName": "Appium",
+  "platformVersion": "5.0.1",
+  "deviceName": "ignoredOnAndroid",
+  "udid": "the value listed from adb devices"
+  "app": "D:\\selendroid-test-app-0.17.0.apk"
+}
+
+# Emulator - Android - APK specified
+To run in the emulator:
+-Open Android studio
+-Start the emualtor
+-run adb devices and get the udid
+
+{
+  "platformName": "Android",
+  "automationName": "Appium",
+  "platformVersion": "7.1.1",
+  "deviceName": "ignoredOnAndroid",
+  "udid": "emulator-5554"
+  "app": "D:\\selendroid-test-app-0.17.0.apk"
+}
 
 
 
