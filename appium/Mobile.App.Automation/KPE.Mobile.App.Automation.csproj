@@ -74,6 +74,8 @@
     <Compile Include="Helpers\DropDownHelper.cs" />
     <Compile Include="Helpers\RandomHelper.cs" />
     <Compile Include="Helpers\StringHelper.cs" />
+    <Compile Include="Helpers\UiSelectorChainedHelper.cs" />
+    <Compile Include="Helpers\UiSelectorHelper.cs" />
     <Compile Include="Helpers\WaitHelper.cs" />
     <Compile Include="PagesObjects\PageBase.cs" />
     <Compile Include="PagesObjects\PageObjectFactory.cs" />
@@ -96,6 +98,8 @@
     <Compile Include="Tests\TestBase.cs" />
     <Compile Include="Common\TestCaseSettings.cs" />
     <Compile Include="Tests\TestBaseGeneric.cs" />
+    <Compile Include="Tests\UiSelectorChainedHelperTests.cs" />
+    <Compile Include="Tests\UiSelectorHelperTests.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="app.config" />

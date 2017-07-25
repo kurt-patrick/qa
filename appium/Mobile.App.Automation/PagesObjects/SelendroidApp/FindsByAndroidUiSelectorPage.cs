@@ -8,6 +8,7 @@ using OpenQA.Selenium.Support.PageObjects;
 using OpenQA.Selenium;
 using OpenQA.Selenium.Appium.PageObjects.Attributes;
 using NUnit.Framework;
+using KPE.Mobile.App.Automation.Helpers;
 
 namespace KPE.Mobile.App.Automation.PageObjects.Selendroid
 {
