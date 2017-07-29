@@ -11,7 +11,7 @@ using KPE.Mobile.App.Automation.Common;
 using OpenQA.Selenium.Appium.PageObjects;
 using OpenQA.Selenium.Appium;
 using OpenQA.Selenium.Appium.Android;
-using KPE.Mobile.App.Automation.PagesObjects;
+using KPE.Mobile.App.Automation.PageObjects;
 using OpenQA.Selenium.Appium.iOS;
 
 namespace KPE.Mobile.App.Automation.PageObjects
