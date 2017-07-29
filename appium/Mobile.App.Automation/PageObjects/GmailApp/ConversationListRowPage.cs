@@ -34,14 +34,14 @@ namespace KPE.Mobile.App.Automation.PageObjects.GmailApp
             Click(_element);
         }
 
-        public bool HasText(string text)
+        public bool HasText(string item)
         {
-            return _text.Contains(text);
+            return _text.Contains(item);
         }
 
-        public bool HasText(List<string> text)
+        public bool HasText(List<string> items)
         {
-            return text.Intersect(text).Count() == text.Count;
+            return _text.Intersect(items).Count() == items.Count;
         }
 
         public bool Contains(string text)
@@ -49,9 +49,9 @@ namespace KPE.Mobile.App.Automation.PageObjects.GmailApp
             return _text.FirstOrDefault(s => s.Contains(text)) != null;
         }
 
-        public int IndexOf(string text)
+        public int IndexOf(string item)
         {
-            return _text.FindIndex(s => s.Equals(text));
+            return _text.FindIndex(s => s.Equals(item));
         }
 
         private void AddText(string text)
