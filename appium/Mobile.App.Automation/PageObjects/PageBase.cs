@@ -279,7 +279,7 @@ namespace KPE.Mobile.App.Automation.PageObjects
             WaitUntil(ExpectedConditions.TextToBePresentInElement(element, text));
         }
 
-        private TResult WaitUntil<TResult>(Func<IWebDriver, TResult> condition)
+        protected TResult WaitUntil<TResult>(Func<IWebDriver, TResult> condition)
         {
             return WaitUntil(condition, true, Constants.DefaultTimeOut, null);
         }

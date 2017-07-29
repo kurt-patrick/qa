@@ -1,6 +1,7 @@
 ﻿using NUnit.Framework;
 using System.Collections.Generic;
 using KPE.Mobile.App.Automation.PageObjects.GmailApp;
+using System.Linq;
 
 namespace KPE.Mobile.App.Automation.Tests.GmailApp
 {
@@ -17,18 +18,24 @@ namespace KPE.Mobile.App.Automation.Tests.GmailApp
         [Test]
         public void GmailListviewTests()
         {
-            var listPage = NavigateToConversationList();
+            var listView = NavigateToConversationList();
 
-            var convos = listPage.WaitForRowCount(7).GetConversations();
+            var convos = listView.AssertIsLoaded().WaitForRowCount(7).GetRows();
 
             Assert.AreEqual(7, convos.Count);
 
+            // Find a row with specific text and tap on it to load into detail
+            /*
             var index = ConversationListPage.IndexOf(convos, new List<string> { "Social", "25 New" });
             Assert.AreNotEqual(-1, index);
-
             convos[index].TapRow();
+            */
 
-            System.Threading.Thread.Sleep(5000);
+            Assert.AreEqual(7, convos.Count(row => row.Contains("e")));
+            Assert.AreEqual(1, convos.Count(row => row.Contains("Invoice")));
+            Assert.AreEqual(0, convos.Count(row => row.Contains("fail")));
+
+
         }
 
         private ConversationListPage NavigateToConversationList()
@@ -38,8 +45,7 @@ namespace KPE.Mobile.App.Automation.Tests.GmailApp
                     .ClickGotIt()
                     .SwitchPageObject<EmailAddressSelectionPage>()
                     .ClickTakeMeToGmail()
-                    .SwitchPageObject<ConversationListPage>()
-                    .AssertIsLoaded();
+                    .SwitchPageObject<ConversationListPage>();
         }
 
         public static List<string> GalaxyS4()
