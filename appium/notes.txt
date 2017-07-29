@@ -73,5 +73,10 @@ To run in the emulator:
   "app": "D:\\selendroid-test-app-0.17.0.apk"
 }
 
+# Getting page source for an app from the browser
+http://127.0.0.1:4723/wd/hub/sessions
+http://127.0.0.1:4723/wd/hub/session/d6cdd6bf-e70b-4ea3-9696-aa37372f5dcb/source
 
-
+# getting package and activity information of an open app using adb
+adb devices
+adb -s DEVICEudid shell dumpsys activity activities
