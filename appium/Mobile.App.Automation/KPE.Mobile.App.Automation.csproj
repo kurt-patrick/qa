@@ -78,6 +78,7 @@
     <Compile Include="Helpers\UiSelectorHelper.cs" />
     <Compile Include="Helpers\WaitHelper.cs" />
     <Compile Include="PageObjects\GmailApp\ConversationListPage.cs" />
+    <Compile Include="PageObjects\GmailApp\ConversationListRowPage.cs" />
     <Compile Include="PageObjects\GmailApp\EmailAddressSelectionPage.cs" />
     <Compile Include="PageObjects\GmailApp\WelcomePage.cs" />
     <Compile Include="PageObjects\PageBase.cs" />
@@ -91,7 +92,7 @@
     <Compile Include="QA\ObjectQA.cs" />
     <Compile Include="QA\StringQA.cs" />
     <Compile Include="Tests\GmailApp\GalaxyS4Capabilities.cs" />
-    <Compile Include="Tests\GmailApp\HomeScreenActivityTests.cs" />
+    <Compile Include="Tests\GmailApp\ConversationListTests.cs" />
     <Compile Include="Tests\SelendroidApp\ActivityTests\RegisterUserActivityTests.cs" />
     <Compile Include="Tests\DriverCapabilitiesBase.cs" />
     <Compile Include="Tests\SelendroidApp\LocatorTests\FindsByAndroidUiSelectorTests.cs" />
