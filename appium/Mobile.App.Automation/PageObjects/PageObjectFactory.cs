@@ -6,7 +6,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace KPE.Mobile.App.Automation.PagesObjects
+namespace KPE.Mobile.App.Automation.PageObjects
 {
     public static class PageObjectFactory
     {

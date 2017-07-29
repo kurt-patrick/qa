@@ -1,4 +1,4 @@
-﻿using KPE.Mobile.App.Automation.PagesObjects;
+﻿using KPE.Mobile.App.Automation.PageObjects;
 using System;
 using System.Collections.Generic;
 using System.Linq;
