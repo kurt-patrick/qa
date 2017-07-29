@@ -4,15 +4,15 @@ using OpenQA.Selenium;
 using System.Collections.Generic;
 using System.Linq;
 
-namespace KPE.Mobile.App.Automation.PageObjects.GmailApp
+namespace KPE.Mobile.App.Automation.PageObjects.Wrappers
 {
-    public class ConversationListRowPage : PageBase
+    public class ListViewRowWrapper : PageBase
     {
         private string _xPathBase;
         private IWebElement _element;
         private List<string> _text = new List<string>();
 
-        public ConversationListRowPage(TestCaseSettings settings, IWebElement element, string xPath) : base(settings)
+        public ListViewRowWrapper(TestCaseSettings settings, IWebElement element, string xPath) : base(settings)
         {
             _element = element;
             _xPathBase = xPath;

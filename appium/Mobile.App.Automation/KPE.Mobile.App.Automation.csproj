@@ -78,7 +78,6 @@
     <Compile Include="Helpers\UiSelectorHelper.cs" />
     <Compile Include="Helpers\WaitHelper.cs" />
     <Compile Include="PageObjects\GmailApp\ConversationListPage.cs" />
-    <Compile Include="PageObjects\GmailApp\ConversationListRowPage.cs" />
     <Compile Include="PageObjects\GmailApp\EmailAddressSelectionPage.cs" />
     <Compile Include="PageObjects\GmailApp\WelcomePage.cs" />
     <Compile Include="PageObjects\PageBase.cs" />
@@ -88,6 +87,8 @@
     <Compile Include="PageObjects\SelendroidApp\FindsByAndroidUIAutomatorPage.cs" />
     <Compile Include="PageObjects\SelendroidApp\DialogPage.cs" />
     <Compile Include="PageObjects\SelendroidApp\HomeScreenPage.cs" />
+    <Compile Include="PageObjects\Wrappers\ListViewRowWrapper.cs" />
+    <Compile Include="PageObjects\Wrappers\ListViewWrapper.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="QA\ObjectQA.cs" />
     <Compile Include="QA\StringQA.cs" />
