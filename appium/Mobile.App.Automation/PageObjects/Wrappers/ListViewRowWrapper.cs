@@ -75,6 +75,11 @@ namespace KPE.Mobile.App.Automation.PageObjects.Wrappers
             return retVal;
         }
 
+        public List<string> GetText()
+        {
+            return _text;
+        }
+
         public override bool IsLoaded()
         {
             throw new NotImplementedException();
