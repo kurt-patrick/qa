@@ -80,3 +80,18 @@ http://127.0.0.1:4723/wd/hub/session/d6cdd6bf-e70b-4ea3-9696-aa37372f5dcb/source
 # getting package and activity information of an open app using adb
 adb devices
 adb -s DEVICEudid shell dumpsys activity activities
+
+# displays all the elements on the current activity displayed
+# Dump the top activity
+adb -s DEVICEudid shell dumpsys activity top
+
+https://ar-g.github.io/ADB-Shell-Part-3/
+https://stackoverflow.com/questions/24429049/get-info-of-current-visible-fragments-in-android-dumpsys
+
+# This is the same as # Dump the top activity
+jakiganicsystems.simplestchecklist/.MainActivity
+adb shell dumpsys activity jakiganicsystems.simplestchecklist/.MainActivity
+
+
+
+
