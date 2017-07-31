@@ -88,9 +88,21 @@ adb -s DEVICEudid shell dumpsys activity top
 https://ar-g.github.io/ADB-Shell-Part-3/
 https://stackoverflow.com/questions/24429049/get-info-of-current-visible-fragments-in-android-dumpsys
 
+How to get kernel messages from Android? 
+http://bootloader.wikidot.com/linux:android:kmsg
+
 # This is the same as # Dump the top activity
 jakiganicsystems.simplestchecklist/.MainActivity
 adb shell dumpsys activity jakiganicsystems.simplestchecklist/.MainActivity
+
+# appium docs
+https://github.com/appium/appium/tree/master/docs/en/writing-running-appium
+
+#using adb to export ui as xml
+1. adb shell uiautomator dump -X
+2. make a note of the path the file is written to e.g. /storage/emulated/legacy/window_dump.xml
+3. [windows] adb pull /storage/emulated/legacy/window_dump.xml d:\dumpFolder
+4. [mac] adb pull /storage/emulated/legacy/window_dump.xml /Users/me/dumpFolder
 
 
 
