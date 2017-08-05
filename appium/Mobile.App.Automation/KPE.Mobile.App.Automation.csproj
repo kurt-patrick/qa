@@ -86,6 +86,7 @@
     <Compile Include="PageObjects\GmailApp\WelcomePage.cs" />
     <Compile Include="PageObjects\PageBase.cs" />
     <Compile Include="PageObjects\PageObjectFactory.cs" />
+    <Compile Include="PageObjects\SelendroidApp\FindsByAndroidUiScrollablePage.cs" />
     <Compile Include="PageObjects\SelendroidApp\RegisterUserPage.cs" />
     <Compile Include="PageObjects\SelendroidApp\FindsByAndroidUiSelectorPage.cs" />
     <Compile Include="PageObjects\SelendroidApp\FindsByAndroidUIAutomatorPage.cs" />
@@ -102,6 +103,7 @@
     <Compile Include="Tests\GmailApp\ConversationListTests.cs" />
     <Compile Include="Tests\SelendroidApp\ActivityTests\RegisterUserActivityTests.cs" />
     <Compile Include="Tests\DriverCapabilitiesBase.cs" />
+    <Compile Include="Tests\SelendroidApp\LocatorTests\FindsByAndroidUiScrollableTests.cs" />
     <Compile Include="Tests\SelendroidApp\LocatorTests\FindsByAndroidUiSelectorTests.cs" />
     <Compile Include="Tests\SelendroidApp\LocatorTests\FindsByAndroidUIAutomatorTests.cs" />
     <Compile Include="Tests\SelendroidApp\GalaxyS4Capabilities.cs" />

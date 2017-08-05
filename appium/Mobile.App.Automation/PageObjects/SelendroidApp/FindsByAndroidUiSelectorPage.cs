@@ -1,14 +1,7 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using KPE.Mobile.App.Automation.Common;
-using OpenQA.Selenium.Support.PageObjects;
+﻿using KPE.Mobile.App.Automation.Common;
 using OpenQA.Selenium;
 using OpenQA.Selenium.Appium.PageObjects.Attributes;
 using NUnit.Framework;
-using KPE.Mobile.App.Automation.Helpers;
 
 namespace KPE.Mobile.App.Automation.PageObjects.Selendroid
 {

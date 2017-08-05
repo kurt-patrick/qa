@@ -6,35 +6,31 @@ using KPE.Mobile.App.Automation.Tests.SelendroidApp;
 namespace KPE.Mobile.App.Automation.Tests.Selendroid.LocatorTests
 {
     [TestFixtureSource("GalaxyS4")]
-    class FindsByAndroidUiSelectorTests : TestBaseGeneric<FindsByAndroidUiSelectorPage>
+    class FindsByAndroidUiSelectorTests : TestBaseGeneric<HomeScreenPage>
     {
+        RegisterUserPage _registerUserPage = null;
         public FindsByAndroidUiSelectorTests(string capabilities) 
             : base(capabilities) 
         {
         }
 
-        [Test]
-        public void FindsByClassNameTest()
+        public override void TestSetup()
         {
-            _pageObject.AssertByClassName();
+            _registerUserPage =
+                _pageObject
+                    .ClickUserRegistration()
+                    .SwitchPageObject<RegisterUserPage>();
+            _registerUserPage.AssertIsLoaded();
         }
 
         [Test]
-        public void FindsByResourceIDTest()
+        public void ScrollingTests()
         {
-            _pageObject.AssertByResourceId();
-        }
+            var uiScrollablePage = _registerUserPage.SwitchPageObject<FindsByAndroidUiScrollablePage>();
 
-        [Test]
-        public void FindsByTextTest()
-        {
-            _pageObject.AssertByText();
-        }
+            // scroll to the last element
+            uiScrollablePage.AssertScrollToBottomThenTop();
 
-        [Test]
-        public void FindsByTextContainsTest()
-        {
-            _pageObject.AssertByTextContains();
         }
 
         public static List<string> GalaxyS4()
