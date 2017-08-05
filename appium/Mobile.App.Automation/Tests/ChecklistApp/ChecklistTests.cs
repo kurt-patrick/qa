@@ -56,7 +56,7 @@ namespace KPE.Mobile.App.Automation.Tests.ChecklistApp
 
             // randomly put a row into edit mode
             ListViewRowWrapper row = rows[RandomHelper.RandomIndex(rows)];
-            string originalText = row.GetText().First();
+            string originalText = row.TextCache().First();
             row.TapRow();
 
             var newText = StringHelper.RandomString(8);

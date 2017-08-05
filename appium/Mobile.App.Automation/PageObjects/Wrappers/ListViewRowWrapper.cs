@@ -10,7 +10,7 @@ namespace KPE.Mobile.App.Automation.PageObjects.Wrappers
     {
         private string _xPathBase;
         private IWebElement _element;
-        private List<string> _text = new List<string>();
+        private List<string> _textCache = new List<string>();
 
         public ListViewRowWrapper(TestCaseSettings settings, IWebElement element, string xPath) : base(settings)
         {
@@ -23,8 +23,8 @@ namespace KPE.Mobile.App.Automation.PageObjects.Wrappers
             // For each child element - grab its text and save it
             foreach(IWebElement child in children)
             {
-                AddText(child.Text);
-                AddText(GetAttribute(child, "contentDescription"));
+                AddTextToCache(child.Text);
+                AddTextToCache(GetAttribute(child, "contentDescription"));
             }
 
         }
@@ -36,29 +36,29 @@ namespace KPE.Mobile.App.Automation.PageObjects.Wrappers
 
         public bool HasText(string item)
         {
-            return _text.Contains(item);
+            return _textCache.Contains(item);
         }
 
         public bool HasText(List<string> items)
         {
-            return _text.Intersect(items).Count() == items.Count;
+            return _textCache.Intersect(items).Count() == items.Count;
         }
 
         public bool Contains(string text)
         {
-            return _text.FirstOrDefault(s => s.Contains(text)) != null;
+            return _textCache.FirstOrDefault(s => s.Contains(text)) != null;
         }
 
         public int IndexOf(string item)
         {
-            return _text.FindIndex(s => s.Equals(item));
+            return _textCache.FindIndex(s => s.Equals(item));
         }
 
-        private void AddText(string text)
+        private void AddTextToCache(string text)
         {
-            if(!string.IsNullOrWhiteSpace(text) && !_text.Contains(text))
+            if(!string.IsNullOrWhiteSpace(text) && !_textCache.Contains(text))
             {
-                _text.Add(text);
+                _textCache.Add(text);
             }
         }
 
@@ -75,9 +75,9 @@ namespace KPE.Mobile.App.Automation.PageObjects.Wrappers
             return retVal;
         }
 
-        public List<string> GetText()
+        public List<string> TextCache()
         {
-            return _text;
+            return _textCache;
         }
 
         public override bool IsLoaded()
