@@ -18,7 +18,7 @@ namespace KPE.Mobile.App.Automation.PageObjects
 {
     public abstract class PageBase
     {
-        protected enum eDriverType
+        protected enum DriverType
         {
             NotSet,
             AndroidDriver,
@@ -26,7 +26,7 @@ namespace KPE.Mobile.App.Automation.PageObjects
         }
 
         protected readonly AppiumDriver<IWebElement> _driver = null;
-        protected readonly eDriverType _driverType = eDriverType.NotSet;
+        protected readonly DriverType _driverType = DriverType.NotSet;
         protected readonly TestCaseSettings _testCaseSettings = null;
 
         private static readonly log4net.ILog _log = log4net.LogManager.GetLogger(System.Reflection.MethodBase.GetCurrentMethod().DeclaringType);
@@ -44,16 +44,16 @@ namespace KPE.Mobile.App.Automation.PageObjects
 
         public abstract bool IsLoaded();
 
-        private static eDriverType GetDriverType(AppiumDriver<IWebElement> driver)
+        private static DriverType GetDriverType(AppiumDriver<IWebElement> driver)
         {
             if(driver is AndroidDriver<IWebElement>)
             {
-                return eDriverType.AndroidDriver;
+                return DriverType.AndroidDriver;
             }
 
             if (driver is IOSDriver<IWebElement>)
             {
-                return eDriverType.IOSDriver;
+                return DriverType.IOSDriver;
             }
 
             throw new NotImplementedException("Logic is not implemented for driver type" + driver.GetType().ToString());
@@ -123,10 +123,10 @@ namespace KPE.Mobile.App.Automation.PageObjects
         {
             switch (_driverType)
             {
-                case eDriverType.AndroidDriver:
+                case DriverType.AndroidDriver:
                     ((AndroidDriver<IWebElement>)_driver).HideKeyboard();
                     break;
-                case eDriverType.IOSDriver:
+                case DriverType.IOSDriver:
                     throw new NotImplementedException("todo");
                     //break;
                 default:
@@ -148,10 +148,9 @@ namespace KPE.Mobile.App.Automation.PageObjects
         /// <returns></returns>
         protected decimal GetCurrency(By by)
         {
-            decimal retVal = 0;
             string text = GetText(by, true);
             // strip the currecy symbol out $
-            if (!decimal.TryParse(text, System.Globalization.NumberStyles.Currency, CultureInfo.CurrentCulture, out retVal))
+            if (!decimal.TryParse(text, System.Globalization.NumberStyles.Currency, CultureInfo.CurrentCulture, out decimal retVal))
             {
                 throw new ArgumentException(string.Format("Failed to parse ({0}) to a decimal", text));
             }
@@ -427,8 +426,7 @@ namespace KPE.Mobile.App.Automation.PageObjects
         /// <returns>true if visible and an element reference</returns>
         protected bool IsVisible(By by, out IWebElement element)
         {
-            IWebElement ele = null;
-            if (Exists(by, out ele) && ele.Displayed)
+            if (Exists(by, out IWebElement ele) && ele.Displayed)
             {
                 element = ele;
                 return true;
@@ -495,7 +493,6 @@ namespace KPE.Mobile.App.Automation.PageObjects
         protected void Click(By by)
         {
             var ele = FindElement(by);
-            MoveToElement(ele);
             Click(ele);
         }
 
@@ -510,33 +507,6 @@ namespace KPE.Mobile.App.Automation.PageObjects
             ObjectQA.ThrowIfNull(element);
             element.Click();
             return WaitHelper.TryWaitForCondition(condition, timeOut);
-        }
-
-        protected Actions MoveToElement(IWebElement element)
-        {
-            Actions action = new Actions(_driver);
-            try
-            {
-                action.MoveToElement(element).Perform();
-                return action;
-            }
-            catch
-            {
-                throw;
-            }
-        }
-
-        protected Actions MoveToElement(By by)
-        {
-            try
-            {
-                var element = FindVisibleElement(by);
-                return MoveToElement(element);
-            }
-            catch
-            {
-                throw;
-            }
         }
 
         public bool IsChecked(IWebElement element)

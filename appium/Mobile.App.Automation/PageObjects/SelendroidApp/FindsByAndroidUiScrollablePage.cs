@@ -6,6 +6,7 @@ using System;
 using OpenQA.Selenium.Support.PageObjects;
 using KPE.Mobile.App.Automation.Helpers;
 using OpenQA.Selenium.Appium;
+using OpenQA.Selenium.Appium.Android;
 
 namespace KPE.Mobile.App.Automation.PageObjects.Selendroid
 {
@@ -29,18 +30,20 @@ namespace KPE.Mobile.App.Automation.PageObjects.Selendroid
 
         public void AssertScrollToBottomThenTop()
         {
-            // Scroll to the bottom of the element
-            string uiSelectorScrollView = UiSelectorHelper.ClassName("android.widget.ScrollView");
-            string uiSelectorElement = UiSelectorHelper.ResourceId("io.selendroid.testapp:id/btnRegisterUser");
-            string selector = string.Format("new UiScrollable({0}).scrollIntoView({1})", uiSelectorScrollView, uiSelectorElement);
+            string btnRegisterUser = UiSelectorHelper.ResourceId("io.selendroid.testapp:id/btnRegisterUser");
+            string txtUsername = UiSelectorHelper.ResourceId("io.selendroid.testapp:id/inputUsername");
 
+            // Scroll down to the bottom element
+            string selector = new UiScrollableHelper().ScrollIntoView(btnRegisterUser);
             Assert.IsTrue(IsVisible(MobileBy.AndroidUIAutomator(selector)), "Failed to find the register user button");
 
-            // Scroll to the top element
-            uiSelectorElement = UiSelectorHelper.ResourceId("io.selendroid.testapp:id/inputUsername");
-            selector = string.Format("new UiScrollable({0}).scrollIntoView({1})", uiSelectorScrollView, uiSelectorElement);
-
+            // Scroll up to the top element
+            selector = new UiScrollableHelper().ScrollIntoView(txtUsername);
             Assert.IsTrue(IsVisible(MobileBy.AndroidUIAutomator(selector)), "Failed to find the username input");
+
+            // Scroll down and click the bottom element
+            selector = new UiScrollableHelper().ScrollIntoView(btnRegisterUser);
+            Click(MobileBy.AndroidUIAutomator(selector));
 
         }
 

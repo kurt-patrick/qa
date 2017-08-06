@@ -1,16 +1,24 @@
 ﻿using KPE.Mobile.App.Automation.QA;
 using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace KPE.Mobile.App.Automation.Helpers
 {
+    /// <summary>
+    /// https://developer.android.com/reference/android/support/test/uiautomator/UiSelector.html
+    /// </summary>
     public class UiSelectorHelper
     {
         private UiSelectorHelper()
         {
+        }
+
+        public static string ScrollableInstance(int index)
+        {
+            if(index < 0)
+            {
+                throw new ArgumentOutOfRangeException(nameof(index), "must be >= 0");
+            }
+            return string.Format("new UiSelector().scrollable(true).instance({0})", index);
         }
 
         public static string ClassName(string value)

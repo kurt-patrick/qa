@@ -75,6 +75,7 @@
     <Compile Include="Helpers\RandomHelper.cs" />
     <Compile Include="Helpers\StringHelper.cs" />
     <Compile Include="Helpers\UiSelectorChainedHelper.cs" />
+    <Compile Include="Helpers\UiScrollableHelper.cs" />
     <Compile Include="Helpers\UiSelectorHelper.cs" />
     <Compile Include="Helpers\WaitHelper.cs" />
     <Compile Include="PageObjects\ChecklistApp\ChecklistPage.cs" />
@@ -84,6 +85,7 @@
     <Compile Include="PageObjects\GmailApp\ConversationListPage.cs" />
     <Compile Include="PageObjects\GmailApp\EmailAddressSelectionPage.cs" />
     <Compile Include="PageObjects\GmailApp\WelcomePage.cs" />
+    <Compile Include="Helpers\IosJavaScriptExecutor.cs" />
     <Compile Include="PageObjects\PageBase.cs" />
     <Compile Include="PageObjects\PageObjectFactory.cs" />
     <Compile Include="PageObjects\SelendroidApp\FindsByAndroidUiScrollablePage.cs" />
