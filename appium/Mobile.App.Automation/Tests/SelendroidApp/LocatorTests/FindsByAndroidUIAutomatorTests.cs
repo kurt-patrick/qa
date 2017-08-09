@@ -37,6 +37,12 @@ namespace KPE.Mobile.App.Automation.Tests.Selendroid.LocatorTests
             _pageObject.AssertByXPathGeneric();
         }
 
+        [Test]
+        public void FindsBySecondPriorityTest()
+        {
+            _pageObject.AssertSecondPriorityElementTest();
+        }
+
         public static List<string> GalaxyS4()
         {
             return GalaxyS4Capabilities.HomeScreenActivity();

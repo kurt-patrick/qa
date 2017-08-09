@@ -23,6 +23,10 @@ namespace KPE.Mobile.App.Automation.PageObjects.Selendroid
         [FindsByAndroidUIAutomator(XPath = "//*[@text='I accept adds']")]
         private IWebElement _byXPathGeneric = null;
 
+        [FindsByAndroidUIAutomator(ID = "NonExistentElement", Priority = 1)]
+        [FindsByAndroidUIAutomator(Accessibility = "visibleButtonTestCD", Priority = 2)]
+        private IWebElement _bySecondPriority = null;
+
         public FindsByAndroidUIAutomatorPage(TestCaseSettings settings) : base(settings)
         {
         }
@@ -50,6 +54,11 @@ namespace KPE.Mobile.App.Automation.PageObjects.Selendroid
         public void AssertByXPathGeneric()
         {
             Assert.IsTrue(IsVisible(_byXPathGeneric), "Found element by XPath Generic");
+        }
+
+        public void AssertSecondPriorityElementTest()
+        {
+            Assert.IsTrue(IsVisible(_bySecondPriority), "Found second element by priority");
         }
 
     }
