@@ -104,6 +104,26 @@ https://github.com/appium/appium/tree/master/docs/en/writing-running-appium
 3. [windows] adb pull /storage/emulated/legacy/window_dump.xml d:\dumpFolder
 4. [mac] adb pull /storage/emulated/legacy/window_dump.xml /Users/me/dumpFolder
 
+# websites
+Working with xpath and locator strategies
+https://github.com/appium/appium/issues/7085
 
+https://developer.android.com/reference/android/support/test/uiautomator/UiScrollable.html
+https://www.3pillarglobal.com/insights/appium-tips-and-tricks-for-ios
+
+start appium server from code
+https://github.com/appium/appium-dotnet-driver/blob/master/appium-dotnet-driver/Appium/Service/AppiumLocalService.cs
+
+https://github.com/nunit/docs/wiki/SetUpFixture-Attribute
+http://teststackbddfy.readthedocs.io/en/latest/Usage/FluentAPI/
+https://github.com/appium/appium-dotnet-driver/blob/master/appium-dotnet-driver/Appium/PageObjects/AppiumPageObjectMemberDecorator.cs
+https://github.com/appium/appium-dotnet-driver/blob/master/appium-dotnet-driver/Appium/MobileBy.cs
+https://github.com/SeleniumHQ/selenium/blob/master/java/client/src/org/openqa/selenium/support/CacheLookup.java
+http://robdmoore.id.au/blog/2013/05/26/test-data-generation-the-right-way-object-mother-test-data-builders-nsubstitute-nbuilder/
+http://xunitpatterns.com/Testcase%20Class%20per%20Fixture.html
+https://github.com/appium/appium-dotnet-driver/wiki
+https://github.com/appium/sample-code/tree/master/sample-code/examples/dotnet/AppiumDotNetSample/PageObjects
+https://github.com/appium/sample-code/tree/master/sample-code/examples/dotnet/AppiumDotNetSample/PageObjectTests
+https://discuss.appium.io/t/how-can-i-use-multiple-findby-annotations-in-c-for-both-ios-and-android-in-the-same-page-object/7303/2
 
 
