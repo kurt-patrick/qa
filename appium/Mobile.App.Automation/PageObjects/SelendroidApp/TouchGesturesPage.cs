@@ -10,6 +10,7 @@ using OpenQA.Selenium.Appium.Interfaces;
 using OpenQA.Selenium.Support.UI;
 using System.Text.RegularExpressions;
 using System.Collections.Generic;
+using KPE.Mobile.App.Automation.Helpers;
 
 namespace KPE.Mobile.App.Automation.PageObjects.Selendroid
 {
@@ -85,17 +86,35 @@ namespace KPE.Mobile.App.Automation.PageObjects.Selendroid
         /// <param name="scrollUp"></param>
         public void AssertYCoords(bool scrollUp)
         {
-            var yCoord = GetYCoords();
-            Assert.IsTrue(yCoord.HasValue, "Y Coords not found");
+            var coords = GetYCoords();
+            Assert.IsTrue(coords.HasValue, "Y Coords not found");
             if (scrollUp)
             {
-                Assert.IsTrue(yCoord.Value < 0, $"Expected negative value ({yCoord.Value})");
+                Assert.IsTrue(coords.Value < 1, $"Expected negative value ({coords.Value})");
             }
             else
             {
-                Assert.IsTrue(yCoord.Value > 0, $"Expected positive value ({yCoord.Value})");
+                Assert.IsTrue(coords.Value > -1, $"Expected positive value ({coords.Value})");
             }
+        }
 
+        /// <summary>
+        /// if <paramref name="scrollLeft"/> is true then the y coords should be less than 1 or negative
+        /// if <paramref name="scrollLeft"/> is false then the y coords should be a positive value        
+        /// </summary>
+        /// <param name="scrollLeft"></param>
+        public void AssertXCoords(bool scrollLeft)
+        {
+            var coords = GetXCoords();
+            Assert.IsTrue(coords.HasValue, "X Coords not found");
+            if (scrollLeft)
+            {
+                Assert.IsTrue(coords.Value < 1, $"Expected negative value ({coords.Value})");
+            }
+            else
+            {
+                Assert.IsTrue(coords.Value > -1, $"Expected positive value ({coords.Value})");
+            }
         }
 
         public TouchGesturesPage AssertGestureText(string expected)
@@ -112,13 +131,27 @@ namespace KPE.Mobile.App.Automation.PageObjects.Selendroid
             return this;
         }
 
-        public TouchGesturesPage DoubleTap()
+        public TouchGesturesPage DoubleTap(long ms)
         {
-            var parentElement = _parentElement;
-            GetMultiAction()
-                .Add(GetTouchAction().Press(parentElement).Release())
-                .Add(GetTouchAction().Press(parentElement).Release())
-                .Perform();
+            var windowSize = _driver.Manage().Window.Size;
+
+            int xPos = (int)(0.5 * windowSize.Width);
+            int yPos = (int)(0.5 * windowSize.Height);
+
+            // NOTE: Douple tap is flaky and only works around 30-40% of the time regardless of ms
+            // I have tested waits ranging from 50 to 1000ms and the best result were between 400-550ms
+            Func<bool> condition = () =>
+            {
+                GetTouchAction()
+                    .Tap(xPos, yPos, 2)
+                    .Wait(ms)
+                    .Perform();
+
+                return "ON DOUBLE TAP EVENT".Equals(GetText(_gestureType, true));
+            };
+
+            WaitHelper.TryWaitForCondition(condition, 30);
+
             return this;
         }
 
@@ -132,27 +165,46 @@ namespace KPE.Mobile.App.Automation.PageObjects.Selendroid
             return this;
         }
 
-        public TouchGesturesPage FlickUp(int perc)
+        public TouchGesturesPage FlickVertical(bool up)
         {
-            var screenSize = _driver.Manage().Window.Size;
-            int endY = screenSize.Height - (int)(screenSize.Height * ((double)perc / 100));
-            int x = 100;
+            var windowSize = _driver.Manage().Window.Size;
 
-            return Flick(x, screenSize.Height, x, endY, 500);
+            int xPos = (int)(0.5 * windowSize.Width);
+            int yBottom = (int)(0.75 * windowSize.Height);
+            int yTop = (int)(0.25 * windowSize.Height);
+
+            return (up) ? 
+                Flick(xPos, yBottom, xPos, yTop, 1000) : 
+                Flick(xPos, yTop, xPos, yBottom, 1000);
         }
 
-        public TouchGesturesPage FlickDown()
+        public TouchGesturesPage FlickHorizontal(bool left)
         {
-            return Flick(100, 100, 100, 1000, 500);
+            var windowSize = _driver.Manage().Window.Size;
+
+            int yPos = (int)(0.5 * windowSize.Height);
+            int xLeft = (int)(0.25 * windowSize.Width);
+            int xRight = (int)(0.75 * windowSize.Width);
+
+            return (left) ?
+                Flick(yPos, xRight, yPos, xLeft, 1000) :
+                Flick(yPos, xLeft, yPos, xRight, 1000);
         }
 
-        public TouchGesturesPage Flick(double startX, double startY, double endX, double endY, long flickMs)
+        /// <summary>
+        /// The lower <paramref name="ms"/> is the faster the flick will be and the greater the distance it will travel
+        /// </summary>
+        /// <param name="startX"></param>
+        /// <param name="startY"></param>
+        /// <param name="endX"></param>
+        /// <param name="endY"></param>
+        /// <param name="ms"></param>
+        /// <returns></returns>
+        public TouchGesturesPage Flick(double startX, double startY, double endX, double endY, long ms)
         {
-            var screenSize = _driver.Manage().Window.Size;
-
             GetTouchAction()
                 .Press(startX, startY)
-                .Wait(flickMs)
+                .Wait(ms)
                 .MoveTo(endX, endY)
                 .Release()
                 .Perform();

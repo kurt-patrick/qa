@@ -59,19 +59,18 @@ namespace KPE.Mobile.App.Automation.Tests.Selendroid.ActivityTests
         }
 
         [Test]
-        [Ignore("not working yet")]
         public void DoubleTapTest()
         {
             _touchGesturesPage
-                .DoubleTap()
-                .AssertGestureText("DOUBLE TAP EVENT");
+                .DoubleTap(500)
+                .AssertGestureText("ON DOUBLE TAP EVENT");
         }
 
         [Test]
         public void FlickUpTest()
         {
             _touchGesturesPage
-                .FlickUp(60)
+                .FlickVertical(true)
                 .AssertGestureText("FLICK")
                 .AssertYCoords(true);
         }
@@ -80,54 +79,28 @@ namespace KPE.Mobile.App.Automation.Tests.Selendroid.ActivityTests
         public void FlickDownTest()
         {
             _touchGesturesPage
-                .FlickDown()
+                .FlickVertical(false)
                 .AssertGestureText("FLICK")
                 .AssertYCoords(false);
         }
 
         [Test]
-        public void Canvastest()
+        public void FlickLeftTest()
         {
-            _touchGesturesPage.ClickCanvas();
-
-            const int X = 100;
-
-            var windowSize = _driver.Manage().Window.Size;
-
-            // up
-            Repeat(() => _touchGesturesPage.Flick(X, windowSize.Height - 100, X, 100, 1000));
-
-            // down
-            Repeat(() => _touchGesturesPage.Flick(X + 100, 200, X + 100, windowSize.Height - 200, 700));
-
-            // left
-            Repeat(() => _touchGesturesPage.Flick(X, 500, windowSize.Width - X, 500, 400));
-
-            // right
-            Repeat(() => _touchGesturesPage.Flick(windowSize.Width - X, 600, X, 600, 1000));
-
+            _touchGesturesPage
+                .FlickHorizontal(true)
+                .AssertGestureText("FLICK")
+                .AssertXCoords(true);
         }
 
-        private void Repeat(Action condition)
+        [Test]
+        public void FlickRightTest()
         {
-            for(int i=1; i<=3; i++)
-            {
-                condition();
-            }
+            _touchGesturesPage
+                .FlickHorizontal(false)
+                .AssertGestureText("FLICK")
+                .AssertXCoords(false);
         }
-
-        public void ScrollTest()
-        {
-        }
-
-        public void PinchTest()
-        {
-        }
-
-        public void ZoomTest()
-        {
-        }
-
 
         public static List<string> GalaxyS4()
         {
