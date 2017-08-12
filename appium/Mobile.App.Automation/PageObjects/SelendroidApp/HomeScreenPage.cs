@@ -3,6 +3,7 @@ using OpenQA.Selenium.Support.PageObjects;
 using OpenQA.Selenium;
 using OpenQA.Selenium.Appium.PageObjects.Attributes;
 using NUnit.Framework;
+using System;
 
 namespace KPE.Mobile.App.Automation.PageObjects.Selendroid
 {
@@ -24,9 +25,19 @@ namespace KPE.Mobile.App.Automation.PageObjects.Selendroid
         [FindsByAndroidUIAutomator(ID = "io.selendroid.testapp:id/my_text_field")]
         private IWebElement _myTextField = null;
 
+        [CacheLookup()]
+        [FindsByAndroidUIAutomator(ID = "io.selendroid.testapp:id/touchTest")]
+        private IWebElement _touchTest = null;
+
         public override bool IsLoaded()
         {
-            return IsVisible(_btnUserRegistration, _btnShowProgressBar, _checkBox, _myTextField);
+            return IsVisible(_btnUserRegistration, _btnShowProgressBar, _checkBox, _myTextField, _touchTest);
+        }
+
+        public TouchGesturesPage ClickTouchActions()
+        {
+            Click(_touchTest);
+            return SwitchPageObject<TouchGesturesPage>();
         }
 
         public HomeScreenPage(TestCaseSettings settings) : base(settings)

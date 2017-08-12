@@ -85,7 +85,7 @@ namespace KPE.Mobile.App.Automation.Tests.ChecklistApp
 
         public static List<string> GalaxyS4()
         {
-            return GalaxyS4Capabilities.MainActivity();
+            return GalaxyS4Capabilities.MainActivityCapabilites();
         }
 
     }

@@ -50,7 +50,7 @@ namespace KPE.Mobile.App.Automation.Tests.GmailApp
 
         public static List<string> GalaxyS4()
         {
-            return GalaxyS4Capabilities.WelcomeScreenActivity();
+            return GalaxyS4Capabilities.WelcomeScreenCapabilities();
         }
 
     }

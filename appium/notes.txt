@@ -84,6 +84,7 @@ adb -s DEVICEudid shell dumpsys activity activities
 # displays all the elements on the current activity displayed
 # Dump the top activity
 adb -s DEVICEudid shell dumpsys activity top
+adb -s a710eaec shell dumpsys activity top
 
 https://ar-g.github.io/ADB-Shell-Part-3/
 https://stackoverflow.com/questions/24429049/get-info-of-current-visible-fragments-in-android-dumpsys

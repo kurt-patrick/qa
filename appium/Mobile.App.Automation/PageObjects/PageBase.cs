@@ -13,6 +13,8 @@ using OpenQA.Selenium.Appium;
 using OpenQA.Selenium.Appium.Android;
 using KPE.Mobile.App.Automation.PageObjects;
 using OpenQA.Selenium.Appium.iOS;
+using OpenQA.Selenium.Appium.Interfaces;
+using OpenQA.Selenium.Appium.MultiTouch;
 
 namespace KPE.Mobile.App.Automation.PageObjects
 {
@@ -40,6 +42,28 @@ namespace KPE.Mobile.App.Automation.PageObjects
             _testCaseSettings = settings;
 
             PageFactory.InitElements(_driver, this, new AppiumPageObjectMemberDecorator(Constants.DefaultTimeOutDuration));
+        }
+
+        protected TouchAction GetTouchAction()
+        {
+            return new TouchAction(_driver);
+        }
+
+        protected MultiAction GetMultiAction()
+        {
+            return new MultiAction(_driver);
+        }
+
+        /// <summary>
+        /// Returns an instance of the AndroidDriver
+        /// If conversion fails an execption will be thrown
+        /// </summary>
+        /// <returns></returns>
+        public AndroidDriver<IWebElement> GetAndroidDriver()
+        {
+            AndroidDriver<IWebElement> retVal = _driver as AndroidDriver<IWebElement>;
+            return retVal ?? 
+                throw new InvalidCastException("Could not convert the current WebDriver into AndroidDriver<IWebElement>");
         }
 
         public abstract bool IsLoaded();
