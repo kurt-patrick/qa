@@ -1,17 +1,7 @@
 ﻿using KPE.Mobile.App.Automation.Common;
-using KPE.Mobile.App.Automation.Exceptions;
-using KPE.Mobile.App.Automation.Helpers;
-using KPE.Mobile.App.Automation.QA;
 using NUnit.Framework;
 using OpenQA.Selenium;
-using OpenQA.Selenium.Chrome;
-using OpenQA.Selenium.Firefox;
-using OpenQA.Selenium.IE;
-using OpenQA.Selenium.Remote;
 using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
 
 // Configure log4net using the .config file
 [assembly: log4net.Config.XmlConfigurator(ConfigFile = "log4net.config", Watch = true)]
@@ -21,10 +11,10 @@ using System.Text;
 
 namespace KPE.Mobile.App.Automation.Tests
 {
-
-    [TestFixtureSource("GetTestFixtureSourceData")]
     public abstract class TestBase
     {
+        public const string TestFixtureSourceName = "CapabilitiesList";
+
         protected IWebDriver _driver = null;
         protected TestCaseSettings _testCaseSettings = null;
         private static readonly log4net.ILog _log = log4net.LogManager.GetLogger(System.Reflection.MethodBase.GetCurrentMethod().DeclaringType);
@@ -82,49 +72,6 @@ namespace KPE.Mobile.App.Automation.Tests
         protected static void LogToConsole(string text)
         {
             Console.WriteLine(string.Format("{0}: {1}", text, DateTime.Now.ToString("hh:mm:ss:ffff")));
-        }
-
-
-        /// <summary>
-        /// 
-        /// </summary>
-        /// <returns>Data for at least 1 test and driver combination otherwise an exception is raised</returns>
-        public static IEnumerable<string> GetTestFixtureSourceData()
-        {
-            var retVal = new List<string>();
-
-            const string TFS_KEY = "tfs";
-
-            try
-            {
-                // If a config was specified from the command line, use that instead of defaults
-                string path = "tfs.defaults.txt";
-                if (TestContext.Parameters.Exists(TFS_KEY))
-                {
-                    path = TestContext.Parameters.Get(TFS_KEY);
-                    _log.Info("Using test fixture source from command line: " + path);
-                }
-
-                // all whitespace lines, empty lines, and, lines starting with "//" will be ignored
-                retVal =
-                    EnvironmentHelper.GetFileContentsAsList(path)
-                    .Where(line => !string.IsNullOrWhiteSpace(line) && !line.Trim().StartsWith("//"))
-                    .ToList();
-
-                // Verify at least 1 web driver configuration is specified
-                if(retVal.Count == 0)
-                {
-                    throw new InvalidStateException("At least 1 test fixture source value is required");
-                }
-
-            }
-            catch (Exception ex)
-            {
-                _log.Error(ex);
-                throw;
-            }
-
-            return retVal;
         }
 
     }

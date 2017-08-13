@@ -1,18 +1,11 @@
-﻿using KPE.Mobile.App.Automation.Helpers;
-using KPE.Mobile.App.Automation.PageObjects.Selendroid;
+﻿using KPE.Mobile.App.Automation.PageObjects.Selendroid;
 using KPE.Mobile.App.Automation.Tests.SelendroidApp;
 using NUnit.Framework;
-using System;
-using System.Collections.Generic;
-using System.Linq;
 
 namespace KPE.Mobile.App.Automation.Tests.Selendroid.ActivityTests
 {
-    [TestFixtureSource("GalaxyS4")]
-    class TouchGesturesActivityTests : TestBaseGeneric<HomeScreenPage>
+    class TouchGesturesActivityTests : SelendroidAppTestBaseGeneric<HomeScreenPage>
     {
-        private static readonly log4net.ILog _log = log4net.LogManager.GetLogger(System.Reflection.MethodBase.GetCurrentMethod().DeclaringType);
-
         private TouchGesturesPage _touchGesturesPage = null;
 
         public TouchGesturesActivityTests(string capabilities) 
@@ -29,7 +22,7 @@ namespace KPE.Mobile.App.Automation.Tests.Selendroid.ActivityTests
             if(_touchGesturesPage == null)
             {
                 _touchGesturesPage = _pageObject.ClickTouchActions();
-                Assert.AreEqual(_touchGesturesPage.GetAndroidDriver().CurrentActivity, GalaxyS4Capabilities.TouchGesturesActivity);
+                Assert.AreEqual(_touchGesturesPage.GetAndroidDriver().CurrentActivity, SelendroidAppCapabilities.TouchGesturesActivity);
                 Assert.IsTrue(_touchGesturesPage.IsLoaded(), "Activity is not loaded");
             }
         }
@@ -62,7 +55,7 @@ namespace KPE.Mobile.App.Automation.Tests.Selendroid.ActivityTests
         public void DoubleTapTest()
         {
             _touchGesturesPage
-                .DoubleTap(500)
+                .DoubleTap(550)
                 .AssertGestureText("ON DOUBLE TAP EVENT");
         }
 
@@ -100,11 +93,6 @@ namespace KPE.Mobile.App.Automation.Tests.Selendroid.ActivityTests
                 .FlickHorizontal(false)
                 .AssertGestureText("FLICK")
                 .AssertXCoords(false);
-        }
-
-        public static List<string> GalaxyS4()
-        {
-            return GalaxyS4Capabilities.HomeScreenCapabilites();
         }
 
     }

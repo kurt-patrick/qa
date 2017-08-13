@@ -1,14 +1,13 @@
-﻿using NUnit.Framework;
-using System.Collections.Generic;
-using KPE.Mobile.App.Automation.PageObjects.GmailApp;
-using System.Linq;
+﻿using KPE.Mobile.App.Automation.Helpers;
 using KPE.Mobile.App.Automation.PageObjects.ChecklistApp;
 using KPE.Mobile.App.Automation.PageObjects.Wrappers;
-using KPE.Mobile.App.Automation.Helpers;
+using NUnit.Framework;
+using System.Collections.Generic;
+using System.Linq;
 
 namespace KPE.Mobile.App.Automation.Tests.ChecklistApp
 {
-    [TestFixtureSource("GalaxyS4")]
+    [TestFixtureSource(TestFixtureSourceName)]
     class ChecklistTests : TestBaseGeneric<MainPage>
     {
         private static readonly log4net.ILog _log = log4net.LogManager.GetLogger(System.Reflection.MethodBase.GetCurrentMethod().DeclaringType);
@@ -83,9 +82,9 @@ namespace KPE.Mobile.App.Automation.Tests.ChecklistApp
 
         }
 
-        public static List<string> GalaxyS4()
+        public static List<string> CapabilitiesList()
         {
-            return GalaxyS4Capabilities.MainActivityCapabilites();
+            return ChecklistAppCapabilities.GetCapabilities();
         }
 
     }

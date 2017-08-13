@@ -1,12 +1,10 @@
-﻿using NUnit.Framework;
-using System.Collections.Generic;
-using KPE.Mobile.App.Automation.PageObjects.Selendroid;
+﻿using KPE.Mobile.App.Automation.PageObjects.Selendroid;
 using KPE.Mobile.App.Automation.Tests.SelendroidApp;
+using NUnit.Framework;
 
 namespace KPE.Mobile.App.Automation.Tests.Selendroid.LocatorTests
 {
-    [TestFixtureSource("GalaxyS4")]
-    class FindsByAndroidUiScrollableTests : TestBaseGeneric<FindsByAndroidUiSelectorPage>
+    class FindsByAndroidUiScrollableTests : SelendroidAppTestBaseGeneric<FindsByAndroidUiSelectorPage>
     {
         public FindsByAndroidUiScrollableTests(string capabilities) 
             : base(capabilities) 
@@ -35,11 +33,6 @@ namespace KPE.Mobile.App.Automation.Tests.Selendroid.LocatorTests
         public void FindsByTextContainsTest()
         {
             _pageObject.AssertByTextContains();
-        }
-
-        public static List<string> GalaxyS4()
-        {
-            return GalaxyS4Capabilities.HomeScreenCapabilites();
         }
 
     }
