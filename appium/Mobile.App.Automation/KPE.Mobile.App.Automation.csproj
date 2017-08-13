@@ -100,18 +100,18 @@
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="QA\ObjectQA.cs" />
     <Compile Include="QA\StringQA.cs" />
+    <Compile Include="Tests\Capabilities\Device.cs" />
+    <Compile Include="Tests\Capabilities\AppCapabilitiesBase.cs" />
     <Compile Include="Tests\ChecklistApp\ChecklistTests.cs" />
     <Compile Include="Tests\ChecklistApp\ChecklistAppCapabilities.cs" />
     <Compile Include="Tests\GmailApp\GmailAppCapabilities.cs" />
     <Compile Include="Tests\GmailApp\ConversationListTests.cs" />
     <Compile Include="Tests\SelendroidApp\ActivityTests\TouchGesturesActivityTests.cs" />
     <Compile Include="Tests\SelendroidApp\ActivityTests\RegisterUserActivityTests.cs" />
-    <Compile Include="Tests\DriverCapabilitiesBase.cs" />
     <Compile Include="Tests\SelendroidApp\SelendroidAppCapabilities.cs" />
     <Compile Include="Tests\SelendroidApp\LocatorTests\FindsByAndroidUiScrollableTests.cs" />
     <Compile Include="Tests\SelendroidApp\LocatorTests\FindsByAndroidUiSelectorTests.cs" />
     <Compile Include="Tests\SelendroidApp\LocatorTests\FindsByAndroidUIAutomatorTests.cs" />
-    <Compile Include="Tests\GalaxyS4Capabilities.cs" />
     <Compile Include="Tests\SelendroidApp\ActivityTests\HomeScreenActivityTests.cs">
       <SubType>Code</SubType>
     </Compile>
@@ -138,6 +138,7 @@
     <Content Include="tfs.defaults.txt">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
+    <None Include="Tests\Capabilities\GalaxyS4.json" />
   </ItemGroup>
   <ItemGroup>
     <Service Include="{82A7F48D-3B50-4B1E-B82E-3ADA8210C358}" />
