@@ -1,15 +1,11 @@
-﻿using NUnit.Framework;
-using System.Collections.Generic;
-using KPE.Mobile.App.Automation.PageObjects.Selendroid;
+﻿using KPE.Mobile.App.Automation.PageObjects.Selendroid;
 using KPE.Mobile.App.Automation.Tests.SelendroidApp;
+using NUnit.Framework;
 
 namespace KPE.Mobile.App.Automation.Tests.Selendroid.ActivityTests
 {
-    [TestFixtureSource("GalaxyS4")]
-    class HomeScreenActivityTests : TestBaseGeneric<HomeScreenPage>
+    class HomeScreenActivityTests : SelendroidAppTestBaseGeneric<HomeScreenPage>
     {
-        private static readonly log4net.ILog _log = log4net.LogManager.GetLogger(System.Reflection.MethodBase.GetCurrentMethod().DeclaringType);
-
         public HomeScreenActivityTests(string capabilities) 
             : base(capabilities) 
         {
@@ -50,11 +46,6 @@ namespace KPE.Mobile.App.Automation.Tests.Selendroid.ActivityTests
                 .AssertDialogIsClosed()
                 .HideKeyboard<RegisterUserPage>()
                 .AssertIsLoaded();
-        }
-
-        public static List<string> GalaxyS4()
-        {
-            return GalaxyS4Capabilities.HomeScreenCapabilites();
         }
 
     }

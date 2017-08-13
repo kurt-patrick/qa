@@ -101,19 +101,21 @@
     <Compile Include="QA\ObjectQA.cs" />
     <Compile Include="QA\StringQA.cs" />
     <Compile Include="Tests\ChecklistApp\ChecklistTests.cs" />
-    <Compile Include="Tests\ChecklistApp\GalaxyS4Capabilities.cs" />
-    <Compile Include="Tests\GmailApp\GalaxyS4Capabilities.cs" />
+    <Compile Include="Tests\ChecklistApp\ChecklistAppCapabilities.cs" />
+    <Compile Include="Tests\GmailApp\GmailAppCapabilities.cs" />
     <Compile Include="Tests\GmailApp\ConversationListTests.cs" />
     <Compile Include="Tests\SelendroidApp\ActivityTests\TouchGesturesActivityTests.cs" />
     <Compile Include="Tests\SelendroidApp\ActivityTests\RegisterUserActivityTests.cs" />
     <Compile Include="Tests\DriverCapabilitiesBase.cs" />
+    <Compile Include="Tests\SelendroidApp\SelendroidAppCapabilities.cs" />
     <Compile Include="Tests\SelendroidApp\LocatorTests\FindsByAndroidUiScrollableTests.cs" />
     <Compile Include="Tests\SelendroidApp\LocatorTests\FindsByAndroidUiSelectorTests.cs" />
     <Compile Include="Tests\SelendroidApp\LocatorTests\FindsByAndroidUIAutomatorTests.cs" />
-    <Compile Include="Tests\SelendroidApp\GalaxyS4Capabilities.cs" />
+    <Compile Include="Tests\GalaxyS4Capabilities.cs" />
     <Compile Include="Tests\SelendroidApp\ActivityTests\HomeScreenActivityTests.cs">
       <SubType>Code</SubType>
     </Compile>
+    <Compile Include="Tests\SelendroidApp\SelendroidAppTestBaseGeneric.cs" />
     <Compile Include="Tests\TestBase.cs" />
     <Compile Include="Common\TestCaseSettings.cs" />
     <Compile Include="Tests\TestBaseGeneric.cs" />

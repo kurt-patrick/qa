@@ -1,12 +1,10 @@
-﻿using NUnit.Framework;
-using System.Collections.Generic;
-using KPE.Mobile.App.Automation.PageObjects.Selendroid;
+﻿using KPE.Mobile.App.Automation.PageObjects.Selendroid;
 using KPE.Mobile.App.Automation.Tests.SelendroidApp;
+using NUnit.Framework;
 
 namespace KPE.Mobile.App.Automation.Tests.Selendroid.LocatorTests
 {
-    [TestFixtureSource("GalaxyS4")]
-    class FindsByAndroidUiSelectorTests : TestBaseGeneric<HomeScreenPage>
+    class FindsByAndroidUiSelectorTests : SelendroidAppTestBaseGeneric<HomeScreenPage>
     {
         RegisterUserPage _registerUserPage = null;
         public FindsByAndroidUiSelectorTests(string capabilities) 
@@ -31,11 +29,6 @@ namespace KPE.Mobile.App.Automation.Tests.Selendroid.LocatorTests
             // scroll to the last element
             uiScrollablePage.AssertScrollToBottomThenTop();
 
-        }
-
-        public static List<string> GalaxyS4()
-        {
-            return GalaxyS4Capabilities.HomeScreenCapabilites();
         }
 
     }

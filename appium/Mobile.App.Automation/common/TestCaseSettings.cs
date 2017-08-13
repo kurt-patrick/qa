@@ -1,6 +1,5 @@
 ﻿using KPE.Mobile.App.Automation.Helpers;
 using KPE.Mobile.App.Automation.QA;
-using NUnit.Framework;
 using OpenQA.Selenium;
 using OpenQA.Selenium.Appium;
 using OpenQA.Selenium.Remote;
@@ -8,8 +7,6 @@ using System;
 using System.Collections.Generic;
 using System.IO;
 using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.Xml;
 
 namespace KPE.Mobile.App.Automation.Common
@@ -62,11 +59,7 @@ namespace KPE.Mobile.App.Automation.Common
             _testFixtureData = testFixtureData;
 
             ParseCapabilitiesFromTestFixtureData();
-            GetNUnitParams();
             LoadUrlsFromSettingFile();
-
-            ApplySettingsFromNUnitParams();
-
         }
 
         private void LoadUrlsFromSettingFile()
@@ -221,32 +214,6 @@ namespace KPE.Mobile.App.Automation.Common
                     _log.Debug("BaseUrl (set): " + _baseUrl);
                 }
 
-            }
-        }
-
-        public Dictionary<string, string> NUnitParams
-        {
-            get { return _nunitParams; }
-            set { _nunitParams = value; }
-        }
-
-        private void GetNUnitParams()
-        {
-            // Parse the NUnit parameters passed via the command line
-            foreach (string key in TestContext.Parameters.Names)
-            {
-                // Refactor with Add (which then handles the url stuff below)
-                _nunitParams[key] = TestContext.Parameters.Get(key);
-            }
-        }
-
-        private void ApplySettingsFromNUnitParams()
-        {
-            // Update Settings.BaseUrl if it has been provided on the command line
-            string baseUrl = GetValueOrDefault(TestCaseSettings.eKeyType.NUnitParam, "url", "");
-            if (!string.IsNullOrWhiteSpace(baseUrl))
-            {
-                BaseUrl = baseUrl;
             }
         }
 

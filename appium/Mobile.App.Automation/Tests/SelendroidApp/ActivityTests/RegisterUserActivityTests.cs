@@ -1,16 +1,12 @@
-﻿using NUnit.Framework;
-using System.Collections.Generic;
+﻿using KPE.Mobile.App.Automation.Helpers;
 using KPE.Mobile.App.Automation.PageObjects.Selendroid;
 using KPE.Mobile.App.Automation.Tests.SelendroidApp;
-using KPE.Mobile.App.Automation.Helpers;
+using NUnit.Framework;
 
 namespace KPE.Mobile.App.Automation.Tests.Selendroid.ActivityTests
 {
-    [TestFixtureSource("GalaxyS4")]
-    class RegisterUserActivityTests : TestBaseGeneric<HomeScreenPage>
+    class RegisterUserActivityTests : SelendroidAppTestBaseGeneric<HomeScreenPage>
     {
-        private static readonly log4net.ILog _log = log4net.LogManager.GetLogger(System.Reflection.MethodBase.GetCurrentMethod().DeclaringType);
-
         public RegisterUserActivityTests(string capabilities) 
             : base(capabilities) 
         {
@@ -32,11 +28,6 @@ namespace KPE.Mobile.App.Automation.Tests.Selendroid.ActivityTests
             registrationPage.ProgrammingLanguage = RandomHelper.RandomString(new string[] { "Ruby", "PHP", "Scala", "Python" });
             registrationPage.AcceptAdds = true;
             registrationPage.ClickRegisterUser();
-        }
-
-        public static List<string> GalaxyS4()
-        {
-            return GalaxyS4Capabilities.HomeScreenCapabilites();
         }
 
     }

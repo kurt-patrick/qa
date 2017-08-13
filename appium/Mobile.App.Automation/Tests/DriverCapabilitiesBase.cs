@@ -7,27 +7,27 @@ namespace KPE.Mobile.App.Automation.Tests
     {
         private const string CapabilitiesFormatString = "device={0},deviceName={1},appPackage={2},appActivity={3}";
 
-        public string AppPackage { get; private set; } = null;
-        public string Device { get; private set; } = null;
-        public string DeviceName { get; private set; } = null;
+        public string Device { get; private set; } = "";
+        public string DeviceName { get; private set; } = "";
 
-        public DriverCapabilitiesBase(string device, string deviceName, string appPackage)
+        public DriverCapabilitiesBase(string device, string deviceName)
         {
             StringQA.ThrowIfNullOrWhiteSpace(device);
             StringQA.ThrowIfNullOrWhiteSpace(deviceName);
-            StringQA.ThrowIfNullOrWhiteSpace(appPackage);
             Device = device;
             DeviceName = deviceName;
-            AppPackage = appPackage;
         }
 
-        public List<string> GetCapabilitiesString(string appActivity)
+        public string GetCapabilitiesString(string appPackage, string appActivity)
         {
+            StringQA.ThrowIfNullOrWhiteSpace(appPackage);
             StringQA.ThrowIfNullOrWhiteSpace(appActivity);
-            return new List<string>()
-            {
-                string.Format(CapabilitiesFormatString, Device, DeviceName, AppPackage, appActivity)
-            };
+            return string.Format(CapabilitiesFormatString, Device, DeviceName, appPackage, appActivity);
+        }
+
+        public List<string> GetCapabilitiesList(string appPackage, string appActivity)
+        {
+            return new List<string>() { GetCapabilitiesString(appPackage, appActivity) };
         }
 
 
