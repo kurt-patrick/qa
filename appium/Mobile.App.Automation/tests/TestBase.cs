@@ -29,7 +29,6 @@ namespace KPE.Mobile.App.Automation.Tests
 
             // *** This object is very important, because:
             // - It parses the TestFixtureSource data that specifies which driver to use
-            // - It extract the NUnit params from the command line
             // - It Applies the additional driver capabilities from the settings file
             // - It Applies the URL to from the settings file
             _testCaseSettings = new TestCaseSettings(testFixtureData);

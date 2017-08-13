@@ -14,7 +14,7 @@ namespace KPE.Mobile.App.Automation.Tests.SelendroidApp
 
         public static List<string> CapabilitiesList()
         {
-            return SelendroidAppCapabilities.GetCapabilities();
+            return SelendroidAppCapabilities.Instance.GetCapabilitiesList();
         }
 
     }

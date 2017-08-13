@@ -84,7 +84,7 @@ namespace KPE.Mobile.App.Automation.Tests.ChecklistApp
 
         public static List<string> CapabilitiesList()
         {
-            return ChecklistAppCapabilities.GetCapabilities();
+            return ChecklistAppCapabilities.Instance.GetCapabilitiesList();
         }
 
     }

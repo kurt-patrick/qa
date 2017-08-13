@@ -1,23 +1,14 @@
-﻿using System.Collections.Generic;
-
-namespace KPE.Mobile.App.Automation.Tests.GmailApp
+﻿namespace KPE.Mobile.App.Automation.Tests.GmailApp
 {
-    public static class GmailAppCapabilities
+    public class GmailAppCapabilities : AppCapabilitiesBase
     {
-        public const string AppPackage = "com.google.android.gm";
         public const string ConversationListActivityGmail = ".ConversationListActivityGmail";
 
-        /// <summary>
-        /// TODO: Load the list of drivers from the hdd
-        /// </summary>
-        /// <returns></returns>
-        public static List<string> GetCapabilities()
+        public GmailAppCapabilities() : base("com.google.android.gm", ConversationListActivityGmail)
         {
-            return new List<string>
-            {
-                new GalaxyS4Capabilities().GetCapabilitiesString(AppPackage, ConversationListActivityGmail)
-            };
         }
+
+        public static GmailAppCapabilities Instance { get; } = new GmailAppCapabilities();
 
     }
 }

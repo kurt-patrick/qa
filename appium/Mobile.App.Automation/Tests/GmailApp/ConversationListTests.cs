@@ -51,7 +51,7 @@ namespace KPE.Mobile.App.Automation.Tests.GmailApp
 
         public static List<string> CapabilitiesList()
         {
-            return GmailAppCapabilities.GetCapabilities();
+            return GmailAppCapabilities.Instance.GetCapabilitiesList();
         }
 
     }

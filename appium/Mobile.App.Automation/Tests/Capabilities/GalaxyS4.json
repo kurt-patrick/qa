@@ -1,0 +1,8 @@
+﻿{
+	"description": "Real Samsung Galaxy S4 Device running Android 5.0.1",
+	"disabled": false,
+	"capabilities": [
+		{ "key": "device", "value": "Android" },
+		{ "key": "deviceName", "value": "a710eaec" }
+	]
+}
