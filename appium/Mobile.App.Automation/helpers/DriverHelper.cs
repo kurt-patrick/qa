@@ -1,19 +1,11 @@
-﻿using KPE.Mobile.App.Automation.Common;
-using KPE.Mobile.App.Automation.QA;
-using KPE.Mobile.App.Automation.Tests;
+﻿using KPE.Mobile.App.Automation.QA;
 using OpenQA.Selenium;
 using OpenQA.Selenium.Appium;
 using OpenQA.Selenium.Appium.Android;
 using OpenQA.Selenium.Appium.iOS;
-using OpenQA.Selenium.Firefox;
-using OpenQA.Selenium.IE;
-using OpenQA.Selenium.PhantomJS;
 using OpenQA.Selenium.Remote;
 using System;
-using System.Collections.Generic;
 using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace KPE.Mobile.App.Automation.Helpers
 {

@@ -22,8 +22,10 @@ namespace KPE.Mobile.App.Automation.Tests.Capabilities
         {
             if(_allDevices.Count == 0)
             {
-                // TODO: Get path from settings file
-                var filePaths = Directory.GetFiles(@"D:\github\qa\appium\Mobile.App.Automation\Tests\Capabilities", "*.json");
+                var appDomain = System.AppDomain.CurrentDomain.GetAssemblies();
+
+                var folderPath = Settings.Instance().DeviceCapabilitiesFolderPath;
+                var filePaths = Directory.GetFiles(folderPath, "*.json");
                 filePaths.ToList().ForEach(path =>
                 {
                     _allDevices.Add(JsonConvert.DeserializeObject<Device>(File.ReadAllText(path)));

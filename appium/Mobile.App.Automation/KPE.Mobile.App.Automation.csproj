@@ -66,7 +66,6 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Common\Constants.cs" />
-    <Compile Include="Common\Settings.cs" />
     <Compile Include="Exceptions\InvalidParameterException.cs" />
     <Compile Include="Exceptions\InvalidStateException.cs" />
     <Compile Include="Helpers\DriverHelper.cs" />
@@ -116,6 +115,7 @@
       <SubType>Code</SubType>
     </Compile>
     <Compile Include="Tests\SelendroidApp\SelendroidAppTestBaseGeneric.cs" />
+    <Compile Include="Tests\Settings.cs" />
     <Compile Include="Tests\TestBase.cs" />
     <Compile Include="Common\TestCaseSettings.cs" />
     <Compile Include="Tests\TestBaseGeneric.cs" />
@@ -139,6 +139,9 @@
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
     <None Include="Tests\Capabilities\GalaxyS4.json" />
+    <None Include="Tests\Settings.json">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
   </ItemGroup>
   <ItemGroup>
     <Service Include="{82A7F48D-3B50-4B1E-B82E-3ADA8210C358}" />

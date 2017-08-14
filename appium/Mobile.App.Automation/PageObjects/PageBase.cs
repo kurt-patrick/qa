@@ -335,50 +335,6 @@ namespace KPE.Mobile.App.Automation.PageObjects
         }
 
         /// <summary>
-        /// Call this method if the page object has set the full url to the page in the constructor
-        /// </summary>
-        public virtual void NavigateTo()
-        {
-            NavigateTo(null);
-        }
-
-        /// <summary>
-        /// Naviagate to the url provided
-        /// </summary>
-        /// <param name="url"></param>
-        protected void NavigateTo(string url)
-        {
-            // Neither URL is set
-            string baseUrl = _testCaseSettings.BaseUrl;
-            if (string.IsNullOrWhiteSpace(url) && string.IsNullOrWhiteSpace(baseUrl))
-            {
-                throw new ArgumentException("A url must be provided and/or Settings.BaseUrl needs to be set");
-            }
-
-            // Relative path has been provided however BaseUrl has not been set
-            bool startsWithHttp = url != null && url.StartsWith("http", StringComparison.CurrentCultureIgnoreCase);
-            if (!startsWithHttp && string.IsNullOrWhiteSpace(baseUrl))
-            {
-                throw new ArgumentException("Settings.BaseUrl needs to be set");
-            }
-
-            string theUrl = startsWithHttp ? url : string.Concat(baseUrl, url).Trim();
-
-            try
-            {
-                _log.Debug("Url = " + theUrl);
-                _driver.Url = theUrl;
-                _driver.Navigate();
-            }
-            catch (Exception)
-            {
-                _log.Error("Failed to navigate to url: " + theUrl);
-                throw;
-            }
-
-        }
-
-        /// <summary>
         /// Looks for the element specified using the wait specified
         /// The element only needs to exist - it does not need to be visible for success
         /// </summary>
