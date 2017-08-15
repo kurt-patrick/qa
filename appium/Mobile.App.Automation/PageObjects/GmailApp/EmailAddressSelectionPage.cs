@@ -1,7 +1,7 @@
-﻿using KPE.Mobile.App.Automation.Common;
-using OpenQA.Selenium.Support.PageObjects;
+﻿using OpenQA.Selenium;
+using OpenQA.Selenium.Appium;
 using OpenQA.Selenium.Appium.PageObjects.Attributes;
-using OpenQA.Selenium;
+using OpenQA.Selenium.Support.PageObjects;
 
 namespace KPE.Mobile.App.Automation.PageObjects.GmailApp
 {
@@ -11,7 +11,7 @@ namespace KPE.Mobile.App.Automation.PageObjects.GmailApp
         [FindsByAndroidUIAutomator(ID = "action_done")]
         private IWebElement _takeMeToGmail = null;
 
-        public EmailAddressSelectionPage(TestCaseSettings settings) : base(settings)
+        public EmailAddressSelectionPage(AppiumDriver<IWebElement> driver) : base(driver)
         {
         }
 

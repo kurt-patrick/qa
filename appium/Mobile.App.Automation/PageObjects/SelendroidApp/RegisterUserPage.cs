@@ -1,9 +1,9 @@
-﻿using KPE.Mobile.App.Automation.Common;
-using OpenQA.Selenium.Support.PageObjects;
-using OpenQA.Selenium;
-using OpenQA.Selenium.Appium.PageObjects.Attributes;
+﻿using KPE.Mobile.App.Automation.Helpers;
 using NUnit.Framework;
-using KPE.Mobile.App.Automation.Helpers;
+using OpenQA.Selenium;
+using OpenQA.Selenium.Appium;
+using OpenQA.Selenium.Appium.PageObjects.Attributes;
+using OpenQA.Selenium.Support.PageObjects;
 
 namespace KPE.Mobile.App.Automation.PageObjects.Selendroid
 {
@@ -64,7 +64,7 @@ namespace KPE.Mobile.App.Automation.PageObjects.Selendroid
         public string ProgrammingLanguage
         {
             get => GetText(_progLangEle);
-            set => new DropDownHelper(_testCaseSettings).SelectByText(_progLangEle, value);
+            set => new DropDownHelper(_driver).SelectByText(_progLangEle, value);
         }
 
         public bool AcceptAdds
@@ -73,7 +73,7 @@ namespace KPE.Mobile.App.Automation.PageObjects.Selendroid
             set => ToggleCheckBox(_acceptAddsEle, value);
         }
 
-        public RegisterUserPage(TestCaseSettings settings) : base(settings)
+        public RegisterUserPage(AppiumDriver<IWebElement> driver) : base(driver)
         {
         }
 

@@ -1,6 +1,6 @@
-﻿using System;
-using KPE.Mobile.App.Automation.Common;
-using OpenQA.Selenium;
+﻿using OpenQA.Selenium;
+using OpenQA.Selenium.Appium;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 
@@ -12,7 +12,7 @@ namespace KPE.Mobile.App.Automation.PageObjects.Wrappers
         private IWebElement _element;
         private List<string> _textCache = new List<string>();
 
-        public ListViewRowWrapper(TestCaseSettings settings, IWebElement element, string xPath) : base(settings)
+        public ListViewRowWrapper(AppiumDriver<IWebElement> driver, IWebElement element, string xPath) : base(driver)
         {
             _element = element;
             _xPathBase = xPath;

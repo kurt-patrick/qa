@@ -1,4 +1,5 @@
-﻿using KPE.Mobile.App.Automation.PageObjects.Selendroid;
+﻿using KPE.Mobile.App.Automation.Configuration;
+using KPE.Mobile.App.Automation.PageObjects.Selendroid;
 using KPE.Mobile.App.Automation.Tests.SelendroidApp;
 using NUnit.Framework;
 
@@ -8,8 +9,8 @@ namespace KPE.Mobile.App.Automation.Tests.Selendroid.ActivityTests
     {
         private TouchGesturesPage _touchGesturesPage = null;
 
-        public TouchGesturesActivityTests(string capabilities) 
-            : base(capabilities) 
+        public TouchGesturesActivityTests(DriverCapabilities caps) 
+            : base(caps) 
         {
         }
 
@@ -22,7 +23,6 @@ namespace KPE.Mobile.App.Automation.Tests.Selendroid.ActivityTests
             if(_touchGesturesPage == null)
             {
                 _touchGesturesPage = _pageObject.ClickTouchActions();
-                Assert.AreEqual(_touchGesturesPage.GetAndroidDriver().CurrentActivity, SelendroidAppCapabilities.TouchGesturesActivity);
                 Assert.IsTrue(_touchGesturesPage.IsLoaded(), "Activity is not loaded");
             }
         }

@@ -4,6 +4,7 @@ using KPE.Mobile.App.Automation.Common;
 using OpenQA.Selenium;
 using OpenQA.Selenium.Appium.iOS;
 using KPE.Mobile.App.Automation.PageObjects;
+using OpenQA.Selenium.Appium;
 
 namespace KPE.Mobile.App.Automation.Helpers
 {
@@ -20,7 +21,7 @@ namespace KPE.Mobile.App.Automation.Helpers
     {
         private const string MobileScroll = "mobile: scroll";
 
-        public IosJavaScriptExecutor(TestCaseSettings settings) : base(settings)
+        public IosJavaScriptExecutor(AppiumDriver<IWebElement> driver) : base(driver)
         {
         }
 

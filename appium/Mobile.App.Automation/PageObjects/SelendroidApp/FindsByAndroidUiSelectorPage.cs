@@ -2,6 +2,7 @@
 using OpenQA.Selenium;
 using OpenQA.Selenium.Appium.PageObjects.Attributes;
 using NUnit.Framework;
+using OpenQA.Selenium.Appium;
 
 namespace KPE.Mobile.App.Automation.PageObjects.Selendroid
 {
@@ -24,7 +25,7 @@ namespace KPE.Mobile.App.Automation.PageObjects.Selendroid
         [FindsByAndroidUIAutomator(AndroidUIAutomator = "new UiSelector().textContains(\"accept adds\")")]
         private IWebElement _byTextContains = null;
 
-        public FindsByAndroidUiSelectorPage(TestCaseSettings settings) : base(settings)
+        public FindsByAndroidUiSelectorPage(AppiumDriver<IWebElement> driver) : base(driver)
         {
         }
 

@@ -1,4 +1,5 @@
-﻿using KPE.Mobile.App.Automation.Helpers;
+﻿using KPE.Mobile.App.Automation.Configuration;
+using KPE.Mobile.App.Automation.Helpers;
 using KPE.Mobile.App.Automation.PageObjects.ChecklistApp;
 using KPE.Mobile.App.Automation.PageObjects.Wrappers;
 using NUnit.Framework;
@@ -12,7 +13,7 @@ namespace KPE.Mobile.App.Automation.Tests.ChecklistApp
     {
         private static readonly log4net.ILog _log = log4net.LogManager.GetLogger(System.Reflection.MethodBase.GetCurrentMethod().DeclaringType);
 
-        public ChecklistTests(string capabilities) 
+        public ChecklistTests(DriverCapabilities capabilities) 
             : base(capabilities) 
         {
         }
@@ -82,9 +83,9 @@ namespace KPE.Mobile.App.Automation.Tests.ChecklistApp
 
         }
 
-        public static List<string> CapabilitiesList()
+        public static List<DriverCapabilities> CapabilitiesList()
         {
-            return ChecklistAppCapabilities.Instance.GetCapabilitiesList();
+            return DriverCapabilities.ChecklistApp();
         }
 
     }

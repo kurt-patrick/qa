@@ -1,12 +1,9 @@
-﻿using KPE.Mobile.App.Automation.Common;
-using OpenQA.Selenium;
-using OpenQA.Selenium.Appium.PageObjects.Attributes;
+﻿using KPE.Mobile.App.Automation.Helpers;
 using NUnit.Framework;
-using System;
-using OpenQA.Selenium.Support.PageObjects;
-using KPE.Mobile.App.Automation.Helpers;
+using OpenQA.Selenium;
 using OpenQA.Selenium.Appium;
-using OpenQA.Selenium.Appium.Android;
+using OpenQA.Selenium.Appium.PageObjects.Attributes;
+using OpenQA.Selenium.Support.PageObjects;
 
 namespace KPE.Mobile.App.Automation.PageObjects.Selendroid
 {
@@ -24,7 +21,7 @@ namespace KPE.Mobile.App.Automation.PageObjects.Selendroid
         [FindsByAndroidUIAutomator(ID = "inputUsername")]
         private IWebElement _usernameEle = null;
 
-        public FindsByAndroidUiScrollablePage(TestCaseSettings settings) : base(settings)
+        public FindsByAndroidUiScrollablePage(AppiumDriver<IWebElement> driver) : base(driver)
         {
         }
 

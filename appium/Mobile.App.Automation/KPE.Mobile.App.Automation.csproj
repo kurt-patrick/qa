@@ -99,15 +99,12 @@
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="QA\ObjectQA.cs" />
     <Compile Include="QA\StringQA.cs" />
-    <Compile Include="Tests\Capabilities\Device.cs" />
-    <Compile Include="Tests\Capabilities\AppCapabilitiesBase.cs" />
+    <Compile Include="Configuration\DriverCapabilities.cs" />
+    <Compile Include="Configuration\Devices\Device.cs" />
     <Compile Include="Tests\ChecklistApp\ChecklistTests.cs" />
-    <Compile Include="Tests\ChecklistApp\ChecklistAppCapabilities.cs" />
-    <Compile Include="Tests\GmailApp\GmailAppCapabilities.cs" />
     <Compile Include="Tests\GmailApp\ConversationListTests.cs" />
     <Compile Include="Tests\SelendroidApp\ActivityTests\TouchGesturesActivityTests.cs" />
     <Compile Include="Tests\SelendroidApp\ActivityTests\RegisterUserActivityTests.cs" />
-    <Compile Include="Tests\SelendroidApp\SelendroidAppCapabilities.cs" />
     <Compile Include="Tests\SelendroidApp\LocatorTests\FindsByAndroidUiScrollableTests.cs" />
     <Compile Include="Tests\SelendroidApp\LocatorTests\FindsByAndroidUiSelectorTests.cs" />
     <Compile Include="Tests\SelendroidApp\LocatorTests\FindsByAndroidUIAutomatorTests.cs" />
@@ -115,9 +112,8 @@
       <SubType>Code</SubType>
     </Compile>
     <Compile Include="Tests\SelendroidApp\SelendroidAppTestBaseGeneric.cs" />
-    <Compile Include="Tests\Settings.cs" />
+    <Compile Include="Configuration\Settings.cs" />
     <Compile Include="Tests\TestBase.cs" />
-    <Compile Include="Common\TestCaseSettings.cs" />
     <Compile Include="Tests\TestBaseGeneric.cs" />
     <Compile Include="Tests\UiSelectorChainedHelperTests.cs" />
     <Compile Include="Tests\UiSelectorHelperTests.cs" />
@@ -129,28 +125,15 @@
       <SubType>Designer</SubType>
     </None>
     <None Include="packages.config" />
-    <Content Include="tfs.grid.local.txt">
+    <None Include="Configuration\Devices\GalaxyS4.json">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
-    </Content>
-    <Content Include="tfs.testing.txt">
-      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
-    </Content>
-    <Content Include="tfs.defaults.txt">
-      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
-    </Content>
-    <None Include="Tests\Capabilities\GalaxyS4.json" />
-    <None Include="Tests\Settings.json">
+    </None>
+    <None Include="Configuration\Settings.json">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </None>
   </ItemGroup>
   <ItemGroup>
     <Service Include="{82A7F48D-3B50-4B1E-B82E-3ADA8210C358}" />
-  </ItemGroup>
-  <ItemGroup>
-    <Content Include="settings.xml">
-      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
-      <SubType>Designer</SubType>
-    </Content>
   </ItemGroup>
   <ItemGroup />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

@@ -1,20 +1,18 @@
-﻿using OpenQA.Selenium;
-using OpenQA.Selenium.Interactions;
-using OpenQA.Selenium.Support.PageObjects;
-using OpenQA.Selenium.Support.UI;
+﻿using KPE.Mobile.App.Automation.Common;
+using KPE.Mobile.App.Automation.Configuration;
 using KPE.Mobile.App.Automation.Helpers;
 using KPE.Mobile.App.Automation.QA;
+using OpenQA.Selenium;
+using OpenQA.Selenium.Appium;
+using OpenQA.Selenium.Appium.Android;
+using OpenQA.Selenium.Appium.iOS;
+using OpenQA.Selenium.Appium.MultiTouch;
+using OpenQA.Selenium.Appium.PageObjects;
+using OpenQA.Selenium.Support.PageObjects;
+using OpenQA.Selenium.Support.UI;
 using System;
 using System.Globalization;
 using System.Linq;
-using KPE.Mobile.App.Automation.Common;
-using OpenQA.Selenium.Appium.PageObjects;
-using OpenQA.Selenium.Appium;
-using OpenQA.Selenium.Appium.Android;
-using KPE.Mobile.App.Automation.PageObjects;
-using OpenQA.Selenium.Appium.iOS;
-using OpenQA.Selenium.Appium.Interfaces;
-using OpenQA.Selenium.Appium.MultiTouch;
 
 namespace KPE.Mobile.App.Automation.PageObjects
 {
@@ -29,17 +27,15 @@ namespace KPE.Mobile.App.Automation.PageObjects
 
         protected readonly AppiumDriver<IWebElement> _driver = null;
         protected readonly DriverType _driverType = DriverType.NotSet;
-        protected readonly TestCaseSettings _testCaseSettings = null;
 
         private static readonly log4net.ILog _log = log4net.LogManager.GetLogger(System.Reflection.MethodBase.GetCurrentMethod().DeclaringType);
 
-        public PageBase(TestCaseSettings settings)
+        public PageBase(AppiumDriver<IWebElement> driver)
         {
-            ObjectQA.ThrowIfNull(settings);
+            ObjectQA.ThrowIfNull(driver);
 
-            _driver = settings.GetWebDriver();
+            _driver = driver;
             _driverType = GetDriverType(_driver);
-            _testCaseSettings = settings;
 
             PageFactory.InitElements(_driver, this, new AppiumPageObjectMemberDecorator(Constants.DefaultTimeOutDuration));
         }
@@ -130,7 +126,7 @@ namespace KPE.Mobile.App.Automation.PageObjects
 
         public T SwitchPageObject<T>() where T : PageBase
         {
-            return PageObjectFactory.Create<T>(_testCaseSettings);
+            return PageObjectFactory.Create<T>(_driver);
         }
 
         /// <summary>
@@ -479,7 +475,7 @@ namespace KPE.Mobile.App.Automation.PageObjects
         protected bool TryClickAndValidate(By by, Func<bool> condition)
         {
             var element = FindVisibleElement(by);
-            return TryClickAndValidate(element, condition, _testCaseSettings.DefaultTimeOut);
+            return TryClickAndValidate(element, condition, Settings.Instance().DefaultTimeOut);
         }
 
         protected bool TryClickAndValidate(IWebElement element, Func<bool> condition, int timeOut)

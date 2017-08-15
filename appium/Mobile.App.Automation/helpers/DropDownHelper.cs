@@ -1,6 +1,6 @@
-﻿using KPE.Mobile.App.Automation.Common;
-using KPE.Mobile.App.Automation.QA;
+﻿using KPE.Mobile.App.Automation.QA;
 using OpenQA.Selenium;
+using OpenQA.Selenium.Appium;
 using System;
 
 namespace KPE.Mobile.App.Automation.Helpers
@@ -9,7 +9,7 @@ namespace KPE.Mobile.App.Automation.Helpers
     {
         private readonly IWebElement _element = null;
 
-        public DropDownHelper(TestCaseSettings settings) : base(settings)
+        public DropDownHelper(AppiumDriver<IWebElement> driver) : base(driver)
         {
         }
 

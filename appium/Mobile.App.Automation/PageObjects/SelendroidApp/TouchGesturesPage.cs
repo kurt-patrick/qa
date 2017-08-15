@@ -1,16 +1,12 @@
-﻿using KPE.Mobile.App.Automation.Common;
-using OpenQA.Selenium.Support.PageObjects;
-using OpenQA.Selenium;
-using OpenQA.Selenium.Appium.PageObjects.Attributes;
+﻿using KPE.Mobile.App.Automation.Helpers;
 using NUnit.Framework;
-using System;
+using OpenQA.Selenium;
 using OpenQA.Selenium.Appium;
-using OpenQA.Selenium.Appium.MultiTouch;
-using OpenQA.Selenium.Appium.Interfaces;
-using OpenQA.Selenium.Support.UI;
-using System.Text.RegularExpressions;
+using OpenQA.Selenium.Appium.PageObjects.Attributes;
+using OpenQA.Selenium.Support.PageObjects;
+using System;
 using System.Collections.Generic;
-using KPE.Mobile.App.Automation.Helpers;
+using System.Text.RegularExpressions;
 
 namespace KPE.Mobile.App.Automation.PageObjects.Selendroid
 {
@@ -41,7 +37,7 @@ namespace KPE.Mobile.App.Automation.PageObjects.Selendroid
         private By _xCoordsLocator = By.Id("text_view3");   // vx: -259.7958 pps
         private By _yCoordsLocator = By.Id("text_view4");   // vy: 19.668333 pps
 
-        public TouchGesturesPage(TestCaseSettings settings) : base(settings)
+        public TouchGesturesPage(AppiumDriver<IWebElement> driver) : base(driver)
         {
         }
 

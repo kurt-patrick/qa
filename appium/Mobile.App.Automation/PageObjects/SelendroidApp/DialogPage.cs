@@ -1,8 +1,8 @@
-﻿using KPE.Mobile.App.Automation.Common;
-using OpenQA.Selenium.Support.PageObjects;
+﻿using NUnit.Framework;
 using OpenQA.Selenium;
+using OpenQA.Selenium.Appium;
 using OpenQA.Selenium.Appium.PageObjects.Attributes;
-using NUnit.Framework;
+using OpenQA.Selenium.Support.PageObjects;
 
 namespace KPE.Mobile.App.Automation.PageObjects.Selendroid
 {
@@ -16,7 +16,7 @@ namespace KPE.Mobile.App.Automation.PageObjects.Selendroid
         [FindsByAndroidUIAutomator(ID = "android:id/progress_percent")]
         private IWebElement _progressPercent = null;
 
-        public DialogPage(TestCaseSettings settings) : base(settings)
+        public DialogPage(AppiumDriver<IWebElement> driver) : base(driver)
         {
         }
 

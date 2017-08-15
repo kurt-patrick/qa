@@ -1,4 +1,5 @@
-﻿using KPE.Mobile.App.Automation.PageObjects.Selendroid;
+﻿using KPE.Mobile.App.Automation.Configuration;
+using KPE.Mobile.App.Automation.PageObjects.Selendroid;
 using KPE.Mobile.App.Automation.Tests.SelendroidApp;
 using NUnit.Framework;
 
@@ -6,8 +7,8 @@ namespace KPE.Mobile.App.Automation.Tests.Selendroid.ActivityTests
 {
     class HomeScreenActivityTests : SelendroidAppTestBaseGeneric<HomeScreenPage>
     {
-        public HomeScreenActivityTests(string capabilities) 
-            : base(capabilities) 
+        public HomeScreenActivityTests(DriverCapabilities caps) 
+            : base(caps) 
         {
         }
 

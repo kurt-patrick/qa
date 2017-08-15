@@ -1,7 +1,7 @@
-﻿using KPE.Mobile.App.Automation.Common;
+﻿using NUnit.Framework;
 using OpenQA.Selenium;
+using OpenQA.Selenium.Appium;
 using OpenQA.Selenium.Appium.PageObjects.Attributes;
-using NUnit.Framework;
 
 namespace KPE.Mobile.App.Automation.PageObjects.Selendroid
 {
@@ -27,7 +27,7 @@ namespace KPE.Mobile.App.Automation.PageObjects.Selendroid
         [FindsByAndroidUIAutomator(Accessibility = "visibleButtonTestCD", Priority = 2)]
         private IWebElement _bySecondPriority = null;
 
-        public FindsByAndroidUIAutomatorPage(TestCaseSettings settings) : base(settings)
+        public FindsByAndroidUIAutomatorPage(AppiumDriver<IWebElement> driver) : base(driver)
         {
         }
 

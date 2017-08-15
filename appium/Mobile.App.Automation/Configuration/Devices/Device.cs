@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using System.IO;
 using System.Linq;
 
-namespace KPE.Mobile.App.Automation.Tests.Capabilities
+namespace KPE.Mobile.App.Automation.Configuration.Devices
 {
     public static class DeviceFactory
     {
@@ -49,12 +49,4 @@ namespace KPE.Mobile.App.Automation.Tests.Capabilities
 
     }
 
-    public class Capability
-    {
-        [JsonProperty("key", NullValueHandling = NullValueHandling.Ignore)]
-        public string Key { get; set; } = "";
-
-        [JsonProperty("value", NullValueHandling = NullValueHandling.Ignore)]
-        public string Value { get; set; } = "";
-    }
 }
