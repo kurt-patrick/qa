@@ -2,6 +2,7 @@
 using OpenQA.Selenium.Support.PageObjects;
 using OpenQA.Selenium.Appium.PageObjects.Attributes;
 using OpenQA.Selenium;
+using OpenQA.Selenium.Appium;
 
 namespace KPE.Mobile.App.Automation.PageObjects.ChecklistApp
 {
@@ -18,10 +19,10 @@ namespace KPE.Mobile.App.Automation.PageObjects.ChecklistApp
         public ChecklistPage Checklist { get; private set; }
         public MenuBarPage MenuBar { get; private set; }
 
-        public MainPage(TestCaseSettings settings) : base(settings)
+        public MainPage(AppiumDriver<IWebElement> driver) : base(driver)
         {
-            Checklist = new ChecklistPage(settings);
-            MenuBar = new MenuBarPage(settings);
+            Checklist = new ChecklistPage(driver);
+            MenuBar = new MenuBarPage(driver);
         }
 
         public override bool IsLoaded()

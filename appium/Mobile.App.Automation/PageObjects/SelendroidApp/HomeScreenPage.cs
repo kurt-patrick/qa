@@ -1,9 +1,8 @@
-﻿using KPE.Mobile.App.Automation.Common;
-using OpenQA.Selenium.Support.PageObjects;
+﻿using NUnit.Framework;
 using OpenQA.Selenium;
+using OpenQA.Selenium.Appium;
 using OpenQA.Selenium.Appium.PageObjects.Attributes;
-using NUnit.Framework;
-using System;
+using OpenQA.Selenium.Support.PageObjects;
 
 namespace KPE.Mobile.App.Automation.PageObjects.Selendroid
 {
@@ -40,7 +39,7 @@ namespace KPE.Mobile.App.Automation.PageObjects.Selendroid
             return SwitchPageObject<TouchGesturesPage>();
         }
 
-        public HomeScreenPage(TestCaseSettings settings) : base(settings)
+        public HomeScreenPage(AppiumDriver<IWebElement> driver) : base(driver)
         {
         }
 

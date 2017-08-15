@@ -1,6 +1,8 @@
-﻿using KPE.Mobile.App.Automation.Common;
+﻿using KPE.Mobile.App.Automation.Configuration;
+using KPE.Mobile.App.Automation.Helpers;
 using NUnit.Framework;
 using OpenQA.Selenium;
+using OpenQA.Selenium.Appium;
 using System;
 
 // Configure log4net using the .config file
@@ -15,25 +17,16 @@ namespace KPE.Mobile.App.Automation.Tests
     {
         public const string TestFixtureSourceName = "CapabilitiesList";
 
-        protected IWebDriver _driver = null;
-        protected TestCaseSettings _testCaseSettings = null;
+        protected AppiumDriver<IWebElement> _driver = null;
         private static readonly log4net.ILog _log = log4net.LogManager.GetLogger(System.Reflection.MethodBase.GetCurrentMethod().DeclaringType);
 
         /// <summary>
         /// For each entry in TestFixtureSource this constructor will be called once per line
         /// </summary>
-        /// <param name="testFixtureData"></param>
-        public TestBase(string testFixtureData)
+        /// <param name="caps"></param>
+        public TestBase(DriverCapabilities caps)
         {
-            _log.Info("testFixtureData: " + testFixtureData);
-
-            // *** This object is very important, because:
-            // - It parses the TestFixtureSource data that specifies which driver to use
-            // - It Applies the additional driver capabilities from the settings file
-            // - It Applies the URL to from the settings file
-            _testCaseSettings = new TestCaseSettings(testFixtureData);
-            _driver = _testCaseSettings.GetWebDriver();
-
+            _driver = DriverHelper.CreateAppiumWebDriver(caps);
         }
 
         [OneTimeSetUp]

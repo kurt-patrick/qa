@@ -1,3 +1,0 @@
-// note: the value remote is required so that the framework uses the RemoteWebDriver
-remote=grid-local, browserName=chrome
-

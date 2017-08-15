@@ -1,2 +1,0 @@
-appium=AndroidDriver, browserName=chrome
-

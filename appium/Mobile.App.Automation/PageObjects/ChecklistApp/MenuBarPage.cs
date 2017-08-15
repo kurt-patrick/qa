@@ -2,6 +2,7 @@
 using OpenQA.Selenium.Support.PageObjects;
 using OpenQA.Selenium.Appium.PageObjects.Attributes;
 using OpenQA.Selenium;
+using OpenQA.Selenium.Appium;
 
 namespace KPE.Mobile.App.Automation.PageObjects.ChecklistApp
 {
@@ -15,7 +16,7 @@ namespace KPE.Mobile.App.Automation.PageObjects.ChecklistApp
         [FindsByAndroidUIAutomator(ID = "menu_add")]
         private IWebElement _add = null;
 
-        public MenuBarPage(TestCaseSettings settings) : base(settings)
+        public MenuBarPage(AppiumDriver<IWebElement> driver) : base(driver)
         {
         }
 

@@ -3,6 +3,7 @@ using OpenQA.Selenium.Support.PageObjects;
 using OpenQA.Selenium.Appium.PageObjects.Attributes;
 using OpenQA.Selenium;
 using NUnit.Framework;
+using OpenQA.Selenium.Appium;
 
 namespace KPE.Mobile.App.Automation.PageObjects.ChecklistApp
 {
@@ -20,7 +21,7 @@ namespace KPE.Mobile.App.Automation.PageObjects.ChecklistApp
         [FindsByAndroidUIAutomator(ID = "edit_add_back")]
         private IWebElement _add = null;
 
-        public EditItemPage(TestCaseSettings settings) : base(settings)
+        public EditItemPage(AppiumDriver<IWebElement> driver) : base(driver)
         {
         }
 

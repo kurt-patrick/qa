@@ -1,11 +1,11 @@
-﻿using KPE.Mobile.App.Automation.QA;
+﻿using KPE.Mobile.App.Automation.Configuration;
+using KPE.Mobile.App.Automation.QA;
 using OpenQA.Selenium;
 using OpenQA.Selenium.Appium;
 using OpenQA.Selenium.Appium.Android;
 using OpenQA.Selenium.Appium.iOS;
 using OpenQA.Selenium.Remote;
 using System;
-using System.Linq;
 
 namespace KPE.Mobile.App.Automation.Helpers
 {
@@ -14,44 +14,43 @@ namespace KPE.Mobile.App.Automation.Helpers
         private static readonly log4net.ILog _log = log4net.LogManager.GetLogger(System.Reflection.MethodBase.GetCurrentMethod().DeclaringType);
 
         /// <summary>
-        /// Configure the driver for sauce labs grid
-        /// https://wiki.saucelabs.com/display/DOCS/Platform+Configurator#/
-        /// https://github.com/saucelabs-sample-test-frameworks/CSharp-Nunit-Selenium/blob/master/ParallelSelenium/ParallelSearchTests.cs
-        /// </summary>
-        public static IWebDriver CreateRemoteWebDriver(string uri, DesiredCapabilities capabilities)
-        {
-            StringQA.ThrowIfNullOrWhiteSpace(uri);
-            ObjectQA.ThrowIfNull(capabilities);
-
-            return new RemoteWebDriver(new Uri(uri), capabilities);
-        }
-
-        /// <summary>
         /// Creates the Appium driver either AndroidDriver or IOSDriver
         /// </summary>
         /// <param name="driverType">Android, AndroidDriver or IOSDriver</param>
         /// <param name="uri">The uri of the Appium node server</param>
-        /// <param name="capabilities"></param>
+        /// <param name="driverCaps"></param>
         /// <returns>AndroidDriver or IOSDriver</returns>
-        public static AppiumDriver<IWebElement> CreateAppiumWebDriver(string driverType, string uri, DesiredCapabilities capabilities)
+        public static AppiumDriver<IWebElement> CreateAppiumWebDriver(DriverCapabilities driverCaps)
         {
-            StringQA.ThrowIfNullOrWhiteSpace(driverType);
-            StringQA.ThrowIfNullOrWhiteSpace(uri);
-            ObjectQA.ThrowIfNull(capabilities);
+            ObjectQA.ThrowIfNull(driverCaps);
+            ObjectQA.ThrowIfIEnumerableIsEmpty(driverCaps.Capabilities);
 
-            if (new string[] { "AndroidDriver", "Android" }.Contains(driverType, StringComparer.CurrentCultureIgnoreCase))
+            string device = driverCaps.GetCapability("device");
+            var appiumUri = new Uri(Settings.Instance().AppiumHubUri);
+            var commandTimeout = TimeSpan.FromMinutes(10);
+            var desiredCaps = GetDesiredCapabilities(driverCaps);
+
+            if ("Android".Equals(device))
             {
-                return new AndroidDriver<IWebElement>(new Uri(uri), capabilities, TimeSpan.FromMinutes(10));
+                return new AndroidDriver<IWebElement>(appiumUri, desiredCaps, commandTimeout);
             }
 
-            else if (string.Equals("IOSDriver", driverType, StringComparison.CurrentCultureIgnoreCase))
+            if ("iOS".Equals(device))
             {
-                return new IOSDriver<IWebElement>(new Uri(uri), capabilities, TimeSpan.FromMinutes(10));
+                return new IOSDriver<IWebElement>(appiumUri, desiredCaps, commandTimeout);
             }
 
-            throw new NotImplementedException("No logic has been implemented for appium driver type: " + driverType);
+            throw new NotImplementedException("No logic has been implemented for appium driver type: " + device);
 
         }
+
+        private static DesiredCapabilities GetDesiredCapabilities(DriverCapabilities driverCaps)
+        {
+            var desiredCaps = new DesiredCapabilities();
+            driverCaps.Capabilities.ForEach(cap => desiredCaps.SetCapability(cap.Key, cap.Value));
+            return desiredCaps;
+        }
+
 
     }
 }

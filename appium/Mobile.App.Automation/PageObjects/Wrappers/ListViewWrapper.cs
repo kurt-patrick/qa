@@ -1,8 +1,8 @@
-﻿using KPE.Mobile.App.Automation.Common;
-using OpenQA.Selenium;
+﻿using KPE.Mobile.App.Automation.QA;
 using NUnit.Framework;
+using OpenQA.Selenium;
+using OpenQA.Selenium.Appium;
 using System.Collections.Generic;
-using KPE.Mobile.App.Automation.QA;
 
 namespace KPE.Mobile.App.Automation.PageObjects.Wrappers
 {
@@ -14,7 +14,7 @@ namespace KPE.Mobile.App.Automation.PageObjects.Wrappers
         /// <summary>
         /// I have only added android here, however you would also do the same for iOS
         /// </summary>
-        public ListViewWrapper(TestCaseSettings settings, string xPathAndroid) : base(settings)
+        public ListViewWrapper(AppiumDriver<IWebElement> driver, string xPathAndroid) : base(driver)
         {
             StringQA.ThrowIfNullOrWhiteSpace(xPathAndroid);
 
@@ -58,7 +58,7 @@ namespace KPE.Mobile.App.Automation.PageObjects.Wrappers
             {
                 // will look something like //android.widget.ListView/*
                 xPath = string.Format("{0}[{1}]", _listViewRowsXPath, i + 1);
-                retVal.Add(new ListViewRowWrapper(_testCaseSettings, children[i], xPath));
+                retVal.Add(new ListViewRowWrapper(_driver, children[i], xPath));
             }
             return retVal;
         }

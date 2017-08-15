@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using KPE.Mobile.App.Automation.PageObjects.GmailApp;
 using System.Linq;
+using KPE.Mobile.App.Automation.Configuration;
 
 namespace KPE.Mobile.App.Automation.Tests.GmailApp
 {
@@ -10,8 +11,8 @@ namespace KPE.Mobile.App.Automation.Tests.GmailApp
     {
         private static readonly log4net.ILog _log = log4net.LogManager.GetLogger(System.Reflection.MethodBase.GetCurrentMethod().DeclaringType);
 
-        public ConversationListTests(string capabilities) 
-            : base(capabilities) 
+        public ConversationListTests(DriverCapabilities caps) 
+            : base(caps) 
         {
         }
 
@@ -49,9 +50,9 @@ namespace KPE.Mobile.App.Automation.Tests.GmailApp
                     .SwitchPageObject<ConversationListPage>();
         }
 
-        public static List<string> CapabilitiesList()
+        public static List<DriverCapabilities> CapabilitiesList()
         {
-            return GmailAppCapabilities.Instance.GetCapabilitiesList();
+            return DriverCapabilities.GmailApp();
         }
 
     }

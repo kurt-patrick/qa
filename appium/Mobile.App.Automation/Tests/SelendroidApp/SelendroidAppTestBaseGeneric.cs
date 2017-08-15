@@ -1,4 +1,5 @@
-﻿using NUnit.Framework;
+﻿using KPE.Mobile.App.Automation.Configuration;
+using NUnit.Framework;
 using System.Collections.Generic;
 
 namespace KPE.Mobile.App.Automation.Tests.SelendroidApp
@@ -8,13 +9,13 @@ namespace KPE.Mobile.App.Automation.Tests.SelendroidApp
     {
         protected static readonly log4net.ILog _log = log4net.LogManager.GetLogger(System.Reflection.MethodBase.GetCurrentMethod().DeclaringType);
 
-        public SelendroidAppTestBaseGeneric(string testFixtureData) : base(testFixtureData)
+        public SelendroidAppTestBaseGeneric(DriverCapabilities caps) : base(caps)
         {
         }
 
-        public static List<string> CapabilitiesList()
+        public static List<DriverCapabilities> CapabilitiesList()
         {
-            return SelendroidAppCapabilities.Instance.GetCapabilitiesList();
+            return DriverCapabilities.SelendroidApp();
         }
 
     }
