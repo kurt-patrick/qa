@@ -3,6 +3,7 @@ using KPE.Mobile.App.Automation.Helpers;
 using NUnit.Framework;
 using OpenQA.Selenium;
 using OpenQA.Selenium.Appium;
+using OpenQA.Selenium.Appium.Service;
 using System;
 
 // Configure log4net using the .config file
@@ -17,6 +18,7 @@ namespace KPE.Mobile.App.Automation.Tests
     {
         public const string TestFixtureSourceName = "CapabilitiesList";
 
+        private AppiumLocalService _appiumLocalService = null;
         protected AppiumDriver<IWebElement> _driver = null;
         private static readonly log4net.ILog _log = log4net.LogManager.GetLogger(System.Reflection.MethodBase.GetCurrentMethod().DeclaringType);
 
@@ -26,7 +28,13 @@ namespace KPE.Mobile.App.Automation.Tests
         /// <param name="caps"></param>
         public TestBase(DriverCapabilities caps)
         {
-            _driver = DriverHelper.CreateAppiumWebDriver(caps);
+            AppiumLocalServiceHelper
+                .Build(caps, out _appiumLocalService)
+                .Start()
+                .WaitUntilRunning(10)
+                .AssertIsRunning();
+
+            _driver = DriverHelper.CreateAppiumWebDriver(caps, _appiumLocalService.ServiceUrl);
         }
 
         [OneTimeSetUp]
@@ -54,11 +62,13 @@ namespace KPE.Mobile.App.Automation.Tests
             //LogToConsole("TestContext.Parameters.Count: ");
             if (_driver != null)
             {
-                // Warning: The driver.quit statement is required, otherwise the test continues to execute, leading to a timeout.
+                // NOTE: The driver.quit statement is required, otherwise the test continues to execute, leading to a timeout.
                 // https://www.browserstack.com/automate/c-sharp
                 _driver.Quit();
-                _driver.Dispose();
             }
+
+            ObjectHelper.TryDispose(_driver);
+            ObjectHelper.TryDispose(_appiumLocalService);
         }
 
         protected static void LogToConsole(string text)

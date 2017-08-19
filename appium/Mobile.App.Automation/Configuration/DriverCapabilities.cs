@@ -1,6 +1,7 @@
 ﻿using KPE.Mobile.App.Automation.Configuration.Devices;
 using KPE.Mobile.App.Automation.QA;
 using Newtonsoft.Json;
+using OpenQA.Selenium.Remote;
 using System.Collections.Generic;
 using System.Linq;
 
@@ -35,7 +36,7 @@ namespace KPE.Mobile.App.Automation.Configuration
         /// </summary>
         /// <param name="device"></param>
         /// <returns>device={0},deviceName={1},appPackage={2},appActivity={3}</returns>
-        private string GetCapabilitiesString(Device device)
+        private string BuildDeviceSpecificCapabilitiesString(Device device)
         {
             var retVal = new System.Text.StringBuilder();
 
@@ -49,11 +50,19 @@ namespace KPE.Mobile.App.Automation.Configuration
             return retVal.ToString();
         }
 
+        public DesiredCapabilities DesiredCapabilities()
+        {
+            var retVal = new DesiredCapabilities();
+            Capabilities.ForEach(cap => retVal.SetCapability(cap.Key, cap.Value));
+            return retVal;
+        }
+
         /// <summary>
         /// For each enabled device file generate the capabilities string
         /// </summary>
         /// <returns></returns>
-        public List<Device> GetCapabilitiesList()
+        /*
+        public List<Device> EnabledDevicesCapabilitiesStrings()
         {
             var devices = DeviceFactory.GetEnabledDevices();
             if(devices.Count == 0)
@@ -62,9 +71,10 @@ namespace KPE.Mobile.App.Automation.Configuration
             }
 
             var retVal = new List<string>();
-            devices.ForEach(device => retVal.Add(GetCapabilitiesString(device)));
+            devices.ForEach(device => retVal.Add(BuildDeviceSpecificCapabilitiesString(device)));
             return null;
         }
+        */
 
         public static List<DriverCapabilities> ChecklistApp()
         {
