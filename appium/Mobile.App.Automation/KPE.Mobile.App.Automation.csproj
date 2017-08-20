@@ -65,12 +65,14 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Helpers\AppiumLocalServiceHelper.cs" />
     <Compile Include="Common\Constants.cs" />
     <Compile Include="Exceptions\InvalidParameterException.cs" />
     <Compile Include="Exceptions\InvalidStateException.cs" />
     <Compile Include="Helpers\DriverHelper.cs" />
     <Compile Include="Helpers\EnvironmentHelper.cs" />
     <Compile Include="Helpers\DropDownHelper.cs" />
+    <Compile Include="Helpers\ObjectHelper.cs" />
     <Compile Include="Helpers\RandomHelper.cs" />
     <Compile Include="Helpers\StringHelper.cs" />
     <Compile Include="Helpers\UiSelectorChainedHelper.cs" />
