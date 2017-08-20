@@ -31,7 +31,7 @@ namespace KPE.Mobile.App.Automation.Tests
             AppiumLocalServiceHelper
                 .Build(caps, out _appiumLocalService)
                 .Start()
-                .WaitUntilRunning(10)
+                .WaitForIsRunning(10)
                 .AssertIsRunning();
 
             _driver = DriverHelper.CreateAppiumWebDriver(caps, _appiumLocalService.ServiceUrl);
