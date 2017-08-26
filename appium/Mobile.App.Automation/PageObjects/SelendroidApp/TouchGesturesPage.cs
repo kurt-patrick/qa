@@ -146,7 +146,7 @@ namespace KPE.Mobile.App.Automation.PageObjects.Selendroid
                 return "ON DOUBLE TAP EVENT".Equals(GetText(_gestureType, true));
             };
 
-            WaitHelper.TryWaitForCondition(condition, 30);
+            TryHelper.TryWaitForCondition(condition, 30);
 
             return this;
         }

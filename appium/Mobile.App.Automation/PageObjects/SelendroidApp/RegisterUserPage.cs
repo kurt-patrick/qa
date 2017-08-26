@@ -85,7 +85,7 @@ namespace KPE.Mobile.App.Automation.PageObjects.Selendroid
 
         public override bool IsLoaded()
         {
-            return IsVisible(_usernameEle, _emailEle, _passwordEle);//, _nameEle, _progLangEle, _acceptAddsEle, _registerUserEle);
+            return IsVisible(_usernameEle, _emailEle, _passwordEle);
         }
 
         public RegisterUserPage AssertIsLoaded()

@@ -6,7 +6,7 @@ namespace KPE.Mobile.App.Automation.PageObjects.ChecklistApp
 {
     class ChecklistPage : ListViewWrapper
     {
-        public ChecklistPage(AppiumDriver<IWebElement> driver) : base(driver, "//android.widget.ListView")
+        public ChecklistPage(AppiumDriver<IWebElement> driver) : base(driver)
         {
         }
 

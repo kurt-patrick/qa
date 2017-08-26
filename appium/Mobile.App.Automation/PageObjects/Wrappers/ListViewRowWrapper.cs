@@ -8,25 +8,15 @@ namespace KPE.Mobile.App.Automation.PageObjects.Wrappers
 {
     public class ListViewRowWrapper : PageBase
     {
-        private string _xPathBase;
         private IWebElement _element;
+        private bool _flgLoaded = false;
         private List<string> _textCache = new List<string>();
+        private string _xPathBase;
 
         public ListViewRowWrapper(AppiumDriver<IWebElement> driver, IWebElement element, string xPath) : base(driver)
         {
             _element = element;
             _xPathBase = xPath;
-
-            // Get ALL of the child elements linked to this element
-            var children = _driver.FindElementsByXPath(_xPathBase + "//*");
-
-            // For each child element - grab its text and save it
-            foreach(IWebElement child in children)
-            {
-                AddTextToCache(child.Text);
-                AddTextToCache(GetAttribute(child, "contentDescription"));
-            }
-
         }
 
         public void TapRow()
@@ -36,22 +26,22 @@ namespace KPE.Mobile.App.Automation.PageObjects.Wrappers
 
         public bool HasText(string item)
         {
-            return _textCache.Contains(item);
+            return TextCache().Contains(item);
         }
 
         public bool HasText(List<string> items)
         {
-            return _textCache.Intersect(items).Count() == items.Count;
+            return TextCache().Intersect(items).Count() == items.Count;
         }
 
         public bool Contains(string text)
         {
-            return _textCache.FirstOrDefault(s => s.Contains(text)) != null;
+            return TextCache().FirstOrDefault(s => s.Contains(text)) != null;
         }
 
         public int IndexOf(string item)
         {
-            return _textCache.FindIndex(s => s.Equals(item));
+            return TextCache().FindIndex(s => s.Equals(item));
         }
 
         private void AddTextToCache(string text)
@@ -77,12 +67,30 @@ namespace KPE.Mobile.App.Automation.PageObjects.Wrappers
 
         public List<string> TextCache()
         {
+            if(!_flgLoaded)
+            {
+                // Get ALL of the child elements linked to this element
+                //var children = _driver.FindElementsByXPath(_xPathBase + "//*[(@text != '') or (@contentDescription != '')]").Where(ele => ele.Displayed);
+                //var children = _driver.FindElementsByXPath(_xPathBase + "//*[(@text != '')]").Where(ele => ele.Displayed);
+                var children = _driver.FindElementsByXPath(_xPathBase + "//*[(@text != '')]");
+
+                // For each child element - grab its text and save it
+                foreach (IWebElement child in children)
+                {
+                    AddTextToCache(child.Text);
+                    //AddTextToCache(GetAttribute(child, "contentDescription"));
+                }
+
+                // Only load the child elements once
+                _flgLoaded = true;
+            }
+
             return _textCache;
         }
 
         public override bool IsLoaded()
         {
-            throw new NotImplementedException();
+            return _flgLoaded;
         }
 
     }

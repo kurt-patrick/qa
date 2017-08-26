@@ -6,7 +6,7 @@ namespace KPE.Mobile.App.Automation.PageObjects.GmailApp
 {
     class ConversationListPage : ListViewWrapper
     {
-        public ConversationListPage(AppiumDriver<IWebElement> driver) : base(driver, "//android.widget.ListView")
+        public ConversationListPage(AppiumDriver<IWebElement> driver) : base(driver)
         {
         }
 
