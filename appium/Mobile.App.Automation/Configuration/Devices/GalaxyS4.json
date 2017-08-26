@@ -3,6 +3,7 @@
 	"disabled": false,
 	"capabilities": [
 		{ "key": "device", "value": "Android" },
-		{ "key": "deviceName", "value": "a710eaec" }
+		{ "key": "deviceName", "value": "a710eaec" },
+		{ "key": "disableAndroidWatchers", "value": "true" }
 	]
 }

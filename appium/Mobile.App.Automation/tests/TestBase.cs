@@ -1,4 +1,5 @@
 ﻿using KPE.Mobile.App.Automation.Configuration;
+using KPE.Mobile.App.Automation.Exceptions;
 using KPE.Mobile.App.Automation.Helpers;
 using NUnit.Framework;
 using OpenQA.Selenium;
@@ -28,12 +29,21 @@ namespace KPE.Mobile.App.Automation.Tests
         /// <param name="caps"></param>
         public TestBase(DriverCapabilities caps)
         {
-            AppiumLocalServiceHelper
-                .Build(caps, out _appiumLocalService)
-                .Start()
-                .WaitForIsRunning(10)
-                .AssertIsRunning();
+            var deviceName = caps.GetCapability("deviceName");
 
+            // Check the android device is running
+            InvalidStateException.ThrowIfFalse(
+                ProcessHelper.IsAndroidDeviceRunning(deviceName), 
+                "Android device is not running. deviceName=" + deviceName);
+
+            // Start the appium local service
+            _appiumLocalService =
+                AppiumLocalServiceBuilder
+                    .Build(caps)
+                    .Start()
+                    .AssertIsRunning(10);
+
+            // Create the web driver for the specified device/emulator with desired caps
             _driver = DriverHelper.CreateAppiumWebDriver(caps, _appiumLocalService.ServiceUrl);
         }
 
