@@ -5,9 +5,11 @@ using KPE.Mobile.App.Automation.QA;
 using OpenQA.Selenium;
 using OpenQA.Selenium.Appium;
 using OpenQA.Selenium.Appium.Android;
+using OpenQA.Selenium.Appium.Interfaces;
 using OpenQA.Selenium.Appium.iOS;
 using OpenQA.Selenium.Appium.MultiTouch;
 using OpenQA.Selenium.Appium.PageObjects;
+using OpenQA.Selenium.Internal;
 using OpenQA.Selenium.Support.PageObjects;
 using OpenQA.Selenium.Support.UI;
 using System;
@@ -237,6 +239,33 @@ namespace KPE.Mobile.App.Automation.PageObjects
 
         /// <summary>
         /// Simulates pressing the keyboard on an input
+        /// </summary>
+        /// <param name="element"></param>
+        /// <param name="text"></param>
+        protected void SetImmediateValue(IWebElement element, string text, bool clear, bool hideKeyboard)
+        {
+            AppiumWebElement appiumWebElement = element as AppiumWebElement;
+            if(appiumWebElement == null)
+            {
+                if (element is IWrapsElement wrapsElement)
+                {
+                    appiumWebElement = wrapsElement.WrappedElement as AppiumWebElement;
+                }
+            }
+
+            if (appiumWebElement != null)
+            {
+                if (clear) { appiumWebElement.Clear(); }
+
+                appiumWebElement.SetImmediateValue(text);
+
+                if(hideKeyboard) { TryHelper.TryCatch(() => HideKeyboard()); }
+            }
+
+        }
+
+        /// <summary>
+        /// Simulates pressing the keyboard on an input
         /// If clear is true the inputs contents will be cleared
         /// </summary>
         /// <param name="element"></param>
@@ -289,7 +318,7 @@ namespace KPE.Mobile.App.Automation.PageObjects
 
         protected bool WaitForVisible(IWebElement element)
         {
-            return WaitHelper.TryWaitForCondition(() => element != null && element.Displayed, Common.Constants.DefaultTimeOut);
+            return TryHelper.TryWaitForCondition(() => element != null && element.Displayed, Common.Constants.DefaultTimeOut);
         }
 
         protected void WaitForTextToBePresentInElement(IWebElement element, string text)
@@ -415,7 +444,7 @@ namespace KPE.Mobile.App.Automation.PageObjects
 
         protected bool TryWaitForStaleOrHidden(IWebElement element)
         {
-            return WaitHelper.TryWaitForCondition(() => element == null || element.Displayed == false);
+            return TryHelper.TryWaitForCondition(() => element == null || element.Displayed == false);
         }
 
         /// <summary>
@@ -482,7 +511,7 @@ namespace KPE.Mobile.App.Automation.PageObjects
         {
             ObjectQA.ThrowIfNull(element);
             element.Click();
-            return WaitHelper.TryWaitForCondition(condition, timeOut);
+            return TryHelper.TryWaitForCondition(condition, timeOut);
         }
 
         public bool IsChecked(IWebElement element)
@@ -504,7 +533,7 @@ namespace KPE.Mobile.App.Automation.PageObjects
                 return IsChecked(element) == check;
             };
 
-            return WaitHelper.TryWaitForCondition(condition);
+            return TryHelper.TryWaitForCondition(condition);
         }
 
     }

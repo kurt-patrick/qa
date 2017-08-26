@@ -28,7 +28,7 @@ namespace KPE.Mobile.App.Automation.Helpers
                     .UsingAnyFreePort()
                     .WithArguments(serverOptions)
                     .WithIPAddress("127.0.0.1")
-                    .WithStartUpTimeOut(TimeSpan.FromSeconds(10))
+                    .WithStartUpTimeOut(TimeSpan.FromSeconds(30))
                     .Build();
 
             return new AppiumLocalServiceBuilder(appiumLocalService);
@@ -47,7 +47,7 @@ namespace KPE.Mobile.App.Automation.Helpers
         public AppiumLocalService AssertIsRunning(int timeout)
         {
             ObjectQA.ThrowIfNull(LocalService);
-            WaitHelper.TryWaitForCondition(() => LocalService.IsRunning, timeout);
+            TryHelper.TryWaitForCondition(() => LocalService.IsRunning, timeout);
             Assert.IsTrue(LocalService.IsRunning, "Appium local service is not running");
             return LocalService;
         }
