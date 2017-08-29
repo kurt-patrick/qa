@@ -6,7 +6,7 @@ using OpenQA.Selenium.Appium;
 
 namespace KPE.Mobile.App.Automation.PageObjects.ChecklistApp
 {
-    class MainPage : PageBase
+    internal class MainPage : PageBase
     {
         [CacheLookup()]
         [FindsByAndroidUIAutomator(ID = "main_listview")]

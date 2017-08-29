@@ -80,14 +80,15 @@ namespace KPE.Mobile.App.Automation.PageObjects.Wrappers
             return retVal;
         }
 
-        public static int IndexOf(List<ListViewRowWrapper> rows, List<string> hasText)
+        public static int IndexOf(List<ListViewRowWrapper> rows, params string[] text)
         {
-            return rows.FindIndex(row => row.HasText(hasText));
+            var list = text.ToList();
+            return rows.FindIndex(row => row.HasText(list));
         }
 
-        public static ListViewRowWrapper GetRow(List<ListViewRowWrapper> rows, List<string> hasText)
+        public static ListViewRowWrapper GetRow(List<ListViewRowWrapper> rows, params string[] text)
         {
-            int index = IndexOf(rows, hasText);
+            int index = IndexOf(rows, text);
             return (index) >= 0 ? rows[index] : null;
         }
 
