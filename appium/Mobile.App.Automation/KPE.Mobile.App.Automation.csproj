@@ -104,7 +104,10 @@
     <Compile Include="QA\StringQA.cs" />
     <Compile Include="Configuration\DriverCapabilities.cs" />
     <Compile Include="Configuration\Devices\Device.cs" />
-    <Compile Include="Tests\ChecklistApp\ChecklistTests.cs" />
+    <Compile Include="Tests\ChecklistApp\DeleteTests.cs" />
+    <Compile Include="Tests\ChecklistApp\EditTests.cs" />
+    <Compile Include="Tests\ChecklistApp\ChecklistTestBase.cs" />
+    <Compile Include="Tests\ChecklistApp\AddTests.cs" />
     <Compile Include="Tests\GmailApp\ConversationListTests.cs" />
     <Compile Include="Tests\SelendroidApp\ActivityTests\TouchGesturesActivityTests.cs" />
     <Compile Include="Tests\SelendroidApp\ActivityTests\RegisterUserActivityTests.cs" />

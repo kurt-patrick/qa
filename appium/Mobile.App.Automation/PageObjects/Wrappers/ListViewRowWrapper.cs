@@ -39,6 +39,12 @@ namespace KPE.Mobile.App.Automation.PageObjects.Wrappers
             return TextCache().FirstOrDefault(s => s.Contains(text)) != null;
         }
 
+        internal bool ToggleCheckBox(bool check)
+        {
+            var element = _element.FindElement(By.ClassName("android.widget.CheckBox"));
+            return ToggleCheckBox(element, check);
+        }
+
         public int IndexOf(string item)
         {
             return TextCache().FindIndex(s => s.Equals(item));

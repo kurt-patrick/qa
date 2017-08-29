@@ -8,40 +8,11 @@ using System.Linq;
 
 namespace KPE.Mobile.App.Automation.Tests.ChecklistApp
 {
-    [TestFixtureSource(TestFixtureSourceName)]
-    class ChecklistTests : TestBaseGeneric<MainPage>
+    internal class EditTests : ChecklistTestBase
     {
-        private static readonly log4net.ILog _log = log4net.LogManager.GetLogger(System.Reflection.MethodBase.GetCurrentMethod().DeclaringType);
-
-        public ChecklistTests(DriverCapabilities capabilities) 
+        public EditTests(DriverCapabilities capabilities) 
             : base(capabilities) 
         {
-        }
-
-        [Test]
-        public void AddItemTest()
-        {
-            Assert.IsTrue(_pageObject.IsLoaded());
-
-            int preCount = _pageObject.Checklist.GetRowCount();
-
-            _pageObject.MenuBar.ClickAdd();
-
-            var newText = StringHelper.RandomString(7);
-            _pageObject
-                .SwitchPageObject<EditItemPage>()
-                .EnterText(newText)
-                .ClickAddDone();
-
-            _pageObject.Checklist.WaitForRowCount(preCount + 1);
-
-            Assert.AreEqual(preCount + 1, _pageObject.Checklist.GetRowCount());
-
-            var rows = _pageObject.Checklist.GetRows();
-            int indexOf = ListViewWrapper.IndexOf(rows, new List<string> { newText });
-
-            Assert.AreNotEqual(-1, indexOf);
-
         }
 
         [Test]
@@ -74,18 +45,13 @@ namespace KPE.Mobile.App.Automation.Tests.ChecklistApp
             rows = _pageObject.Checklist.GetRows();
 
             // assert the updated text is visible
-            int indexOf = ListViewWrapper.IndexOf(rows, new List<string> { newText });
+            int indexOf = ListViewWrapper.IndexOf(rows, newText);
             Assert.AreNotEqual(-1, indexOf);
 
             // asert the original text is not displayed
-            indexOf = ListViewWrapper.IndexOf(rows, new List<string> { originalText });
+            indexOf = ListViewWrapper.IndexOf(rows, originalText);
             Assert.AreEqual(-1, indexOf);
 
-        }
-
-        public static List<DriverCapabilities> CapabilitiesList()
-        {
-            return DriverCapabilities.ChecklistApp();
         }
 
     }
