@@ -24,6 +24,12 @@ namespace KPE.Mobile.App.Automation.PageObjects.Wrappers
             Click(_element);
         }
 
+        public T TapRow<T>() where T : PageBase
+        {
+            Click(_element);
+            return PageObjectFactory.Create<T>(_driver);
+        }
+
         public bool HasText(string item)
         {
             return TextCache().Contains(item);

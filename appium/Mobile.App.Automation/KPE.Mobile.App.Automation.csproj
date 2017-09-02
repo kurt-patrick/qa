@@ -80,7 +80,6 @@
     <Compile Include="Helpers\UiScrollableHelper.cs" />
     <Compile Include="Helpers\UiSelectorHelper.cs" />
     <Compile Include="Helpers\TryHelper.cs" />
-    <Compile Include="PageObjects\ChecklistApp\ChecklistPage.cs" />
     <Compile Include="PageObjects\ChecklistApp\EditItemPage.cs" />
     <Compile Include="PageObjects\ChecklistApp\MenuBarPage.cs" />
     <Compile Include="PageObjects\ChecklistApp\MainPage.cs" />

@@ -11,8 +11,8 @@ namespace KPE.Mobile.App.Automation.PageObjects.Wrappers
     {
         private const string DefaultAndroidLocator = "//android.widget.ListView";
 
-        private string _listViewXPath = null;
-        private string _listViewRowsXPath = null;
+        protected string _listViewXPath = null;
+        protected string _listViewRowsXPath = null;
 
         /// <summary>
         /// If parent element is of type ListView use this constructor
@@ -49,7 +49,7 @@ namespace KPE.Mobile.App.Automation.PageObjects.Wrappers
             return this;
         }
 
-        public ListViewWrapper WaitForRowCount(int count)
+        public virtual ListViewWrapper WaitForRowCount(int count)
         {
             WaitUntil((args) => GetRowCount() == count);
             return this;
@@ -62,6 +62,8 @@ namespace KPE.Mobile.App.Automation.PageObjects.Wrappers
 
         private List<IWebElement> GetVisibleChildRows()
         {
+            // NOTE: If the implicit wait is not set the performance is very slow e.g. 40 second wait when no rows exist
+            _driver.Manage().Timeouts().ImplicitWait = System.TimeSpan.FromMilliseconds(100);
             return _driver.FindElementsByXPath(_listViewRowsXPath).Where(ele => ele.Displayed).ToList();
         }
 
@@ -84,6 +86,12 @@ namespace KPE.Mobile.App.Automation.PageObjects.Wrappers
         {
             var list = text.ToList();
             return rows.FindIndex(row => row.HasText(list));
+        }
+
+        public ListViewRowWrapper GetRow(params string[] text)
+        {
+            var rows = GetRows();
+            return GetRow(rows, text);
         }
 
         public static ListViewRowWrapper GetRow(List<ListViewRowWrapper> rows, params string[] text)

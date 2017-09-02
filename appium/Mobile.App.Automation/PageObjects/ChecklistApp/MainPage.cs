@@ -3,6 +3,7 @@ using OpenQA.Selenium.Support.PageObjects;
 using OpenQA.Selenium.Appium.PageObjects.Attributes;
 using OpenQA.Selenium;
 using OpenQA.Selenium.Appium;
+using KPE.Mobile.App.Automation.PageObjects.Wrappers;
 
 namespace KPE.Mobile.App.Automation.PageObjects.ChecklistApp
 {
@@ -16,12 +17,12 @@ namespace KPE.Mobile.App.Automation.PageObjects.ChecklistApp
         [FindsByAndroidUIAutomator(ID = "main_menu_bar")]
         private IWebElement _menuBar = null;
 
-        public ChecklistPage Checklist { get; private set; }
+        public ListViewWrapper Checklist { get; private set; }
         public MenuBarPage MenuBar { get; private set; }
 
         public MainPage(AppiumDriver<IWebElement> driver) : base(driver)
         {
-            Checklist = new ChecklistPage(driver);
+            Checklist = new ListViewWrapper(driver);
             MenuBar = new MenuBarPage(driver);
         }
 

@@ -25,9 +25,10 @@ namespace KPE.Mobile.App.Automation.PageObjects.ChecklistApp
             return IsVisible(_delete, _add);
         }
 
-        public void ClickAdd()
+        public EditItemPage ClickAdd()
         {
             Click(_add);
+            return new EditItemPage(_driver);
         }
 
         public void ClickDelete()

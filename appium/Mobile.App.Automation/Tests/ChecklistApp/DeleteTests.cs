@@ -2,6 +2,7 @@
 using KPE.Mobile.App.Automation.Helpers;
 using KPE.Mobile.App.Automation.PageObjects.Wrappers;
 using NUnit.Framework;
+using System.Collections.Generic;
 using System.Linq;
 
 namespace KPE.Mobile.App.Automation.Tests.ChecklistApp
@@ -13,12 +14,27 @@ namespace KPE.Mobile.App.Automation.Tests.ChecklistApp
         {
         }
 
-        [Test]
-        public void DeleteSingleItemTest()
+        private List<ListViewRowWrapper> AddItem()
         {
             Assert.IsTrue(_pageObject.IsLoaded());
 
             var rows = _pageObject.Checklist.GetRows();
+            int preCount = rows.Count;
+
+            _pageObject.MenuBar
+                .ClickAdd()
+                .EnterText(RandomHelper.RandomString(6))
+                .ClickAddDone();
+
+            _pageObject.Checklist.WaitForRowCount(preCount + 1);
+
+            return _pageObject.Checklist.GetRows();
+        }
+
+        [Test]
+        public void DeleteSingleItemTest()
+        {
+            var rows = AddItem();
             int preCount = rows.Count;
 
             Assert.AreNotEqual(0, preCount);

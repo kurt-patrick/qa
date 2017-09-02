@@ -22,10 +22,10 @@ namespace KPE.Mobile.App.Automation.Tests.Selendroid.ActivityTests
                     .SwitchPageObject<RegisterUserPage>()
                     .AssertIsLoaded();
 
-            registrationPage.Username = StringHelper.RandomString(6);
-            registrationPage.Email = StringHelper.RandomEmail();
-            registrationPage.Password = StringHelper.RandomString(6);
-            registrationPage.Name = StringHelper.RandomString(6);
+            registrationPage.Username = RandomHelper.RandomString(6);
+            registrationPage.Email = RandomHelper.RandomEmail();
+            registrationPage.Password = RandomHelper.RandomString(6);
+            registrationPage.Name = RandomHelper.RandomString(6);
             registrationPage.ProgrammingLanguage = RandomHelper.RandomString(new string[] { "Ruby", "PHP", "Scala", "Python" });
             registrationPage.AcceptAdds = true;
             registrationPage.ClickRegisterUser();

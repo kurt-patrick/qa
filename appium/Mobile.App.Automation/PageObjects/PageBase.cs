@@ -447,6 +447,11 @@ namespace KPE.Mobile.App.Automation.PageObjects
             return TryHelper.TryWaitForCondition(() => element == null || element.Displayed == false);
         }
 
+        protected bool TryWaitForStaleOrHidden(By locator, int timeOut)
+        {
+            return TryHelper.TryCatch(() => WaitUntil(ExpectedConditions.InvisibilityOfElementLocated(locator), true, timeOut, null));
+        }
+
         /// <summary>
         /// Validates all the elements are visible
         /// </summary>

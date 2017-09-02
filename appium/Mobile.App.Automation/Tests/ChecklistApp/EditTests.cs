@@ -3,7 +3,6 @@ using KPE.Mobile.App.Automation.Helpers;
 using KPE.Mobile.App.Automation.PageObjects.ChecklistApp;
 using KPE.Mobile.App.Automation.PageObjects.Wrappers;
 using NUnit.Framework;
-using System.Collections.Generic;
 using System.Linq;
 
 namespace KPE.Mobile.App.Automation.Tests.ChecklistApp
@@ -25,14 +24,14 @@ namespace KPE.Mobile.App.Automation.Tests.ChecklistApp
 
             Assert.AreNotEqual(0, preCount);
 
-            // randomly put a row into edit mode
-            ListViewRowWrapper row = rows[RandomHelper.RandomIndex(rows)];
-            string originalText = row.TextCache().First();
-            row.TapRow();
+            // Pick a random row
+            var row = RandomHelper.RandomObject<ListViewRowWrapper>(rows);
 
-            var newText = StringHelper.RandomString(8);
-            _pageObject
-                .SwitchPageObject<EditItemPage>()
+            string newText = RandomHelper.RandomString(8);
+            string originalText = row.TextCache().First();
+
+            // Put row into edit mode
+            row.TapRow<EditItemPage>()
                 .AssertLoaded()
                 .AssertText(originalText)
                 .EnterText(newText)
@@ -40,8 +39,7 @@ namespace KPE.Mobile.App.Automation.Tests.ChecklistApp
 
             _pageObject.Checklist.WaitForRowCount(preCount);
 
-            Assert.AreEqual(preCount, _pageObject.Checklist.GetRowCount());
-
+            // Get the new list of rows
             rows = _pageObject.Checklist.GetRows();
 
             // assert the updated text is visible
