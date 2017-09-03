@@ -79,7 +79,17 @@ http://127.0.0.1:4723/wd/hub/session/d6cdd6bf-e70b-4ea3-9696-aa37372f5dcb/source
 
 # getting package and activity information of an open app using adb
 adb devices
-adb -s DEVICEudid shell dumpsys activity activities
+adb -s a710eaec shell dumpsys activity activities
+
+# on windows (Focus) is case sensitive
+adb shell dumpsys window windows | findstr Focus
+
+# on mac (Focus) is case sensitive
+adb shell dumpsys window windows | grep Focus
+
+# clearing app data e.g. back to a clean install
+adb shell pm clear {package-id}
+
 
 # displays all the elements on the current activity displayed
 # Dump the top activity
