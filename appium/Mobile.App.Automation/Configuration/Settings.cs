@@ -24,11 +24,15 @@ namespace KPE.Mobile.App.Automation.Configuration
         {
             if (_instance == null)
             {
-                var assemblyFolder = Path.GetDirectoryName(System.Reflection.Assembly.GetExecutingAssembly().GetName().CodeBase).Substring(6);
-                var path = Path.Combine(assemblyFolder, "Configuration", "Settings.json");
+                var path = Path.Combine(AssemblyFolderPath(), "Configuration", "Settings.json");
                 _instance = JsonConvert.DeserializeObject<Settings>(File.ReadAllText(path));
             }
             return _instance;
+        }
+
+        public static string AssemblyFolderPath()
+        {
+            return Path.GetDirectoryName(System.Reflection.Assembly.GetExecutingAssembly().GetName().CodeBase).Substring(6);
         }
 
     }
