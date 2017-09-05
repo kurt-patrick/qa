@@ -2,6 +2,9 @@
 using KPE.Mobile.App.Automation.PageObjects.Selendroid;
 using KPE.Mobile.App.Automation.Tests.SelendroidApp;
 using NUnit.Framework;
+using System.IO;
+using System.Xml;
+using System.Xml.XPath;
 
 namespace KPE.Mobile.App.Automation.Tests.Selendroid.ActivityTests
 {
@@ -47,6 +50,39 @@ namespace KPE.Mobile.App.Automation.Tests.Selendroid.ActivityTests
                 .AssertDialogIsClosed()
                 .HideKeyboard<RegisterUserPage>()
                 .AssertIsLoaded();
+        }
+
+        [Test]
+        public void PageSourceTest()
+        {
+            string pageSource = _driver.PageSource;
+
+            XmlDocument xmlDoc = new XmlDocument();
+            xmlDoc.LoadXml(pageSource);
+
+            Assert.AreEqual(3, GetNodeCount("//android.widget.FrameLayout"));
+            Assert.AreEqual(3, GetNodeCount("//*[@class='android.widget.FrameLayout']"));
+            Assert.AreEqual(1, GetNodeCount("//*[@resource-id='android:id/content']/*"));
+            Assert.AreEqual(0, GetNodeCount("//*[@resource-id='android:id/content']/cake"));
+            Assert.AreEqual(1, GetNodeCount("//*[@text='Displays a Toast']"));
+            Assert.AreEqual(0, GetNodeCount("//*[text()='Displays a Toast']"));
+            Assert.Throws<XPathException>(() => GetNodeCount("//*[text()='Displays a Toast'"));
+
+            int GetNodeCount(string xpath)
+            {
+                try
+                {
+                    return xmlDoc.SelectNodes(xpath).Count;
+                }
+                catch (XPathException)
+                {
+                    // XPATH Statement is invalid
+                    throw;
+                }
+
+            }
+
+
         }
 
     }
