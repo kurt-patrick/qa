@@ -75,6 +75,10 @@ namespace KPE.Mobile.App.Automation.Configuration
             return null;
         }
         */
+        public static List<DriverCapabilities> AutomationChallengeApp()
+        {
+            return CreateCapabilitesForApp("com.android.kpe.automationchallenge", ".MainActivity");
+        }
 
         public static List<DriverCapabilities> ChecklistApp()
         {

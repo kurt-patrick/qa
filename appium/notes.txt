@@ -73,6 +73,16 @@ To run in the emulator:
   "app": "D:\\selendroid-test-app-0.17.0.apk"
 }
 
+#Parallel android emulators
+https://handstandsam.com/2016/09/07/running-multiple-android-emulators-simultaneously-on-osx/
+
+
+# starting android AVD from command line
+C:\Users\LocalUser\AppData\Local\Android\Sdk\tools\emulator.exe -netdelay none -netspeed full -avd Nexus_5_API_24
+%ANDROID_HOME%\tools\emulator.exe -netdelay none -netspeed full -avd Nexus_5_API_24
+%ANDROID_HOME%\tools\emulator.exe -list-avds
+
+
 # Getting page source for an app from the browser
 http://127.0.0.1:4723/wd/hub/sessions
 http://127.0.0.1:4723/wd/hub/session/d6cdd6bf-e70b-4ea3-9696-aa37372f5dcb/source
