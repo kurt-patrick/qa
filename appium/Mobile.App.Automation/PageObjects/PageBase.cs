@@ -508,8 +508,13 @@ namespace KPE.Mobile.App.Automation.PageObjects
 
         protected bool TryClickAndValidate(By by, Func<bool> condition)
         {
+            return TryClickAndValidate(by, condition, Settings.Instance().DefaultTimeOut);
+        }
+
+        protected bool TryClickAndValidate(By by, Func<bool> condition, int timeOut)
+        {
             var element = FindVisibleElement(by);
-            return TryClickAndValidate(element, condition, Settings.Instance().DefaultTimeOut);
+            return TryClickAndValidate(element, condition, timeOut);
         }
 
         protected bool TryClickAndValidate(IWebElement element, Func<bool> condition, int timeOut)

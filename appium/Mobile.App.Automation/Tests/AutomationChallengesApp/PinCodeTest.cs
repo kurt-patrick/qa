@@ -11,15 +11,19 @@ namespace KPE.Mobile.App.Automation.Tests.AutomationChallengesApp
 {
     internal class PinCodeTest : AutomationChallengeTestBase<PinCodePage>
     {
+        const string ClickToEnterPin = "Click to enter the pin";
+
         public PinCodeTest(DriverCapabilities caps) : base(caps)
         {
         }
 
-        public override void Setup()
+        public override void TestSetup()
         {
-            _navigationDrawerPage.OpenDrawer();
-            _navigationDrawerPage.PinCode();
-            Assert.AreEqual("Click to enter the pin", _pageObject.PinEntered);
+            if(!ClickToEnterPin.Equals(_pageObject.PinEntered))
+            {
+                _navigationDrawerPage.OpenDrawer().PinChallenge();
+            }
+            Assert.AreEqual(ClickToEnterPin, _pageObject.PinEntered);
         }
 
         [Test]
@@ -45,7 +49,7 @@ namespace KPE.Mobile.App.Automation.Tests.AutomationChallengesApp
         [Test]
         public void FailTest()
         {
-            _pageObject.EnterPIN(new List<int> { 9, 9, 9, 9, 9, 9 });
+            _pageObject.EnterPIN(new List<int> { 9, 9, 9, 9  });
             Assert.AreEqual(Fail, _pageObject.PinEntered);
         }
 

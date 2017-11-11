@@ -12,7 +12,7 @@ namespace KPE.Mobile.App.Automation.PageObjects.AutomationChallengesApp
     class NavigationDrawerPage : PageBase
     {
         By _drawerPanel = By.Id("nav_view");
-        By _openNavButton = By.TagName("android.widget.ImageButton");
+        By _openNavButton = By.ClassName("android.widget.ImageButton");
 
         public NavigationDrawerPage(AppiumDriver<IWebElement> driver) : base(driver)
         {
@@ -25,37 +25,43 @@ namespace KPE.Mobile.App.Automation.PageObjects.AutomationChallengesApp
 
         public NavigationDrawerPage OpenDrawer()
         {
-            if(!IsOpen())
+            bool isOpen = TryClickAndValidate(_openNavButton, () => IsOpen(), 5);
+            if(!isOpen)
             {
-                var element = FindVisibleElement(_openNavButton);
-                bool isOpen = TryClickAndValidate(element, () => IsOpen(), 5);
-                if(!isOpen)
-                {
-                    throw new InvalidStateException("Failed to open the drawer");
-                }
+                throw new InvalidStateException("Failed to open the drawer");
             }
             return this;
         }
 
         public bool IsOpen()
         {
-            return _driver.FindElements(_drawerPanel).Any(ele => ele.Displayed);
+            return IsVisible(_drawerPanel);
         }
 
-
-        public void PinCode()
+        public bool IsClosed()
         {
-            throw new NotImplementedException();
+            return IsVisible(_openNavButton);
         }
 
-        public void ResultsList()
+        public void PinChallenge()
         {
-            throw new NotImplementedException();
+            ClickChallenge("Pin code");
         }
 
-        public void SwipeToDelete()
+        public void ListChallenge()
         {
-            throw new NotImplementedException();
+            ClickChallenge("Results list");
+        }
+
+        public void SwipeChallenge()
+        {
+            ClickChallenge("Swipe to delete");
+        }
+
+        void ClickChallenge(string text)
+        {
+            string selector = Helpers.UiSelectorHelper.Text(text);
+            Click(MobileBy.AndroidUIAutomator(selector));
         }
 
     }

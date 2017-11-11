@@ -21,7 +21,7 @@ namespace KPE.Mobile.App.Automation.Helpers
             ObjectQA.ThrowIfIEnumerableIsEmpty(driverCaps.Capabilities);
 
             string device = driverCaps.GetCapability("device");
-            var commandTimeout = TimeSpan.FromMinutes(10);
+            var commandTimeout = TimeSpan.FromSeconds(20);
             var desiredCaps = driverCaps.DesiredCapabilities();
 
             if ("Android".Equals(device))
