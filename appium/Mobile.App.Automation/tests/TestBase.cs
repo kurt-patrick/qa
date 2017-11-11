@@ -59,10 +59,10 @@ namespace KPE.Mobile.App.Automation.Tests
         public void TestTearDown()
         {
             LogToConsole("TestTearDown");
-            TearDown();
+            Setup();
         }
 
-        public virtual void TearDown()
+        public virtual void Setup()
         {
         }
 

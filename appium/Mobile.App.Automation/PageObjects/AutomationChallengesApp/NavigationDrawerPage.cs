@@ -45,17 +45,17 @@ namespace KPE.Mobile.App.Automation.PageObjects.AutomationChallengesApp
 
         public void PinCode()
         {
-
+            throw new NotImplementedException();
         }
 
         public void ResultsList()
         {
-
+            throw new NotImplementedException();
         }
 
         public void SwipeToDelete()
         {
-
+            throw new NotImplementedException();
         }
 
     }
