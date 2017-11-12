@@ -1,11 +1,8 @@
-﻿using KPE.Mobile.App.Automation.PageObjects.AutomationChallengesApp;
-using System;
+﻿using KPE.Mobile.App.Automation.Configuration;
+using KPE.Mobile.App.Automation.PageObjects.AutomationChallengesApp;
+using NUnit.Framework;
 using System.Collections.Generic;
 using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using KPE.Mobile.App.Automation.Configuration;
-using NUnit.Framework;
 
 namespace KPE.Mobile.App.Automation.Tests.AutomationChallengesApp
 {
@@ -19,15 +16,12 @@ namespace KPE.Mobile.App.Automation.Tests.AutomationChallengesApp
 
         public override void TestSetup()
         {
-            if(!ClickToEnterPin.Equals(_pageObject.PinEntered))
-            {
-                _navigationDrawerPage.OpenDrawer().PinChallenge();
-            }
+            _navigationDrawerPage.OpenDrawer().PinChallenge();
             Assert.AreEqual(ClickToEnterPin, _pageObject.PinEntered);
         }
 
         [Test]
-        public void SuccessTest()
+        public void PinSuccessTest()
         {
             string pinEntered = "";
             var pinList = _pageObject.GetPin();
@@ -47,7 +41,7 @@ namespace KPE.Mobile.App.Automation.Tests.AutomationChallengesApp
         }
 
         [Test]
-        public void FailTest()
+        public void PinFailTest()
         {
             _pageObject.EnterPIN(new List<int> { 9, 9, 9, 9  });
             Assert.AreEqual(Fail, _pageObject.PinEntered);

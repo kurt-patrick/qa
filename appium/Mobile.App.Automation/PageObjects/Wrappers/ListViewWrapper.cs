@@ -88,6 +88,20 @@ namespace KPE.Mobile.App.Automation.PageObjects.Wrappers
             return rows.FindIndex(row => row.HasText(list));
         }
 
+        public static List<int> IndexesOf(List<ListViewRowWrapper> rows, params string[] text)
+        {
+            var list = text.ToList();
+            var retVal = new List<int>();
+            for (int index=0; index< rows.Count; index++)
+            {
+                if(rows[index].HasText(list))
+                {
+                    retVal.Add(index);
+                }
+            }
+            return retVal;
+        }
+
         public ListViewRowWrapper GetRow(params string[] text)
         {
             var rows = GetRows();
