@@ -1,12 +1,10 @@
-﻿using System;
+﻿using OpenQA.Selenium;
+using OpenQA.Selenium.Appium;
+using OpenQA.Selenium.Appium.PageObjects.Attributes;
+using OpenQA.Selenium.Support.PageObjects;
+using System;
 using System.Collections.Generic;
 using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using OpenQA.Selenium;
-using OpenQA.Selenium.Appium;
-using OpenQA.Selenium.Support.PageObjects;
-using OpenQA.Selenium.Appium.PageObjects.Attributes;
 
 namespace KPE.Mobile.App.Automation.PageObjects.AutomationChallengesApp
 {

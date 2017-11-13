@@ -81,6 +81,7 @@
     <Compile Include="Helpers\UiSelectorHelper.cs" />
     <Compile Include="Helpers\TryHelper.cs" />
     <Compile Include="PageObjects\AutomationChallengesApp\NavigationDrawerPage.cs" />
+    <Compile Include="PageObjects\AutomationChallengesApp\SwipeToDeletePage.cs" />
     <Compile Include="PageObjects\AutomationChallengesApp\PinCodePage.cs" />
     <Compile Include="PageObjects\AutomationChallengesApp\ResultListPage.cs" />
     <Compile Include="PageObjects\ChecklistApp\EditItemPage.cs" />
@@ -106,6 +107,7 @@
     <Compile Include="QA\StringQA.cs" />
     <Compile Include="Configuration\DriverCapabilities.cs" />
     <Compile Include="Configuration\Devices\Device.cs" />
+    <Compile Include="Tests\AutomationChallengesApp\SwipeToDeleteTest.cs" />
     <Compile Include="Tests\AutomationChallengesApp\ResultListTest.cs" />
     <Compile Include="Tests\AutomationChallengesApp\PinCodeTest.cs" />
     <Compile Include="Tests\AutomationChallengesApp\AutomationChallengeTestBase.cs" />
