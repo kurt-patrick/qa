@@ -2,7 +2,6 @@
 using KPE.Mobile.App.Automation.PageObjects.AutomationChallengesApp;
 using NUnit.Framework;
 using System.Collections.Generic;
-using System.Linq;
 
 namespace KPE.Mobile.App.Automation.Tests.AutomationChallengesApp
 {
@@ -23,7 +22,7 @@ namespace KPE.Mobile.App.Automation.Tests.AutomationChallengesApp
         [Test]
         public void SwipeLeftTest()
         {
-            new List<int> { 1, 2, 3 }.ForEach(index => SwipeAndAssert(index));
+            new List<int> { 1, 2, 3 }.ForEach(SwipeAndAssert);
         }
 
         void SwipeAndAssert(int index)

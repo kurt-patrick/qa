@@ -3,9 +3,6 @@ using OpenQA.Selenium.Appium;
 using OpenQA.Selenium.Appium.MultiTouch;
 using OpenQA.Selenium.Appium.PageObjects.Attributes;
 using OpenQA.Selenium.Support.PageObjects;
-using System;
-using System.Collections.Generic;
-using System.Linq;
 
 namespace KPE.Mobile.App.Automation.PageObjects.AutomationChallengesApp
 {
@@ -23,12 +20,12 @@ namespace KPE.Mobile.App.Automation.PageObjects.AutomationChallengesApp
 
         public override bool IsLoaded()
         {
-            return _txtActual != null && _txtActual.Displayed;
+            return _txtActual.Displayed;
         }
 
         public void SwipeFirstRow()
         {
-            var element = _driver.FindElement(By.Id("view_foreground"));
+            var element = _driver.FindElement(By.Id("swipe_left"));
             SwipeLeft(element);
         }
 
