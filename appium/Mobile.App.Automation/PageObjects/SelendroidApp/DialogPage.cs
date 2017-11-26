@@ -22,7 +22,7 @@ namespace KPE.Mobile.App.Automation.PageObjects.Selendroid
 
         public override bool IsLoaded()
         {
-            return WaitForVisible(_message);
+            return WaitForDisplayed(_message);
         }
 
         public DialogPage AssertIsLoaded()

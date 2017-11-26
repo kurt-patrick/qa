@@ -316,7 +316,7 @@ namespace KPE.Mobile.App.Automation.PageObjects
             }
         }
 
-        protected bool WaitForVisible(IWebElement element)
+        protected bool WaitForDisplayed(IWebElement element)
         {
             return TryHelper.TryWaitForCondition(() => element != null && element.Displayed, Common.Constants.DefaultTimeOut);
         }

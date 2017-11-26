@@ -58,6 +58,11 @@ namespace KPE.Mobile.App.Automation.PageObjects.AutomationChallengesApp
             ClickChallenge("Swipe to delete");
         }
 
+        public void AlertChallenge()
+        {
+            ClickChallenge("Alert dialog");
+        }
+
         void ClickChallenge(string text)
         {
             string selector = Helpers.UiSelectorHelper.Text(text);
