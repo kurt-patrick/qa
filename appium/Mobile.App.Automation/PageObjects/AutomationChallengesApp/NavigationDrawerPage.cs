@@ -63,6 +63,11 @@ namespace KPE.Mobile.App.Automation.PageObjects.AutomationChallengesApp
             ClickChallenge("Alert dialog");
         }
 
+        public void ControlsChallenge()
+        {
+            ClickChallenge("Controls");
+        }
+
         void ClickChallenge(string text)
         {
             string selector = Helpers.UiSelectorHelper.Text(text);
