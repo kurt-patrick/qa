@@ -1,4 +1,5 @@
-﻿using KPE.Mobile.App.Automation.Configuration;
+﻿using Applitools.Appium;
+using KPE.Mobile.App.Automation.Configuration;
 using KPE.Mobile.App.Automation.Helpers;
 using KPE.Mobile.App.Automation.PageObjects.ChecklistApp;
 using NUnit.Framework;
@@ -14,8 +15,6 @@ namespace KPE.Mobile.App.Automation.Tests.ChecklistApp
 
         private EditItemPage ClickAddNewItem(out int rowCount)
         {
-            Assert.IsTrue(_pageObject.IsLoaded());
-
             rowCount = _pageObject.Checklist.GetRowCount();
 
             return _pageObject.MenuBar.ClickAdd();
@@ -24,20 +23,40 @@ namespace KPE.Mobile.App.Automation.Tests.ChecklistApp
         [Test]
         public void AddItemTest()
         {
-            var newText = RandomHelper.RandomString(7);
-            ClickAddNewItem(out int preCount)
-                .EnterText(newText)
-                .ClickAddDone();
+            Eyes eyes = null;
+            try
+            {
+                eyes = GetEyes("AddItemTest");
 
-            _pageObject.Checklist.WaitForRowCount(preCount + 1);
+                Assert.IsTrue(_pageObject.IsLoaded());
 
-            Assert.IsNotNull(_pageObject.Checklist.GetRow(newText), "Row not found: " + newText);
+                eyes.CheckWindow("List (Pre Add Item)");
+
+                var newText = "NEW LINE " + RandomHelper.RandomString(7);
+                ClickAddNewItem(out int preCount)
+                    .EnterText(newText)
+                    .ClickAddDone();
+
+                _pageObject.Checklist.WaitForRowCount(preCount + 1);
+
+                eyes.CheckWindow("List (Post Add Item)");
+                eyes.Close();
+
+                Assert.IsNotNull(_pageObject.Checklist.GetRow(newText), "Row not found: " + newText);
+
+            }
+            finally
+            {
+                eyes?.AbortIfNotClosed();
+            }
 
         }
 
         [Test]
         public void ClickAddThenCancelTest()
         {
+            Assert.IsTrue(_pageObject.IsLoaded());
+
             ClickAddNewItem(out int preCount)
                 .ClickCancel();
 
@@ -50,6 +69,8 @@ namespace KPE.Mobile.App.Automation.Tests.ChecklistApp
         [Test]
         public void ClickAddEnterTextThenCancelTest()
         {
+            Assert.IsTrue(_pageObject.IsLoaded());
+
             var newText = RandomHelper.RandomString(7);
             ClickAddNewItem(out int preCount)
                 .EnterText(newText)
