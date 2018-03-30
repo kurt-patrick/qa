@@ -3,7 +3,7 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio 15
 VisualStudioVersion = 15.0.26430.15
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "KPE.RestSharp.JSONPlaceholder", "JSONPlaceholder\KPE.RestSharp.JSONPlaceholder.csproj", "{3977A04C-AB6F-4A5B-B570-DE6031A27882}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "KPE.RestSharp", "JSONPlaceholder\KPE.RestSharp.JSONPlaceholder.csproj", "{3977A04C-AB6F-4A5B-B570-DE6031A27882}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution

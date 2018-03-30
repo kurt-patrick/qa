@@ -40,6 +40,18 @@
     <Reference Include="Castle.Core, Version=4.1.1.0, Culture=neutral, PublicKeyToken=407dd0808d44fbdc, processorArchitecture=MSIL">
       <HintPath>packages\Castle.Core.4.1.1\lib\net45\Castle.Core.dll</HintPath>
     </Reference>
+    <Reference Include="Eyes.Appium.DotNet, Version=3.4.0.0, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>packages\Eyes.Appium.3.4.0\lib\net45\Eyes.Appium.DotNet.dll</HintPath>
+    </Reference>
+    <Reference Include="Eyes.Sdk.DotNet, Version=2.7.0.0, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>packages\Eyes.Sdk.2.7.0\lib\net45\Eyes.Sdk.DotNet.dll</HintPath>
+    </Reference>
+    <Reference Include="Eyes.Utils.DotNet, Version=2.4.1.0, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>packages\Eyes.Sdk.2.7.0\lib\net45\Eyes.Utils.DotNet.dll</HintPath>
+    </Reference>
+    <Reference Include="Ionic.Zip.Reduced, Version=1.9.1.8, Culture=neutral, PublicKeyToken=edbe51ad942a3f5c, processorArchitecture=MSIL">
+      <HintPath>packages\DotNetZip.Reduced.1.9.1.8\lib\net20\Ionic.Zip.Reduced.dll</HintPath>
+    </Reference>
     <Reference Include="log4net">
       <HintPath>packages\log4net.2.0.8\lib\net45-full\log4net.dll</HintPath>
     </Reference>

@@ -14,9 +14,6 @@ namespace KPE.Mobile.App.Automation.Configuration
         [JsonProperty("deviceCapabilitiesFolderPath", NullValueHandling = NullValueHandling.Ignore)]
         public string DeviceCapabilitiesFolderPath { get; set; } = "";
 
-        [JsonProperty("appiumHub", NullValueHandling = NullValueHandling.Ignore)]
-        public string AppiumHubUri { get; set; } = "http://127.0.0.1:4723/wd/hub";
-
         [JsonProperty("defaultTimeOut", NullValueHandling = NullValueHandling.Ignore)]
         public int DefaultTimeOut { get; set; } = 20;
 
