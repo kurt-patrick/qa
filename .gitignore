@@ -56,3 +56,4 @@ Reports/
 *.rxuser
 csharp/KPE/RestSharp/packages/
 csharp/KPE/Se/packages/
+csharp/KPE/RestSharp/OpenWeatherMap/Private/
