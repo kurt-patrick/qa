@@ -54,3 +54,5 @@ obj/
 Reports/
 *.pref
 *.rxuser
+csharp/KPE/RestSharp/packages/
+csharp/KPE/Se/packages/

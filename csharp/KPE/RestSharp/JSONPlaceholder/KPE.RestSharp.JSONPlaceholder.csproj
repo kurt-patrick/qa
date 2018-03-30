@@ -56,8 +56,8 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="PostTests.cs" />
-    <Compile Include="GetTests.cs" />
+    <Compile Include="Tests\PostTests.cs" />
+    <Compile Include="Tests\GetTests.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="ResponseObjects.cs" />
   </ItemGroup>
