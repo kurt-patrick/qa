@@ -9,7 +9,7 @@ namespace KPE.Mobile.App.Automation.Tests.AutomationChallengesApp
     {
         const string ZeroRowsSwiped = "0 rows swiped";
 
-        public SwipeToDeleteTest(DriverCapabilities caps) : base(caps)
+        public SwipeToDeleteTest(AppCapabilities caps) : base(caps)
         {
         }
 

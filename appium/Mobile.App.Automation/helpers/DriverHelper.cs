@@ -4,6 +4,7 @@ using OpenQA.Selenium;
 using OpenQA.Selenium.Appium;
 using OpenQA.Selenium.Appium.Android;
 using OpenQA.Selenium.Appium.iOS;
+using OpenQA.Selenium.Remote;
 using System;
 
 namespace KPE.Mobile.App.Automation.Helpers
@@ -13,25 +14,28 @@ namespace KPE.Mobile.App.Automation.Helpers
         /// <summary>
         /// Creates the Appium driver either AndroidDriver or IOSDriver
         /// </summary>
-        /// <param name="driverCaps">WebDriver and application capability keys and values</param>
+        /// <param name="cabilities">WebDriver and application capability keys and values</param>
         /// <returns>AndroidDriver or IOSDriver</returns>
-        public static AppiumDriver<IWebElement> CreateAppiumWebDriver(DriverCapabilities driverCaps, Uri appiumUri)
+        public static AppiumDriver<IWebElement> CreateAppiumWebDriver(DesiredCapabilities cabilities, Uri appiumUri)
         {
-            ObjectQA.ThrowIfNull(driverCaps);
-            ObjectQA.ThrowIfIEnumerableIsEmpty(driverCaps.Capabilities);
+            ObjectQA.ThrowIfNull(cabilities);
+            ObjectQA.ThrowIfIEnumerableIsEmpty(cabilities.ToDictionary().Keys);
 
-            string device = driverCaps.GetCapability("device");
+            string device = cabilities.GetCapability("device").ToString();
             var commandTimeout = TimeSpan.FromSeconds(30);
-            var desiredCaps = driverCaps.DesiredCapabilities();
 
             if ("Android".Equals(device))
             {
-                return new AndroidDriver<IWebElement>(appiumUri, desiredCaps, commandTimeout);
+                // https://github.com/SeleniumHQ/selenium/issues/4142
+                // https://discuss.appium.io/t/gridexception-cannot-extract-a-capabilities-from-the-request/17265
+                // https://www.youtube.com/watch?v=vXpskMkytD8&feature=youtu.be
+
+                return new AndroidDriver<IWebElement>(appiumUri, cabilities, commandTimeout);
             }
 
             if ("iOS".Equals(device))
             {
-                return new IOSDriver<IWebElement>(appiumUri, desiredCaps, commandTimeout);
+                return new IOSDriver<IWebElement>(appiumUri, cabilities, commandTimeout);
             }
 
             throw new NotImplementedException("No logic has been implemented for appium driver type: " + device);

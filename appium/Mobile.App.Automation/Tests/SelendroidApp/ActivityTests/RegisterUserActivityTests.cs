@@ -8,7 +8,7 @@ namespace KPE.Mobile.App.Automation.Tests.Selendroid.ActivityTests
 {
     class RegisterUserActivityTests : SelendroidAppTestBaseGeneric<HomeScreenPage>
     {
-        public RegisterUserActivityTests(DriverCapabilities caps) 
+        public RegisterUserActivityTests(AppCapabilities caps) 
             : base(caps) 
         {
         }

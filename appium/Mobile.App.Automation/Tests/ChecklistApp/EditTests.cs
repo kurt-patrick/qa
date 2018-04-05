@@ -9,7 +9,7 @@ namespace KPE.Mobile.App.Automation.Tests.ChecklistApp
 {
     internal class EditTests : ChecklistTestBase
     {
-        public EditTests(DriverCapabilities capabilities) 
+        public EditTests(AppCapabilities capabilities) 
             : base(capabilities) 
         {
         }

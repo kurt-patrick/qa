@@ -8,7 +8,7 @@ namespace KPE.Mobile.App.Automation.Tests.Selendroid.LocatorTests
     class FindsByAndroidUiSelectorTests : SelendroidAppTestBaseGeneric<HomeScreenPage>
     {
         RegisterUserPage _registerUserPage = null;
-        public FindsByAndroidUiSelectorTests(DriverCapabilities caps) 
+        public FindsByAndroidUiSelectorTests(AppCapabilities caps) 
             : base(caps) 
         {
         }

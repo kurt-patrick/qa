@@ -10,7 +10,7 @@ namespace KPE.Mobile.App.Automation.Tests.Selendroid.ActivityTests
 {
     class HomeScreenActivityTests : SelendroidAppTestBaseGeneric<HomeScreenPage>
     {
-        public HomeScreenActivityTests(DriverCapabilities caps) 
+        public HomeScreenActivityTests(AppCapabilities caps) 
             : base(caps) 
         {
         }

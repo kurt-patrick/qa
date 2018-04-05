@@ -10,7 +10,7 @@ namespace KPE.Mobile.App.Automation.Tests.AutomationChallengesApp
     {
         const string ClickToEnterPin = "Click to enter the pin";
 
-        public PinCodeTest(DriverCapabilities caps) : base(caps)
+        public PinCodeTest(AppCapabilities caps) : base(caps)
         {
         }
 

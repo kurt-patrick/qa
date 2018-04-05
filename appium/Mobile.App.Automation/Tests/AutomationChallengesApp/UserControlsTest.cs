@@ -6,7 +6,7 @@ namespace KPE.Mobile.App.Automation.Tests.AutomationChallengesApp
 {
     internal class UserControlsTest : AutomationChallengeTestBase<UserControlsPage>
     {
-        public UserControlsTest(DriverCapabilities caps) : base(caps)
+        public UserControlsTest(AppCapabilities caps) : base(caps)
         {
         }
 

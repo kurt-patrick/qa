@@ -7,7 +7,7 @@ namespace KPE.Mobile.App.Automation.Tests.Selendroid.LocatorTests
 {
     class FindsByAndroidUIAutomatorTests : SelendroidAppTestBaseGeneric<FindsByAndroidUIAutomatorPage>
     {
-        public FindsByAndroidUIAutomatorTests(DriverCapabilities caps) 
+        public FindsByAndroidUIAutomatorTests(AppCapabilities caps) 
             : base(caps) 
         {
         }

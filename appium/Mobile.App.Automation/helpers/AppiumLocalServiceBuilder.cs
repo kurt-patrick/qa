@@ -1,8 +1,8 @@
-﻿using KPE.Mobile.App.Automation.Configuration;
-using KPE.Mobile.App.Automation.QA;
+﻿using KPE.Mobile.App.Automation.QA;
 using NUnit.Framework;
 using OpenQA.Selenium.Appium.Service;
 using OpenQA.Selenium.Appium.Service.Options;
+using OpenQA.Selenium.Remote;
 using System;
 
 namespace KPE.Mobile.App.Automation.Helpers
@@ -16,12 +16,12 @@ namespace KPE.Mobile.App.Automation.Helpers
             LocalService = appiumLocalService;
         }
 
-        public static AppiumLocalServiceBuilder Build(DriverCapabilities capabilities)
+        public static AppiumLocalServiceBuilder Build(DesiredCapabilities capabilities)
         {
             ObjectQA.ThrowIfNull(capabilities);
 
             var serverOptions = new OptionCollector();
-            serverOptions.AddCapabilities(capabilities.DesiredCapabilities());
+            serverOptions.AddCapabilities(capabilities);
 
             var appiumLocalService = 
                 new AppiumServiceBuilder()

@@ -6,7 +6,7 @@ namespace KPE.Mobile.App.Automation.Tests.AutomationChallengesApp
 {
     internal class AlertDialogTest : AutomationChallengeTestBase<AlertDialogPage>
     {
-        public AlertDialogTest(DriverCapabilities caps) : base(caps)
+        public AlertDialogTest(AppCapabilities caps) : base(caps)
         {
         }
 

@@ -14,13 +14,13 @@ namespace KPE.Mobile.App.Automation.Tests.ChecklistApp
 
         Eyes _eyes = null;
 
-        public ChecklistTestBase(DriverCapabilities caps) : base(caps)
+        public ChecklistTestBase(AppCapabilities caps) : base(caps)
         {
         }
 
-        public static List<DriverCapabilities> CapabilitiesList()
+        public static List<AppCapabilities> CapabilitiesList()
         {
-            return DriverCapabilities.ChecklistApp();
+            return AppCapabilities.ChecklistApp();
         }
 
         protected Eyes GetEyes(string testName)

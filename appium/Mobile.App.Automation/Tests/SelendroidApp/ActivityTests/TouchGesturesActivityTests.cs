@@ -9,7 +9,7 @@ namespace KPE.Mobile.App.Automation.Tests.Selendroid.ActivityTests
     {
         private TouchGesturesPage _touchGesturesPage = null;
 
-        public TouchGesturesActivityTests(DriverCapabilities caps) 
+        public TouchGesturesActivityTests(AppCapabilities caps) 
             : base(caps) 
         {
         }

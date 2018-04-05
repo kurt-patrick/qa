@@ -8,7 +8,7 @@ namespace KPE.Mobile.App.Automation.Tests.ChecklistApp
 {
     internal class AddTests : ChecklistTestBase
     {
-        public AddTests(DriverCapabilities capabilities) 
+        public AddTests(AppCapabilities capabilities) 
             : base(capabilities) 
         {
         }

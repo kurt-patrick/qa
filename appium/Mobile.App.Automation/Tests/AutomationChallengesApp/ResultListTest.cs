@@ -9,7 +9,7 @@ namespace KPE.Mobile.App.Automation.Tests.AutomationChallengesApp
     {
         const string ZeroRowsClicked = "0 rows clicked";
 
-        public ResultListTest(DriverCapabilities caps) : base(caps)
+        public ResultListTest(AppCapabilities caps) : base(caps)
         {
         }
 

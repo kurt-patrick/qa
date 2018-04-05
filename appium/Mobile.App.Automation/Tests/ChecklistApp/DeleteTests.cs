@@ -9,7 +9,7 @@ namespace KPE.Mobile.App.Automation.Tests.ChecklistApp
 {
     internal class DeleteTests : ChecklistTestBase
     {
-        public DeleteTests(DriverCapabilities capabilities) 
+        public DeleteTests(AppCapabilities capabilities) 
             : base(capabilities) 
         {
         }

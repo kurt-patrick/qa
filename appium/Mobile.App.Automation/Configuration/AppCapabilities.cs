@@ -7,14 +7,15 @@ using System.Linq;
 
 namespace KPE.Mobile.App.Automation.Configuration
 {
-    public class DriverCapabilities
+    public class AppCapabilities
     {
         public string AppPackage { get; private set; } = "";
         public string AppActivity { get; private set; } = "";
+        public Device Device { get; private set; } = null;
 
         public List<Capability> Capabilities { get; private set; } = new List<Capability>();
 
-        public DriverCapabilities(string appPackage, string appActivity)
+        AppCapabilities(string appPackage, string appActivity)
         {
             StringQA.ThrowIfNullOrWhiteSpace(appPackage);
             StringQA.ThrowIfNullOrWhiteSpace(appActivity);
@@ -24,30 +25,12 @@ namespace KPE.Mobile.App.Automation.Configuration
             Capabilities.Add(new Capability("appActivity", appActivity));
         }
 
-        public DriverCapabilities(string appPackage, string appActivity, Device device) : this(appPackage, appActivity)
+        public AppCapabilities(string appPackage, string appActivity, Device device) : this(appPackage, appActivity)
         {
             ObjectQA.ThrowIfNull(device);
             ObjectQA.ThrowIfIEnumerableIsEmpty(device.Capabilities);
-            Capabilities.AddRange(device.Capabilities);
-        }
-
-        /// <summary>
-        /// Generate the capability string passed to the WebDriver
-        /// </summary>
-        /// <param name="device"></param>
-        /// <returns>device={0},deviceName={1},appPackage={2},appActivity={3}</returns>
-        private string BuildDeviceSpecificCapabilitiesString(Device device)
-        {
-            var retVal = new System.Text.StringBuilder();
-
-            // Device specific capabilities
-            device.Capabilities
-                .ForEach(cap => retVal.Append($"{cap.Key}={cap.Value}, "));
-
-            // App specific capabilities
-            retVal.Append($"appPackage={AppPackage}, appActivity={AppActivity}");
-
-            return retVal.ToString();
+            Device = device;
+            Capabilities.AddRange(Device.Capabilities);
         }
 
         public DesiredCapabilities DesiredCapabilities()
@@ -57,45 +40,27 @@ namespace KPE.Mobile.App.Automation.Configuration
             return retVal;
         }
 
-        /// <summary>
-        /// For each enabled device file generate the capabilities string
-        /// </summary>
-        /// <returns></returns>
-        /*
-        public List<Device> EnabledDevicesCapabilitiesStrings()
-        {
-            var devices = DeviceFactory.GetEnabledDevices();
-            if(devices.Count == 0)
-            {
-                throw new Exceptions.InvalidStateException("No enabled devices were found");
-            }
-
-            var retVal = new List<string>();
-            devices.ForEach(device => retVal.Add(BuildDeviceSpecificCapabilitiesString(device)));
-            return null;
-        }
-        */
-        public static List<DriverCapabilities> AutomationChallengeApp()
+        public static List<AppCapabilities> AutomationChallengeApp()
         {
             return CreateCapabilitesForApp("com.android.kpe.automationchallenge", ".MainActivity");
         }
 
-        public static List<DriverCapabilities> ChecklistApp()
+        public static List<AppCapabilities> ChecklistApp()
         {
             return CreateCapabilitesForApp("jakiganicsystems.simplestchecklist", ".MainActivity");
         }
 
-        public static List<DriverCapabilities> SelendroidApp()
+        public static List<AppCapabilities> SelendroidApp()
         {
             return CreateCapabilitesForApp("io.selendroid.testapp", ".HomeScreenActivity");
         }
 
-        public static List<DriverCapabilities> GmailApp()
+        public static List<AppCapabilities> GmailApp()
         {
             return CreateCapabilitesForApp("com.google.android.gm", ".ConversationListActivityGmail");
         }
 
-        private static List<DriverCapabilities> CreateCapabilitesForApp(string appPackage, string appActivity)
+        private static List<AppCapabilities> CreateCapabilitesForApp(string appPackage, string appActivity)
         {
             var devices = DeviceFactory.GetEnabledDevices();
             if (devices.Count == 0)
@@ -103,8 +68,8 @@ namespace KPE.Mobile.App.Automation.Configuration
                 throw new Exceptions.InvalidStateException("No enabled devices were found");
             }
 
-            var retVal = new List<DriverCapabilities>();
-            devices.ForEach(device => retVal.Add(new DriverCapabilities(appPackage, appActivity, device)));
+            var retVal = new List<AppCapabilities>();
+            devices.ForEach(device => retVal.Add(new AppCapabilities(appPackage, appActivity, device)));
             return retVal;
         }
 

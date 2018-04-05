@@ -11,6 +11,9 @@ namespace KPE.Mobile.App.Automation.Configuration
         {
         }
 
+        [JsonProperty("appiumHubUri", NullValueHandling = NullValueHandling.Ignore)]
+        public string GridHubUri { get; set; } = "";
+
         [JsonProperty("deviceCapabilitiesFolderPath", NullValueHandling = NullValueHandling.Ignore)]
         public string DeviceCapabilitiesFolderPath { get; set; } = "";
 
