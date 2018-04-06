@@ -1,6 +1,7 @@
 ﻿using KPE.Mobile.App.Automation.Configuration;
 using KPE.Mobile.App.Automation.PageObjects.AutomationChallengesApp;
 using NUnit.Framework;
+using OpenQA.Selenium.Remote;
 using System.Collections.Generic;
 using System.Linq;
 
@@ -10,7 +11,7 @@ namespace KPE.Mobile.App.Automation.Tests.AutomationChallengesApp
     {
         const string ClickToEnterPin = "Click to enter the pin";
 
-        public PinCodeTest(DriverCapabilities caps) : base(caps)
+        public PinCodeTest(DesiredCapabilities capabilities) : base(capabilities)
         {
         }
 

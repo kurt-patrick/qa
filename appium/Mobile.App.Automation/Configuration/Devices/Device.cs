@@ -1,4 +1,5 @@
 ﻿using Newtonsoft.Json;
+using OpenQA.Selenium.Remote;
 using System.Collections.Generic;
 using System.IO;
 using System.Linq;
@@ -46,7 +47,6 @@ namespace KPE.Mobile.App.Automation.Configuration.Devices
 
         [JsonProperty("capabilities", NullValueHandling = NullValueHandling.Ignore)]
         public List<Capability> Capabilities { get; set; } = new List<Capability>();
-
     }
 
 }

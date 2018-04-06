@@ -1,11 +1,14 @@
 ﻿using KPE.Mobile.App.Automation.Configuration;
+using KPE.Mobile.App.Automation.Configuration.Devices;
 using KPE.Mobile.App.Automation.Exceptions;
 using KPE.Mobile.App.Automation.Helpers;
 using NUnit.Framework;
 using OpenQA.Selenium;
 using OpenQA.Selenium.Appium;
 using OpenQA.Selenium.Appium.Service;
+using OpenQA.Selenium.Remote;
 using System;
+using System.Linq;
 
 // Configure log4net using the .config file
 [assembly: log4net.Config.XmlConfigurator(ConfigFile = "log4net.config", Watch = true)]
@@ -26,25 +29,32 @@ namespace KPE.Mobile.App.Automation.Tests
         /// <summary>
         /// For each entry in TestFixtureSource this constructor will be called once per line
         /// </summary>
-        /// <param name="caps"></param>
-        public TestBase(DriverCapabilities caps)
+        /// <param name="capabilities"></param>
+        public TestBase(DesiredCapabilities capabilities)
         {
-            var deviceName = caps.GetCapability("deviceName");
+            var deviceName = capabilities.GetCapability("deviceName").ToString();
 
             // Check the android device is running
             InvalidStateException.ThrowIfFalse(
                 ProcessHelper.IsAndroidDeviceRunning(deviceName), 
                 "Android device is not running. deviceName=" + deviceName);
 
-            // Start the appium local service
-            _appiumLocalService =
-                AppiumLocalServiceBuilder
-                    .Build(caps)
-                    .Start()
-                    .AssertIsRunning(10);
+            // Start an appium local service
+            if (false == Settings.Instance().UseGrid)
+            {
+                _appiumLocalService =
+                    AppiumLocalServiceBuilder
+                        .Build(capabilities)
+                        .Start()
+                        .AssertIsRunning(10);
+            }
+
+            // Point to the grid else point directly to appium server
+            var uri = (Settings.Instance().UseGrid) ? new Uri(Settings.Instance().GridHubUri) : _appiumLocalService.ServiceUrl;
 
             // Create the web driver for the specified device/emulator with desired caps
-            _driver = DriverHelper.CreateAppiumWebDriver(caps, _appiumLocalService.ServiceUrl);
+            _driver = DriverHelper.CreateAppiumWebDriver(capabilities, uri);
+
             _driver.Manage().Timeouts().ImplicitWait = TimeSpan.FromMilliseconds(1);
         }
 

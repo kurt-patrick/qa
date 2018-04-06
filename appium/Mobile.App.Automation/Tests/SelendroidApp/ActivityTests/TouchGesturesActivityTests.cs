@@ -2,6 +2,7 @@
 using KPE.Mobile.App.Automation.PageObjects.Selendroid;
 using KPE.Mobile.App.Automation.Tests.SelendroidApp;
 using NUnit.Framework;
+using OpenQA.Selenium.Remote;
 
 namespace KPE.Mobile.App.Automation.Tests.Selendroid.ActivityTests
 {
@@ -9,7 +10,7 @@ namespace KPE.Mobile.App.Automation.Tests.Selendroid.ActivityTests
     {
         private TouchGesturesPage _touchGesturesPage = null;
 
-        public TouchGesturesActivityTests(DriverCapabilities caps) 
+        public TouchGesturesActivityTests(DesiredCapabilities caps) 
             : base(caps) 
         {
         }

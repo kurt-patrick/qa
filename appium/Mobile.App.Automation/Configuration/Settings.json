@@ -1,5 +1,7 @@
 ﻿{
-	"deviceCapabilitiesFolderPath": "D:\\github\\qa\\appium\\Mobile.App.Automation\\Configuration\\Devices",
 	"appiumHubUri": "http://127.0.0.1:4723/wd/hub",
-	"defaultTimeOut": 20
+	"commandTimeOut": 30,
+	"defaultTimeOut": 20,
+	"deviceCapabilitiesFolderPath": "D:\\github\\qa\\appium\\Mobile.App.Automation\\Configuration\\Devices",
+	"useGrid": true
 }

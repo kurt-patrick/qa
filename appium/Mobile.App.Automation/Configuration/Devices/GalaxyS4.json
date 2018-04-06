@@ -4,7 +4,10 @@
 	"realDevice": true,
 	"capabilities": [
 		{ "key": "device", "value": "Android" },
+		{ "key": "platformName", "value": "Android" },
 		{ "key": "deviceName", "value": "a710eaec" },
+		{ "key": "udid", "value": "a710eaec" },
+		{ "key": "version", "value": "5.0.1" },
 		{ "key": "disableAndroidWatchers", "value": "true" }
 	]
 }

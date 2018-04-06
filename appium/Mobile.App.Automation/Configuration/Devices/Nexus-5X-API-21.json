@@ -1,0 +1,13 @@
+﻿{
+	"description": "Samsung Nexus 5 running Android 5.0.2",
+	"disabled": false,
+	"realDevice": false,
+	"capabilities": [
+		{ "key": "device", "value": "Android" },
+		{ "key": "platformName", "value": "Android" },
+		{ "key": "deviceName", "value": "emulator-5554" },
+		{ "key": "udid", "value": "emulator-5554" },
+		{ "key": "version", "value": "5.0.2" },
+		{ "key": "disableAndroidWatchers", "value": "true" }
+	]
+}

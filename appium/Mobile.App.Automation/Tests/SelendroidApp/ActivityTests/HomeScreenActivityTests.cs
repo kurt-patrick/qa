@@ -2,6 +2,7 @@
 using KPE.Mobile.App.Automation.PageObjects.Selendroid;
 using KPE.Mobile.App.Automation.Tests.SelendroidApp;
 using NUnit.Framework;
+using OpenQA.Selenium.Remote;
 using System.IO;
 using System.Xml;
 using System.Xml.XPath;
@@ -10,7 +11,7 @@ namespace KPE.Mobile.App.Automation.Tests.Selendroid.ActivityTests
 {
     class HomeScreenActivityTests : SelendroidAppTestBaseGeneric<HomeScreenPage>
     {
-        public HomeScreenActivityTests(DriverCapabilities caps) 
+        public HomeScreenActivityTests(DesiredCapabilities caps) 
             : base(caps) 
         {
         }

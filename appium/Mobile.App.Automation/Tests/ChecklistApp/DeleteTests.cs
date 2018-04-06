@@ -2,6 +2,7 @@
 using KPE.Mobile.App.Automation.Helpers;
 using KPE.Mobile.App.Automation.PageObjects.Wrappers;
 using NUnit.Framework;
+using OpenQA.Selenium.Remote;
 using System.Collections.Generic;
 using System.Linq;
 
@@ -9,7 +10,7 @@ namespace KPE.Mobile.App.Automation.Tests.ChecklistApp
 {
     internal class DeleteTests : ChecklistTestBase
     {
-        public DeleteTests(DriverCapabilities capabilities) 
+        public DeleteTests(DesiredCapabilities capabilities) 
             : base(capabilities) 
         {
         }

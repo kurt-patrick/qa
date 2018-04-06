@@ -1,6 +1,7 @@
 ﻿using KPE.Mobile.App.Automation.Configuration;
 using KPE.Mobile.App.Automation.PageObjects.AutomationChallengesApp;
 using NUnit.Framework;
+using OpenQA.Selenium.Remote;
 using System.Collections.Generic;
 
 namespace KPE.Mobile.App.Automation.Tests.AutomationChallengesApp
@@ -9,7 +10,7 @@ namespace KPE.Mobile.App.Automation.Tests.AutomationChallengesApp
     {
         const string ZeroRowsSwiped = "0 rows swiped";
 
-        public SwipeToDeleteTest(DriverCapabilities caps) : base(caps)
+        public SwipeToDeleteTest(DesiredCapabilities capabilities) : base(capabilities)
         {
         }
 

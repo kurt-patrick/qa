@@ -119,7 +119,7 @@
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="QA\ObjectQA.cs" />
     <Compile Include="QA\StringQA.cs" />
-    <Compile Include="Configuration\DriverCapabilities.cs" />
+    <Compile Include="Configuration\AppCapabilities.cs" />
     <Compile Include="Configuration\Devices\Device.cs" />
     <Compile Include="Tests\AutomationChallengesApp\UserControlsTest.cs" />
     <Compile Include="Tests\AutomationChallengesApp\AlertDialogTest.cs" />
@@ -149,6 +149,9 @@
   </ItemGroup>
   <ItemGroup>
     <None Include="app.config" />
+    <None Include="Configuration\Devices\Nexus-5X-API-21.json">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
     <None Include="log4net.config">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
       <SubType>Designer</SubType>
