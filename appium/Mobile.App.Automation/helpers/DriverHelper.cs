@@ -16,7 +16,7 @@ namespace KPE.Mobile.App.Automation.Helpers
         /// </summary>
         /// <param name="cabilities">WebDriver and application capability keys and values</param>
         /// <returns>AndroidDriver or IOSDriver</returns>
-        public static AppiumDriver<IWebElement> CreateAppiumWebDriver(DesiredCapabilities cabilities, Uri appiumUri)
+        public static AppiumDriver<IWebElement> CreateAppiumWebDriver(DesiredCapabilities cabilities, Uri uri)
         {
             ObjectQA.ThrowIfNull(cabilities);
             ObjectQA.ThrowIfIEnumerableIsEmpty(cabilities.ToDictionary().Keys);
@@ -30,12 +30,12 @@ namespace KPE.Mobile.App.Automation.Helpers
                 // https://discuss.appium.io/t/gridexception-cannot-extract-a-capabilities-from-the-request/17265
                 // https://www.youtube.com/watch?v=vXpskMkytD8&feature=youtu.be
 
-                return new AndroidDriver<IWebElement>(appiumUri, cabilities, commandTimeout);
+                return new AndroidDriver<IWebElement>(uri, cabilities, commandTimeout);
             }
 
             if ("iOS".Equals(device))
             {
-                return new IOSDriver<IWebElement>(appiumUri, cabilities, commandTimeout);
+                return new IOSDriver<IWebElement>(uri, cabilities, commandTimeout);
             }
 
             throw new NotImplementedException("No logic has been implemented for appium driver type: " + device);
