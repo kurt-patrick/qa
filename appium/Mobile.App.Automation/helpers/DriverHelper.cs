@@ -22,7 +22,7 @@ namespace KPE.Mobile.App.Automation.Helpers
             ObjectQA.ThrowIfIEnumerableIsEmpty(cabilities.ToDictionary().Keys);
 
             string device = cabilities.GetCapability("device").ToString();
-            var commandTimeout = TimeSpan.FromSeconds(30);
+            var commandTimeout = TimeSpan.FromSeconds(Settings.Instance().CommandTimeOut);
 
             if ("Android".Equals(device))
             {
