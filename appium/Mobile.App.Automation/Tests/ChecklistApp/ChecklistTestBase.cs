@@ -3,6 +3,7 @@ using KPE.Mobile.App.Automation.Configuration;
 using KPE.Mobile.App.Automation.Helpers;
 using KPE.Mobile.App.Automation.PageObjects.ChecklistApp;
 using NUnit.Framework;
+using OpenQA.Selenium.Remote;
 using System.Collections.Generic;
 
 namespace KPE.Mobile.App.Automation.Tests.ChecklistApp
@@ -14,7 +15,7 @@ namespace KPE.Mobile.App.Automation.Tests.ChecklistApp
 
         Eyes _eyes = null;
 
-        public ChecklistTestBase(AppCapabilities caps) : base(caps)
+        public ChecklistTestBase(DesiredCapabilities capabilities) : base(capabilities)
         {
         }
 

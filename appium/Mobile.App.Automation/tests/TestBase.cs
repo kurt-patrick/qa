@@ -6,6 +6,7 @@ using NUnit.Framework;
 using OpenQA.Selenium;
 using OpenQA.Selenium.Appium;
 using OpenQA.Selenium.Appium.Service;
+using OpenQA.Selenium.Remote;
 using System;
 using System.Linq;
 
@@ -28,33 +29,31 @@ namespace KPE.Mobile.App.Automation.Tests
         /// <summary>
         /// For each entry in TestFixtureSource this constructor will be called once per line
         /// </summary>
-        /// <param name="appCapabilities"></param>
-        public TestBase(AppCapabilities appCapabilities)
+        /// <param name="capabilities"></param>
+        public TestBase(DesiredCapabilities capabilities)
         {
-            var deviceName = appCapabilities.GetCapability("deviceName");
+            var deviceName = capabilities.GetCapability("deviceName").ToString();
 
             // Check the android device is running
             InvalidStateException.ThrowIfFalse(
                 ProcessHelper.IsAndroidDeviceRunning(deviceName), 
                 "Android device is not running. deviceName=" + deviceName);
 
-            if (appCapabilities.Device.UseGrid)
+            // Start an appium local service
+            if (false == Settings.Instance().UseGrid)
             {
-                //_driver = DriverHelper.CreateAppiumWebDriver(appCapabilities, new Uri("http://0.0.0.0:4723/wd/hub"));
-                _driver = DriverHelper.CreateAppiumWebDriver(appCapabilities.DesiredCapabilities(), new Uri(Settings.Instance().GridHubUri));
-            }
-            else
-            {
-                // Start the appium local service
                 _appiumLocalService =
                     AppiumLocalServiceBuilder
-                        .Build(appCapabilities.DesiredCapabilities())
+                        .Build(capabilities)
                         .Start()
                         .AssertIsRunning(10);
-
-                // Create the web driver for the specified device/emulator with desired caps
-                _driver = DriverHelper.CreateAppiumWebDriver(appCapabilities.DesiredCapabilities(), _appiumLocalService.ServiceUrl);
             }
+
+            // Point to the grid else point directly to appium server
+            var uri = (Settings.Instance().UseGrid) ? new Uri(Settings.Instance().GridHubUri) : _appiumLocalService.ServiceUrl;
+
+            // Create the web driver for the specified device/emulator with desired caps
+            _driver = DriverHelper.CreateAppiumWebDriver(capabilities, _appiumLocalService.ServiceUrl);
 
             _driver.Manage().Timeouts().ImplicitWait = TimeSpan.FromMilliseconds(1);
         }

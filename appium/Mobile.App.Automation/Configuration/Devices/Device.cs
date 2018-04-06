@@ -45,9 +45,6 @@ namespace KPE.Mobile.App.Automation.Configuration.Devices
         [JsonProperty("disabled", NullValueHandling = NullValueHandling.Ignore)]
         public bool Disabled { get; set; } = false;
 
-        [JsonProperty("useGrid", NullValueHandling = NullValueHandling.Ignore)]
-        public bool UseGrid { get; set; } = false;
-
         [JsonProperty("capabilities", NullValueHandling = NullValueHandling.Ignore)]
         public List<Capability> Capabilities { get; set; } = new List<Capability>();
     }

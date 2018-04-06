@@ -1,5 +1,6 @@
 ﻿using KPE.Mobile.App.Automation.Configuration;
 using NUnit.Framework;
+using OpenQA.Selenium.Remote;
 using System.Collections.Generic;
 
 namespace KPE.Mobile.App.Automation.Tests.SelendroidApp
@@ -9,7 +10,7 @@ namespace KPE.Mobile.App.Automation.Tests.SelendroidApp
     {
         protected static readonly log4net.ILog _log = log4net.LogManager.GetLogger(System.Reflection.MethodBase.GetCurrentMethod().DeclaringType);
 
-        public SelendroidAppTestBaseGeneric(AppCapabilities caps) : base(caps)
+        public SelendroidAppTestBaseGeneric(DesiredCapabilities capabilities) : base(capabilities)
         {
         }
 

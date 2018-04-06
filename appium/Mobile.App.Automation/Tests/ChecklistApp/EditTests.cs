@@ -3,13 +3,14 @@ using KPE.Mobile.App.Automation.Helpers;
 using KPE.Mobile.App.Automation.PageObjects.ChecklistApp;
 using KPE.Mobile.App.Automation.PageObjects.Wrappers;
 using NUnit.Framework;
+using OpenQA.Selenium.Remote;
 using System.Linq;
 
 namespace KPE.Mobile.App.Automation.Tests.ChecklistApp
 {
     internal class EditTests : ChecklistTestBase
     {
-        public EditTests(AppCapabilities capabilities) 
+        public EditTests(DesiredCapabilities capabilities) 
             : base(capabilities) 
         {
         }

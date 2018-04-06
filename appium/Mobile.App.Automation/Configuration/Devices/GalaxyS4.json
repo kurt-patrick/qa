@@ -2,7 +2,6 @@
 	"description": "Real Samsung Galaxy S4 Device running Android 5.0.1",
 	"disabled": false,
 	"realDevice": true,
-	"useGrid": true,
 	"capabilities": [
 		{ "key": "device", "value": "Android" },
 		{ "key": "platformName", "value": "Android" },

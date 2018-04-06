@@ -20,6 +20,9 @@ namespace KPE.Mobile.App.Automation.Configuration
         [JsonProperty("defaultTimeOut", NullValueHandling = NullValueHandling.Ignore)]
         public int DefaultTimeOut { get; set; } = 20;
 
+        [JsonProperty("useGrid", NullValueHandling = NullValueHandling.Ignore)]
+        public bool UseGrid { get; set; } = false;
+
         public static Settings Instance()
         {
             if (_instance == null)

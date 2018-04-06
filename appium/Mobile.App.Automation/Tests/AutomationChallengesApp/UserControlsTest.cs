@@ -1,12 +1,13 @@
 ﻿using KPE.Mobile.App.Automation.Configuration;
 using KPE.Mobile.App.Automation.PageObjects.AutomationChallengesApp;
 using NUnit.Framework;
+using OpenQA.Selenium.Remote;
 
 namespace KPE.Mobile.App.Automation.Tests.AutomationChallengesApp
 {
     internal class UserControlsTest : AutomationChallengeTestBase<UserControlsPage>
     {
-        public UserControlsTest(AppCapabilities caps) : base(caps)
+        public UserControlsTest(DesiredCapabilities capabilities) : base(capabilities)
         {
         }
 

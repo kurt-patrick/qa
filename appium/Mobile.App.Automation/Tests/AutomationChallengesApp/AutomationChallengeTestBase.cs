@@ -1,6 +1,7 @@
 ﻿using KPE.Mobile.App.Automation.Configuration;
 using KPE.Mobile.App.Automation.PageObjects.AutomationChallengesApp;
 using NUnit.Framework;
+using OpenQA.Selenium.Remote;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -23,7 +24,7 @@ namespace KPE.Mobile.App.Automation.Tests.AutomationChallengesApp
 
         protected NavigationDrawerPage _navigationDrawerPage = null;
 
-        public AutomationChallengeTestBase(AppCapabilities caps) : base(caps)
+        public AutomationChallengeTestBase(DesiredCapabilities capabilities) : base(capabilities)
         {
             _navigationDrawerPage = new NavigationDrawerPage(_driver);
         }

@@ -2,12 +2,13 @@
 using KPE.Mobile.App.Automation.PageObjects.Selendroid;
 using KPE.Mobile.App.Automation.Tests.SelendroidApp;
 using NUnit.Framework;
+using OpenQA.Selenium.Remote;
 
 namespace KPE.Mobile.App.Automation.Tests.Selendroid.LocatorTests
 {
     class FindsByAndroidUIAutomatorTests : SelendroidAppTestBaseGeneric<FindsByAndroidUIAutomatorPage>
     {
-        public FindsByAndroidUIAutomatorTests(AppCapabilities caps) 
+        public FindsByAndroidUIAutomatorTests(DesiredCapabilities caps) 
             : base(caps) 
         {
         }

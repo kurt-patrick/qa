@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using KPE.Mobile.App.Automation.PageObjects.GmailApp;
 using System.Linq;
 using KPE.Mobile.App.Automation.Configuration;
+using OpenQA.Selenium.Remote;
 
 namespace KPE.Mobile.App.Automation.Tests.GmailApp
 {
@@ -11,10 +12,7 @@ namespace KPE.Mobile.App.Automation.Tests.GmailApp
     {
         private static readonly log4net.ILog _log = log4net.LogManager.GetLogger(System.Reflection.MethodBase.GetCurrentMethod().DeclaringType);
 
-        public ConversationListTests(AppCapabilities caps) 
-            : base(caps) 
-        {
-        }
+        public ConversationListTests(DesiredCapabilities capabilities) : base(capabilities) { }
 
         [Test]
         [Ignore("just cos")]

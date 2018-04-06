@@ -2,6 +2,7 @@
 using KPE.Mobile.App.Automation.PageObjects.AutomationChallengesApp;
 using KPE.Mobile.App.Automation.PageObjects.Wrappers;
 using NUnit.Framework;
+using OpenQA.Selenium.Remote;
 
 namespace KPE.Mobile.App.Automation.Tests.AutomationChallengesApp
 {
@@ -9,7 +10,7 @@ namespace KPE.Mobile.App.Automation.Tests.AutomationChallengesApp
     {
         const string ZeroRowsClicked = "0 rows clicked";
 
-        public ResultListTest(AppCapabilities caps) : base(caps)
+        public ResultListTest(DesiredCapabilities capabilities) : base(capabilities)
         {
         }
 
