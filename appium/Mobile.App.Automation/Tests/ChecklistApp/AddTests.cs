@@ -24,14 +24,14 @@ namespace KPE.Mobile.App.Automation.Tests.ChecklistApp
         [Test]
         public void AddItemTest()
         {
-            Eyes eyes = null;
+            //Eyes eyes = null;
             try
             {
-                eyes = GetEyes("AddItemTest");
+                //eyes = GetEyes("AddItemTest");
 
                 Assert.IsTrue(_pageObject.IsLoaded());
 
-                eyes.CheckWindow("List (Pre Add Item)");
+                //eyes.CheckWindow("List (Pre Add Item)");
 
                 var newText = "NEW LINE " + RandomHelper.RandomString(7);
                 ClickAddNewItem(out int preCount)
@@ -40,15 +40,15 @@ namespace KPE.Mobile.App.Automation.Tests.ChecklistApp
 
                 _pageObject.Checklist.WaitForRowCount(preCount + 1);
 
-                eyes.CheckWindow("List (Post Add Item)");
-                eyes.Close();
+                //eyes.CheckWindow("List (Post Add Item)");
+                //eyes.Close();
 
                 Assert.IsNotNull(_pageObject.Checklist.GetRow(newText), "Row not found: " + newText);
 
             }
             finally
             {
-                eyes?.AbortIfNotClosed();
+                //eyes?.AbortIfNotClosed();
             }
 
         }

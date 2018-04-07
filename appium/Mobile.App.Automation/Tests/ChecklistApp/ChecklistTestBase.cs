@@ -13,7 +13,7 @@ namespace KPE.Mobile.App.Automation.Tests.ChecklistApp
     {
         const string AppName = "ChecklistApp";
 
-        Eyes _eyes = null;
+        //Eyes _eyes = null;
 
         public ChecklistTestBase(DesiredCapabilities capabilities) : base(capabilities)
         {
@@ -24,7 +24,8 @@ namespace KPE.Mobile.App.Automation.Tests.ChecklistApp
             return AppCapabilities.ChecklistApp();
         }
 
-        protected Eyes GetEyes(string testName)
+        /*
+        private Eyes GetEyes(string testName)
         {
             if(_eyes == null)
             {
@@ -34,6 +35,7 @@ namespace KPE.Mobile.App.Automation.Tests.ChecklistApp
             }
             return _eyes;
         }
+        */
 
 
     }
