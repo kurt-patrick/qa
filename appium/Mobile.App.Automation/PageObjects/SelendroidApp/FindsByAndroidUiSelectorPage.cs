@@ -1,8 +1,7 @@
-﻿using KPE.Mobile.App.Automation.Common;
+﻿using NUnit.Framework;
 using OpenQA.Selenium;
-using OpenQA.Selenium.Appium.PageObjects.Attributes;
-using NUnit.Framework;
 using OpenQA.Selenium.Appium;
+using OpenQA.Selenium.Appium.PageObjects.Attributes;
 
 namespace KPE.Mobile.App.Automation.PageObjects.Selendroid
 {

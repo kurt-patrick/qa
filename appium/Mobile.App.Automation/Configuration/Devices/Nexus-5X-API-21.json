@@ -1,6 +1,6 @@
 ﻿{
 	"description": "Samsung Nexus 5 running Android 5.0.2",
-	"disabled": false,
+	"disabled": true,
 	"realDevice": false,
 	"capabilities": [
 		{ "key": "device", "value": "Android" },

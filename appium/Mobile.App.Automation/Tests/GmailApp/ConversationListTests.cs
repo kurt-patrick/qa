@@ -7,6 +7,7 @@ using OpenQA.Selenium.Remote;
 
 namespace KPE.Mobile.App.Automation.Tests.GmailApp
 {
+    [Ignore("old test not used")]
     [TestFixtureSource(TestFixtureSourceName)]
     class ConversationListTests : TestBaseGeneric<WelcomePage>
     {
@@ -48,7 +49,7 @@ namespace KPE.Mobile.App.Automation.Tests.GmailApp
                     .SwitchPageObject<ConversationListPage>();
         }
 
-        public static List<AppCapabilities> CapabilitiesList()
+        public static List<DesiredCapabilities> CapabilitiesList()
         {
             return AppCapabilities.GmailApp();
         }

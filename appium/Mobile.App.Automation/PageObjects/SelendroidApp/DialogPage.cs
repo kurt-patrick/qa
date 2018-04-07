@@ -8,9 +8,7 @@ namespace KPE.Mobile.App.Automation.PageObjects.Selendroid
 {
     public class DialogPage : PageBase
     {
-        [CacheLookup()]
-        [FindsByAndroidUIAutomator(ID = "android:id/message")]
-        private IWebElement _message = null;
+        readonly By _messageLocator = By.Id("android:id/message");
 
         [CacheLookup()]
         [FindsByAndroidUIAutomator(ID = "android:id/progress_percent")]
@@ -22,7 +20,7 @@ namespace KPE.Mobile.App.Automation.PageObjects.Selendroid
 
         public override bool IsLoaded()
         {
-            return WaitForDisplayed(_message);
+            return IsVisible(_messageLocator);
         }
 
         public DialogPage AssertIsLoaded()
@@ -33,7 +31,7 @@ namespace KPE.Mobile.App.Automation.PageObjects.Selendroid
 
         public DialogPage AssertDialogIsClosed()
         {
-            Assert.IsTrue(TryWaitForStaleOrHidden(_message), "Dialog is closed");
+            Assert.IsTrue(IsNotVisible(_messageLocator), "Dialog is closed");
             return this;
         }
 

@@ -1,10 +1,9 @@
-﻿using System;
-using System.Collections.Generic;
-using KPE.Mobile.App.Automation.Common;
+﻿using KPE.Mobile.App.Automation.PageObjects;
 using OpenQA.Selenium;
-using OpenQA.Selenium.Appium.iOS;
-using KPE.Mobile.App.Automation.PageObjects;
 using OpenQA.Selenium.Appium;
+using OpenQA.Selenium.Appium.iOS;
+using System;
+using System.Collections.Generic;
 
 namespace KPE.Mobile.App.Automation.Helpers
 {

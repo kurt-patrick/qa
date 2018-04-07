@@ -5,6 +5,7 @@ using OpenQA.Selenium.Remote;
 
 namespace KPE.Mobile.App.Automation.Tests.AutomationChallengesApp
 {
+    [Ignore("need to update the apk file on device")]
     internal class UserControlsTest : AutomationChallengeTestBase<UserControlsPage>
     {
         public UserControlsTest(DesiredCapabilities capabilities) : base(capabilities)
@@ -21,14 +22,14 @@ namespace KPE.Mobile.App.Automation.Tests.AutomationChallengesApp
         public void AlertSuccessTest()
         {
             _pageObject.ClickValidate();
-            Assert.AreEqual(Fail, _pageObject.ValidateText);
+            Assert.AreEqual("State: Fail", _pageObject.ValidateText);
         }
 
         [Test]
         public void AlertFailTest()
         {
             _pageObject.ClickValidate();
-            Assert.AreEqual(Fail, _pageObject.ValidateText);
+            Assert.AreEqual("State: Fail", _pageObject.ValidateText);
         }
 
     }

@@ -47,9 +47,27 @@ namespace KPE.Mobile.App.Automation.Helpers
         public AppiumLocalService AssertIsRunning(int timeout)
         {
             ObjectQA.ThrowIfNull(LocalService);
-            TryHelper.TryWaitForCondition(() => LocalService.IsRunning, timeout);
+            WaitForLocalServiceToBeRunning(timeout);
             Assert.IsTrue(LocalService.IsRunning, "Appium local service is not running");
             return LocalService;
+        }
+
+        bool WaitForLocalServiceToBeRunning(int timeOut)
+        {
+            var finishTime = DateTime.Now.AddSeconds(timeOut);
+
+            do
+            {
+                if (LocalService.IsRunning)
+                {
+                    return true;
+                }
+                System.Threading.Thread.Sleep(500);
+            }
+            while (DateTime.Now < finishTime);
+
+            // fail
+            return false;
         }
 
     }

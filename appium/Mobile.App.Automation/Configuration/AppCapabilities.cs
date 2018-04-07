@@ -25,7 +25,7 @@ namespace KPE.Mobile.App.Automation.Configuration
             Capabilities.Add(new Capability("appActivity", appActivity));
         }
 
-        public AppCapabilities(string appPackage, string appActivity, Device device) : this(appPackage, appActivity)
+        AppCapabilities(string appPackage, string appActivity, Device device) : this(appPackage, appActivity)
         {
             ObjectQA.ThrowIfNull(device);
             ObjectQA.ThrowIfIEnumerableIsEmpty(device.Capabilities);
@@ -33,34 +33,34 @@ namespace KPE.Mobile.App.Automation.Configuration
             Capabilities.AddRange(Device.Capabilities);
         }
 
-        public DesiredCapabilities DesiredCapabilities()
+        DesiredCapabilities DesiredCapabilities()
         {
             var retVal = new DesiredCapabilities();
             Capabilities.ForEach(cap => retVal.SetCapability(cap.Key, cap.Value));
             return retVal;
         }
 
-        public static List<AppCapabilities> AutomationChallengeApp()
+        public static List<DesiredCapabilities> AutomationChallengeApp()
         {
-            return CreateCapabilitesForApp("com.android.kpe.automationchallenge", ".MainActivity");
+            return BuildDesiredCapabilitesList("com.android.kpe.automationchallenge", ".MainActivity");
         }
 
-        public static List<AppCapabilities> ChecklistApp()
+        public static List<DesiredCapabilities> ChecklistApp()
         {
-            return CreateCapabilitesForApp("jakiganicsystems.simplestchecklist", ".MainActivity");
+            return BuildDesiredCapabilitesList("jakiganicsystems.simplestchecklist", ".MainActivity");
         }
 
-        public static List<AppCapabilities> SelendroidApp()
+        public static List<DesiredCapabilities> SelendroidApp()
         {
-            return CreateCapabilitesForApp("io.selendroid.testapp", ".HomeScreenActivity");
+            return BuildDesiredCapabilitesList("io.selendroid.testapp", ".HomeScreenActivity");
         }
 
-        public static List<AppCapabilities> GmailApp()
+        public static List<DesiredCapabilities> GmailApp()
         {
-            return CreateCapabilitesForApp("com.google.android.gm", ".ConversationListActivityGmail");
+            return BuildDesiredCapabilitesList("com.google.android.gm", ".ConversationListActivityGmail");
         }
 
-        private static List<AppCapabilities> CreateCapabilitesForApp(string appPackage, string appActivity)
+        private static List<DesiredCapabilities> BuildDesiredCapabilitesList(string appPackage, string appActivity)
         {
             var devices = DeviceFactory.GetEnabledDevices();
             if (devices.Count == 0)
@@ -68,8 +68,8 @@ namespace KPE.Mobile.App.Automation.Configuration
                 throw new Exceptions.InvalidStateException("No enabled devices were found");
             }
 
-            var retVal = new List<AppCapabilities>();
-            devices.ForEach(device => retVal.Add(new AppCapabilities(appPackage, appActivity, device)));
+            var retVal = new List<DesiredCapabilities>();
+            devices.ForEach(device => retVal.Add(new AppCapabilities(appPackage, appActivity, device).DesiredCapabilities()));
             return retVal;
         }
 

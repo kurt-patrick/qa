@@ -30,11 +30,9 @@ namespace KPE.Mobile.App.Automation.PageObjects.AutomationChallengesApp
         [FindsByAndroidUIAutomator(ID = "button2")]
         private IWebElement _no = null;
 
-        [CacheLookup()]
-        [FindsByAndroidUIAutomator(ID = "txtActual")]
-        private IWebElement _txtActual = null;
+        readonly By _actualLocator = By.Id("txtActual");
 
-        public string Actual => _txtActual.Text.Trim();
+        public string Actual => GetText(_actualLocator, true);
         public string MathQuestion => _message.Text.Trim();
 
         public AlertDialogPage(AppiumDriver<IWebElement> driver) : base(driver)
@@ -92,7 +90,9 @@ namespace KPE.Mobile.App.Automation.PageObjects.AutomationChallengesApp
             {
                 No();
             }
-            WaitForDisplayed(_txtActual);
+
+            // Wait for the "actual" value to be displayed
+            IsVisible(_actualLocator);
         }
 
         public void Yes()

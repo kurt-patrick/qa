@@ -78,7 +78,6 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Helpers\AppiumLocalServiceBuilder.cs" />
-    <Compile Include="Common\Constants.cs" />
     <Compile Include="Exceptions\InvalidParameterException.cs" />
     <Compile Include="Exceptions\InvalidStateException.cs" />
     <Compile Include="Helpers\DriverHelper.cs" />
@@ -88,10 +87,10 @@
     <Compile Include="Helpers\ProcessHelper.cs" />
     <Compile Include="Helpers\RandomHelper.cs" />
     <Compile Include="Helpers\StringHelper.cs" />
+    <Compile Include="Helpers\TryHelper.cs" />
     <Compile Include="Helpers\UiSelectorChainedHelper.cs" />
     <Compile Include="Helpers\UiScrollableHelper.cs" />
     <Compile Include="Helpers\UiSelectorHelper.cs" />
-    <Compile Include="Helpers\TryHelper.cs" />
     <Compile Include="PageObjects\AutomationChallengesApp\UserControlsPage.cs" />
     <Compile Include="PageObjects\AutomationChallengesApp\AlertDialogPage.cs" />
     <Compile Include="PageObjects\AutomationChallengesApp\NavigationDrawerPage.cs" />
