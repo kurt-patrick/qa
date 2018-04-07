@@ -1,11 +1,9 @@
-﻿using KPE.Mobile.App.Automation.Common;
-using KPE.Mobile.App.Automation.Configuration;
+﻿using KPE.Mobile.App.Automation.Configuration;
 using KPE.Mobile.App.Automation.Helpers;
 using KPE.Mobile.App.Automation.QA;
 using OpenQA.Selenium;
 using OpenQA.Selenium.Appium;
 using OpenQA.Selenium.Appium.Android;
-using OpenQA.Selenium.Appium.Interfaces;
 using OpenQA.Selenium.Appium.iOS;
 using OpenQA.Selenium.Appium.MultiTouch;
 using OpenQA.Selenium.Appium.PageObjects;
@@ -39,7 +37,8 @@ namespace KPE.Mobile.App.Automation.PageObjects
             _driver = driver;
             _driverType = GetDriverType(_driver);
 
-            PageFactory.InitElements(_driver, this, new AppiumPageObjectMemberDecorator(Constants.DefaultTimeOutDuration));
+            TimeOutDuration implicitWait = new TimeOutDuration(TimeSpan.FromMilliseconds(Settings.Instance().ImplicitWait));
+            PageFactory.InitElements(_driver, this, new AppiumPageObjectMemberDecorator(implicitWait));
         }
 
         protected TouchAction GetTouchAction()
@@ -99,7 +98,7 @@ namespace KPE.Mobile.App.Automation.PageObjects
         /// <returns>value of the element with option to be trimmed</returns>
         protected string GetText(By by, bool trim)
         {
-            var element = FindVisibleElement(by);
+            var element = WaitUntil(ExpectedConditions.ElementIsVisible(by), true);
             return GetText(element, trim);
         }
 
@@ -150,10 +149,8 @@ namespace KPE.Mobile.App.Automation.PageObjects
                     break;
                 case DriverType.IOSDriver:
                     throw new NotImplementedException("todo");
-                    //break;
                 default:
                     throw new NotImplementedException(_driverType.ToString());
-                    //break;
             }
         }
 
@@ -164,28 +161,12 @@ namespace KPE.Mobile.App.Automation.PageObjects
         }
 
         /// <summary>
-        /// Returns the currency value of a string with currency char stripped out
-        /// </summary>
-        /// <param name="by"></param>
-        /// <returns></returns>
-        protected decimal GetCurrency(By by)
-        {
-            string text = GetText(by, true);
-            // strip the currecy symbol out $
-            if (!decimal.TryParse(text, System.Globalization.NumberStyles.Currency, CultureInfo.CurrentCulture, out decimal retVal))
-            {
-                throw new ArgumentException(string.Format("Failed to parse ({0}) to a decimal", text));
-            }
-            return retVal;
-        }
-
-        /// <summary>
         /// Clears the text of an elemnt e.g. an input tag
         /// </summary>
         /// <param name="by"></param>
         protected void ClearText(By by)
         {
-            var element = FindVisibleElement(by);
+            var element = WaitUntil(ExpectedConditions.ElementIsVisible(by), true);
             ClearText(element);
         }
 
@@ -195,7 +176,7 @@ namespace KPE.Mobile.App.Automation.PageObjects
         /// <param name="element"></param>
         protected void ClearText(IWebElement element)
         {
-            ObjectQA.ThrowIfNull(element, "element", "The web element is null");
+            ObjectQA.ThrowIfNull(element, nameof(element));
             element.Clear();
         }
 
@@ -218,7 +199,7 @@ namespace KPE.Mobile.App.Automation.PageObjects
         /// <param name="clear"></param>
         protected void SendKeys(By by, string text, bool clear)
         {
-            var element = FindVisibleElement(by);
+            var element = WaitUntil(ExpectedConditions.ElementIsVisible(by), true);
             SendKeys(element, text, clear);
         }
 
@@ -239,33 +220,6 @@ namespace KPE.Mobile.App.Automation.PageObjects
 
         /// <summary>
         /// Simulates pressing the keyboard on an input
-        /// </summary>
-        /// <param name="element"></param>
-        /// <param name="text"></param>
-        protected void SetImmediateValue(IWebElement element, string text, bool clear, bool hideKeyboard)
-        {
-            AppiumWebElement appiumWebElement = element as AppiumWebElement;
-            if(appiumWebElement == null)
-            {
-                if (element is IWrapsElement wrapsElement)
-                {
-                    appiumWebElement = wrapsElement.WrappedElement as AppiumWebElement;
-                }
-            }
-
-            if (appiumWebElement != null)
-            {
-                if (clear) { appiumWebElement.Clear(); }
-
-                appiumWebElement.SetImmediateValue(text);
-
-                if(hideKeyboard) { TryHelper.TryCatch(() => HideKeyboard()); }
-            }
-
-        }
-
-        /// <summary>
-        /// Simulates pressing the keyboard on an input
         /// If clear is true the inputs contents will be cleared
         /// </summary>
         /// <param name="element"></param>
@@ -273,68 +227,19 @@ namespace KPE.Mobile.App.Automation.PageObjects
         /// <param name="clear"></param>
         protected void SendKeys(IWebElement element, string text, bool clear)
         {
-            ObjectQA.ThrowIfNull(element, "element", "The web element is null");
-            if (clear)
-            {
-                ClearText(element);
-            }
+            ObjectQA.ThrowIfNull(element, nameof(element));
+            if (clear) { ClearText(element); }
             element.SendKeys(text);
-        }
-
-        /// <summary>
-        /// Returns a web element based on the locator
-        /// Waits for the the element to exist
-        /// </summary>
-        /// <param name="by"></param>
-        /// <param name="timeOut"></param>
-        /// <returns>A web element or throws an exception if not found</returns>
-        protected IWebElement FindElement(By by)
-        {
-            ObjectQA.ThrowIfNull(by, "by");
-            try
-            {
-                return WaitUntil(ExpectedConditions.ElementExists(by));
-            }
-            catch (Exception)
-            {
-                _log.Error("Failed to FindElement " + by.ToString());
-                throw;
-            }
-        }
-
-        protected IWebElement FindVisibleElement(By by)
-        {
-            ObjectQA.ThrowIfNull(by, "by");
-            try
-            {
-                return WaitUntil(ExpectedConditions.ElementIsVisible(by));
-            }
-            catch (Exception)
-            {
-                _log.Error("Failed to FindVisibleElement " + by.ToString());
-                throw;
-            }
-        }
-
-        protected bool WaitForDisplayed(IWebElement element)
-        {
-            return TryHelper.TryWaitForCondition(() => element != null && element.Displayed, Common.Constants.DefaultTimeOut);
-        }
-
-        protected void WaitForTextToBePresentInElement(IWebElement element, string text)
-        {
-            ObjectQA.ThrowIfNull(text);
-            WaitUntil(ExpectedConditions.TextToBePresentInElement(element, text));
         }
 
         protected TResult WaitUntil<TResult>(Func<IWebDriver, TResult> condition)
         {
-            return WaitUntil(condition, true, Constants.DefaultTimeOut, null);
+            return WaitUntil(condition, true, Settings.Instance().WebDriverWaitTimeOut, null);
         }
 
         private TResult WaitUntil<TResult>(Func<IWebDriver, TResult> condition, bool throwEx)
         {
-            return WaitUntil(condition, throwEx, Constants.DefaultTimeOut, null);
+            return WaitUntil(condition, throwEx, Settings.Instance().WebDriverWaitTimeOut, null);
         }
 
         private TResult WaitUntil<TResult>(Func<IWebDriver, TResult> condition, bool throwEx, int timeOut, IWebDriver driver)
@@ -354,57 +259,6 @@ namespace KPE.Mobile.App.Automation.PageObjects
             return default(TResult);
         }
 
-        protected System.Collections.ObjectModel.ReadOnlyCollection<IWebElement> FindElements(By by)
-        {
-            return WaitUntil(ExpectedConditions.PresenceOfAllElementsLocatedBy(by));
-        }
-
-        /// <summary>
-        /// Looks for the element specified using the wait specified
-        /// The element only needs to exist - it does not need to be visible for success
-        /// </summary>
-        /// <param name="by"></param>
-        /// <param name="timeOut"></param>
-        /// <returns>true if the element exists</returns>
-        protected bool Exists(By by)
-        {
-            return WaitUntil(ExpectedConditions.ElementExists(by), false) != null;
-        }
-
-        /// <summary>
-        /// Validates all the elements exist (doesn't check for displayed)
-        /// </summary>
-        /// <param name="list"></param>
-        /// <param name="timeOut"></param>
-        /// <returns>true if all elements exist</returns>
-        protected bool Exists(params By[] list)
-        {
-            Func<By, bool> condition = (By by) =>
-            {
-                if (Exists(by))
-                {
-                    return true;
-                }
-                _log.Debug("Element does not exist: " + by.ToString());
-                return false;
-            };
-
-            return list.All(condition);
-        }
-
-        /// <summary>
-        /// Looks for the element specified using the wait specified
-        /// The element only needs to exist - it does not need to be visible for success
-        /// </summary>
-        /// <param name="by"></param>
-        /// <param name="timeOut"></param>
-        /// <returns>true if the element exists and an element reference</returns>
-        protected bool Exists(By by, out IWebElement element)
-        {
-            element = WaitUntil(ExpectedConditions.ElementExists(by), false);
-            return element != null;
-        }
-
         protected bool IsVisible(IWebElement element)
         {
             return element != null && element.Displayed;
@@ -417,40 +271,8 @@ namespace KPE.Mobile.App.Automation.PageObjects
         /// <param name="by"></param>
         /// <param name="timeOut"></param>
         /// <returns>true if visible</returns>
-        protected bool IsVisible(By by)
-        {
-            return WaitUntil(ExpectedConditions.ElementIsVisible(by), false) != null;
-        }
-
-        /// <summary>
-        /// Looks for the element specified using the wait specified
-        /// The element must be visible for success
-        /// </summary>
-        /// <param name="by"></param>
-        /// <param name="timeOut"></param>
-        /// <returns>true if visible and an element reference</returns>
-        protected bool IsVisible(By by, out IWebElement element)
-        {
-            if (Exists(by, out IWebElement ele) && ele.Displayed)
-            {
-                element = ele;
-                return true;
-            }
-
-            // fail
-            element = null;
-            return false;
-        }
-
-        protected bool TryWaitForStaleOrHidden(IWebElement element)
-        {
-            return TryHelper.TryWaitForCondition(() => element == null || element.Displayed == false);
-        }
-
-        protected bool TryWaitForStaleOrHidden(By locator, int timeOut)
-        {
-            return TryHelper.TryCatch(() => WaitUntil(ExpectedConditions.InvisibilityOfElementLocated(locator), true, timeOut, null));
-        }
+        protected bool IsVisible(By by) => WaitUntil(ExpectedConditions.ElementIsVisible(by), false) != null;
+        protected bool IsNotVisible(By by) => WaitUntil(ExpectedConditions.InvisibilityOfElementLocated(by), false);
 
         /// <summary>
         /// Validates all the elements are visible
@@ -502,18 +324,18 @@ namespace KPE.Mobile.App.Automation.PageObjects
         /// <param name="timeOut"></param>
         protected void Click(By by)
         {
-            var ele = FindElement(by);
+            var ele = WaitUntil(ExpectedConditions.ElementToBeClickable(by), true);
             Click(ele);
         }
 
         protected bool TryClickAndValidate(By by, Func<bool> condition)
         {
-            return TryClickAndValidate(by, condition, Settings.Instance().DefaultTimeOut);
+            return TryClickAndValidate(by, condition, Settings.Instance().WebDriverWaitTimeOut);
         }
 
         protected bool TryClickAndValidate(By by, Func<bool> condition, int timeOut)
         {
-            var element = FindVisibleElement(by);
+            var element = WaitUntil(ExpectedConditions.ElementIsVisible(by), true);
             return TryClickAndValidate(element, condition, timeOut);
         }
 
@@ -521,7 +343,7 @@ namespace KPE.Mobile.App.Automation.PageObjects
         {
             ObjectQA.ThrowIfNull(element);
             element.Click();
-            return TryHelper.TryWaitForCondition(condition, timeOut);
+            return WaitUntil((arg) => condition(), false, timeOut, _driver);
         }
 
         public bool IsChecked(IWebElement element)
@@ -532,18 +354,23 @@ namespace KPE.Mobile.App.Automation.PageObjects
 
         protected bool ToggleCheckBox(IWebElement element, bool check)
         {
+            // if the element is in the desired state return with success
             if (check == IsChecked(element))
             {
                 return true;
             }
 
-            Func<bool> condition = () =>
-            {
-                element.Click();
-                return IsChecked(element) == check;
-            };
+            // Wait until the element is clickable
+            WaitUntil(ExpectedConditions.ElementToBeClickable(element), true);
 
-            return TryHelper.TryWaitForCondition(condition);
+            // Click the element and confirm that the state is as expected
+            bool success =
+                WaitUntil((arg) => {
+                    element.Click();
+                    return IsChecked(element) == check;
+                }, false);
+
+            return success;
         }
 
     }

@@ -62,9 +62,10 @@ namespace KPE.Mobile.App.Automation.PageObjects.Wrappers
 
         private List<IWebElement> GetVisibleChildRows()
         {
-            // NOTE: If the implicit wait is not set the performance is very slow e.g. 40 second wait when no rows exist
-            _driver.Manage().Timeouts().ImplicitWait = System.TimeSpan.FromMilliseconds(100);
-            return _driver.FindElementsByXPath(_listViewRowsXPath).Where(ele => ele.Displayed).ToList();
+            var elements = _driver.FindElementsByXPath(_listViewRowsXPath);
+            var notDisplayed = elements.Where(ele => ele.Displayed == false);
+            var displayed = elements.Where(ele => ele.Displayed == true);
+            return displayed.ToList();
         }
 
         public List<ListViewRowWrapper> GetRows()

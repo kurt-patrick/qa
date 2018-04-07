@@ -2,21 +2,13 @@
 using KPE.Mobile.App.Automation.PageObjects.AutomationChallengesApp;
 using NUnit.Framework;
 using OpenQA.Selenium.Remote;
-using System;
 using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace KPE.Mobile.App.Automation.Tests.AutomationChallengesApp
 {
-    // Fixtures: Run on 1 device at a time
-    // Self: Runs test in parallel (worked well when running tests for a specific class)
-    // Children: Runs test in parallel (with a single class 1 of the 2 tests failed with errors)
-    // All: Runs test in parallel (with a single class 1 of the 2 tests failed with errors)
-
     [TestFixtureSource("CapabilitiesList")]
-    [Parallelizable(ParallelScope.Self)]
+    //[Parallelizable(ParallelScope.Self)]
+    [NonParallelizable]
     internal class AutomationChallengeTestBase<T> : TestBaseGeneric<T> where T : PageObjects.PageBase
     {
         protected const string Success = "Success";
@@ -29,7 +21,7 @@ namespace KPE.Mobile.App.Automation.Tests.AutomationChallengesApp
             _navigationDrawerPage = new NavigationDrawerPage(_driver);
         }
 
-        public static List<AppCapabilities> CapabilitiesList()
+        public static List<DesiredCapabilities> CapabilitiesList()
         {
             return AppCapabilities.AutomationChallengeApp();
         }

@@ -62,15 +62,12 @@ namespace KPE.Mobile.App.Automation.PageObjects.Selendroid
         private double? GetCoords(By locator, string pattern)
         {
             double? retVal = null;
-            if(IsVisible(locator, out IWebElement element))
+            string text = GetText(locator, true);
+            if(Regex.IsMatch(text, pattern))
             {
-                string text = GetText(element, true);
-                if(Regex.IsMatch(text, pattern))
-                {
-                    var matches = Regex.Match(text, pattern);
-                    var groupValue = matches.Groups[1].Value;
-                    retVal = double.Parse(groupValue);
-                }
+                var matches = Regex.Match(text, pattern);
+                var groupValue = matches.Groups[1].Value;
+                retVal = double.Parse(groupValue);
             }
             return retVal;
         }
@@ -146,7 +143,7 @@ namespace KPE.Mobile.App.Automation.PageObjects.Selendroid
                 return "ON DOUBLE TAP EVENT".Equals(GetText(_gestureType, true));
             };
 
-            TryHelper.TryWaitForCondition(condition, 30);
+            WaitUntil((arg) => condition());
 
             return this;
         }

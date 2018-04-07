@@ -54,8 +54,6 @@ namespace KPE.Mobile.App.Automation.Tests
 
             // Create the web driver for the specified device/emulator with desired caps
             _driver = DriverHelper.CreateAppiumWebDriver(capabilities, uri);
-
-            _driver.Manage().Timeouts().ImplicitWait = TimeSpan.FromMilliseconds(1);
         }
 
         [OneTimeSetUp]

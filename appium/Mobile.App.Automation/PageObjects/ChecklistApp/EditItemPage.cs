@@ -1,9 +1,8 @@
-﻿using KPE.Mobile.App.Automation.Common;
-using OpenQA.Selenium.Support.PageObjects;
-using OpenQA.Selenium.Appium.PageObjects.Attributes;
+﻿using NUnit.Framework;
 using OpenQA.Selenium;
-using NUnit.Framework;
 using OpenQA.Selenium.Appium;
+using OpenQA.Selenium.Appium.PageObjects.Attributes;
+using OpenQA.Selenium.Support.PageObjects;
 
 namespace KPE.Mobile.App.Automation.PageObjects.ChecklistApp
 {

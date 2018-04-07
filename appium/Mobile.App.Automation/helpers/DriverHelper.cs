@@ -24,22 +24,23 @@ namespace KPE.Mobile.App.Automation.Helpers
             string device = cabilities.GetCapability("device").ToString();
             var commandTimeout = TimeSpan.FromSeconds(Settings.Instance().CommandTimeOut);
 
+            AppiumDriver<IWebElement> driver = null;
             if ("Android".Equals(device))
             {
-                // https://github.com/SeleniumHQ/selenium/issues/4142
-                // https://discuss.appium.io/t/gridexception-cannot-extract-a-capabilities-from-the-request/17265
-                // https://www.youtube.com/watch?v=vXpskMkytD8&feature=youtu.be
-
-                return new AndroidDriver<IWebElement>(uri, cabilities, commandTimeout);
+                driver = new AndroidDriver<IWebElement>(uri, cabilities, commandTimeout);
             }
-
-            if ("iOS".Equals(device))
+            else if ("iOS".Equals(device))
             {
-                return new IOSDriver<IWebElement>(uri, cabilities, commandTimeout);
+                driver = new IOSDriver<IWebElement>(uri, cabilities, commandTimeout);
+            }
+            else
+            {
+                throw new NotImplementedException("No logic has been implemented for appium driver type: " + device);
             }
 
-            throw new NotImplementedException("No logic has been implemented for appium driver type: " + device);
+            driver.Manage().Timeouts().ImplicitWait = TimeSpan.FromMilliseconds(Settings.Instance().ImplicitWait);
 
+            return driver;
         }
 
     }

@@ -48,7 +48,7 @@ namespace KPE.Mobile.App.Automation.Tests.GmailApp
                     .SwitchPageObject<ConversationListPage>();
         }
 
-        public static List<AppCapabilities> CapabilitiesList()
+        public static List<DesiredCapabilities> CapabilitiesList()
         {
             return AppCapabilities.GmailApp();
         }

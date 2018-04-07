@@ -14,17 +14,26 @@ namespace KPE.Mobile.App.Automation.Configuration
         [JsonProperty("appiumHubUri", NullValueHandling = NullValueHandling.Ignore)]
         public string GridHubUri { get; set; } = "";
 
-        [JsonProperty("deviceCapabilitiesFolderPath", NullValueHandling = NullValueHandling.Ignore)]
-        public string DeviceCapabilitiesFolderPath { get; set; } = "";
-
-        [JsonProperty("defaultTimeOut", NullValueHandling = NullValueHandling.Ignore)]
-        public int DefaultTimeOut { get; set; } = 20;
-
         [JsonProperty("commandTimeOut", NullValueHandling = NullValueHandling.Ignore)]
         public int CommandTimeOut { get; set; } = 30;
 
+        [JsonProperty("deviceCapabilitiesFolderPath", NullValueHandling = NullValueHandling.Ignore)]
+        public string DeviceCapabilitiesFolderPath { get; set; } = "";
+
+        /// <summary>
+        /// Implicit Wait to use for elements in ms
+        /// </summary>
+        [JsonProperty("implicitWait", NullValueHandling = NullValueHandling.Ignore)]
+        public int ImplicitWait { get; set; } = 100;
+
         [JsonProperty("useGrid", NullValueHandling = NullValueHandling.Ignore)]
         public bool UseGrid { get; set; } = false;
+
+        /// <summary>
+        /// Timeout to use for WebDriverWait in seconds
+        /// </summary>
+        [JsonProperty("webDriverWaitTimeOut", NullValueHandling = NullValueHandling.Ignore)]
+        public int WebDriverWaitTimeOut { get; set; } = 60;
 
         public static Settings Instance()
         {
