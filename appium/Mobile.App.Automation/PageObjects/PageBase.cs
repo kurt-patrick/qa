@@ -1,5 +1,6 @@
 ﻿using KPE.Mobile.App.Automation.Configuration;
 using KPE.Mobile.App.Automation.Helpers;
+using KPE.Mobile.App.Automation.PageObjects.Wrappers;
 using KPE.Mobile.App.Automation.QA;
 using OpenQA.Selenium;
 using OpenQA.Selenium.Appium;
@@ -237,7 +238,7 @@ namespace KPE.Mobile.App.Automation.PageObjects
             return WaitUntil(condition, true, Settings.Instance().WebDriverWaitTimeOut, null);
         }
 
-        private TResult WaitUntil<TResult>(Func<IWebDriver, TResult> condition, bool throwEx)
+        protected TResult WaitUntil<TResult>(Func<IWebDriver, TResult> condition, bool throwEx)
         {
             return WaitUntil(condition, throwEx, Settings.Instance().WebDriverWaitTimeOut, null);
         }
@@ -296,6 +297,12 @@ namespace KPE.Mobile.App.Automation.PageObjects
             return list.All(condition);
         }
 
+        protected bool IsDisplayed(params IWebElementWrapper[] list)
+        {
+            ObjectQA.ThrowIfIEnumerableIsEmpty(list);
+            return list.All(ele => ele.Displayed());
+        }
+
         /// <summary>
         /// Validates all the elements are visible
         /// </summary>
@@ -328,6 +335,7 @@ namespace KPE.Mobile.App.Automation.PageObjects
             Click(ele);
         }
 
+        /*
         protected bool TryClickAndValidate(By by, Func<bool> condition)
         {
             return TryClickAndValidate(by, condition, Settings.Instance().WebDriverWaitTimeOut);
@@ -345,6 +353,7 @@ namespace KPE.Mobile.App.Automation.PageObjects
             element.Click();
             return WaitUntil((arg) => condition(), false, timeOut, _driver);
         }
+        */
 
         public bool IsChecked(IWebElement element)
         {

@@ -17,7 +17,10 @@ namespace KPE.Mobile.App.Automation.Tests.AutomationChallengesApp
         public override void TestSetup()
         {
             _navigationDrawerPage.OpenDrawer().ListChallenge();
-            Assert.AreEqual(ZeroRowsClicked, _pageObject.Actual);
+            var actualToString = _pageObject.Actual.ToString();
+            var actualText = _pageObject.Actual.Text();
+            bool areEqual = ZeroRowsClicked.Equals(actualToString);
+            Assert.AreEqual(ZeroRowsClicked, actualToString);
         }
 
         [Test]
@@ -31,7 +34,7 @@ namespace KPE.Mobile.App.Automation.Tests.AutomationChallengesApp
 
             indexes.ForEach(index => rows[index].TapRow());
 
-            Assert.AreEqual(Success, _pageObject.Actual);
+            Assert.AreEqual(Success, _pageObject.Actual.Text());
         }
 
         [Test]
@@ -43,12 +46,12 @@ namespace KPE.Mobile.App.Automation.Tests.AutomationChallengesApp
             for (int index=0; index<rows.Count; index++)
             {
                 rows[index].TapRow();
-                if(Fail.Equals(_pageObject.Actual))
+                if(Fail.Equals(_pageObject.Actual.Text()))
                 {
                     break;
                 }
             }
-            Assert.AreEqual(Fail, _pageObject.Actual);
+            Assert.AreEqual(Fail, _pageObject.Actual.Text());
         }
 
     }

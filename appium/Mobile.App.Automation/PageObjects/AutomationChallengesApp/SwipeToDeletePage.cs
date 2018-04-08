@@ -1,18 +1,13 @@
-﻿using OpenQA.Selenium;
+﻿using KPE.Mobile.App.Automation.PageObjects.Wrappers;
+using OpenQA.Selenium;
 using OpenQA.Selenium.Appium;
 using OpenQA.Selenium.Appium.MultiTouch;
-using OpenQA.Selenium.Appium.PageObjects.Attributes;
-using OpenQA.Selenium.Support.PageObjects;
 
 namespace KPE.Mobile.App.Automation.PageObjects.AutomationChallengesApp
 {
     class SwipeToDeletePage : PageBase
     {
-        [CacheLookup()]
-        [FindsByAndroidUIAutomator(ID = "txtActual")]
-        private IWebElement _txtActual = null;
-
-        public string Actual => _txtActual.Text.Trim();
+        public MobileElementWrapper Actual => new MobileElementWrapper(_driver, By.Id("txtActual"));
 
         public SwipeToDeletePage(AppiumDriver<IWebElement> driver) : base(driver)
         {
@@ -20,7 +15,7 @@ namespace KPE.Mobile.App.Automation.PageObjects.AutomationChallengesApp
 
         public override bool IsLoaded()
         {
-            return _txtActual.Displayed;
+            return Actual.Displayed();
         }
 
         public void SwipeFirstRow()

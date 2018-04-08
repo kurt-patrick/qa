@@ -1,7 +1,6 @@
-﻿using OpenQA.Selenium;
+﻿using KPE.Mobile.App.Automation.PageObjects.Wrappers;
+using OpenQA.Selenium;
 using OpenQA.Selenium.Appium;
-using OpenQA.Selenium.Appium.PageObjects.Attributes;
-using OpenQA.Selenium.Support.PageObjects;
 using System;
 
 namespace KPE.Mobile.App.Automation.PageObjects.AutomationChallengesApp
@@ -18,22 +17,10 @@ namespace KPE.Mobile.App.Automation.PageObjects.AutomationChallengesApp
             public bool IsCorrect;
         }
 
-        [CacheLookup()]
-        [FindsByAndroidUIAutomator(ID = "message")]
-        private IWebElement _message = null;
-
-        [CacheLookup()]
-        [FindsByAndroidUIAutomator(ID = "button1")]
-        private IWebElement _yes = null;
-
-        [CacheLookup()]
-        [FindsByAndroidUIAutomator(ID = "button2")]
-        private IWebElement _no = null;
-
-        readonly By _actualLocator = By.Id("txtActual");
-
-        public string Actual => GetText(_actualLocator, true);
-        public string MathQuestion => _message.Text.Trim();
+        public MobileElementWrapper Actual => new MobileElementWrapper(_driver, By.Id("txtActual"));
+        public MobileElementWrapper MathQuestion => new MobileElementWrapper(_driver, By.Id("message"));
+        public MobileElementWrapper NoButton => new MobileElementWrapper(_driver, By.Id("button2"));
+        public MobileElementWrapper YesButton => new MobileElementWrapper(_driver, By.Id("button1"));
 
         public AlertDialogPage(AppiumDriver<IWebElement> driver) : base(driver)
         {
@@ -41,7 +28,7 @@ namespace KPE.Mobile.App.Automation.PageObjects.AutomationChallengesApp
 
         public EquationComponents GetEquationComponents()
         {
-            var array = MathQuestion.Split(" ".ToCharArray(), StringSplitOptions.RemoveEmptyEntries);
+            var array = MathQuestion.Text().Split(" ".ToCharArray(), StringSplitOptions.RemoveEmptyEntries);
             if(array.Length != 5)
             {
                 throw new Exceptions.InvalidStateException("Math equation should contains 5 components <lhs> <+-*> <rhs> <==> <answer>");
@@ -84,30 +71,17 @@ namespace KPE.Mobile.App.Automation.PageObjects.AutomationChallengesApp
         {
             if (correct)
             {
-                Yes();
+                YesButton.Click();
             }
             else
             {
-                No();
+                NoButton.Click();
             }
-
-            // Wait for the "actual" value to be displayed
-            IsVisible(_actualLocator);
-        }
-
-        public void Yes()
-        {
-            _yes.Click();
-        }
-
-        public void No()
-        {
-            _no.Click();
         }
 
         public override bool IsLoaded()
         {
-            return _yes.Displayed && _no.Displayed && _message.Displayed;
+            return YesButton.Displayed() && NoButton.Displayed() && MathQuestion.Displayed();
         }
 
     }
