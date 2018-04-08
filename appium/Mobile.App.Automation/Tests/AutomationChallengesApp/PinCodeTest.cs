@@ -1,5 +1,4 @@
-﻿using KPE.Mobile.App.Automation.Configuration;
-using KPE.Mobile.App.Automation.PageObjects.AutomationChallengesApp;
+﻿using KPE.Mobile.App.Automation.PageObjects.AutomationChallengesApp;
 using NUnit.Framework;
 using OpenQA.Selenium.Remote;
 using System.Collections.Generic;
@@ -18,7 +17,7 @@ namespace KPE.Mobile.App.Automation.Tests.AutomationChallengesApp
         public override void TestSetup()
         {
             _navigationDrawerPage.OpenDrawer().PinChallenge();
-            Assert.AreEqual(ClickToEnterPin, _pageObject.PinEntered);
+            Assert.AreEqual(ClickToEnterPin, _pageObject.PinEntered.Text(true));
         }
 
         [Test]
@@ -33,19 +32,19 @@ namespace KPE.Mobile.App.Automation.Tests.AutomationChallengesApp
 
                 // Assert the ui updated as expected
                 pinEntered += pinList[index].ToString();
-                Assert.AreEqual($"PIN entered: {pinEntered}", _pageObject.PinEntered);
+                Assert.AreEqual($"PIN entered: {pinEntered}", _pageObject.PinEntered.Text(true));
             }
 
             // Enter the last pin number and assert success
             _pageObject.ClickPinNumber(pinList.Last());
-            Assert.AreEqual(Success, _pageObject.PinEntered);
+            Assert.AreEqual(Success, _pageObject.PinEntered.Text(true));
         }
 
         [Test]
         public void PinFailTest()
         {
             _pageObject.EnterPIN(new List<int> { 9, 9, 9, 9  });
-            Assert.AreEqual(Fail, _pageObject.PinEntered);
+            Assert.AreEqual(Fail, _pageObject.PinEntered.Text(true));
         }
 
     }

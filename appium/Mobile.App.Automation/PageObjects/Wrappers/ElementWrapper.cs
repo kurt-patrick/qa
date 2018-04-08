@@ -4,10 +4,6 @@ using OpenQA.Selenium.Appium.Android;
 using OpenQA.Selenium.Appium.iOS;
 using OpenQA.Selenium.Support.UI;
 using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace KPE.Mobile.App.Automation.PageObjects.Wrappers
 {
@@ -38,7 +34,14 @@ namespace KPE.Mobile.App.Automation.PageObjects.Wrappers
         public bool NotDisplayed() => _element.NotDisplayed();
         public void PressKeys(string text) => _element.PressKeys(text);
         public void PressKeys(string text, bool clearText) => _element.PressKeys(text, clearText);
+        public bool Selected() => _element.Selected();
         public string Text() => _element.Text();
+        public string Text(bool trim) => _element.Text(trim);
+        public override string ToString()
+        {
+            var retVal = Text();
+            return retVal;
+        }
 
     }
 
@@ -86,26 +89,39 @@ namespace KPE.Mobile.App.Automation.PageObjects.Wrappers
             PressKeys(text, clearText);
         }
 
-        public virtual string Text()
+        public virtual string Text() => Text(false);
+        public string Text(bool trim)
         {
             var element = WaitUntil(ExpectedConditions.ElementIsVisible(_locator));
-            return GetText(element);
+            return GetText(element, trim);
+        }
+
+        public bool Selected()
+        {
+            var element = WaitUntil(ExpectedConditions.ElementIsVisible(_locator));
+            return element.Selected;
         }
 
         public override bool IsLoaded()
         {
             throw new NotImplementedException();
         }
-
     }
 
-    interface IWebElementWrapper
+    public interface IWebElementWrapper
     {
         void Click();
         bool Displayed();
         bool NotDisplayed();
         string Text();
+        string Text(bool trim);
         void PressKeys(string text);
         void PressKeys(string text, bool clearText);
+
+        /// <summary>
+        /// todo: move checkbox implemtnation into its own object
+        /// </summary>
+        /// <returns></returns>
+        bool Selected();
     }
 }

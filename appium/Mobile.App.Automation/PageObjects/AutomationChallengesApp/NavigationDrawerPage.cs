@@ -1,18 +1,14 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+﻿using KPE.Mobile.App.Automation.PageObjects.Wrappers;
 using OpenQA.Selenium;
 using OpenQA.Selenium.Appium;
-using KPE.Mobile.App.Automation.Exceptions;
+using System;
 
 namespace KPE.Mobile.App.Automation.PageObjects.AutomationChallengesApp
 {
     class NavigationDrawerPage : PageBase
     {
-        By _drawerPanel = By.Id("nav_view");
-        By _openNavButton = By.ClassName("android.widget.ImageButton");
+        public MobileElementWrapper DrawerPanel => new MobileElementWrapper(_driver, By.Id("nav_view"));
+        public MobileElementWrapper OpenNavigationButton => new MobileElementWrapper(_driver, By.ClassName("android.widget.ImageButton"));
 
         public NavigationDrawerPage(AppiumDriver<IWebElement> driver) : base(driver)
         {
@@ -25,22 +21,9 @@ namespace KPE.Mobile.App.Automation.PageObjects.AutomationChallengesApp
 
         public NavigationDrawerPage OpenDrawer()
         {
-            bool isOpen = TryClickAndValidate(_openNavButton, () => IsOpen(), 5);
-            if(!isOpen)
-            {
-                throw new InvalidStateException("Failed to open the drawer");
-            }
+            OpenNavigationButton.Click();
+            DrawerPanel.Displayed();
             return this;
-        }
-
-        public bool IsOpen()
-        {
-            return IsVisible(_drawerPanel);
-        }
-
-        public bool IsClosed()
-        {
-            return IsVisible(_openNavButton);
         }
 
         public void PinChallenge()

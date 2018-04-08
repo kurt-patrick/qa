@@ -1,7 +1,6 @@
-﻿using OpenQA.Selenium;
+﻿using KPE.Mobile.App.Automation.PageObjects.Wrappers;
+using OpenQA.Selenium;
 using OpenQA.Selenium.Appium;
-using OpenQA.Selenium.Appium.PageObjects.Attributes;
-using OpenQA.Selenium.Support.PageObjects;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -10,15 +9,8 @@ namespace KPE.Mobile.App.Automation.PageObjects.AutomationChallengesApp
 {
     class PinCodePage : PageBase
     {
-        [CacheLookup()]
-        [FindsByAndroidUIAutomator(ID = "txtPin")]
-        private IWebElement _txtPin = null;
-
-        [CacheLookup()]
-        [FindsByAndroidUIAutomator(ID = "txtPinEntered")]
-        private IWebElement _txtPinEntered = null;
-
-        public string PinEntered => _txtPinEntered.Text.Trim();
+        public MobileElementWrapper Pin => new MobileElementWrapper(_driver, By.Id("txtPin"));
+        public MobileElementWrapper PinEntered => new MobileElementWrapper(_driver, By.Id("txtPinEntered"));
 
         public PinCodePage(AppiumDriver<IWebElement> driver) : base(driver)
         {
@@ -26,13 +18,13 @@ namespace KPE.Mobile.App.Automation.PageObjects.AutomationChallengesApp
 
         public override bool IsLoaded()
         {
-            return _txtPin != null && _txtPin.Displayed;
+            return Pin.Displayed();
         }
 
         public List<int> GetPin()
         {
             var retVal = new List<int>();
-            var pinCode = _txtPin.Text.Trim().Split(" ".ToCharArray()).LastOrDefault();
+            var pinCode = Pin.Text(true).Split(" ".ToCharArray()).LastOrDefault();
             if (string.IsNullOrWhiteSpace(pinCode))
             {
                 throw new Exceptions.InvalidStateException("failed to extract the pinCode from the android textview");

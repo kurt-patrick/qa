@@ -1,5 +1,4 @@
-﻿using KPE.Mobile.App.Automation.Configuration;
-using KPE.Mobile.App.Automation.PageObjects.AutomationChallengesApp;
+﻿using KPE.Mobile.App.Automation.PageObjects.AutomationChallengesApp;
 using NUnit.Framework;
 using OpenQA.Selenium.Remote;
 
@@ -22,7 +21,8 @@ namespace KPE.Mobile.App.Automation.Tests.AutomationChallengesApp
         {
             var answer = _pageObject.IsAnswerCorrect();
             _pageObject.AnswerQuestion(answer);
-            Assert.AreEqual(Success, _pageObject.Actual);
+            Assert.IsTrue(_pageObject.Actual.Displayed());
+            Assert.AreEqual(Success, _pageObject.Actual.Text());
         }
 
         [Test]
@@ -30,7 +30,8 @@ namespace KPE.Mobile.App.Automation.Tests.AutomationChallengesApp
         {
             var answer = _pageObject.IsAnswerCorrect();
             _pageObject.AnswerQuestion(!answer);
-            Assert.AreEqual(Fail, _pageObject.Actual);
+            Assert.IsTrue(_pageObject.Actual.Displayed());
+            Assert.AreEqual(Fail, _pageObject.Actual.Text());
         }
 
     }

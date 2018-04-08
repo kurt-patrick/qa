@@ -17,7 +17,7 @@ namespace KPE.Mobile.App.Automation.Tests.AutomationChallengesApp
         public override void TestSetup()
         {
             _navigationDrawerPage.OpenDrawer().SwipeChallenge();
-            Assert.AreEqual(ZeroRowsSwiped, _pageObject.Actual);
+            Assert.AreEqual(ZeroRowsSwiped, _pageObject.Actual.Text(true));
         }
 
         [Test]
@@ -39,11 +39,11 @@ namespace KPE.Mobile.App.Automation.Tests.AutomationChallengesApp
             // Assert the ui updated as expected
             if (index < 3)
             {
-                Assert.AreEqual($"{index} of 3 rows swiped", _pageObject.Actual);
+                Assert.AreEqual($"{index} of 3 rows swiped", _pageObject.Actual.Text(true));
             }
             else
             {
-                Assert.AreEqual(Success, _pageObject.Actual);
+                Assert.AreEqual(Success, _pageObject.Actual.Text(true));
             }
 
         }
