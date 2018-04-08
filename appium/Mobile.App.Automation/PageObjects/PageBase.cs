@@ -237,7 +237,7 @@ namespace KPE.Mobile.App.Automation.PageObjects
             return WaitUntil(condition, true, Settings.Instance().WebDriverWaitTimeOut, null);
         }
 
-        private TResult WaitUntil<TResult>(Func<IWebDriver, TResult> condition, bool throwEx)
+        protected TResult WaitUntil<TResult>(Func<IWebDriver, TResult> condition, bool throwEx)
         {
             return WaitUntil(condition, throwEx, Settings.Instance().WebDriverWaitTimeOut, null);
         }
