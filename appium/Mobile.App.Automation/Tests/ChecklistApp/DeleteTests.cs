@@ -1,5 +1,5 @@
-﻿using KPE.Mobile.App.Automation.Configuration;
-using KPE.Mobile.App.Automation.Helpers;
+﻿using KPE.Mobile.App.Automation.Helpers;
+using KPE.Mobile.App.Automation.PageObjects.ChecklistApp;
 using KPE.Mobile.App.Automation.PageObjects.Wrappers;
 using NUnit.Framework;
 using OpenQA.Selenium.Remote;
@@ -22,10 +22,10 @@ namespace KPE.Mobile.App.Automation.Tests.ChecklistApp
             var rows = _pageObject.Checklist.GetRows();
             int preCount = rows.Count;
 
-            _pageObject.MenuBar
-                .ClickAdd()
-                .EnterText(RandomHelper.RandomString(6))
-                .ClickAddDone();
+            _pageObject.MenuBar.Add.Click();
+            var editPage = new EditItemPage(_driver);
+            editPage.TxtEdit.PressKeys(RandomHelper.RandomString(6));
+            editPage.AddDoneButton.Click();
 
             _pageObject.Checklist.WaitForRowCount(preCount + 1);
 
@@ -48,7 +48,7 @@ namespace KPE.Mobile.App.Automation.Tests.ChecklistApp
             row.ToggleCheckBox(true);
 
             // click delete
-            _pageObject.MenuBar.ClickDelete();
+            _pageObject.MenuBar.Delete.Click();
 
             // wait for row count to decrease by 1
             _pageObject.Checklist.WaitForRowCount(preCount - 1);
@@ -77,7 +77,7 @@ namespace KPE.Mobile.App.Automation.Tests.ChecklistApp
             rows.ForEach(row => row.ToggleCheckBox(true));
 
             // click delete
-            _pageObject.MenuBar.ClickDelete();
+            _pageObject.MenuBar.Delete.Click();
 
             // wait for row count to decrease to 0
             _pageObject.Checklist.WaitForRowCount(0);
@@ -96,7 +96,7 @@ namespace KPE.Mobile.App.Automation.Tests.ChecklistApp
             Assert.AreNotEqual(0, preCount);
 
             // click delete
-            _pageObject.MenuBar.ClickDelete();
+            _pageObject.MenuBar.Delete.Click();
 
             // Wait for row count to remain same
             _pageObject.Checklist.WaitForRowCount(preCount);

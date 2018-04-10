@@ -8,26 +8,19 @@ namespace KPE.Mobile.App.Automation.PageObjects.ChecklistApp
 {
     internal class MainPage : PageBase
     {
-        [CacheLookup()]
-        [FindsByAndroidUIAutomator(ID = "main_listview")]
-        private IWebElement _listView = null;
+        MobileElementWrapper ListView => new MobileElementWrapper(_driver, By.Id("main_listview"));
+        MobileElementWrapper MainMenuBar => new MobileElementWrapper(_driver, By.Id("main_menu_bar"));
 
-        [CacheLookup()]
-        [FindsByAndroidUIAutomator(ID = "main_menu_bar")]
-        private IWebElement _menuBar = null;
-
-        public ListViewWrapper Checklist { get; private set; }
-        public MenuBarPage MenuBar { get; private set; }
+        public ListViewWrapper Checklist => new ListViewWrapper(_driver);
+        public MenuBarPage MenuBar => new MenuBarPage(_driver);
 
         public MainPage(AppiumDriver<IWebElement> driver) : base(driver)
         {
-            Checklist = new ListViewWrapper(driver);
-            MenuBar = new MenuBarPage(driver);
         }
 
         public override bool IsLoaded()
         {
-            return IsVisible(_listView, _menuBar);
+            return IsDisplayed(ListView, MainMenuBar);
         }
     }
 }

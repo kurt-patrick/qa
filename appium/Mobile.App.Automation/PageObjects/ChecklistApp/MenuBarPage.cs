@@ -1,19 +1,13 @@
-﻿using OpenQA.Selenium;
+﻿using KPE.Mobile.App.Automation.PageObjects.Wrappers;
+using OpenQA.Selenium;
 using OpenQA.Selenium.Appium;
-using OpenQA.Selenium.Appium.PageObjects.Attributes;
-using OpenQA.Selenium.Support.PageObjects;
 
 namespace KPE.Mobile.App.Automation.PageObjects.ChecklistApp
 {
     class MenuBarPage : PageBase
     {
-        [CacheLookup()]
-        [FindsByAndroidUIAutomator(ID = "menu_clear_completed")]
-        private IWebElement _delete = null;
-
-        [CacheLookup()]
-        [FindsByAndroidUIAutomator(ID = "menu_add")]
-        private IWebElement _add = null;
+        public MobileElementWrapper Add => new MobileElementWrapper(_driver, By.Id("menu_add"));
+        public MobileElementWrapper Delete => new MobileElementWrapper(_driver, By.Id("menu_clear_completed"));
 
         public MenuBarPage(AppiumDriver<IWebElement> driver) : base(driver)
         {
@@ -21,18 +15,7 @@ namespace KPE.Mobile.App.Automation.PageObjects.ChecklistApp
 
         public override bool IsLoaded()
         {
-            return IsVisible(_delete, _add);
-        }
-
-        public EditItemPage ClickAdd()
-        {
-            Click(_add);
-            return new EditItemPage(_driver);
-        }
-
-        public void ClickDelete()
-        {
-            Click(_delete);
+            return IsDisplayed(Add, Delete);
         }
 
     }

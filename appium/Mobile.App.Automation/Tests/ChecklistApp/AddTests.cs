@@ -1,6 +1,4 @@
-﻿using Applitools.Appium;
-using KPE.Mobile.App.Automation.Configuration;
-using KPE.Mobile.App.Automation.Helpers;
+﻿using KPE.Mobile.App.Automation.Helpers;
 using KPE.Mobile.App.Automation.PageObjects.ChecklistApp;
 using NUnit.Framework;
 using OpenQA.Selenium.Remote;
@@ -17,8 +15,10 @@ namespace KPE.Mobile.App.Automation.Tests.ChecklistApp
         private EditItemPage ClickAddNewItem(out int rowCount)
         {
             rowCount = _pageObject.Checklist.GetRowCount();
+            
+            _pageObject.MenuBar.Add.Click();
 
-            return _pageObject.MenuBar.ClickAdd();
+            return new EditItemPage(_driver);
         }
 
         [Test]
@@ -34,9 +34,9 @@ namespace KPE.Mobile.App.Automation.Tests.ChecklistApp
                 //eyes.CheckWindow("List (Pre Add Item)");
 
                 var newText = "NEW LINE " + RandomHelper.RandomString(7);
-                ClickAddNewItem(out int preCount)
-                    .EnterText(newText)
-                    .ClickAddDone();
+                var addPage = ClickAddNewItem(out int preCount);
+                addPage.TxtEdit.PressKeys(newText);
+                addPage.AddDoneButton.Click();
 
                 _pageObject.Checklist.WaitForRowCount(preCount + 1);
 
@@ -59,9 +59,7 @@ namespace KPE.Mobile.App.Automation.Tests.ChecklistApp
             Assert.IsTrue(_pageObject.IsLoaded());
 
             ClickAddNewItem(out int preCount)
-                .ClickCancel();
-
-            //_pageObject.HideKeyboard();
+                .CancelButton.Click();
 
             _pageObject.Checklist.WaitForRowCount(preCount);
 
@@ -73,9 +71,9 @@ namespace KPE.Mobile.App.Automation.Tests.ChecklistApp
             Assert.IsTrue(_pageObject.IsLoaded());
 
             var newText = RandomHelper.RandomString(7);
-            ClickAddNewItem(out int preCount)
-                .EnterText(newText)
-                .ClickCancel();
+            var editPage = ClickAddNewItem(out int preCount);
+            editPage.TxtEdit.PressKeys(newText);
+            editPage.CancelButton.Click();
 
             _pageObject.Checklist.WaitForRowCount(preCount);
 

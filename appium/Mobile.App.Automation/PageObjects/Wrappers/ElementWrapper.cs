@@ -86,7 +86,7 @@ namespace KPE.Mobile.App.Automation.PageObjects.Wrappers
         public virtual void PressKeys(string text, bool clearText)
         {
             var element = WaitUntil(ExpectedConditions.ElementToBeClickable(_locator));
-            PressKeys(text, clearText);
+            base.SendKeys(element, text, clearText);
         }
 
         public virtual string Text() => Text(false);
