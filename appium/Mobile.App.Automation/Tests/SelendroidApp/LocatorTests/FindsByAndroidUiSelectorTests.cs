@@ -16,11 +16,11 @@ namespace KPE.Mobile.App.Automation.Tests.Selendroid.LocatorTests
 
         public override void TestSetup()
         {
-            _registerUserPage =
-                _pageObject
-                    .ClickUserRegistration()
-                    .SwitchPageObject<RegisterUserPage>();
-            _registerUserPage.AssertIsLoaded();
+            _pageObject.Registration.Click();
+
+            _registerUserPage = Get<RegisterUserPage>();
+
+            Assert.IsTrue(_registerUserPage.IsLoaded());
         }
 
         [Test]

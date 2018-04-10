@@ -99,7 +99,7 @@ namespace KPE.Mobile.App.Automation.PageObjects.Wrappers
         public bool Selected()
         {
             var element = WaitUntil(ExpectedConditions.ElementIsVisible(_locator));
-            return element.Selected;
+            return "true".Equals(element.GetAttribute("checked"));
         }
 
         public override bool IsLoaded()

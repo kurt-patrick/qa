@@ -1,5 +1,4 @@
-﻿using KPE.Mobile.App.Automation.Configuration;
-using KPE.Mobile.App.Automation.PageObjects.Selendroid;
+﻿using KPE.Mobile.App.Automation.PageObjects.Selendroid;
 using KPE.Mobile.App.Automation.Tests.SelendroidApp;
 using NUnit.Framework;
 using OpenQA.Selenium.Remote;
@@ -23,8 +22,8 @@ namespace KPE.Mobile.App.Automation.Tests.Selendroid.ActivityTests
         {
             if(_touchGesturesPage == null)
             {
-                _touchGesturesPage = _pageObject.ClickTouchActions();
-                Assert.IsTrue(_touchGesturesPage.IsLoaded(), "Activity is not loaded");
+                _pageObject.TouchActions.Click();
+                _touchGesturesPage = Get<TouchGesturesPage>(true);
             }
         }
 

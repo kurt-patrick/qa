@@ -23,12 +23,6 @@ namespace KPE.Mobile.App.Automation.PageObjects.Selendroid
             return IsVisible(_messageLocator);
         }
 
-        public DialogPage AssertIsLoaded()
-        {
-            Assert.IsTrue(IsLoaded(), "Dialog is not loaded");
-            return this;
-        }
-
         public DialogPage AssertDialogIsClosed()
         {
             Assert.IsTrue(IsNotVisible(_messageLocator), "Dialog is closed");
