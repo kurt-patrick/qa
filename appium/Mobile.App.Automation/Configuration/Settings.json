@@ -4,5 +4,5 @@
 	"deviceCapabilitiesFolderPath": "D:\\github\\qa\\appium\\Mobile.App.Automation\\Configuration\\Devices",
 	"useGrid": false,
 	"implicitWait": 100,
-	"webDriverWaitTimeOut": 60
+	"webDriverWaitTimeOut": 10
 }

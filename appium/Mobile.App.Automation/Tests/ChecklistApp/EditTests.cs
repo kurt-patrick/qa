@@ -1,5 +1,4 @@
-﻿using KPE.Mobile.App.Automation.Configuration;
-using KPE.Mobile.App.Automation.Helpers;
+﻿using KPE.Mobile.App.Automation.Helpers;
 using KPE.Mobile.App.Automation.PageObjects.ChecklistApp;
 using KPE.Mobile.App.Automation.PageObjects.Wrappers;
 using NUnit.Framework;
@@ -32,11 +31,12 @@ namespace KPE.Mobile.App.Automation.Tests.ChecklistApp
             string originalText = row.TextCache().First();
 
             // Put row into edit mode
-            row.TapRow<EditItemPage>()
-                .AssertLoaded()
-                .AssertText(originalText)
-                .EnterText(newText)
-                .ClickAddDone();
+            var editPage = row.TapRow<EditItemPage>();
+
+            Assert.IsTrue(editPage.IsLoaded());
+            Assert.AreEqual(originalText, editPage.TxtEdit.Text());
+            editPage.TxtEdit.PressKeys(newText);
+            editPage.AddDoneButton.Click();
 
             _pageObject.Checklist.WaitForRowCount(preCount);
 
