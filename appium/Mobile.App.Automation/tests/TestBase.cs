@@ -2,6 +2,7 @@
 using KPE.Mobile.App.Automation.Configuration.Devices;
 using KPE.Mobile.App.Automation.Exceptions;
 using KPE.Mobile.App.Automation.Helpers;
+using KPE.Mobile.App.Automation.PageObjects;
 using NUnit.Framework;
 using OpenQA.Selenium;
 using OpenQA.Selenium.Appium;
@@ -87,6 +88,18 @@ namespace KPE.Mobile.App.Automation.Tests
         protected static void LogToConsole(string text)
         {
             Console.WriteLine(string.Format("{0}: {1}", text, DateTime.Now.ToString("hh:mm:ss:ffff")));
+        }
+
+        protected T Get<T>() where T : PageBase
+        {
+            return Get<T>(false);
+        }
+
+        protected T Get<T>(bool assertLoaded) where T : PageBase
+        {
+            var obj = PageObjectFactory.Create<T>(_driver);
+            Assert.IsTrue(obj.IsLoaded());
+            return obj;
         }
 
     }

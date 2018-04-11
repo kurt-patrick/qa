@@ -17,11 +17,9 @@ namespace KPE.Mobile.App.Automation.Tests.Selendroid.ActivityTests
         [Test]
         public void NewRegistrationTest()
         {
-            var registrationPage =
-                _pageObject
-                    .ClickUserRegistration()
-                    .SwitchPageObject<RegisterUserPage>()
-                    .AssertIsLoaded();
+            _pageObject.Registration.Click();
+
+            var registrationPage = Get<RegisterUserPage>(true);
 
             registrationPage.Username = RandomHelper.RandomString(6);
             registrationPage.Email = RandomHelper.RandomEmail();

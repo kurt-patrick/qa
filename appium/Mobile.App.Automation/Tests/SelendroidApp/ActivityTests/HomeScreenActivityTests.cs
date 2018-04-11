@@ -1,9 +1,7 @@
-﻿using KPE.Mobile.App.Automation.Configuration;
-using KPE.Mobile.App.Automation.PageObjects.Selendroid;
+﻿using KPE.Mobile.App.Automation.PageObjects.Selendroid;
 using KPE.Mobile.App.Automation.Tests.SelendroidApp;
 using NUnit.Framework;
 using OpenQA.Selenium.Remote;
-using System.IO;
 using System.Xml;
 using System.Xml.XPath;
 
@@ -19,38 +17,40 @@ namespace KPE.Mobile.App.Automation.Tests.Selendroid.ActivityTests
         [Test]
         public void HomeScreenActivityIsLoadedTest()
         {
-            _pageObject.AssertIsLoaded();
+            Assert.IsTrue(_pageObject.IsLoaded());
         }
 
         [Test]
         public void I_Accept_Adds_Test()
         {
             // assert is checked (default)
-            _pageObject.AssertCheckBoxState(true);
+            Assert.IsTrue(_pageObject.CheckBox.IsChecked());
 
             // assert text (default)
-            _pageObject.AssertCheckBoxText("I accept adds");
+            Assert.AreEqual("I accept adds", _pageObject.CheckBox.Text());
 
             // uncheck
-            _pageObject.ToggleCheckBox(false);
-            _pageObject.AssertCheckBoxState(false);
+            Assert.IsTrue(_pageObject.CheckBox.ToggleState(false));
+            Assert.IsFalse(_pageObject.CheckBox.IsChecked());
 
             // check
-            _pageObject.ToggleCheckBox(true);
-            _pageObject.AssertCheckBoxState(true);
+            Assert.IsTrue(_pageObject.CheckBox.ToggleState(true));
+            Assert.IsTrue(_pageObject.CheckBox.IsChecked());
 
         }
 
         [Test]
         public void Wait_Dialog_Test()
         {
-            _pageObject
-                .ClickShowProgressBar()
-                .SwitchPageObject<DialogPage>()
-                .AssertIsLoaded()
-                .AssertDialogIsClosed()
-                .HideKeyboard<RegisterUserPage>()
-                .AssertIsLoaded();
+            _pageObject.ProgressButton.Click();
+
+            var dialogPage = Get<DialogPage>(true);
+
+            Assert.IsTrue(dialogPage.Message.NotDisplayed(), "Dialog is not closed");
+
+            dialogPage.HideKeyboard();
+
+            Get<RegisterUserPage>(true);
         }
 
         [Test]

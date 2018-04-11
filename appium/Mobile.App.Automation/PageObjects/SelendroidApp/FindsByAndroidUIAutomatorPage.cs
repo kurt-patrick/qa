@@ -1,7 +1,6 @@
-﻿using NUnit.Framework;
+﻿using KPE.Mobile.App.Automation.PageObjects.Wrappers;
 using OpenQA.Selenium;
 using OpenQA.Selenium.Appium;
-using OpenQA.Selenium.Appium.PageObjects.Attributes;
 
 namespace KPE.Mobile.App.Automation.PageObjects.Selendroid
 {
@@ -11,21 +10,11 @@ namespace KPE.Mobile.App.Automation.PageObjects.Selendroid
     /// </summary>
     public class FindsByAndroidUIAutomatorPage : PageBase
     {
-        [FindsByAndroidUIAutomator(ID = "io.selendroid.testapp:id/input_adds_check_box")]
-        private IWebElement _byID = null;
+        public MobileElementWrapper ByID => new MobileElementWrapper(_driver, By.Id("input_adds_check_box"));
+        public MobileElementWrapper ByClassName => new MobileElementWrapper(_driver, By.ClassName("android.widget.CheckBox"));
+        public MobileElementWrapper ByXPath => new MobileElementWrapper(_driver, By.XPath("//android.widget.CheckBox[@text='I accept adds']"));
+        public MobileElementWrapper ByXPathGeneric => new MobileElementWrapper(_driver, By.XPath("//*[@text='I accept adds']"));
 
-        [FindsByAndroidUIAutomator(ClassName = "android.widget.CheckBox")]
-        private IWebElement _byClassName = null;
-
-        [FindsByAndroidUIAutomator(XPath = "//android.widget.CheckBox[@text='I accept adds']")]
-        private IWebElement _byXPath = null;
-
-        [FindsByAndroidUIAutomator(XPath = "//*[@text='I accept adds']")]
-        private IWebElement _byXPathGeneric = null;
-
-        [FindsByAndroidUIAutomator(ID = "NonExistentElement", Priority = 1)]
-        [FindsByAndroidUIAutomator(Accessibility = "visibleButtonTestCD", Priority = 2)]
-        private IWebElement _bySecondPriority = null;
 
         public FindsByAndroidUIAutomatorPage(AppiumDriver<IWebElement> driver) : base(driver)
         {
@@ -34,31 +23,6 @@ namespace KPE.Mobile.App.Automation.PageObjects.Selendroid
         public override bool IsLoaded()
         {
             return true;
-        }
-
-        public void AssertByID()
-        {
-            Assert.IsTrue(IsVisible(_byID), "Found element by ID");
-        }
-
-        public void AssertByClassName()
-        {
-            Assert.IsTrue(IsVisible(_byClassName), "Found element by ClassName");
-        }
-
-        public void AssertByXPath()
-        {
-            Assert.IsTrue(IsVisible(_byXPath), "Found element by XPath");
-        }
-
-        public void AssertByXPathGeneric()
-        {
-            Assert.IsTrue(IsVisible(_byXPathGeneric), "Found element by XPath Generic");
-        }
-
-        public void AssertSecondPriorityElementTest()
-        {
-            Assert.IsTrue(IsVisible(_bySecondPriority), "Found second element by priority");
         }
 
     }
