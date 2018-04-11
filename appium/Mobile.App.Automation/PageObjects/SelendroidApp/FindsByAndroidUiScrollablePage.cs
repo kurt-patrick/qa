@@ -1,4 +1,5 @@
 ﻿using KPE.Mobile.App.Automation.Helpers;
+using KPE.Mobile.App.Automation.PageObjects.Wrappers;
 using NUnit.Framework;
 using OpenQA.Selenium;
 using OpenQA.Selenium.Appium;
@@ -14,12 +15,7 @@ namespace KPE.Mobile.App.Automation.PageObjects.Selendroid
     /// </summary>
     public class FindsByAndroidUiScrollablePage : PageBase
     {
-        /// <summary>
-        /// First input box at the top
-        /// </summary>
-        [CacheLookup()]
-        [FindsByAndroidUIAutomator(ID = "inputUsername")]
-        private IWebElement _usernameEle = null;
+        public MobileElementWrapper Username => new MobileElementWrapper(_driver, By.Id("inputUsername"));
 
         public FindsByAndroidUiScrollablePage(AppiumDriver<IWebElement> driver) : base(driver)
         {
@@ -46,7 +42,7 @@ namespace KPE.Mobile.App.Automation.PageObjects.Selendroid
 
         public override bool IsLoaded()
         {
-            return IsVisible(_usernameEle);
+            return IsDisplayed(Username);
         }
 
 

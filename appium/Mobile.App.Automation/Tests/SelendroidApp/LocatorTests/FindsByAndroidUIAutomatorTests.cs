@@ -1,5 +1,4 @@
-﻿using KPE.Mobile.App.Automation.Configuration;
-using KPE.Mobile.App.Automation.PageObjects.Selendroid;
+﻿using KPE.Mobile.App.Automation.PageObjects.Selendroid;
 using KPE.Mobile.App.Automation.Tests.SelendroidApp;
 using NUnit.Framework;
 using OpenQA.Selenium.Remote;
@@ -16,31 +15,25 @@ namespace KPE.Mobile.App.Automation.Tests.Selendroid.LocatorTests
         [Test]
         public void FindsByClassNameTest()
         {
-            _pageObject.AssertByClassName();
+            Assert.IsTrue(_pageObject.ByClassName.Displayed(), "Found element by ClassName");
         }
 
         [Test]
         public void FindsByIDTest()
         {
-            _pageObject.AssertByID();
+            Assert.IsTrue(_pageObject.ByID.Displayed(), "Found element by ID");
         }
 
         [Test]
         public void FindsByXPathTest()
         {
-            _pageObject.AssertByXPath();
+            Assert.IsTrue(_pageObject.ByXPath.Displayed(), "Found element by XPath");
         }
 
         [Test]
         public void FindsByXPathGenericTest()
         {
-            _pageObject.AssertByXPathGeneric();
-        }
-
-        [Test]
-        public void FindsBySecondPriorityTest()
-        {
-            _pageObject.AssertSecondPriorityElementTest();
+            Assert.IsTrue(_pageObject.ByXPathGeneric.Displayed(), "Found element by XPath Generic");
         }
 
     }

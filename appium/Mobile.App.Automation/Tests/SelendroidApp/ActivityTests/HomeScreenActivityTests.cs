@@ -24,18 +24,18 @@ namespace KPE.Mobile.App.Automation.Tests.Selendroid.ActivityTests
         public void I_Accept_Adds_Test()
         {
             // assert is checked (default)
-            Assert.AreEqual(true, _pageObject.CheckBox.Selected());
+            Assert.IsTrue(_pageObject.CheckBox.IsChecked());
 
             // assert text (default)
             Assert.AreEqual("I accept adds", _pageObject.CheckBox.Text());
 
             // uncheck
-            _pageObject.CheckBox.Click();
-            Assert.AreEqual(false, _pageObject.CheckBox.Selected());
+            Assert.IsTrue(_pageObject.CheckBox.ToggleState(false));
+            Assert.IsFalse(_pageObject.CheckBox.IsChecked());
 
             // check
-            _pageObject.CheckBox.Click();
-            Assert.AreEqual(true, _pageObject.CheckBox.Selected());
+            Assert.IsTrue(_pageObject.CheckBox.ToggleState(true));
+            Assert.IsTrue(_pageObject.CheckBox.IsChecked());
 
         }
 
@@ -45,7 +45,8 @@ namespace KPE.Mobile.App.Automation.Tests.Selendroid.ActivityTests
             _pageObject.ProgressButton.Click();
 
             var dialogPage = Get<DialogPage>(true);
-            dialogPage.AssertDialogIsClosed();
+
+            Assert.IsTrue(dialogPage.Message.NotDisplayed(), "Dialog is not closed");
 
             dialogPage.HideKeyboard();
 

@@ -34,9 +34,10 @@ namespace KPE.Mobile.App.Automation.PageObjects.Wrappers
         public bool NotDisplayed() => _element.NotDisplayed();
         public void PressKeys(string text) => _element.PressKeys(text);
         public void PressKeys(string text, bool clearText) => _element.PressKeys(text, clearText);
-        public bool Selected() => _element.Selected();
+        public bool IsChecked() => _element.IsChecked();
         public string Text() => _element.Text();
         public string Text(bool trim) => _element.Text(trim);
+        public bool ToggleState(bool toggleOn) => _element.ToggleState(toggleOn);
         public override string ToString()
         {
             var retVal = Text();
@@ -96,10 +97,27 @@ namespace KPE.Mobile.App.Automation.PageObjects.Wrappers
             return GetText(element, trim);
         }
 
-        public bool Selected()
+        public bool IsChecked()
         {
             var element = WaitUntil(ExpectedConditions.ElementIsVisible(_locator));
             return "true".Equals(element.GetAttribute("checked"));
+        }
+
+        public virtual bool ToggleState(bool toggleOn)
+        {
+            // already in desired state return success
+            if(InDesiredState())
+            {
+                return true;
+            }
+
+            // Click to toggle desired state
+            Click();
+
+            // return the elements state after clicking
+            return InDesiredState();
+
+            bool InDesiredState() => toggleOn == IsChecked();
         }
 
         public override bool IsLoaded()
@@ -122,6 +140,9 @@ namespace KPE.Mobile.App.Automation.PageObjects.Wrappers
         /// todo: move checkbox implemtnation into its own object
         /// </summary>
         /// <returns></returns>
-        bool Selected();
+        bool IsChecked();
+
+        bool ToggleState(bool toggleOn);
+
     }
 }

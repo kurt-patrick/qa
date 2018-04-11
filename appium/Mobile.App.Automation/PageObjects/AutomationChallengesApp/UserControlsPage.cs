@@ -25,24 +25,6 @@ namespace KPE.Mobile.App.Automation.PageObjects.AutomationChallengesApp
         {
         }
 
-        public UserControlsPage ToggleToggleButton(bool on)
-        {
-            if(ToggleButton.Selected() != on)
-            {
-                ToggleButton.Click();
-            }
-            return this;
-        }
-
-        public UserControlsPage ToggleCheckBox(bool on)
-        {
-            if (CheckBox.Selected() != on)
-            {
-                CheckBox.Click();
-            }
-            return this;
-        }
-
         public override bool IsLoaded()
         {
             return IsDisplayed(CheckBox, Switch, ToggleButton);
