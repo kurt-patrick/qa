@@ -1,6 +1,7 @@
 ﻿using KPE.Mobile.App.Automation.PageObjects.AutomationChallengesApp;
 using NUnit.Framework;
 using OpenQA.Selenium.Remote;
+using System;
 
 namespace KPE.Mobile.App.Automation.Tests.AutomationChallengesApp
 {
@@ -8,9 +9,10 @@ namespace KPE.Mobile.App.Automation.Tests.AutomationChallengesApp
     {
         public AlertDialogTest(DesiredCapabilities capabilities) : base(capabilities)
         {
+            OnTestSetupEventHandler += OnTestSetup;
         }
 
-        public override void TestSetup()
+        void OnTestSetup()
         {
             _navigationDrawerPage.OpenDrawer().AlertChallenge();
             Assert.IsTrue(_pageObject.IsLoaded());

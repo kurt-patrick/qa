@@ -1,4 +1,5 @@
-﻿using KPE.Mobile.App.Automation.Configuration;
+﻿using System;
+using KPE.Mobile.App.Automation.Configuration;
 using KPE.Mobile.App.Automation.PageObjects;
 using OpenQA.Selenium.Remote;
 
@@ -11,6 +12,5 @@ namespace KPE.Mobile.App.Automation.Tests
         {
             _pageObject = PageObjectFactory.Create<T>(_driver);
         }
-
     }
 }

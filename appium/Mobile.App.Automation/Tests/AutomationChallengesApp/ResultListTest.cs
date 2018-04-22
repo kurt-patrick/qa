@@ -12,9 +12,10 @@ namespace KPE.Mobile.App.Automation.Tests.AutomationChallengesApp
 
         public ResultListTest(DesiredCapabilities capabilities) : base(capabilities)
         {
+            OnTestSetupEventHandler += OnTestSetup;
         }
 
-        public override void TestSetup()
+        void OnTestSetup()
         {
             _navigationDrawerPage.OpenDrawer().ListChallenge();
             var actualToString = _pageObject.Actual.ToString();

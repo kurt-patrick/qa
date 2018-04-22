@@ -2,6 +2,7 @@
 using KPE.Mobile.App.Automation.PageObjects.AutomationChallengesApp;
 using NUnit.Framework;
 using OpenQA.Selenium.Remote;
+using System;
 using System.Collections.Generic;
 
 namespace KPE.Mobile.App.Automation.Tests.AutomationChallengesApp

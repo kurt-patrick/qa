@@ -23,6 +23,7 @@ namespace KPE.Mobile.App.Automation.Tests
     {
         public const string TestFixtureSourceName = "CapabilitiesList";
 
+        protected Action OnTestSetupEventHandler { get; set; }
         private AppiumLocalService _appiumLocalService = null;
         protected AppiumDriver<IWebElement> _driver = null;
         private static readonly log4net.ILog _log = log4net.LogManager.GetLogger(System.Reflection.MethodBase.GetCurrentMethod().DeclaringType);
@@ -37,7 +38,7 @@ namespace KPE.Mobile.App.Automation.Tests
 
             // Check the android device is running
             InvalidStateException.ThrowIfFalse(
-                ProcessHelper.IsAndroidDeviceRunning(deviceName), 
+                ProcessHelper.IsAndroidDeviceRunning(deviceName),
                 "Android device is not running. deviceName=" + deviceName);
 
             // Start an appium local service
@@ -57,13 +58,22 @@ namespace KPE.Mobile.App.Automation.Tests
             _driver = DriverHelper.CreateAppiumWebDriver(capabilities, uri);
         }
 
+
         [OneTimeSetUp]
         public void TestFixtureSetup()
         {
         }
 
         [SetUp]
-        public virtual void TestSetup() { }
+        public void TestSetup()
+        {
+            // Put the app into a clean state
+            _driver.CloseApp();
+            _driver.LaunchApp();
+
+            // Call the test setup at the fixture level
+            OnTestSetupEventHandler?.Invoke();
+        }
 
         [TearDown]
         public virtual void TestTearDown()

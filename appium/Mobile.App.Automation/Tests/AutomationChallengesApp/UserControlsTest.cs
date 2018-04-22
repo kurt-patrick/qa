@@ -9,9 +9,10 @@ namespace KPE.Mobile.App.Automation.Tests.AutomationChallengesApp
     {
         public UserControlsTest(DesiredCapabilities capabilities) : base(capabilities)
         {
+            OnTestSetupEventHandler += OnTestSetup;
         }
 
-        public override void TestSetup()
+        void OnTestSetup()
         {
             _navigationDrawerPage.OpenDrawer().ControlsChallenge();
             Assert.IsTrue(_pageObject.IsLoaded());

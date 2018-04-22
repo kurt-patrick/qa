@@ -12,9 +12,10 @@ namespace KPE.Mobile.App.Automation.Tests.AutomationChallengesApp
 
         public SwipeToDeleteTest(DesiredCapabilities capabilities) : base(capabilities)
         {
+            OnTestSetupEventHandler += OnTestSetup;
         }
 
-        public override void TestSetup()
+        void OnTestSetup()
         {
             _navigationDrawerPage.OpenDrawer().SwipeChallenge();
             Assert.AreEqual(ZeroRowsSwiped, _pageObject.Actual.Text(true));
