@@ -14,39 +14,20 @@ namespace KPE.Mobile.App.Automation.PageObjects.Selendroid
         public MobileElementWrapper Email => new MobileElementWrapper(_driver, By.Id("io.selendroid.testapp:id/inputEmail"));
         public MobileElementWrapper Password => new MobileElementWrapper(_driver, By.Id("io.selendroid.testapp:id/inputPassword"));
         public MobileElementWrapper Name => new MobileElementWrapper(_driver, By.Id("io.selendroid.testapp:id/inputName"));
+        public MobileElementWrapper ProgrammingLanguage => new MobileElementWrapper(_driver, By.Id("io.selendroid.testapp:id/input_preferedProgrammingLanguage"));
+        public MobileElementWrapper AcceptAdds => new MobileElementWrapper(_driver, By.Id("io.selendroid.testapp:id/input_adds"));
+        public MobileElementWrapper RegisterUser => new MobileElementWrapper(_driver, By.Id("io.selendroid.testapp:id/btnRegisterUser"));
 
-        [CacheLookup()]
-        [FindsByAndroidUIAutomator(ID = "io.selendroid.testapp:id/input_preferedProgrammingLanguage")]
-        private IWebElement _progLangEle = null;
-
-        [CacheLookup()]
-        [FindsByAndroidUIAutomator(ID = "io.selendroid.testapp:id/input_adds")]
-        private IWebElement _acceptAddsEle = null;
-
-        [CacheLookup()]
-        [FindsByAndroidUIAutomator(ID = "io.selendroid.testapp:id/btnRegisterUser")]
-        private IWebElement _registerUserEle = null;
-
+        /*
         public string ProgrammingLanguage
         {
             get => GetText(_progLangEle);
             set => new DropDownHelper(_driver).SelectByText(_progLangEle, value);
         }
-
-        public bool AcceptAdds
-        {
-            get => IsChecked(_acceptAddsEle);
-            set => ToggleCheckBox(_acceptAddsEle, value);
-        }
+        */
 
         public RegisterUserPage(AppiumDriver<IWebElement> driver) : base(driver)
         {
-        }
-
-        public RegisterUserPage ClickRegisterUser()
-        {
-            Click(_registerUserEle);
-            return this;
         }
 
         public override bool IsLoaded()

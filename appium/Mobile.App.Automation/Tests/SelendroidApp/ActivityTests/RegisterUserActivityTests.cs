@@ -25,9 +25,9 @@ namespace KPE.Mobile.App.Automation.Tests.Selendroid.ActivityTests
             registrationPage.Email.PressKeys(RandomHelper.RandomEmail());
             registrationPage.Password.PressKeys(RandomHelper.RandomString(6));
             registrationPage.Name.PressKeys(RandomHelper.RandomString(6));
-            registrationPage.ProgrammingLanguage = RandomHelper.RandomString(new string[] { "Ruby", "PHP", "Scala", "Python" });
-            registrationPage.AcceptAdds = true;
-            registrationPage.ClickRegisterUser();
+            registrationPage.ProgrammingLanguage.PressKeys(RandomHelper.RandomString(new string[] { "Ruby", "PHP", "Scala", "Python" }));
+            registrationPage.AcceptAdds.ToggleState(true);
+            registrationPage.RegisterUser.Click();
         }
 
     }
