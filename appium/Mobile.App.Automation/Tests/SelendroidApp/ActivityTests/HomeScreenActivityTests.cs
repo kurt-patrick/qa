@@ -48,10 +48,7 @@ namespace KPE.Mobile.App.Automation.Tests.Selendroid.ActivityTests
 
             Assert.IsTrue(dialogPage.Message.NotDisplayed(), "Dialog is not closed");
 
-            dialogPage.HideKeyboard();
-
-            Assert.True(new RegisterUserPage(_driver).IsLoaded());
-            //Get<RegisterUserPage>(true);
+            Get<RegisterUserPage>(true);
         }
 
         [Test]

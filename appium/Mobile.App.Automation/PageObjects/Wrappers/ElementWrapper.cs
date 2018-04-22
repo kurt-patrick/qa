@@ -1,9 +1,8 @@
-﻿using OpenQA.Selenium;
+﻿using KPE.Mobile.App.Automation.Helpers;
+using OpenQA.Selenium;
 using OpenQA.Selenium.Appium;
 using OpenQA.Selenium.Appium.Android;
-using OpenQA.Selenium.Appium.Interfaces;
 using OpenQA.Selenium.Appium.iOS;
-using OpenQA.Selenium.Appium.MultiTouch;
 using OpenQA.Selenium.Support.UI;
 using System;
 using System.Drawing;
@@ -12,7 +11,7 @@ namespace KPE.Mobile.App.Automation.PageObjects.Wrappers
 {
     public class MobileElementWrapper : IWebElementWrapper
     {
-        readonly IWebElementWrapper _element;
+        protected readonly IWebElementWrapper _element;
         public MobileElementWrapper(AppiumDriver<IWebElement> driver, By locator)
         {
             QA.ObjectQA.ThrowIfNull(driver, nameof(driver));
@@ -35,10 +34,20 @@ namespace KPE.Mobile.App.Automation.PageObjects.Wrappers
         public void Click() => _element.Click();
         public bool Displayed() => _element.Displayed();
         public bool NotDisplayed() => _element.NotDisplayed();
-        public void PressKeys(string text) => _element.PressKeys(text);
-        public void PressKeys(string text, bool clearText) => _element.PressKeys(text, clearText);
+        public void PressKeys(string text) => PressKeys(text, true);
+        public void PressKeys(string text, bool clearText)
+        {
+            _element.PressKeys(text, clearText);
+            try
+            {
+                HideKeyboard();
+            }
+            catch
+            {
+            }
+        }
+
         public bool IsChecked() => _element.IsChecked();
-        public Size Size() => _element.Size();
         public string Text() => _element.Text();
         public string Text(bool trim) => _element.Text(trim);
         public bool ToggleState(bool toggleOn) => _element.ToggleState(toggleOn);
@@ -48,19 +57,55 @@ namespace KPE.Mobile.App.Automation.PageObjects.Wrappers
             return retVal;
         }
 
-        /// <summary>
-        /// TODO: remove if not needed, OR, move onto Interface
-        /// </summary>
-        /// <returns></returns>
-        public AppiumDriver<IWebElement> Driver() => _element.Driver();
-
         public IWebElementWrapper NativeWrapper() => _element;
+        AppiumDriver<IWebElement> AppiumDriver()
+        {
+            return ((IWebDriverReference<AppiumDriver<IWebElement>>)_element).WebDriver();
+        }
+
+        /// <summary>
+        /// (Android) Hide keyboard techniques
+        /// 1. never show keyboard
+        /// https://discuss.appium.io/t/can-we-hide-android-soft-keyboard/6956/5
+        /// 2. driver.navigate.back() 
+        /// 3. AndroidDriver.HideKeyboard()
+        /// https://github.com/appium/appium/issues/4452
+        /// 4. Six different methods
+        /// http://aksahu.blogspot.com.au/2015/10/hide-soft-keyboard-in-android.html
+        /// </summary>
+        public void HideKeyboard()
+        {
+            AppiumDriver().HideKeyboard();
+        }
+
     }
 
-    class AndroidElementWrapper : ElementWrapper, IWebElementReference
+    public class MobileElementDropDownWrapper : MobileElementWrapper
+    {
+        public MobileElementDropDownWrapper(AppiumDriver<IWebElement> driver, By locator) : base(driver, locator)
+        {
+        }
+
+        public void SelectByText(string text)
+        {
+            var driver = ((IWebDriverReference<AppiumDriver<IWebElement>>)_element).WebDriver();
+            var helper = new DropDownHelper(driver);
+            var element = ((IWebElementReference)_element).Element();
+            helper.SelectByText(element, text);
+        }
+    }
+
+    class AndroidElementWrapper : ElementWrapper, IWebElementReference, IWebDriverReference<AppiumDriver<IWebElement>>
     {
         public AndroidElementWrapper(AppiumDriver<IWebElement> driver, By locator) : base(driver, locator)
         {
+        }
+
+        public override void PressKeys(string text) => PressKeys(text, true);
+        public override void PressKeys(string text, bool clearText)
+        {
+            var element = WaitUntil(ExpectedConditions.ElementIsVisible(_locator));
+            PressKeys(element, text, clearText);
         }
 
         public IWebElement Element()
@@ -68,12 +113,34 @@ namespace KPE.Mobile.App.Automation.PageObjects.Wrappers
             return WaitUntil(ExpectedConditions.ElementIsVisible(_locator));
         }
 
+        public AppiumDriver<IWebElement> WebDriver()
+        {
+            return _driver;
+        }
     }
 
-    class IOSElementWrapper : ElementWrapper
+    class IOSElementWrapper : ElementWrapper, IWebElementReference, IWebDriverReference<AppiumDriver<IWebElement>>
     {
         public IOSElementWrapper(AppiumDriver<IWebElement> driver, By locator) : base(driver, locator)
         {
+        }
+
+        public override void PressKeys(string text) => PressKeys(text, true);
+        public override void PressKeys(string text, bool clearText)
+        {
+            // Find element and scroll into view
+            var element = WaitUntil(ExpectedConditions.ElementIsVisible(_locator));
+            base.PressKeys(element, text, clearText);
+        }
+
+        public IWebElement Element()
+        {
+            return WaitUntil(ExpectedConditions.ElementIsVisible(_locator));
+        }
+
+        public AppiumDriver<IWebElement> WebDriver()
+        {
+            return _driver;
         }
     }
 
@@ -104,14 +171,23 @@ namespace KPE.Mobile.App.Automation.PageObjects.Wrappers
         public virtual void PressKeys(string text, bool clearText)
         {
             var element = WaitUntil(ExpectedConditions.ElementToBeClickable(_locator));
-            base.SendKeys(element, text, clearText);
+            PressKeys(element, text, clearText);
+        }
+
+        protected void PressKeys(IWebElement element, string text, bool clearText)
+        {
+            if (clearText)
+            {
+                element.Clear();
+            }
+            element.SendKeys(text);
         }
 
         public virtual string Text() => Text(false);
         public string Text(bool trim)
         {
             var element = WaitUntil(ExpectedConditions.ElementIsVisible(_locator));
-            return GetText(element, trim);
+            return (trim) ? element.Text.Trim() : element.Text;
         }
 
         public bool IsChecked()
@@ -159,6 +235,11 @@ namespace KPE.Mobile.App.Automation.PageObjects.Wrappers
         IWebElement Element();
     }
 
+    public interface IWebDriverReference<T> where T : IWebDriver
+    {
+        T WebDriver();
+    }
+
     public interface IWebElementWrapper
     {
         void Click();
@@ -174,11 +255,6 @@ namespace KPE.Mobile.App.Automation.PageObjects.Wrappers
         /// </summary>
         /// <returns></returns>
         bool IsChecked();
-
         bool ToggleState(bool toggleOn);
-
-        Size Size();
-
-        AppiumDriver<IWebElement> Driver();
     }
 }

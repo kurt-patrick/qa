@@ -17,8 +17,8 @@ namespace KPE.Mobile.App.Automation.PageObjects.Selendroid
         MobileElementWrapper ParentElement => new MobileElementWrapper(_driver, By.Id("io.selendroid.testapp:id/LinearLayout1"));
 
         // Sometimes visible elements
-        private By _xCoordsLocator = By.Id("text_view3");   // vx: -259.7958 pps
-        private By _yCoordsLocator = By.Id("text_view4");   // vy: 19.668333 pps
+        MobileElementWrapper XCoordsLocator => new MobileElementWrapper(_driver, By.Id("text_view3"));
+        MobileElementWrapper YCoordsLocator => new MobileElementWrapper(_driver, By.Id("text_view4"));
 
         public TouchGesturesPage(AppiumDriver<IWebElement> driver) : base(driver)
         {
@@ -34,18 +34,18 @@ namespace KPE.Mobile.App.Automation.PageObjects.Selendroid
 
         public double? GetXCoords()
         {
-            return GetCoords(_xCoordsLocator, "vx: (.+) pps");
+            return GetCoords(XCoordsLocator, "vx: (.+) pps");
         }
 
         public double? GetYCoords()
         {
-            return GetCoords(_yCoordsLocator, "vy: (.+) pps");
+            return GetCoords(YCoordsLocator, "vy: (.+) pps");
         }
 
-        private double? GetCoords(By locator, string pattern)
+        private double? GetCoords(MobileElementWrapper element, string pattern)
         {
             double? retVal = null;
-            string text = GetText(locator, true);
+            string text = element.Text(true);
             if(Regex.IsMatch(text, pattern))
             {
                 var matches = Regex.Match(text, pattern);

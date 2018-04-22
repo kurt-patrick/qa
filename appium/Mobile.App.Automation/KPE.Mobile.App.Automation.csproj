@@ -100,9 +100,6 @@
     <Compile Include="PageObjects\ChecklistApp\EditItemPage.cs" />
     <Compile Include="PageObjects\ChecklistApp\MenuBarPage.cs" />
     <Compile Include="PageObjects\ChecklistApp\MainPage.cs" />
-    <Compile Include="PageObjects\GmailApp\ConversationListPage.cs" />
-    <Compile Include="PageObjects\GmailApp\EmailAddressSelectionPage.cs" />
-    <Compile Include="PageObjects\GmailApp\WelcomePage.cs" />
     <Compile Include="Helpers\IosJavaScriptExecutor.cs" />
     <Compile Include="PageObjects\PageBase.cs" />
     <Compile Include="PageObjects\PageObjectFactory.cs" />
@@ -131,7 +128,6 @@
     <Compile Include="Tests\ChecklistApp\EditTests.cs" />
     <Compile Include="Tests\ChecklistApp\ChecklistTestBase.cs" />
     <Compile Include="Tests\ChecklistApp\AddTests.cs" />
-    <Compile Include="Tests\GmailApp\ConversationListTests.cs" />
     <Compile Include="Tests\SelendroidApp\ActivityTests\TouchGesturesActivityTests.cs" />
     <Compile Include="Tests\SelendroidApp\ActivityTests\RegisterUserActivityTests.cs" />
     <Compile Include="Tests\SelendroidApp\LocatorTests\FindsByAndroidUiScrollableTests.cs" />

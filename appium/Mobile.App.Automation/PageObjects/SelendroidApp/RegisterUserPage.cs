@@ -14,7 +14,7 @@ namespace KPE.Mobile.App.Automation.PageObjects.Selendroid
         public MobileElementWrapper Email => new MobileElementWrapper(_driver, By.Id("io.selendroid.testapp:id/inputEmail"));
         public MobileElementWrapper Password => new MobileElementWrapper(_driver, By.Id("io.selendroid.testapp:id/inputPassword"));
         public MobileElementWrapper Name => new MobileElementWrapper(_driver, By.Id("io.selendroid.testapp:id/inputName"));
-        public MobileElementWrapper ProgrammingLanguage => new MobileElementWrapper(_driver, By.Id("io.selendroid.testapp:id/input_preferedProgrammingLanguage"));
+        public MobileElementDropDownWrapper ProgrammingLanguage => new MobileElementDropDownWrapper(_driver, By.Id("io.selendroid.testapp:id/input_preferedProgrammingLanguage"));
         public MobileElementWrapper AcceptAdds => new MobileElementWrapper(_driver, By.Id("io.selendroid.testapp:id/input_adds"));
         public MobileElementWrapper RegisterUser => new MobileElementWrapper(_driver, By.Id("io.selendroid.testapp:id/btnRegisterUser"));
 
