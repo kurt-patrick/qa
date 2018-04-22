@@ -1,9 +1,12 @@
 ﻿using OpenQA.Selenium;
 using OpenQA.Selenium.Appium;
 using OpenQA.Selenium.Appium.Android;
+using OpenQA.Selenium.Appium.Interfaces;
 using OpenQA.Selenium.Appium.iOS;
+using OpenQA.Selenium.Appium.MultiTouch;
 using OpenQA.Selenium.Support.UI;
 using System;
+using System.Drawing;
 
 namespace KPE.Mobile.App.Automation.PageObjects.Wrappers
 {
@@ -35,6 +38,7 @@ namespace KPE.Mobile.App.Automation.PageObjects.Wrappers
         public void PressKeys(string text) => _element.PressKeys(text);
         public void PressKeys(string text, bool clearText) => _element.PressKeys(text, clearText);
         public bool IsChecked() => _element.IsChecked();
+        public Size Size() => _element.Size();
         public string Text() => _element.Text();
         public string Text(bool trim) => _element.Text(trim);
         public bool ToggleState(bool toggleOn) => _element.ToggleState(toggleOn);
@@ -44,13 +48,26 @@ namespace KPE.Mobile.App.Automation.PageObjects.Wrappers
             return retVal;
         }
 
+        /// <summary>
+        /// TODO: remove if not needed, OR, move onto Interface
+        /// </summary>
+        /// <returns></returns>
+        public AppiumDriver<IWebElement> Driver() => _element.Driver();
+
+        public IWebElementWrapper NativeWrapper() => _element;
     }
 
-    class AndroidElementWrapper : ElementWrapper
+    class AndroidElementWrapper : ElementWrapper, IWebElementReference
     {
         public AndroidElementWrapper(AppiumDriver<IWebElement> driver, By locator) : base(driver, locator)
         {
         }
+
+        public IWebElement Element()
+        {
+            return WaitUntil(ExpectedConditions.ElementIsVisible(_locator));
+        }
+
     }
 
     class IOSElementWrapper : ElementWrapper
@@ -62,7 +79,7 @@ namespace KPE.Mobile.App.Automation.PageObjects.Wrappers
 
     class ElementWrapper : PageBase, IWebElementWrapper
     {
-        readonly By _locator;
+        protected readonly By _locator;
 
         public ElementWrapper(AppiumDriver<IWebElement> driver, By locator) : this(driver)
         {
@@ -124,6 +141,22 @@ namespace KPE.Mobile.App.Automation.PageObjects.Wrappers
         {
             throw new NotImplementedException();
         }
+
+        public Size Size()
+        {
+            var element = WaitUntil(ExpectedConditions.ElementIsVisible(_locator), true);
+            return element.Size;
+        }
+
+        public AppiumDriver<IWebElement> Driver()
+        {
+            return _driver;
+        }
+    }
+
+    public interface IWebElementReference
+    {
+        IWebElement Element();
     }
 
     public interface IWebElementWrapper
@@ -144,5 +177,8 @@ namespace KPE.Mobile.App.Automation.PageObjects.Wrappers
 
         bool ToggleState(bool toggleOn);
 
+        Size Size();
+
+        AppiumDriver<IWebElement> Driver();
     }
 }

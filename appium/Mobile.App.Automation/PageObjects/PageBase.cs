@@ -42,12 +42,12 @@ namespace KPE.Mobile.App.Automation.PageObjects
             PageFactory.InitElements(_driver, this, new AppiumPageObjectMemberDecorator(implicitWait));
         }
 
-        protected TouchAction GetTouchAction()
+        protected TouchAction TouchAction()
         {
             return new TouchAction(_driver);
         }
 
-        protected MultiAction GetMultiAction()
+        protected MultiAction MultiAction()
         {
             return new MultiAction(_driver);
         }

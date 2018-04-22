@@ -50,7 +50,8 @@ namespace KPE.Mobile.App.Automation.Tests.Selendroid.ActivityTests
 
             dialogPage.HideKeyboard();
 
-            Get<RegisterUserPage>(true);
+            Assert.True(new RegisterUserPage(_driver).IsLoaded());
+            //Get<RegisterUserPage>(true);
         }
 
         [Test]

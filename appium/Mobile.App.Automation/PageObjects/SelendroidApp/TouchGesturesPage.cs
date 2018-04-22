@@ -1,9 +1,7 @@
-﻿using KPE.Mobile.App.Automation.Helpers;
+﻿using KPE.Mobile.App.Automation.PageObjects.Wrappers;
 using NUnit.Framework;
 using OpenQA.Selenium;
 using OpenQA.Selenium.Appium;
-using OpenQA.Selenium.Appium.PageObjects.Attributes;
-using OpenQA.Selenium.Support.PageObjects;
 using System;
 using System.Collections.Generic;
 using System.Text.RegularExpressions;
@@ -13,25 +11,10 @@ namespace KPE.Mobile.App.Automation.PageObjects.Selendroid
     public class TouchGesturesPage : PageBase
     {
         // Always visible elements
-        [CacheLookup()]
-        [FindsByAndroidUIAutomator(ID = "io.selendroid.testapp:id/last_gesture_text_view")]
-        private IWebElement _lastGesture = null;
-
-        [CacheLookup()]
-        [FindsByAndroidUIAutomator(ID = "io.selendroid.testapp:id/gesture_type_text_view")]
-        private IWebElement _gestureType = null;
-
-        [CacheLookup()]
-        [FindsByAndroidUIAutomator(ID = "io.selendroid.testapp:id/scale_factor_text_view")]
-        private IWebElement _scaleFactor = null;
-
-        [CacheLookup()]
-        [FindsByAndroidUIAutomator(ID = "io.selendroid.testapp:id/LinearLayout1")]
-        private IWebElement _parentElement = null;
-
-        [CacheLookup()]
-        [FindsByAndroidUIAutomator(ID = "io.selendroid.testapp:id/canvas_button")]
-        private IWebElement _canvas = null;
+        MobileElementWrapper LastGesture => new MobileElementWrapper(_driver, By.Id("io.selendroid.testapp:id/last_gesture_text_view"));
+        MobileElementWrapper GestureType => new MobileElementWrapper(_driver, By.Id("io.selendroid.testapp:id/gesture_type_text_view"));
+        MobileElementWrapper ScaleFactor => new MobileElementWrapper(_driver, By.Id("io.selendroid.testapp:id/scale_factor_text_view"));
+        MobileElementWrapper ParentElement => new MobileElementWrapper(_driver, By.Id("io.selendroid.testapp:id/LinearLayout1"));
 
         // Sometimes visible elements
         private By _xCoordsLocator = By.Id("text_view3");   // vx: -259.7958 pps
@@ -112,15 +95,14 @@ namespace KPE.Mobile.App.Automation.PageObjects.Selendroid
 
         public TouchGesturesPage AssertGestureText(string expected)
         {
-            Assert.AreEqual(expected, GetText(_gestureType, true));
+            Assert.AreEqual(expected, GestureType.Text(true));
             return this;
         }
 
         public TouchGesturesPage SingleTap()
         {
-            GetTouchAction()
-                .Tap(_parentElement)
-                .Perform();
+            var element = ((IWebElementReference)ParentElement.NativeWrapper()).Element();
+            TouchAction().Tap(element).Perform();
             return this;
         }
 
@@ -135,12 +117,12 @@ namespace KPE.Mobile.App.Automation.PageObjects.Selendroid
             // I have tested waits ranging from 50 to 1000ms and the best result were between 400-550ms
             Func<bool> condition = () =>
             {
-                GetTouchAction()
+                TouchAction()
                     .Tap(xPos, yPos, 2)
                     .Wait(ms)
                     .Perform();
 
-                return "ON DOUBLE TAP EVENT".Equals(GetText(_gestureType, true));
+                return "ON DOUBLE TAP EVENT".Equals(GestureType.Text(true));
             };
 
             WaitUntil((arg) => condition());
@@ -150,11 +132,13 @@ namespace KPE.Mobile.App.Automation.PageObjects.Selendroid
 
         public TouchGesturesPage PressAndHold(long ms)
         {
-            GetTouchAction()
-                .Press(_parentElement)
+            var element = ((IWebElementReference)ParentElement.NativeWrapper()).Element();
+
+            TouchAction().Press(element)
                 .Wait(ms)
                 .Release()
                 .Perform();
+
             return this;
         }
 
@@ -195,7 +179,7 @@ namespace KPE.Mobile.App.Automation.PageObjects.Selendroid
         /// <returns></returns>
         public TouchGesturesPage Flick(double startX, double startY, double endX, double endY, long ms)
         {
-            GetTouchAction()
+            TouchAction()
                 .Press(startX, startY)
                 .Wait(ms)
                 .MoveTo(endX, endY)
@@ -206,40 +190,22 @@ namespace KPE.Mobile.App.Automation.PageObjects.Selendroid
 
         public TouchGesturesPage FlickParentElement()
         {
-            var size = _parentElement.Size;
+            var element = ((IWebElementReference)ParentElement.NativeWrapper()).Element();
+            var size = element.Size;
 
-            GetTouchAction()
-                .Press(_parentElement, size.Width * 0.25, size.Height * 0.25)
+            TouchAction()
+                .Press(element, size.Width * 0.25, size.Height * 0.25)
                 .Wait(500)
                 .MoveTo(size.Width * 0.75, size.Height * 0.75)
                 .Release()
                 .Perform();
-            return this;
-        }
 
-        public TouchGesturesPage Scroll()
-        {
-            return this;
-        }
-
-        public TouchGesturesPage Pinch()
-        {
-            return this;
-        }
-
-        public TouchGesturesPage Zoom()
-        {
             return this;
         }
 
         public override bool IsLoaded()
         {
-            return IsVisible(_parentElement, _lastGesture, _gestureType, _scaleFactor);
-        }
-
-        public void ClickCanvas()
-        {
-            Click(_canvas);
+            return IsDisplayed(ParentElement, LastGesture, GestureType, ScaleFactor);
         }
 
         public TouchGesturesPage AssertIsLoaded()

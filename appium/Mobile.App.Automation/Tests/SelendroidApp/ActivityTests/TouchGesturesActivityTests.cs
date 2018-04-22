@@ -23,9 +23,9 @@ namespace KPE.Mobile.App.Automation.Tests.Selendroid.ActivityTests
         {
             if(_touchGesturesPage == null)
             {
-                _pageObject.TouchActions.Click();
-                _touchGesturesPage = Get<TouchGesturesPage>(true);
             }
+            _pageObject.TouchActions.Click();
+            _touchGesturesPage = Get<TouchGesturesPage>(true);
         }
 
         [Test]
