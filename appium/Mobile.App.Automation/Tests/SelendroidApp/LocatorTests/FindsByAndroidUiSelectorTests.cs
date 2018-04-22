@@ -12,9 +12,10 @@ namespace KPE.Mobile.App.Automation.Tests.Selendroid.LocatorTests
         public FindsByAndroidUiSelectorTests(DesiredCapabilities caps) 
             : base(caps) 
         {
+            OnTestSetupEventHandler += OnTestSetup;
         }
 
-        public override void TestSetup()
+        void OnTestSetup()
         {
             _pageObject.Registration.Click();
 

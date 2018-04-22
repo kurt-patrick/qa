@@ -21,13 +21,13 @@ namespace KPE.Mobile.App.Automation.Tests.Selendroid.ActivityTests
 
             var registrationPage = Get<RegisterUserPage>(true);
 
-            registrationPage.Username = RandomHelper.RandomString(6);
-            registrationPage.Email = RandomHelper.RandomEmail();
-            registrationPage.Password = RandomHelper.RandomString(6);
-            registrationPage.Name = RandomHelper.RandomString(6);
-            registrationPage.ProgrammingLanguage = RandomHelper.RandomString(new string[] { "Ruby", "PHP", "Scala", "Python" });
-            registrationPage.AcceptAdds = true;
-            registrationPage.ClickRegisterUser();
+            registrationPage.Username.PressKeys(RandomHelper.RandomString(3));
+            registrationPage.Email.PressKeys(RandomHelper.RandomEmail());
+            registrationPage.Password.PressKeys(RandomHelper.RandomString(3));
+            registrationPage.Name.PressKeys(RandomHelper.RandomString(3));
+            registrationPage.ProgrammingLanguage.SelectByText(RandomHelper.RandomString(new string[] { "Ruby", "PHP", "Scala", "Python" }));
+            registrationPage.AcceptAdds.ToggleState(true);
+            registrationPage.RegisterUser.Click();
         }
 
     }

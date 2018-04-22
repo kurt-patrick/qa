@@ -12,9 +12,10 @@ namespace KPE.Mobile.App.Automation.Tests.AutomationChallengesApp
 
         public PinCodeTest(DesiredCapabilities capabilities) : base(capabilities)
         {
+            OnTestSetupEventHandler += OnTestSetup;
         }
 
-        public override void TestSetup()
+        void OnTestSetup()
         {
             _navigationDrawerPage.OpenDrawer().PinChallenge();
             Assert.AreEqual(ClickToEnterPin, _pageObject.PinEntered.Text(true));

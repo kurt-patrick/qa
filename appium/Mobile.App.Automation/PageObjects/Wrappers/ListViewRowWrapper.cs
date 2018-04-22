@@ -21,12 +21,12 @@ namespace KPE.Mobile.App.Automation.PageObjects.Wrappers
 
         public void TapRow()
         {
-            Click(_element);
+            _element.Click();
         }
 
         public T TapRow<T>() where T : PageBase
         {
-            Click(_element);
+            _element.Click();
             return PageObjectFactory.Create<T>(_driver);
         }
 

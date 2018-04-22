@@ -12,19 +12,20 @@ namespace KPE.Mobile.App.Automation.Tests.Selendroid.ActivityTests
         public TouchGesturesActivityTests(DesiredCapabilities caps) 
             : base(caps) 
         {
+            OnTestSetupEventHandler += OnTestSetup;
         }
 
         /// <summary>
         /// Navigate to the gestures page before starting
         /// NOTE: We only want to run this code once as after the first time we are on the correct page
         /// </summary>
-        public override void TestSetup()
+        void OnTestSetup()
         {
             if(_touchGesturesPage == null)
             {
-                _pageObject.TouchActions.Click();
-                _touchGesturesPage = Get<TouchGesturesPage>(true);
             }
+            _pageObject.TouchActions.Click();
+            _touchGesturesPage = Get<TouchGesturesPage>(true);
         }
 
         [Test]
