@@ -29,6 +29,7 @@ namespace KPE.Mobile.App.Automation.Tests.Selendroid.ActivityTests
         }
 
         [Test]
+        [Ignore(NUnit_Category)]
         public void SingleTapTest()
         {
             _touchGesturesPage
@@ -37,6 +38,7 @@ namespace KPE.Mobile.App.Automation.Tests.Selendroid.ActivityTests
         }
 
         [Test]
+        [Ignore(NUnit_Category)]
         public void ShortPressTest()
         {
             _touchGesturesPage
@@ -45,6 +47,7 @@ namespace KPE.Mobile.App.Automation.Tests.Selendroid.ActivityTests
         }
 
         [Test]
+        [Ignore(NUnit_Category)]
         public void LongPressTest()
         {
             _touchGesturesPage
@@ -53,6 +56,7 @@ namespace KPE.Mobile.App.Automation.Tests.Selendroid.ActivityTests
         }
 
         [Test]
+        [Ignore(NUnit_Category)]
         public void DoubleTapTest()
         {
             _touchGesturesPage
@@ -61,6 +65,7 @@ namespace KPE.Mobile.App.Automation.Tests.Selendroid.ActivityTests
         }
 
         [Test]
+        [Ignore(NUnit_Category)]
         public void FlickUpTest()
         {
             _touchGesturesPage
@@ -70,6 +75,7 @@ namespace KPE.Mobile.App.Automation.Tests.Selendroid.ActivityTests
         }
 
         [Test]
+        [Ignore(NUnit_Category)]
         public void FlickDownTest()
         {
             _touchGesturesPage
@@ -79,6 +85,7 @@ namespace KPE.Mobile.App.Automation.Tests.Selendroid.ActivityTests
         }
 
         [Test]
+        [Ignore(NUnit_Category)]
         public void FlickLeftTest()
         {
             _touchGesturesPage
@@ -88,6 +95,7 @@ namespace KPE.Mobile.App.Automation.Tests.Selendroid.ActivityTests
         }
 
         [Test]
+        [Ignore(NUnit_Category)]
         public void FlickRightTest()
         {
             _touchGesturesPage

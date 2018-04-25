@@ -25,6 +25,7 @@ namespace KPE.Mobile.App.Automation.Tests.Selendroid.LocatorTests
         }
 
         [Test]
+        [Ignore(NUnit_Category)]
         public void ScrollingTests()
         {
             var uiScrollablePage = _registerUserPage.SwitchPageObject<FindsByAndroidUiScrollablePage>();

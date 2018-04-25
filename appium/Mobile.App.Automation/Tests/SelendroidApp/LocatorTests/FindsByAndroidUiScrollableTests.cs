@@ -14,24 +14,28 @@ namespace KPE.Mobile.App.Automation.Tests.Selendroid.LocatorTests
         }
 
         [Test]
+        [Ignore(NUnit_Category)]
         public void FindsByClassNameTest()
         {
             _pageObject.AssertByClassName();
         }
 
         [Test]
+        [Ignore(NUnit_Category)]
         public void FindsByResourceIDTest()
         {
             _pageObject.AssertByResourceId();
         }
 
         [Test]
+        [Ignore(NUnit_Category)]
         public void FindsByTextTest()
         {
             _pageObject.AssertByText();
         }
 
         [Test]
+        [Ignore(NUnit_Category)]
         public void FindsByTextContainsTest()
         {
             _pageObject.AssertByTextContains();

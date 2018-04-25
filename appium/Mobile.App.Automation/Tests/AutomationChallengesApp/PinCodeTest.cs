@@ -22,6 +22,7 @@ namespace KPE.Mobile.App.Automation.Tests.AutomationChallengesApp
         }
 
         [Test]
+        [Category(NUnit_Category)]
         public void PinSuccessTest()
         {
             string pinEntered = "";
@@ -42,6 +43,7 @@ namespace KPE.Mobile.App.Automation.Tests.AutomationChallengesApp
         }
 
         [Test]
+        [Category(NUnit_Category)]
         public void PinFailTest()
         {
             _pageObject.EnterPIN(new List<int> { 9, 9, 9, 9  });

@@ -6,7 +6,10 @@ namespace KPE.Mobile.App.Automation.Tests
     [TestFixture(Description = "UiSelectorHelper Tests")]
     public class UiSelectorChainedHelperTests
     {
+        const string NUnit_Category = "SelectorHelper";
+
         [Test]
+        [Category(NUnit_Category)]
         public void UiSelectorChainedClassNameTest()
         {
             Assert.AreEqual(
@@ -15,6 +18,7 @@ namespace KPE.Mobile.App.Automation.Tests
         }
 
         [Test]
+        [Category(NUnit_Category)]
         public void UiSelectorChainedResourceIdTest()
         {
             Assert.AreEqual(
@@ -23,6 +27,7 @@ namespace KPE.Mobile.App.Automation.Tests
         }
 
         [Test]
+        [Category(NUnit_Category)]
         public void UiSelectorChainedScrollableTest()
         {
             Assert.AreEqual(
@@ -31,6 +36,7 @@ namespace KPE.Mobile.App.Automation.Tests
         }
 
         [Test]
+        [Category(NUnit_Category)]
         public void UiSelectorChainedTextTest()
         {
             Assert.AreEqual(
@@ -39,6 +45,7 @@ namespace KPE.Mobile.App.Automation.Tests
         }
 
         [Test]
+        [Category(NUnit_Category)]
         public void UiSelectorChainedTextContainsTest()
         {
             Assert.AreEqual(
@@ -47,6 +54,7 @@ namespace KPE.Mobile.App.Automation.Tests
         }
 
         [Test]
+        [Category(NUnit_Category)]
         public void UiSelectorChainedTextAndScrollableTest()
         {
             Assert.AreEqual(

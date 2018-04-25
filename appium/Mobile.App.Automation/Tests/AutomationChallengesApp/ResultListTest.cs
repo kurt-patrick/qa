@@ -25,6 +25,7 @@ namespace KPE.Mobile.App.Automation.Tests.AutomationChallengesApp
         }
 
         [Test]
+        [Category(NUnit_Category)]
         public void ResultsSuccessTest()
         {
             var rows = _pageObject.GetRows();
@@ -39,6 +40,7 @@ namespace KPE.Mobile.App.Automation.Tests.AutomationChallengesApp
         }
 
         [Test]
+        [Category(NUnit_Category)]
         public void ResultsFailTest()
         {
             var rows = _pageObject.GetRows();

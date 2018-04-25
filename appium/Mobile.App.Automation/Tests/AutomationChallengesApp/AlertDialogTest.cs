@@ -19,6 +19,7 @@ namespace KPE.Mobile.App.Automation.Tests.AutomationChallengesApp
         }
 
         [Test]
+        [Category(NUnit_Category)]
         public void AlertSuccessTest()
         {
             var answer = _pageObject.IsAnswerCorrect();
@@ -28,6 +29,7 @@ namespace KPE.Mobile.App.Automation.Tests.AutomationChallengesApp
         }
 
         [Test]
+        [Category(NUnit_Category)]
         public void AlertFailTest()
         {
             var answer = _pageObject.IsAnswerCorrect();
