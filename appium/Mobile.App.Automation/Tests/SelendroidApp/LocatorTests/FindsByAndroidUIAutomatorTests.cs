@@ -13,24 +13,28 @@ namespace KPE.Mobile.App.Automation.Tests.Selendroid.LocatorTests
         }
 
         [Test]
+        [Ignore(NUnit_Category)]
         public void FindsByClassNameTest()
         {
             Assert.IsTrue(_pageObject.ByClassName.Displayed(), "Found element by ClassName");
         }
 
         [Test]
+        [Ignore(NUnit_Category)]
         public void FindsByIDTest()
         {
             Assert.IsTrue(_pageObject.ByID.Displayed(), "Found element by ID");
         }
 
         [Test]
+        [Ignore(NUnit_Category)]
         public void FindsByXPathTest()
         {
             Assert.IsTrue(_pageObject.ByXPath.Displayed(), "Found element by XPath");
         }
 
         [Test]
+        [Ignore(NUnit_Category)]
         public void FindsByXPathGenericTest()
         {
             Assert.IsTrue(_pageObject.ByXPathGeneric.Displayed(), "Found element by XPath Generic");

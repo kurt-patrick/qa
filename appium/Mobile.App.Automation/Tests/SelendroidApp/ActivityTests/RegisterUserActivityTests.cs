@@ -15,6 +15,7 @@ namespace KPE.Mobile.App.Automation.Tests.Selendroid.ActivityTests
         }
 
         [Test]
+        [Ignore(NUnit_Category)]
         public void NewRegistrationTest()
         {
             _pageObject.Registration.Click();

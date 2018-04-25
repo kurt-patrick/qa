@@ -15,12 +15,14 @@ namespace KPE.Mobile.App.Automation.Tests.Selendroid.ActivityTests
         }
 
         [Test]
+        [Ignore(NUnit_Category)]
         public void HomeScreenActivityIsLoadedTest()
         {
             Assert.IsTrue(_pageObject.IsLoaded());
         }
 
         [Test]
+        [Ignore(NUnit_Category)]
         public void I_Accept_Adds_Test()
         {
             // assert is checked (default)
@@ -40,6 +42,7 @@ namespace KPE.Mobile.App.Automation.Tests.Selendroid.ActivityTests
         }
 
         [Test]
+        [Ignore(NUnit_Category)]
         public void Wait_Dialog_Test()
         {
             _pageObject.ProgressButton.Click();
@@ -52,6 +55,7 @@ namespace KPE.Mobile.App.Automation.Tests.Selendroid.ActivityTests
         }
 
         [Test]
+        [Ignore(NUnit_Category)]
         public void PageSourceTest()
         {
             string pageSource = _driver.PageSource;

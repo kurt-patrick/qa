@@ -33,6 +33,7 @@ namespace KPE.Mobile.App.Automation.Tests.ChecklistApp
         }
 
         [Test]
+        [Ignore(NUnit_Category)]
         public void DeleteSingleItemTest()
         {
             var rows = AddItem();
@@ -65,6 +66,7 @@ namespace KPE.Mobile.App.Automation.Tests.ChecklistApp
         }
 
         [Test]
+        [Ignore(NUnit_Category)]
         public void DeleteAllItemsTest()
         {
             Assert.IsTrue(_pageObject.IsLoaded());
@@ -87,6 +89,7 @@ namespace KPE.Mobile.App.Automation.Tests.ChecklistApp
         }
 
         [Test]
+        [Ignore(NUnit_Category)]
         public void ClickDeleteWithNoItemsSelectedTest()
         {
             Assert.IsTrue(_pageObject.IsLoaded());

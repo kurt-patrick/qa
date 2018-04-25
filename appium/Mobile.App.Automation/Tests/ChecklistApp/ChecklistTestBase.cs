@@ -12,6 +12,7 @@ namespace KPE.Mobile.App.Automation.Tests.ChecklistApp
     internal class ChecklistTestBase : TestBaseGeneric<MainPage>
     {
         const string AppName = "ChecklistApp";
+        protected const string NUnit_Category = "ChecklistApp";
 
         //Eyes _eyes = null;
 

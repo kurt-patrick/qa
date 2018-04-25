@@ -15,6 +15,7 @@ namespace KPE.Mobile.App.Automation.Tests.ChecklistApp
         }
 
         [Test]
+        [Ignore(NUnit_Category)]
         public void EditItemTest()
         {
             Assert.IsTrue(_pageObject.IsLoaded());

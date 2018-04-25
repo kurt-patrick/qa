@@ -22,6 +22,7 @@ namespace KPE.Mobile.App.Automation.Tests.ChecklistApp
         }
 
         [Test]
+        [Ignore(NUnit_Category)]
         public void AddItemTest()
         {
             //Eyes eyes = null;
@@ -54,6 +55,7 @@ namespace KPE.Mobile.App.Automation.Tests.ChecklistApp
         }
 
         [Test]
+        [Ignore(NUnit_Category)]
         public void ClickAddThenCancelTest()
         {
             Assert.IsTrue(_pageObject.IsLoaded());
@@ -66,6 +68,7 @@ namespace KPE.Mobile.App.Automation.Tests.ChecklistApp
         }
 
         [Test]
+        [Ignore(NUnit_Category)]
         public void ClickAddEnterTextThenCancelTest()
         {
             Assert.IsTrue(_pageObject.IsLoaded());

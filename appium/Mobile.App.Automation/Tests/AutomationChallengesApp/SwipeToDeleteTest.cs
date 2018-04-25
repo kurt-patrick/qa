@@ -22,6 +22,7 @@ namespace KPE.Mobile.App.Automation.Tests.AutomationChallengesApp
         }
 
         [Test]
+        [Category(NUnit_Category)]
         public void SwipeLeftTest()
         {
             new List<int> { 1, 2, 3 }.ForEach(SwipeAndAssert);

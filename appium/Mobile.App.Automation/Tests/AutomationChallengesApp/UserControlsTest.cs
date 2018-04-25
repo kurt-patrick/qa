@@ -19,6 +19,7 @@ namespace KPE.Mobile.App.Automation.Tests.AutomationChallengesApp
         }
 
         [Test]
+        [Category(NUnit_Category)]
         public void AlertSuccessTest()
         {
             _pageObject.ValidateButton.Click();
@@ -26,6 +27,7 @@ namespace KPE.Mobile.App.Automation.Tests.AutomationChallengesApp
         }
 
         [Test]
+        [Category(NUnit_Category)]
         public void AlertFailTest()
         {
             _pageObject.ValidateButton.Click();
